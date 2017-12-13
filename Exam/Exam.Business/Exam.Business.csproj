@@ -30,8 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,9 +49,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BizResult.cs" />
-    <Compile Include="IUserBusiness.cs" />
-    <Compile Include="UserBusiness.cs" />
+    <Compile Include="UserInfo\IUserInfoBusiness.cs" />
+    <Compile Include="UserInfo\UserInfoBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
+      <Project>{b89242ce-16c6-4a06-95e0-7ef5490b8717}</Project>
+      <Name>Exam.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Data\Exam.Data.csproj">
+      <Project>{5d850778-7728-4f33-945a-9d21b633ab5e}</Project>
+      <Name>Exam.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Domain\Exam.Domain.csproj">
+      <Project>{45bebecf-8116-4f31-bc00-3de5cdab13e7}</Project>
+      <Name>Exam.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.IService\Exam.IService.csproj">
+      <Project>{d1823cc1-3c81-47bd-962f-9cc00574fdcf}</Project>
+      <Name>Exam.IService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

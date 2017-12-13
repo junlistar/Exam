@@ -95,6 +95,5 @@ F:\work\Exam\Exam\Exam.Api\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.
 F:\work\Exam\Exam\Exam.Api\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
 F:\work\Exam\Exam\Exam.Api\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 F:\work\Exam\Exam\Exam.Api\bin\zh-Hans\System.Web.Http.Owin.resources.dll
-F:\work\Exam\Exam\Exam.Api\obj\Debug\Exam.Api.csprojResolveAssemblyReference.cache
 F:\work\Exam\Exam\Exam.Api\obj\Debug\Exam.Api.dll
 F:\work\Exam\Exam\Exam.Api\obj\Debug\Exam.Api.pdb
