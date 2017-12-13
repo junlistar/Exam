@@ -1,0 +1,4 @@
+F:\work\Exam\Exam\Exam.Domain\bin\Debug\Exam.Domain.dll
+F:\work\Exam\Exam\Exam.Domain\bin\Debug\Exam.Domain.pdb
+F:\work\Exam\Exam\Exam.Domain\obj\Debug\Exam.Domain.dll
+F:\work\Exam\Exam\Exam.Domain\obj\Debug\Exam.Domain.pdb

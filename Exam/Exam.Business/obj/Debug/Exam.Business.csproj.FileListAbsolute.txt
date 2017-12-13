@@ -1,0 +1,5 @@
+F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Business.dll
+F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Business.pdb
+F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.csprojResolveAssemblyReference.cache
+F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.dll
+F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.pdb

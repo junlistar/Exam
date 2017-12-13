@@ -1,0 +1,5 @@
+F:\work\Exam\Exam\Exam.IService\bin\Debug\Exam.IService.dll
+F:\work\Exam\Exam\Exam.IService\bin\Debug\Exam.IService.pdb
+F:\work\Exam\Exam\Exam.IService\obj\Debug\Exam.IService.csprojResolveAssemblyReference.cache
+F:\work\Exam\Exam\Exam.IService\obj\Debug\Exam.IService.dll
+F:\work\Exam\Exam\Exam.IService\obj\Debug\Exam.IService.pdb

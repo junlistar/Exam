@@ -1,0 +1,7 @@
+F:\work\Exam\Exam\Exam.Business.Test\bin\Debug\Exam.Business.Test.dll
+F:\work\Exam\Exam\Exam.Business.Test\bin\Debug\Exam.Business.Test.pdb
+F:\work\Exam\Exam\Exam.Business.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\work\Exam\Exam\Exam.Business.Test\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+F:\work\Exam\Exam\Exam.Business.Test\obj\Debug\Exam.Business.Test.csprojResolveAssemblyReference.cache
+F:\work\Exam\Exam\Exam.Business.Test\obj\Debug\Exam.Business.Test.dll
+F:\work\Exam\Exam\Exam.Business.Test\obj\Debug\Exam.Business.Test.pdb
