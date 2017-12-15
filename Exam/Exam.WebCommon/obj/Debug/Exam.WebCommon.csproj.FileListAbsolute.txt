@@ -1,4 +1,0 @@
-F:\work\Exam\Exam\Exam.WebCommon\bin\Debug\Exam.WebCommon.dll
-F:\work\Exam\Exam\Exam.WebCommon\bin\Debug\Exam.WebCommon.pdb
-F:\work\Exam\Exam\Exam.WebCommon\obj\Debug\Exam.WebCommon.dll
-F:\work\Exam\Exam\Exam.WebCommon\obj\Debug\Exam.WebCommon.pdb
