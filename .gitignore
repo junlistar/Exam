@@ -18,15 +18,3 @@ Exam/Exam.Service/bin/*
 Exam/Exam.Service/obj/*
 Exam/Exam.WebCommon/bin/*
 Exam/Exam.WebCommon/obj/*
-/Exam/Exam.Admin/bin
-/Exam/Exam.Admin/obj
-bin
-obj
-/Exam/Exam.Business.Test/bin
-/Exam/Exam.Business.Test/obj
-Exam.Data
-Exam.Api
-Exam.Domain
-Exam.IService
-Exam.Service
-Exam.WebCommon
