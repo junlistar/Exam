@@ -21,8 +21,7 @@ namespace Exam.Data.Mapping.Test
             this.Property(m => m.Name);
             this.Property(m => m.Age);
             this.Property(m => m.CreateTime);
-            this.Property(m => m.Comment); 
-             //////////
+            this.Property(m => m.Comment);  
         }
     }
 }
