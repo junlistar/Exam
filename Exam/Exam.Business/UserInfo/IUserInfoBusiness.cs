@@ -1,12 +1,18 @@
-﻿using System;
+﻿using Exam.Domain.UserInfo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exam.Business.UserInfo
+namespace Exam.Business
 {
-    public class IUserInfoBusiness
+    public interface IUserInfoBusiness
     {
+
+
+        UserInfo GetUserByID(int id);
+
+        UserInfo AddUser(UserInfo model);
     }
 }

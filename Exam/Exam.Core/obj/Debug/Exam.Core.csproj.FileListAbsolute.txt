@@ -1,4 +1,3 @@
-F:\work\Exam\Exam\Exam.Core\obj\Debug\Exam.Core.csprojResolveAssemblyReference.cache
 F:\work\Exam\Exam\Exam.Core\bin\Debug\Exam.Core.dll.config
 F:\work\Exam\Exam\Exam.Core\bin\Debug\Exam.Core.dll
 F:\work\Exam\Exam\Exam.Core\bin\Debug\Exam.Core.pdb
@@ -29,5 +28,6 @@ F:\work\Exam\Exam\Exam.Core\bin\Debug\zh-Hans\System.Web.Razor.resources.dll
 F:\work\Exam\Exam\Exam.Core\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
 F:\work\Exam\Exam\Exam.Core\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 F:\work\Exam\Exam\Exam.Core\bin\Debug\zh-Hans\System.Web.WebPages.Razor.resources.dll
+F:\work\Exam\Exam\Exam.Core\obj\Debug\Exam.Core.csprojResolveAssemblyReference.cache
 F:\work\Exam\Exam\Exam.Core\obj\Debug\Exam.Core.dll
 F:\work\Exam\Exam\Exam.Core\obj\Debug\Exam.Core.pdb

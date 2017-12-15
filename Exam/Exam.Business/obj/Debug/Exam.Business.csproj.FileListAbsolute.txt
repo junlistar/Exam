@@ -1,13 +1,11 @@
+F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Business.dll.config
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Business.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Business.pdb
-F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.csprojResolveAssemblyReference.cache
-F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.dll
-F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.pdb
+F:\work\Exam\Exam\Exam.Business\bin\Debug\Autofac.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Core.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Data.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Domain.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.IService.dll
-F:\work\Exam\Exam\Exam.Business\bin\Debug\Autofac.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Autofac.Integration.Wcf.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\Autofac.Integration.Mvc.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\System.Web.Mvc.dll
@@ -49,4 +47,6 @@ F:\work\Exam\Exam\Exam.Business\bin\Debug\ru\Microsoft.SqlServer.Types.resources
 F:\work\Exam\Exam\Exam.Business\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
 F:\work\Exam\Exam\Exam.Business\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
-F:\work\Exam\Exam\Exam.Business\bin\Debug\Exam.Business.dll.config
+F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.csprojResolveAssemblyReference.cache
+F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.dll
+F:\work\Exam\Exam\Exam.Business\obj\Debug\Exam.Business.pdb

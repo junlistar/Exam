@@ -8,5 +8,10 @@ namespace Exam.Domain.UserInfo
 {
     public class UserInfo: IAggregateRoot
     {
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual int Age { get; set; }
+        public virtual string Comment { get; set; }
+        public virtual DateTime CreateTime { get; set; }
     }
 }

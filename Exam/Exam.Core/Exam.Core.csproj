@@ -97,6 +97,7 @@
     <Compile Include="Infrastructure\EngineContext.cs" />
     <Compile Include="Infrastructure\IEngine.cs" />
     <Compile Include="Infrastructure\ExamEngine.cs" />
+    <Compile Include="Infrastructure\IWorkContext.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Infrastructure\TypeFinders\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\TypeFinders\ITypeFinder.cs" />

@@ -43,6 +43,16 @@
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exam.Data\Exam.Data.csproj">
+      <Project>{5d850778-7728-4f33-945a-9d21b633ab5e}</Project>
+      <Name>Exam.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Domain\Exam.Domain.csproj">
+      <Project>{45bebecf-8116-4f31-bc00-3de5cdab13e7}</Project>
+      <Name>Exam.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

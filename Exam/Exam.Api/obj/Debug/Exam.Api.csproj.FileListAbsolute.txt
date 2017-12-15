@@ -14,6 +14,8 @@ F:\work\Exam\Exam\Exam.Api\bin\Exam.Api.dll.config
 F:\work\Exam\Exam\Exam.Api\bin\Exam.Api.dll
 F:\work\Exam\Exam\Exam.Api\bin\Exam.Api.pdb
 F:\work\Exam\Exam\Exam.Api\bin\Antlr3.Runtime.dll
+F:\work\Exam\Exam\Exam.Api\bin\Autofac.dll
+F:\work\Exam\Exam\Exam.Api\bin\Autofac.Engine.dll
 F:\work\Exam\Exam\Exam.Api\bin\EntityFramework.dll
 F:\work\Exam\Exam\Exam.Api\bin\EntityFramework.SqlServer.dll
 F:\work\Exam\Exam\Exam.Api\bin\Microsoft.AspNet.Identity.Core.dll
@@ -44,6 +46,7 @@ F:\work\Exam\Exam\Exam.Api\bin\System.Web.WebPages.Deployment.dll
 F:\work\Exam\Exam\Exam.Api\bin\System.Web.WebPages.dll
 F:\work\Exam\Exam\Exam.Api\bin\System.Web.WebPages.Razor.dll
 F:\work\Exam\Exam\Exam.Api\bin\WebGrease.dll
+F:\work\Exam\Exam\Exam.Api\bin\Autofac.xml
 F:\work\Exam\Exam\Exam.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 F:\work\Exam\Exam\Exam.Api\bin\Newtonsoft.Json.xml
 F:\work\Exam\Exam\Exam.Api\bin\System.Net.Http.Formatting.xml

@@ -48,6 +48,10 @@
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -175,11 +179,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DependencyRegistrar.cs" />
+    <Compile Include="Infrastructure\WebWorkContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -241,6 +248,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -254,9 +262,29 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exam.Business\Exam.Business.csproj">
+      <Project>{358ea417-a518-46b6-af6d-9bf71315d851}</Project>
+      <Name>Exam.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
       <Project>{b89242ce-16c6-4a06-95e0-7ef5490b8717}</Project>
       <Name>Exam.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Data\Exam.Data.csproj">
+      <Project>{5d850778-7728-4f33-945a-9d21b633ab5e}</Project>
+      <Name>Exam.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Domain\Exam.Domain.csproj">
+      <Project>{45bebecf-8116-4f31-bc00-3de5cdab13e7}</Project>
+      <Name>Exam.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.IService\Exam.IService.csproj">
+      <Project>{d1823cc1-3c81-47bd-962f-9cc00574fdcf}</Project>
+      <Name>Exam.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Service\Exam.Service.csproj">
+      <Project>{f4558e2d-1ab0-4e96-bd4b-d296d168df05}</Project>
+      <Name>Exam.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

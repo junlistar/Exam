@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.Data", "Exam.Data\Exam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.Domain", "Exam.Domain\Exam.Domain.csproj", "{45BEBECF-8116-4F31-BC00-3DE5CDAB13E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.WebCommon", "Exam.WebCommon\Exam.WebCommon.csproj", "{C44B01C3-CD93-4857-8642-23E7E9B9B861}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{45BEBECF-8116-4F31-BC00-3DE5CDAB13E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45BEBECF-8116-4F31-BC00-3DE5CDAB13E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BEBECF-8116-4F31-BC00-3DE5CDAB13E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44B01C3-CD93-4857-8642-23E7E9B9B861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44B01C3-CD93-4857-8642-23E7E9B9B861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44B01C3-CD93-4857-8642-23E7E9B9B861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44B01C3-CD93-4857-8642-23E7E9B9B861}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +91,6 @@ Global
 		{B89242CE-16C6-4A06-95E0-7EF5490B8717} = {2FFB3E7D-D6EA-4772-9327-21892E665EE3}
 		{5D850778-7728-4F33-945A-9D21B633AB5E} = {2FFB3E7D-D6EA-4772-9327-21892E665EE3}
 		{45BEBECF-8116-4F31-BC00-3DE5CDAB13E7} = {2FFB3E7D-D6EA-4772-9327-21892E665EE3}
+		{C44B01C3-CD93-4857-8642-23E7E9B9B861} = {A7015C91-76DF-44D6-8BA4-6D53F7CC983D}
 	EndGlobalSection
 EndGlobal
