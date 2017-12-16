@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Exam.Core.Infrastructure;
-using Exam.Domain.UserInfo;
+using Exam.Domain.Model;
 
 namespace Exam.Business.Test
 {
@@ -23,6 +23,7 @@ namespace Exam.Business.Test
 
            var addResult = _userInfo.AddUser(userInfo);
 
+             
         }
         [TestMethod]
         public void GetUser()
@@ -31,6 +32,15 @@ namespace Exam.Business.Test
 
            var getResult = _userInfo.GetUserByID(id);
 
+            try
+            {
+                var list = getResult.UserFavList;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using Autofac.Core;
 using Autofac.Integration.Mvc;
 using Exam.Business;
 using Exam.Core.Data;
+using Exam.Core.Infrastructure;
 using Exam.Core.Infrastructure.DependencyManagement;
 using Exam.Core.Infrastructure.TypeFinders;
 using Exam.Data;
@@ -50,6 +51,8 @@ namespace Exam.Admin.Infrastructure
             //builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IUserInfoService))).AsImplementedInterfaces();
 
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
+
+            builder.RegisterType<WebWorkContext>().As<IWorkContext>();
 
             // 注入Business及接口
             builder.RegisterAssemblyTypes(typeof(UserInfoBusiness).Assembly)

@@ -1,5 +1,5 @@
 ﻿using Exam.Core.Data;
-using Exam.Domain.UserInfo;
+using Exam.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

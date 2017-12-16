@@ -1,5 +1,5 @@
 ﻿using Exam.Core.Infrastructure;
-using Exam.Domain.UserInfo;
+using Exam.Domain.Model;
 using Exam.IService;
 using System;
 using System.Collections.Generic;
