@@ -178,6 +178,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Loginer.cs" />
+    <Compile Include="Common\SessionHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -194,15 +196,34 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\common.css" />
+    <Content Include="Content\fileinput.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\profile_small.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\contabs.js" />
+    <Content Include="Scripts\content.js" />
+    <Content Include="Scripts\echarts.min.js" />
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileupload.js" />
+    <Content Include="Scripts\hplus.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -211,8 +232,41 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plugins\layer\extend\layer.ext.js" />
+    <Content Include="Scripts\plugins\layer\laydate\laydate.js" />
+    <Content Include="Scripts\plugins\layer\laydate\need\laydate.css" />
+    <Content Include="Scripts\plugins\layer\laydate\skins\default\icon.png" />
+    <Content Include="Scripts\plugins\layer\laydate\skins\default\laydate.css" />
+    <Content Include="Scripts\plugins\layer\layer.min.js" />
+    <Content Include="Scripts\plugins\layer\layim\layim.css" />
+    <Content Include="Scripts\plugins\layer\layim\layim.js" />
+    <Content Include="Scripts\plugins\layer\layim\loading.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\icon-ext.png" />
+    <Content Include="Scripts\plugins\layer\skin\default\icon.png" />
+    <Content Include="Scripts\plugins\layer\skin\default\icon_ext.png" />
+    <Content Include="Scripts\plugins\layer\skin\default\loading-0.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\loading-1.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\textbg.png" />
+    <Content Include="Scripts\plugins\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Scripts\plugins\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Scripts\plugins\layer\skin\default\xubox_title0.png" />
+    <Content Include="Scripts\plugins\layer\skin\layer.css" />
+    <Content Include="Scripts\plugins\layer\skin\layer.ext.css" />
+    <Content Include="Scripts\plugins\layer\skin\moon\default.png" />
+    <Content Include="Scripts\plugins\layer\skin\moon\style.css" />
+    <Content Include="Scripts\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="Scripts\plugins\nestable\nestable.js" />
+    <Content Include="Scripts\plugins\pace\pace.min.js" />
+    <Content Include="Scripts\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\plugins\sort\sort.js" />
+    <Content Include="Scripts\plugins\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\zh.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -249,9 +303,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserInfo\Index.cshtml" />
+    <Content Include="Scripts\plugins\layer\layim\data\chatlog.json" />
+    <Content Include="Scripts\plugins\layer\layim\data\friend.json" />
+    <Content Include="Scripts\plugins\layer\layim\data\group.json" />
+    <Content Include="Scripts\plugins\layer\layim\data\groups.json" />
+    <Content Include="Views\Home\Empty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\patterns\" />
+    <Folder Include="Content\plugins\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

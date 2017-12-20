@@ -20,6 +20,11 @@ namespace Exam.Admin.Controllers
             return View();
         }
 
+        public ActionResult Empty()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
