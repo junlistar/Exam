@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BizResult.cs" />
+    <Compile Include="SysGroup\ISysGroupBusiness.cs" />
+    <Compile Include="SysGroup\SysGroupBusiness.cs" />
+    <Compile Include="SysGroupMenu\ISysGroupMenuBusiness.cs" />
+    <Compile Include="SysGroupMenu\SysGroupMenuBusiness.cs" />
+    <Compile Include="SysMenu\ISysMenuBusiness.cs" />
+    <Compile Include="SysMenu\SysMenuBusiness.cs" />
     <Compile Include="UserInfo\IUserInfoBusiness.cs" />
     <Compile Include="UserInfo\UserInfoBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

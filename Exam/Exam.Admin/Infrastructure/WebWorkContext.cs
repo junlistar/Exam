@@ -103,7 +103,7 @@ namespace Exam.Admin.Infrastructure
                     {
                         // 获取当前用户信息
                        
-                        var  res = _userSvc.GetUser(UserId.Value);
+                        var  res = _userSvc.GetById(UserId.Value);
   
                         _user = res;
                     }

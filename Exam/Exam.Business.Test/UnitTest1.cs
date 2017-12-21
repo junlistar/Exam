@@ -16,31 +16,31 @@ namespace Exam.Business.Test
 
 
             UserInfo userInfo = new UserInfo();
-            userInfo.Name = "张大胆" +rd.Next(99999);
-            userInfo.Age =32+rd.Next(50);
-            userInfo.Comment = "张大胆张大胆张大胆张大胆张大胆张大胆张大胆" + rd.Next(1000000);
-            userInfo.CreateTime = DateTime.Now;
+            userInfo.NikeName = "张大胆" +rd.Next(99999);
+            userInfo.Gender = rd.Next(100) > 50 ? 1 : 0;
+            userInfo.IsEnable= 1;
+            userInfo.CTime = DateTime.Now;
 
-           var addResult = _userInfo.AddUser(userInfo);
+           var addResult = _userInfo.Insert(userInfo);
 
              
         }
         [TestMethod]
         public void GetUser()
         {
-            int id = 1;
+           // int id = 1;
 
-           var getResult = _userInfo.GetUserByID(id);
+           //var getResult = _userInfo.GetUserByID(id);
 
-            try
-            {
-                var list = getResult.UserFavList;
-            }
-            catch (Exception ex)
-            {
+           // try
+           // {
+           //     var list = getResult.UserFavList;
+           // }
+           // catch (Exception ex)
+           // {
 
-                throw;
-            }
+           //     throw;
+           // }
         }
     }
 }

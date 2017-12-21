@@ -11,8 +11,8 @@ namespace Exam.Business
     {
 
 
-        UserInfo GetUserByID(int id);
+        UserInfo GetById(int id);
 
-        UserInfo AddUser(UserInfo model);
+        UserInfo Insert(UserInfo model);
     }
 }

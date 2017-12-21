@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "分组菜单编辑";
+}
+@model Exam.Admin.Models.SysGroupMenuVM
+@section head{
+    <style type="text/css">
+        .checkbox {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+    </style>
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        分组菜单编辑 <small>添加、修改</small>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="from" class="form-horizontal">
+                        <input type="hidden" class="form-control" name="id" id="id" value="">
+                        @if (Model.SysMenus != null && Model.SysMenus.Count > 0)
+                        {
+                            foreach (var item in Model.SysMenus.Where(p => p.Fid == 0))
+                            {
+                                <div class="row">
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" class="checkbox" name="FId" value="@item.SysMenuId">@(item.Name ?? "")
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-6">
+                                            @foreach (var slm in Model.SysMenus.Where(p=>p.Fid== item.SysMenuId))
+                                            {
+                                                <input type="checkbox" class="checkbox" name="SId" value="@slm.SysMenuId">@(slm.Name)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button id="btnSave" class="btn btn-primary" type="button">保存内容</button>
+                                <a class="btn btn-white" href="javascript:history.go(-1);">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script type="text/javascript">
+        $.post('/SysGroupMenu/GetGroupMenus', { GroupId: '@Model.GroupId' }, function (data) {
+            $.each(data, function (i, item) {
+                $("input:checkbox[value='" + item.Menu_Id + "']").attr('checked', 'true');
+            });
+        });
+        $(function () {
+            $('#btnSave').click(function () {
+                var menuId = [];
+                $('input[name="FId"]:checked').each(function () {
+                    menuId.push($(this).val());
+                });
+                $('input[name="SId"]:checked').each(function () {
+                    menuId.push($(this).val());
+                })
+                var dataArr = {
+                    GroupId: '@Model.GroupId',
+                    MenuId: menuId
+                };
+                $.post('/SysGroupMenu/Edit', dataArr, function (data) {
+                    if (data.Status == 200) {
+                        swal("提示", "操作成功");
+                        setTimeout(function () {
+                            window.location.href = '/SysGroup/List';
+                        }, 1500);
+                    }
+                    if (data.Status == 201) {
+                        swal("提示", "操作失败");
+                    }
+                });
+            });
+        });
+    </script>
+}

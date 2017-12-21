@@ -23,12 +23,12 @@ namespace Exam.Business
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public UserInfo GetUserByID(int id)
+        public UserInfo GetById(int id)
         {
             return this._repoUserInfo.GetById(id);
         }
 
-        public UserInfo AddUser(UserInfo model)
+        public UserInfo Insert(UserInfo model)
         {
             return this._repoUserInfo.Insert(model);
         }

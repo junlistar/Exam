@@ -9,11 +9,11 @@ namespace Exam.Domain.Model
     public class UserInfo: IAggregateRoot
     {
         public virtual int UserInfoId { get; set; }
-        public virtual string Name { get; set; }
-        public virtual int Age { get; set; }
-        public virtual string Comment { get; set; }
-        public virtual DateTime CreateTime { get; set; }
+        public virtual string NikeName { get; set; }
+        public virtual int Gender { get; set; }
+        public virtual int IsEnable { get; set; } 
+        public virtual DateTime CTime { get; set; }
 
-        public virtual List<UserFav> UserFavList { get; set; }
+        //public virtual List<UserFav> UserFavList { get; set; }
     }
 }

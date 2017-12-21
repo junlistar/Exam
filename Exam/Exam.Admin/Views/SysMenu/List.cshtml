@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "菜单列表";
+}
+@model Exam.Admin.Models.SysMenuVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row" style="padding:10px 10px;">
+                        <form action="/SysMenu/List" method="get">
+                            <div class="col-sm-4">
+                                菜单名称：
+                                <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询菜单名称" value="@(Model.QueryName ?? "")">
+                            </div>
+                            <div class="col-sm-3">
+                                菜单类型：
+                                <select class="form-control inline" style="width:70%;" id="QueryType" name="QueryType">
+                                    <option value="0">请选择菜单类型</option>
+                                    <option @(Model.QueryType == 1 ? "selected" : "") value="1">后台</option>
+                                    <option @(Model.QueryType == 2 ? "selected" : "") value="2">APP</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-info">搜索</button>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">菜单名称</th>
+                                    <th class="text-center">菜单图标</th>
+                                    <th class="text-center">菜单类型</th>
+                                    <th class="text-center">排序号</th>
+                                    <th class="text-center">状态</th>
+                                    <th class="text-center">创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Paging.Items != null && Model.Paging.Items.Count > 0)
+                                {
+                                    foreach (var item in Model.Paging.Items)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.SysMenuId</td>
+                                            <td class="text-center">@item.Name</td>
+                                            <td class="text-center">@item.Icon</td>
+                                            <td class="text-center">@(item.Type == 1 ? "后台" : "APP")</td>
+                                            <td class="text-center">@item.SortNo</td>
+                                            <td class="text-center">
+                                                @if (item.IsEnable == 0)
+                                                {
+                                                    <button type="button" class="btn btn-danger btn-xs">无效</button>
+                                                }
+                                                @if (item.IsEnable == 1)
+                                                {
+                                                    <button type="button" class="btn btn-info btn-xs">有效</button>
+                                                }
+                                            </td>
+                                            <td class="text-center">@item.CTime</td>
+                                            <td>
+                                                <button onclick="iframe('子菜单展示','/SysMenu/ChildList/@item.SysMenuId')" class="btn btn-success">子菜单</button>
+                                                <a href="/SysMenu/Edit?id=@item.SysMenuId&v=0" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
+                                                @if (item.IsEnable == 0)
+                                                {
+                                                    <button onclick="enable('/SysMenu/UpdateStatus','/SysMenu/List','@item.SysMenuId','@((int)Exam.Domain.EnumHelp.EnabledEnum.有效)')" class="btn btn-primary"><i class="fa fa-check padding-right-4"></i>&nbsp;启用</button>
+                                                }
+                                                @if (item.IsEnable == 1)
+                                                {
+                                                    <button onclick="disable('/SysMenu/UpdateStatus','/SysMenu/List','@item.SysMenuId','@((int)Exam.Domain.EnumHelp.EnabledEnum.无效)')" class="btn btn-warning"><i class="fa fa-warning padding-right-4"></i>&nbsp;禁用</button>
+                                                }
+                                                <button onclick="del('/SysMenu/Delete','/SysMenu/List','@item.SysMenuId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                <a href="/SysMenu/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>
+                                <a href="/SysMenu/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                            </div>
+                            @Html.Raw(Model.Paging.Text)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

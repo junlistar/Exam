@@ -18,12 +18,12 @@ namespace Exam.Data.Mapping
             this.HasKey(m => m.UserInfoId);
             this.Property(m => m.UserInfoId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(m => m.Name);
-            this.Property(m => m.Age);
-            this.Property(m => m.CreateTime);
-            this.Property(m => m.Comment);
+            this.Property(m => m.NikeName);
+            this.Property(m => m.Gender);
+            this.Property(m => m.CTime);
+            this.Property(m => m.IsEnable);
 
-            HasMany(m => m.UserFavList).WithRequired(n => n.UserInfo);
+            //HasMany(m => m.UserFavList).WithRequired(n => n.UserInfo);
         }
     }
 }

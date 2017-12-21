@@ -137,6 +137,7 @@ create table UserInfo
 	gradeid int,						--等级
 	nikeName nvarchar(50) not null,		--昵称
 	gender int,							--性别 0是女 1是男
+	sysgroupId int,						--用户组Id
 	isEnable int,						--是否启用0为启用，1为禁用
 	
 )
@@ -163,7 +164,7 @@ create table SysGroup
 --菜单表
 create table SysMenu
 (
-	SysMenuId int identity(1000,1),			--编号
+	SysMenuId int identity(1000,1),		--编号
 	name nvarchar(50) not null,			--组名
 	Fid int,							--父级菜单Id
 	url nvarchar(200),					--菜单地址
@@ -176,9 +177,9 @@ create table SysMenu
 )
 
 --菜单表
-create table SysRoleMenu
+create table SysGroupMenu
 (
-	SysRoleMenuId int identity(1000,1),			--编号 
+	SysGroupMenuId int identity(1000,1),			--编号 
 	SysMenuId int,							--菜单Id
 	SysGroupId int,							--组Id 
 	ctime datetime default(getdate()),	--创建时间

@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\UserFav.cs" />
+    <Compile Include="Model\SysGroupMenu.cs" />
+    <Compile Include="Model\SysMenu.cs" />
+    <Compile Include="Model\SysGroup.cs" />
+    <Compile Include="EnumHelp.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -24,9 +24,9 @@ namespace Exam.Admin.Controllers
         public ActionResult Index()
         {
 
-            var model = _userService.GetUser(1);
+            var model = _userService.GetById(1);
 
-            var model2 = _userInfo.GetUser(1);
+            var model2 = _userInfo.GetById(1);
 
 
             return View(model);

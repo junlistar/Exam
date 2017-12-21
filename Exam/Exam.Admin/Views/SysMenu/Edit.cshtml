@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "菜单编辑";
+}
+@model Exam.Admin.Models.SysMenuVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        菜单编辑 <small>添加、修改</small>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="from" class="form-horizontal">
+                        <input type="hidden" name="id" id="id" value="@Model.SysMenu.SysMenuId">
+                        <input type="hidden" name="v" id="v" value="@Model.V">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">父级菜单</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="fId" id="fId">
+                                    <option value="0">请选择父级菜单</option>
+                                    @if (Model.SysMenus != null && Model.SysMenus.Count > 0)
+                                    {
+                                        foreach (var item in Model.SysMenus)
+                                        {
+                                            <option @(Model.SysMenu.Fid == item.SysMenuId ? "selected" : "" ) value="@item.SysMenuId">@(item.Name ?? "")</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">菜单名称</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入菜单名称" value="@(Model.SysMenu.Name ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">菜单地址</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="url" id="url" class="form-control" placeholder="请输入菜单地址" value="@(Model.SysMenu.Url ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">菜单图标</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="icon" id="icon" class="form-control" placeholder="请输入菜单图标" value="@(Model.SysMenu.Icon ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">菜单类型</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="type" id="type">
+                                    <option value="0">请菜单类型</option>
+                                    <option @(Model.SysMenu.Type == 1 ? "selected" : "" ) value="1">后台系统</option>
+                                    <option @(Model.SysMenu.Type == 2 ? "selected" : "" ) value="2">App</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排序号</label>
+                            <div class="col-sm-2">
+                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.SysMenu.SortNo">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button id="btnSave" class="btn btn-primary" type="button">保存内容</button>
+                                <a class="btn btn-white" href="javascript:history.go(-1);">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="@("/Scripts/ViewJs/SysMenu/sysMenuEdit.js"+Versions.Ver)"></script>
+}
+

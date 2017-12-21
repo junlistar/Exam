@@ -12,7 +12,7 @@
     public class ExamDbContext : DbContext, IDbContext
     {
         public ExamDbContext()
-            : base("name=Exam")
+            : base("name=ExamDB")
         {
             
         }

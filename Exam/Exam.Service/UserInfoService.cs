@@ -20,14 +20,14 @@ namespace Exam.Service
             _userBiz = userBiz;
         }
 
-        public UserInfo GetUser(int Id)
+        public UserInfo GetById(int Id)
         {
-            return _userBiz.GetUserByID(Id);
+            return _userBiz.GetById(Id);
         }
 
-        public UserInfo AddUser(UserInfo model)
+        public UserInfo Insert(UserInfo model)
         {
-            return _userBiz.AddUser(model);
+            return _userBiz.Insert(model);
         }
 
         

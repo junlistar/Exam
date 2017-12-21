@@ -180,7 +180,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\Loginer.cs" />
     <Compile Include="Common\SessionHelper.cs" />
+    <Compile Include="Common\Versions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\SysGroupMenuController.cs" />
+    <Compile Include="Controllers\SysMenuController.cs" />
+    <Compile Include="Controllers\SysGroupController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -192,6 +197,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SysGroupVM.cs" />
+    <Compile Include="Models\SysGroupMenuVM.cs" />
+    <Compile Include="Models\SysMenuVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -218,6 +226,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\common\common.js" />
     <Content Include="Scripts\contabs.js" />
     <Content Include="Scripts\content.js" />
     <Content Include="Scripts\echarts.min.js" />
@@ -266,6 +275,8 @@
     <Content Include="Scripts\plugins\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewJs\SysGroup\sysGroupEdit.js" />
+    <Content Include="Scripts\ViewJs\SysMenu\sysMenuEdit.js" />
     <Content Include="Scripts\zh.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -308,6 +319,12 @@
     <Content Include="Scripts\plugins\layer\layim\data\group.json" />
     <Content Include="Scripts\plugins\layer\layim\data\groups.json" />
     <Content Include="Views\Home\Empty.cshtml" />
+    <Content Include="Views\SysMenu\ChildList.cshtml" />
+    <Content Include="Views\SysMenu\Edit.cshtml" />
+    <Content Include="Views\SysMenu\List.cshtml" />
+    <Content Include="Views\SysGroup\Edit.cshtml" />
+    <Content Include="Views\SysGroup\List.cshtml" />
+    <Content Include="Views\SysGroupMenu\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

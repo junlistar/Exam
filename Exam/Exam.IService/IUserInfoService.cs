@@ -9,8 +9,19 @@ namespace Exam.IService
 {
     public interface IUserInfoService
     {
-        UserInfo GetUser(int Id);
 
-        UserInfo AddUser(UserInfo model);
+        /// <summary>
+        /// 根据ID查找实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        UserInfo GetById(int id);
+
+        /// <summary>
+        /// 添加实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        UserInfo Insert(UserInfo model);
     }
 }
