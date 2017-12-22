@@ -68,7 +68,7 @@
     <script type="text/javascript">
         $.post('/SysGroupMenu/GetGroupMenus', { GroupId: '@Model.GroupId' }, function (data) {
             $.each(data, function (i, item) {
-                $("input:checkbox[value='" + item.Menu_Id + "']").attr('checked', 'true');
+                $("input:checkbox[value='" + item.SysMenuId + "']").attr('checked', 'true');
             });
         });
         $(function () {

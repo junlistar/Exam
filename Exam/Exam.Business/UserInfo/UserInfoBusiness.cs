@@ -32,6 +32,23 @@ namespace Exam.Business
         {
             return this._repoUserInfo.Insert(model);
         }
+        /// <summary>
+        /// 管理后台用户列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<UserInfo> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<UserInfo>();
+              
+            // name过滤
+            if (!string.IsNullOrEmpty(name))
+            {
+                where = where.And(m => m.NikeName.Contains(name));
+            }
+
+            totalCount = this._repoUserInfo.Table.Where(where).Count();
+            return this._repoUserInfo.Table.Where(where).OrderBy(p => p.UserInfoId).Skip(pageNum * pageSize).Take(pageSize).ToList();
+        }
     }
 }
 

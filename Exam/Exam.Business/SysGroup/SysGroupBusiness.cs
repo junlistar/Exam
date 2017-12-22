@@ -77,7 +77,7 @@ namespace Exam.Business
             // name过滤
             if (!string.IsNullOrEmpty(name))
             {
-                where = where.And(m => m.Name == name);
+                where = where.And(m => m.Name.Contains(name));
             }
 
             totalCount = this._repoSysGroup.Table.Where(where).Count();

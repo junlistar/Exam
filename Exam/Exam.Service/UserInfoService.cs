@@ -9,14 +9,15 @@ using Exam.Domain.Model;
 
 namespace Exam.Service
 {
-    public class UserInfoService: IUserInfoService
+    public class UserInfoService : IUserInfoService
     {
         /// <summary>
         /// The user biz
         /// </summary>
         private IUserInfoBusiness _userBiz;
 
-        public UserInfoService(IUserInfoBusiness userBiz) {
+        public UserInfoService(IUserInfoBusiness userBiz)
+        {
             _userBiz = userBiz;
         }
 
@@ -30,7 +31,14 @@ namespace Exam.Service
             return _userBiz.Insert(model);
         }
 
-        
+        /// <summary>
+        /// 管理后台用户列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<UserInfo> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        {
+            return _userBiz.GetManagerList(name, pageNum, pageSize, out totalCount);
+        }
 
     }
 }

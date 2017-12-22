@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "用户列表";
+}
+@model Exam.Admin.Models.UserInfoVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row" style="padding:10px 10px;">
+                        <form action="/UserInfo/List" method="get">
+                            <div class="col-sm-4">
+                                菜单名称：
+                                <input type="text" name="QueryLoginName" class="form-control inline" style="width:70%;" placeholder="请输入查询菜单名称" value="@(Model.QueryLoginName ?? "")">
+                            </div> 
+                            <button type="submit" class="btn btn-info">搜索</button>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">用户昵称</th>
+                                    <th class="text-center">手机号码</th>
+                                    <th class="text-center">性别</th> 
+                                    <th class="text-center">状态</th>
+                                    <th class="text-center">创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Paging.Items != null && Model.Paging.Items.Count > 0)
+                                {
+                                    foreach (var item in Model.Paging.Items)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.UserInfoId</td>
+                                            <td class="text-center">@item.NikeName</td>
+                                            <td class="text-center">@item.Phone</td>
+                                            <td class="text-center">@item.Gender</td>  
+                                            <td class="text-center">
+                                                @if (item.IsEnable == 0)
+                                                {
+                                                    <button type="button" class="btn btn-danger btn-xs">无效</button>
+                                                }
+                                                @if (item.IsEnable == 1)
+                                                {
+                                                    <button type="button" class="btn btn-info btn-xs">有效</button>
+                                                }
+                                            </td>
+                                            <td class="text-center">@item.CTime</td>
+                                            <td> 
+                                                <a href="/SysMenu/Edit?id=@item.UserInfoId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
+                                                @if (item.IsEnable == 0)
+                                                {
+                                                    <button onclick="enable('/UserInfo/UpdateStatus','/UserInfo/List','@item.UserInfoId','@((int)Exam.Domain.EnumHelp.EnabledEnum.有效)')" class="btn btn-primary"><i class="fa fa-check padding-right-4"></i>&nbsp;启用</button>
+                                                }
+                                                @if (item.IsEnable == 1)
+                                                {
+                                                    <button onclick="disable('/UserInfo/UpdateStatus','/UserInfo/List','@item.UserInfoId','@((int)Exam.Domain.EnumHelp.EnabledEnum.无效)')" class="btn btn-warning"><i class="fa fa-warning padding-right-4"></i>&nbsp;禁用</button>
+                                                }
+                                                <button onclick="del('/UserInfo/Delete','/UserInfo/List','@item.UserInfoId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                <a href="/UserInfo/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>
+                                <a href="/UserInfo/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                            </div>
+                            @Html.Raw(Model.Paging.Text)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,8 @@
-﻿using Exam.Business;
+﻿using Exam.Admin.Models;
+using Exam.Business;
 using Exam.Core.Infrastructure;
+using Exam.Core.Utils;
+using Exam.Domain.Model;
 using Exam.IService;
 using System;
 using System.Collections.Generic;
@@ -21,17 +24,28 @@ namespace Exam.Admin.Controllers
             _userService = userService; 
         }
 
-        public ActionResult Index()
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <param name="_userInfoVM"></param>
+        /// <param name="pn"></param>
+        /// <returns></returns>
+        public ActionResult List(UserInfoVM _userInfoVM, int pn = 1)
         {
-
-            var model = _userService.GetById(1);
-
-            var model2 = _userInfo.GetById(1);
-
-
-            return View(model);
+            int totalCount,
+                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageSize = PagingConfig.PAGE_SIZE;
+            var list = _userService.GetManagerList(_userInfoVM.QueryLoginName, pageIndex, pageSize, out totalCount);
+            var paging = new Paging<UserInfo>()
+            {
+                Items = list,
+                Size = PagingConfig.PAGE_SIZE,
+                Total = totalCount,
+                Index = pn,
+            };
+            _userInfoVM.Paging = paging;
+            return View(_userInfoVM);
         }
 
-       
     }
 }

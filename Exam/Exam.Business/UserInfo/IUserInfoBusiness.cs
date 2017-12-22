@@ -14,5 +14,11 @@ namespace Exam.Business
         UserInfo GetById(int id);
 
         UserInfo Insert(UserInfo model);
+
+        /// <summary>
+        /// 管理后台用户列表
+        /// </summary> 
+        /// <returns></returns>
+        List<UserInfo> GetManagerList(string name, int pageNum, int pageSize, out int totalCount);
     }
 }
