@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BizResult.cs" />
+    <Compile Include="NewsInfo\INewsInfoBusiness.cs" />
+    <Compile Include="NewsInfo\NewsInfoBusiness.cs" />
+    <Compile Include="NewsCategory\INewsCategoryBusiness.cs" />
+    <Compile Include="NewsCategory\NewsCategoryBusiness.cs" />
+    <Compile Include="ImageInfo\IImageInfoBusiness.cs" />
+    <Compile Include="ImageInfo\ImageInfoBusiness.cs" />
     <Compile Include="SysGroup\ISysGroupBusiness.cs" />
     <Compile Include="SysGroup\SysGroupBusiness.cs" />
     <Compile Include="SysGroupMenu\ISysGroupMenuBusiness.cs" />

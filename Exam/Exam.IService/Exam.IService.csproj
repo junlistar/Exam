@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INewsInfoService.cs" />
+    <Compile Include="INewsCategoryService.cs" />
     <Compile Include="ISysGroupService.cs" />
     <Compile Include="ISysGroupMenuService.cs" />
+    <Compile Include="IImageInfoService.cs" />
     <Compile Include="ISysMenuService.cs" />
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,9 +58,6 @@
       <Project>{45bebecf-8116-4f31-bc00-3de5cdab13e7}</Project>
       <Name>Exam.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
