@@ -16,10 +16,12 @@ namespace Exam.Admin.Controllers
     public class NewsInfoController : BaseController
     {
         // GET: NewsInfo
-        private readonly INewsInfoService _NewsInfoService;
-        public NewsInfoController(INewsInfoService NewsInfoService)
+        private readonly INewsInfoService _newsInfoService;
+        private readonly IImageInfoService _imageInfoService;
+        public NewsInfoController(INewsInfoService NewsInfoService, IImageInfoService imageInfoService)
         {
-            _NewsInfoService = NewsInfoService;
+            _newsInfoService = NewsInfoService;
+            _imageInfoService = imageInfoService;
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace Exam.Admin.Controllers
             int totalCount,
                 pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
                 pageSize = PagingConfig.PAGE_SIZE;
-            var list = _NewsInfoService.GetManagerList(_NewsInfoVM.QueryName, pageIndex, pageSize, out totalCount);
+            var list = _newsInfoService.GetManagerList(_NewsInfoVM.QueryName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<NewsInfo>()
             {
                 Items = list,
@@ -52,7 +54,8 @@ namespace Exam.Admin.Controllers
         /// <returns></returns>
         public ActionResult Edit(NewsInfoVM _NewsInfoVM)
         {
-            _NewsInfoVM.NewsInfo = _NewsInfoService.GetById(_NewsInfoVM.Id) ?? new NewsInfo(); 
+            _NewsInfoVM.NewsInfo = _newsInfoService.GetById(_NewsInfoVM.Id) ?? new NewsInfo();
+            _NewsInfoVM.ImgInfo = _imageInfoService.GetById(_NewsInfoVM.NewsInfo.ImageId) ?? new ImageInfo();
             return View(_NewsInfoVM);
         }
         /// <summary>
@@ -67,22 +70,22 @@ namespace Exam.Admin.Controllers
             {
                 if (model.NewsInfoId > 0)
                 {
-                    var entity = _NewsInfoService.GetById(model.NewsInfoId);
+                    var entity = _newsInfoService.GetById(model.NewsInfoId);
                     //修改  
                     entity.UTime = DateTime.Now;
                     entity.Title = model.Title;
                     entity.Sort = model.Sort; 
-                    _NewsInfoService.Update(entity);
+                    _newsInfoService.Update(entity);
                 }
                 else
                 {
-                    if (_NewsInfoService.IsExistName(model.Title))
+                    if (_newsInfoService.IsExistName(model.Title))
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     model.CTime = DateTime.Now;
                     model.UTime = DateTime.Now;
 
-                    _NewsInfoService.Insert(model);
+                    _newsInfoService.Insert(model);
                 }
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
@@ -101,14 +104,14 @@ namespace Exam.Admin.Controllers
         {
             try
             {
-                var entity = _NewsInfoService.GetById(id);
+                var entity = _newsInfoService.GetById(id);
 
                 if (entity == null)
                 {
                     return Json(new { Status = Successed.Empty }, JsonRequestBehavior.AllowGet);
                 }
 
-                _NewsInfoService.Delete(entity);
+                _newsInfoService.Delete(entity);
 
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
