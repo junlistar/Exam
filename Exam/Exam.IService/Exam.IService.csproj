@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INewsInfoService.cs" />
+    <Compile Include="INewsCategoryService.cs" />
     <Compile Include="ISysGroupService.cs" />
     <Compile Include="ISysGroupMenuService.cs" />
+    <Compile Include="IImageInfoService.cs" />
     <Compile Include="ISysMenuService.cs" />
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
