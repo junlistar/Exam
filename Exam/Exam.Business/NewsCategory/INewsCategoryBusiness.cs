@@ -36,7 +36,14 @@ namespace Exam.Business
         /// <param name="model"></param>
         /// <returns></returns>
         void Delete(NewsCategory model);
-         
+
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        bool IsExistName(string name);
+
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>

@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "资讯编辑";
+}
+@model Exam.Admin.Models.NewsInfoVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        咨询编辑 <small>添加、修改</small>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="from" class="form-horizontal">
+                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.NewsInfo.NewsInfoId">
+                        <input type="hidden" id="imgInfoId" value="@Model.NewsInfo.ImageId" />
+                        <input type="hidden" id="oldImgInfoId" value="@Model.NewsInfo.ImageId" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">图片</label>
+                            <div class="col-sm-6">
+                                <input id="filename" name="filename" type="file" class="file-loading" multiple data-show-upload="true" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">资讯类型</label>
+                            <div class="col-sm-4" id="appendDiv">
+                                <select class="form-control inline" style="width:150px;" name="advertisementTypeId" id="advertisementTypeId">
+                                    <option value="0">请资讯类型</option>
+                                    @if (Model.NewsCategories != null && Model.NewsCategories.Count > 0)
+                                    {
+                                        foreach (var a in Model.NewsCategories)
+                                        {
+                                            <option @(Model.NewsInfo.NewsCategoryId == a.NewsCategoryId ? "selected" : "") value="@a.NewsCategoryId">@a.Title</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">资讯标题</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入标题名称" value="@(Model.NewsInfo.Title ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">作者</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="请输入作者" maxlength="100" name="author" id="author" value="@(Model.NewsInfo.Author??"")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排序号</label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" placeholder="排序号" maxlength="4" name="sortNo" id="sortNo" value="@Model.NewsInfo.Sort">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-6">
+                                <textarea id="contents" name="contents"></textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button id="btnSave" class="btn btn-primary" type="button">保存内容</button>
+                                <a class="btn btn-white" href="javascript:history.go(-1);">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+@section script{
+    <script src="@("/Scripts/plugins/fileinput/fileinput.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/plugins/fileinput/zh.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/ViewJs/News/NewsInfoEdit.js"+Versions.Ver)"></script>
+    <script type="text/javascript">
+        //初始化编辑器js
+        initEditor('@Html.Raw(Model.NewsInfo.Content)', 'contents');
+
+        var img = [];
+        if ('@Model.ImgInfo.Url' != '') {
+            var str = '<img src="@(Model.ImgInfo.Url)" class="kv-preview-thumb kv-file-content file-preview-image" />';
+            img.push(str);
+        }
+        //缩略图上传js
+        $('#filename').fileinput({
+            language: 'zh',
+            allowedFileTypes: ['image'],
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            uploadUrl: '/Uploader/ImgFile?folder=Advertisement&title=广告图片',
+            showUpload: false,  //是否显示上传按钮
+            showRemove: true,   //显示移除按钮
+            maxFileSize: 2000,
+            showCaption: true,  //是否显示标题
+            maxFileCount: 1,    //表示允许同时上传的最大文件个数
+            maxFileSize: 1024,   //单位为kb，如果为0表示不限制文件大小
+            initialPreview: img,
+            dropZoneTitle: '请选择需要上传的图片',
+        });
+        //上传成功回调事件
+        $("#filename").on("fileuploaded", function (event, data, previewId, index) {
+            $('#imgInfoId').val(data.response);
+        });
+        //移除事件
+        $("#filename").on("fileclear", function (event, data, previewId, index) {
+            $.post("/Uploader/DeleteFile", { Id: $('#imgInfoId').val() }, function (data) { });
+        });
+    </script>
+}
+

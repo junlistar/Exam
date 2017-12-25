@@ -16,7 +16,8 @@ namespace Exam.Service
         /// </summary>
         private INewsCategoryBusiness _NewsCategoryBiz;
 
-        public NewsCategoryService(INewsCategoryBusiness NewsCategoryBiz) {
+        public NewsCategoryService(INewsCategoryBusiness NewsCategoryBiz)
+        {
             _NewsCategoryBiz = NewsCategoryBiz;
         }
 
@@ -57,6 +58,16 @@ namespace Exam.Service
             this._NewsCategoryBiz.Delete(model);
         }
          
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        public bool IsExistName(string name)
+        {
+            return this._NewsCategoryBiz.IsExistName(name);
+        }
+
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>

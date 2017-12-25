@@ -56,7 +56,17 @@ namespace Exam.Service
         {
             this._NewsInfoBiz.Delete(model);
         }
-         
+
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        public bool IsExistName(string name)
+        {
+            return this._NewsInfoBiz.IsExistName(name);
+        }
+
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>

@@ -55,7 +55,15 @@ namespace Exam.Business
         {
             this._repoNewsInfo.Delete(model);
         }
-         
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        public bool IsExistName(string name)
+        {
+            return this._repoNewsInfo.Table.Any(p => p.Title == name);
+        }
 
         /// <summary>
         /// 添加管理后台菜单列表
