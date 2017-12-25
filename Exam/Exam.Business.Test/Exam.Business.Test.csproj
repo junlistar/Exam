@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="sqlscript\EXA20171221M.sql" />
+    <Content Include="sqlscript\EXAM20171222.sql" />
     <Content Include="sqlscript\EXAM权限表20171220.sql" />
   </ItemGroup>
   <Choose>
