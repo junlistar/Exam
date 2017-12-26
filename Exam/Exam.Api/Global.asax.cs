@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exam.Core.AutoFacIoc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,8 @@ namespace Exam.Api
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //依赖注入配置
+            AutofacIoc.AutofacMvcRegister(GlobalConfiguration.Configuration);
         }
     }
 }
