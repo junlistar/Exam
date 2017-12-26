@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">资讯标题</label>
                             <div class="col-sm-4">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入标题名称" value="@(Model.NewsInfo.Title ?? "")">
+                                <input type="text" name="title" id="title" class="form-control" placeholder="请输入标题名称" value="@(Model.NewsInfo.Title ?? "")">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -50,6 +50,26 @@
                             <label class="col-sm-2 control-label">作者</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" placeholder="请输入作者" maxlength="100" name="author" id="author" value="@(Model.NewsInfo.Author??"")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否置顶</label>
+                            <div class="col-sm-4" >
+                                <select class="form-control inline" style="width:150px;" name="advertisementTypeId" id="divIsTop">
+                                    <option value="0" @(Model.NewsInfo.isTop == 0 ?  "selected": "")>否</option>
+                                    <option value="1" @(Model.NewsInfo.isTop == 1 ?  "selected": "")>是</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否热门</label>
+                            <div class="col-sm-4">
+                                <select class="form-control inline" style="width:150px;" name="advertisementTypeId" id="divIsHot">
+                                    <option value="0" @(Model.NewsInfo.isHot == 0 ? "selected" : "")>否</option>
+                                    <option value="1" @(Model.NewsInfo.isHot == 1 ? "selected" : "")>是</option>
+                                </select>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -82,7 +102,7 @@
 @section script{
     <script src="@("/Scripts/plugins/fileinput/fileinput.js"+Versions.Ver)"></script>
     <script src="@("/Scripts/plugins/fileinput/zh.js"+Versions.Ver)"></script>
-    <script src="@("/Scripts/ViewJs/News/NewsInfoEdit.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/ViewJs/NewsInfo/NewsInfoEdit.js"+Versions.Ver)"></script>
     <script type="text/javascript">
         //初始化编辑器js
         initEditor('@Html.Raw(Model.NewsInfo.Content)', 'contents');
@@ -97,7 +117,7 @@
             language: 'zh',
             allowedFileTypes: ['image'],
             allowedFileExtensions: ['jpg', 'png', 'gif'],
-            uploadUrl: '/Uploader/ImgFile?folder=Advertisement&title=广告图片',
+            uploadUrl: '/Uploader/ImgFile?folder=NewsInfo&title=资讯图片',
             showUpload: false,  //是否显示上传按钮
             showRemove: true,   //显示移除按钮
             maxFileSize: 2000,
