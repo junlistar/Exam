@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\Chapter.cs" />
+    <Compile Include="Model\Problem.cs" />
+    <Compile Include="Model\Belong.cs" />
+    <Compile Include="Model\ProblemCategory.cs" />
+    <Compile Include="Model\Lecturer.cs" />
     <Compile Include="Model\ImageInfo.cs" />
     <Compile Include="Model\NewsInfo.cs" />
     <Compile Include="Model\SysGroupMenu.cs" />
