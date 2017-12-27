@@ -48,7 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chapter\ChapterBusiness.cs" />
+    <Compile Include="Chapter\IChapterBusiness.cs" />
+    <Compile Include="Belong\IBelongBusiness.cs" />
+    <Compile Include="Belong\BelongBusiness.cs" />
+    <Compile Include="ProblemCategory\ProblemCategoryBusiness.cs" />
+    <Compile Include="ProblemCategory\IProblemCategoryBusiness.cs" />
     <Compile Include="BizResult.cs" />
+    <Compile Include="Answer\IAnswerBusiness.cs" />
+    <Compile Include="Answer\AnswerBusiness.cs" />
+    <Compile Include="Problem\IProblemBusiness.cs" />
+    <Compile Include="Problem\ProblemBusiness.cs" />
+    <Compile Include="Lecturer\ILecturerBusiness.cs" />
+    <Compile Include="Lecturer\LecturerBusiness.cs" />
     <Compile Include="NewsInfo\INewsInfoBusiness.cs" />
     <Compile Include="NewsInfo\NewsInfoBusiness.cs" />
     <Compile Include="NewsCategory\INewsCategoryBusiness.cs" />

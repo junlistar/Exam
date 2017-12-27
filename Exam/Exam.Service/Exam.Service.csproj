@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChapterService.cs" />
+    <Compile Include="BelongService.cs" />
+    <Compile Include="AnswerService.cs" />
+    <Compile Include="ProblemCategoryService.cs" />
+    <Compile Include="ProblemService.cs" />
+    <Compile Include="LecturerService.cs" />
     <Compile Include="NewsInfoService.cs" />
     <Compile Include="NewsCategoryService.cs" />
     <Compile Include="SysGroupService.cs" />

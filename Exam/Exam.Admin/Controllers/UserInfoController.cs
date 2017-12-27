@@ -1,7 +1,9 @@
 ﻿using Exam.Admin.Models;
 using Exam.Business;
+using Exam.Common;
 using Exam.Core.Infrastructure;
 using Exam.Core.Utils;
+using Exam.Domain;
 using Exam.Domain.Model;
 using Exam.IService;
 using System;
@@ -46,6 +48,30 @@ namespace Exam.Admin.Controllers
             _userInfoVM.Paging = paging;
             return View(_userInfoVM);
         }
+        /// <summary>
+        /// 状态修改
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpdateStatus(int id = 0, Exam.Domain.EnumHelp.EnabledEnum isEnabled = EnumHelp.EnabledEnum.有效)
+        {
+            try
+            {
+                var entity = _userService.GetById(id);
 
+                if (entity == null)
+                {
+                    return Json(new { Status = Successed.Empty }, JsonRequestBehavior.AllowGet);
+                }
+                entity.IsEnable = (int)isEnabled;
+                _userService.Update(entity);
+                return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

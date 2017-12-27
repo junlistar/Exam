@@ -33,6 +33,15 @@ namespace Exam.Business
             return this._repoUserInfo.Insert(model);
         }
         /// <summary>
+        /// 修改实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public void Update(UserInfo model)
+        {
+            this._repoUserInfo.Update(model);
+        }
+        /// <summary>
         /// 管理后台用户列表
         /// </summary> 
         /// <returns></returns>

@@ -23,6 +23,12 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         UserInfo Insert(UserInfo model);
+        /// <summary>
+        /// 修改实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        void Update(UserInfo model);
 
         /// <summary>
         /// 管理后台用户列表
