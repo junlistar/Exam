@@ -85,6 +85,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoFacIoc\AutofacIoc.cs" />
+    <Compile Include="AutoFacIoc\IDependency.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Data\IPagedList.cs" />
     <Compile Include="Data\IRepository.cs" />
