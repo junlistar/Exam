@@ -4,6 +4,8 @@
             imgInfoId = $('#imgInfoId'),
             oldImgInfoId = $('#oldImgInfoId'),
             advertisementTypeId = $('#advertisementTypeId'),
+            isTop = $('#divIsTop'),
+            isHot = $('#divIsHot'),
             title = $('#title'),
             author = $('#author'), 
             contents = UE.getEditor('contents').getContent(),
@@ -26,18 +28,19 @@
             $.post("/Uploader/DeleteFile", { Id: oldImgInfoId.val() }, function (data) { });
         }
         var dataArr = {
-            Id: id.val(),
-            BaseImgInfo_Id: imgInfoId.val(),
-            BaseDictionaries_Id: advertisementTypeId.val(),
+            NewsInfoId: id.val(),
+            ImageId: imgInfoId.val(),
+            NewsCategoryId: advertisementTypeId.val(),
             Title: title.val(),
-            Author: author.val(),
-            Source: source.val(),
-            Contents: contents,
-            SortNo: sortNo.val()
+            Author: author.val(), 
+            Content: contents,
+            Sort: sortNo.val(),
+            isTop: isTop.val(),
+            isHot: isHot.val()
         };
         window.parent.showModal();
         //提交
-        $.post('/News/Edit', dataArr, function (data) {
+        $.post('/NewsInfo/Edit', dataArr, function (data) {
             if (data.Status == 200) {
                 swal("提示", "操作成功");
                 setTimeout(function () {

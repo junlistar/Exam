@@ -17,10 +17,12 @@ namespace Exam.Admin.Controllers
     {
         // GET: NewsInfo
         private readonly INewsInfoService _newsInfoService;
+        private readonly INewsCategoryService _newsCategoryService;
         private readonly IImageInfoService _imageInfoService;
-        public NewsInfoController(INewsInfoService NewsInfoService, IImageInfoService imageInfoService)
+        public NewsInfoController(INewsInfoService NewsInfoService, IImageInfoService imageInfoService, INewsCategoryService newsCategoryService)
         {
             _newsInfoService = NewsInfoService;
+            _newsCategoryService = newsCategoryService;
             _imageInfoService = imageInfoService;
         }
 
@@ -56,6 +58,7 @@ namespace Exam.Admin.Controllers
         {
             _NewsInfoVM.NewsInfo = _newsInfoService.GetById(_NewsInfoVM.Id) ?? new NewsInfo();
             _NewsInfoVM.ImgInfo = _imageInfoService.GetById(_NewsInfoVM.NewsInfo.ImageId) ?? new ImageInfo();
+            _NewsInfoVM.NewsCategories = _newsCategoryService.GetAll();
             return View(_NewsInfoVM);
         }
         /// <summary>
@@ -64,17 +67,25 @@ namespace Exam.Admin.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateInput(false)]
         public JsonResult Edit(NewsInfo model)
         {
             try
             {
+                var entity = new NewsInfo();
                 if (model.NewsInfoId > 0)
                 {
-                    var entity = _newsInfoService.GetById(model.NewsInfoId);
+                    entity = _newsInfoService.GetById(model.NewsInfoId);
                     //修改  
                     entity.UTime = DateTime.Now;
+                    entity.ImageId = model.ImageId;
+                    entity.NewsCategoryId = model.NewsCategoryId;
                     entity.Title = model.Title;
+                    entity.Author = model.Author;
+                    entity.Content = model.Content;
                     entity.Sort = model.Sort; 
+                    entity.isHot = model.isHot; 
+                    entity.isTop = model.isTop;
                     _newsInfoService.Update(entity);
                 }
                 else
@@ -82,14 +93,23 @@ namespace Exam.Admin.Controllers
                     if (_newsInfoService.IsExistName(model.Title))
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
-                    model.CTime = DateTime.Now;
-                    model.UTime = DateTime.Now;
+                    entity.Title = model.Title;
+                    entity.ImageId = model.ImageId;
+                    entity.NewsCategoryId = model.NewsCategoryId;
+                    entity.Title = model.Title;
+                    entity.Author = model.Author;
+                    entity.Content = model.Content;
+                    entity.Sort = model.Sort;
+                    entity.isHot = model.isHot;
+                    entity.isTop = model.isTop;
+                    entity.CTime = DateTime.Now;
+                    entity.UTime = DateTime.Now;
 
-                    _newsInfoService.Insert(model);
+                    _newsInfoService.Insert(entity);
                 }
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
             }

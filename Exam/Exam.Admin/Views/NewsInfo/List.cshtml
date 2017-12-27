@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "资讯编辑";
+    ViewBag.Title = "资讯列表";
 }
 @model Exam.Admin.Models.NewsInfoVM
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -10,8 +10,8 @@
                     <div class="row" style="padding:10px 10px;">
                         <form action="/NewsInfo/List" method="get">
                             <div class="col-sm-4">
-                                分组名称：
-                                <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询角色名称" value="@(Model.QueryName ?? "")">
+                                资讯标题：
+                                <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询标题名称" value="@(Model.QueryName ?? "")">
                             </div> 
                             <button type="submit" class="btn btn-info">搜索</button>
                         </form>

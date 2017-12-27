@@ -42,7 +42,7 @@ create table Lecturer
 	name nvarchar(50) not null,			--Ãû³Æ
 	position nvarchar(50) not null,		--Ö°Î»
 	imageInfoId int,					--Í¼Æ¬±àºÅ
-	abstract nvarchar(255),				--ÕªÒª¼ò½é
+	abstracts nvarchar(255),				--ÕªÒª¼ò½é
 	sort int default(99),				--ÅÅÐò
 	introduce nvarchar(max),			--½éÉÜ
 )

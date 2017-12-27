@@ -59,12 +59,18 @@
   <ItemGroup>
     <Compile Include="IDbContext.cs" />
     <Compile Include="ExamDbContext.cs" />
+    <Compile Include="Mapping\Chapter.cs" />
+    <Compile Include="Mapping\Belong.cs" />
+    <Compile Include="Mapping\ProblemCategory.cs" />
     <Compile Include="Mapping\ImageInfo.cs" />
+    <Compile Include="Mapping\Answer.cs" />
+    <Compile Include="Mapping\Problem.cs" />
     <Compile Include="Mapping\NewsInfo.cs" />
     <Compile Include="Mapping\SysGroupMenu.cs" />
     <Compile Include="Mapping\SysMenu.cs" />
     <Compile Include="Mapping\SysGroup.cs" />
     <Compile Include="Mapping\NewsCategory.cs" />
+    <Compile Include="Mapping\Lecturer.cs" />
     <Compile Include="Mapping\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
