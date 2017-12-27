@@ -45,6 +45,8 @@ create table Lecturer
 	abstracts nvarchar(255),				--摘要简介
 	sort int default(99),				--排序
 	introduce nvarchar(max),			--介绍
+	ctime datetime default(getdate()),	--创建时间
+	utime datetime default(getdate()),	--修改时间
 )
 --问题表
 create table Problem

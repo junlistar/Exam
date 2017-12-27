@@ -18,8 +18,9 @@ namespace Exam.Data.Mapping
             this.HasKey(m => m.LecturerId);
             this.Property(m => m.LecturerId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(m => m.abstracts);
+            this.Property(m => m.Abstracts);
             this.Property(m => m.CTime); 
+            this.Property(m => m.UTime);
             this.Property(m => m.ImageInfoId);
             this.Property(m => m.Introduce);
             this.Property(m => m.LecturerId);

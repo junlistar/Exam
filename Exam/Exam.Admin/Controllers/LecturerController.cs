@@ -69,12 +69,13 @@ namespace Exam.Admin.Controllers
                 {
                     var entity = _LecturerService.GetById(model.LecturerId);
                     //修改 
-                    entity.abstracts = model.abstracts;
+                    entity.Abstracts = model.Abstracts;
                     entity.ImageInfoId = model.ImageInfoId;
                     entity.Name = model.Name;
                     entity.Introduce = model.Introduce;
                     entity.Position = model.Position;
-                    entity.Sort= model.Sort; 
+                    entity.Sort= model.Sort;
+                    model.UTime = DateTime.Now;
                     _LecturerService.Update(entity);
                 }
                 else
@@ -83,6 +84,7 @@ namespace Exam.Admin.Controllers
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     model.CTime = DateTime.Now; 
+                    model.UTime = DateTime.Now;
 
                     _LecturerService.Insert(model);
                 }

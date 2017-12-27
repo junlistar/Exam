@@ -18,13 +18,14 @@ namespace Exam.Domain.Model
         /// <summary>
         /// 摘要简介
         /// </summary>
-        public virtual string abstracts { get; set; }
+        public virtual string Abstracts { get; set; }
         /// <summary>
         /// 介绍
         /// </summary>
         public virtual string Introduce { get; set; }
         public virtual int Sort { get; set; }  
         public virtual DateTime CTime { get; set; } 
-         
+        public virtual DateTime UTime { get; set; }
+
     }
 }

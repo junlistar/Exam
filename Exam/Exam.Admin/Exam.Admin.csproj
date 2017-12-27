@@ -642,6 +642,16 @@
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Views\Lecturer\Edit.cshtml" />
+    <Content Include="Views\Lecturer\List.cshtml" />
+    <Content Include="Views\ProblemCategory\Edit.cshtml" />
+    <Content Include="Views\ProblemCategory\List.cshtml" />
+    <Content Include="Views\Belong\Edit.cshtml" />
+    <Content Include="Views\Belong\List.cshtml" />
+    <Content Include="Views\Chapter\Edit.cshtml" />
+    <Content Include="Views\Chapter\List.cshtml" />
+    <Content Include="Views\Problem\Edit.cshtml" />
+    <Content Include="Views\Problem\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
