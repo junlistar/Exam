@@ -213,6 +213,9 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\BaseImgInfoVM.cs" />
     <Compile Include="Models\NewsInfoVM.cs" />
+    <Compile Include="Models\GradeVM.cs" />
+    <Compile Include="Models\ReplyVM.cs" />
+    <Compile Include="Models\QuestionVM.cs" />
     <Compile Include="Models\SysGroupVM.cs" />
     <Compile Include="Models\SysGroupMenuVM.cs" />
     <Compile Include="Models\NewsCategoryVM.cs" />
@@ -657,6 +660,12 @@
     <Content Include="Views\Chapter\List.cshtml" />
     <Content Include="Views\Problem\Edit.cshtml" />
     <Content Include="Views\Problem\List.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\List.cshtml" />
+    <Content Include="Views\Reply\Edit.cshtml" />
+    <Content Include="Views\Reply\List.cshtml" />
+    <Content Include="Views\Grade\Edit.cshtml" />
+    <Content Include="Views\Grade\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

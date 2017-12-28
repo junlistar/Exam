@@ -17,9 +17,19 @@ namespace Exam.Admin.Controllers
     {
         // GET: Problem
         private readonly IProblemService _ProblemService;
-        public ProblemController(IProblemService ProblemService)
+        private readonly IProblemCategoryService _ProblemCategoryService;
+        private readonly IBelongService _BelongService;
+        private readonly IChapterService _ChapterService;
+
+        public ProblemController(IProblemService ProblemService,
+            IProblemCategoryService ProblemCategoryService,
+            IBelongService BelongService,
+            IChapterService ChapterService)
         {
             _ProblemService = ProblemService;
+            _ProblemCategoryService = ProblemCategoryService;
+            _BelongService = BelongService;
+            _ChapterService = ChapterService;
         }
 
         /// <summary>
@@ -52,7 +62,12 @@ namespace Exam.Admin.Controllers
         /// <returns></returns>
         public ActionResult Edit(ProblemVM _ProblemVM)
         {
-            _ProblemVM.Problem = _ProblemService.GetById(_ProblemVM.Id) ?? new Problem(); 
+            _ProblemVM.Problem = _ProblemService.GetById(_ProblemVM.Id) ?? new Problem();
+
+            _ProblemVM.ProblemCategorys = _ProblemCategoryService.GetAll();
+            _ProblemVM.Belongs = _BelongService.GetAll();
+            _ProblemVM.Chapters = _ChapterService.GetAll();
+
             return View(_ProblemVM);
         }
         /// <summary>
@@ -75,7 +90,7 @@ namespace Exam.Admin.Controllers
                     entity.Title = model.Title;
                     entity.BelongId = model.BelongId;
                     entity.Sort= model.Sort; 
-                    entity.UTime= model.UTime; 
+                    entity.UTime= DateTime.Now; 
                     _ProblemService.Update(entity);
                 }
                 else
@@ -84,7 +99,7 @@ namespace Exam.Admin.Controllers
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     model.CTime = DateTime.Now;
-                    model.UTime = model.UTime;
+                    model.UTime = DateTime.Now;
 
                     _ProblemService.Insert(model);
                 }

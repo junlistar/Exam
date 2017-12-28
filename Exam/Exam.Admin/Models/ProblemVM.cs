@@ -22,7 +22,9 @@ namespace Exam.Admin.Models
         /// <summary>
         ///实体集合
         /// </summary>
-        public List<Problem> Problems { get; set; }
+        public List<ProblemCategory> ProblemCategorys { get; set; }
+        public List<Belong> Belongs { get; set; }
+        public List<Chapter> Chapters { get; set; }
         /// <summary>
         /// 分页
         /// </summary>

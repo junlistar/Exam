@@ -16,7 +16,7 @@
                         <input type="hidden" class="form-control" name="id" id="id" value="@Model.Problem.ProblemId">
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">名称</label>
+                            <label class="col-sm-2 control-label">题目名称</label>
                             <div class="col-sm-4">
                                 <input type="text" name="name" id="name" class="form-control" placeholder="请输入名称" value="@(Model.Problem.Title ?? "")">
                             </div>
@@ -27,25 +27,45 @@
                             <div class="col-sm-2">
                                 <select class="form-control" name="problemCategory" id="problemCategory">
                                     <option value="0">请选中类别</option>
-                                     
+                                     @if (Model.ProblemCategorys != null && Model.ProblemCategorys.Count > 0)
+                                     {
+                                         foreach (var a in Model.ProblemCategorys)
+                                         {
+                                            <option @(Model.Problem.ProblemCategoryId == a.ProblemCategoryId ? "selected" : "") value="@a.ProblemCategoryId">@a.Title</option>
+                                         }
+                                     }
                                 </select>
                             </div>
                         </div>
+                        <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">所属层级</label>
                             <div class="col-sm-2">
                                 <select class="form-control" name="belongId" id="belongId">
                                     <option value="0">请选中层级</option>
-
+                                    @if (Model.Belongs != null && Model.Belongs.Count > 0)
+                                    {
+                                        foreach (var a in Model.Belongs)
+                                        {
+                                            <option @(Model.Problem.ProblemCategoryId == a.BelongId ? "selected" : "") value="@a.BelongId">@a.Title</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
+                        <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">题目章节</label>
                             <div class="col-sm-2">
                                 <select class="form-control" name="chapterId" id="chapterId">
                                     <option value="0">请选中章节</option>
-
+                                    @if (Model.Chapters != null && Model.Chapters.Count > 0)
+                                    {
+                                        foreach (var a in Model.Chapters)
+                                        {
+                                            <option @(Model.Problem.ProblemCategoryId == a.ChapterId ? "selected" : "") value="@a.ChapterId">@a.Title</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>

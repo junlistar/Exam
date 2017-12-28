@@ -71,7 +71,7 @@ namespace Exam.Admin.Controllers
                     //修改 
                     entity.ProblemCategoryId = model.ProblemCategoryId;
                     entity.Title = model.Title;
-                    entity.UTime = model.UTime; 
+                    entity.UTime = DateTime.Now; 
                     entity.Sort= model.Sort; 
                     _ProblemCategoryService.Update(entity);
                 }
@@ -81,7 +81,7 @@ namespace Exam.Admin.Controllers
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     model.CTime = DateTime.Now;
-                    model.UTime = model.UTime;
+                    model.UTime = DateTime.Now;
 
                     _ProblemCategoryService.Insert(model);
                 }

@@ -16,11 +16,11 @@ namespace Exam.Admin.Models
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// 菜单信息
+        /// 实体信息
         /// </summary>
         public ProblemCategory ProblemCategory { get; set; }
         /// <summary>
-        /// 菜单集合
+        /// 实体集合
         /// </summary>
         public List<ProblemCategory> ProblemCategorys { get; set; }
         /// <summary>

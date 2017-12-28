@@ -7,26 +7,28 @@ using System.Web;
 
 namespace Exam.Admin.Models
 {
-    public class NewsInfoVM: BaseImgInfoVM
+    public class ReplyVM
     {
+        public int V { get; set; }
+
         /// <summary>
-        /// 编号
+        /// 主键
         /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// 实体信息
         /// </summary>
-        public NewsInfo NewsInfo { get; set; }
-
+        public Reply Reply { get; set; }
         /// <summary>
-        /// 实体列表
+        /// 实体集合
         /// </summary>
-        public List<NewsCategory> NewsCategories { get; set; }
-
+        public List<Reply> Replys { get; set; }
         /// <summary>
-        /// 用户分页
+        /// 分页
         /// </summary>
-        public Paging<NewsInfo> Paging { get; set; }
-        public string QueryName { get; set; }
+        public Paging<Reply> Paging { get; set; }
+
+        //查询条件
+        public string QueryName { get; set; } 
     }
 }
