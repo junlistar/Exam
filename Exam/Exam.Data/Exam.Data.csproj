@@ -61,11 +61,14 @@
     <Compile Include="ExamDbContext.cs" />
     <Compile Include="Mapping\Chapter.cs" />
     <Compile Include="Mapping\Belong.cs" />
+    <Compile Include="Mapping\Reply.cs" />
+    <Compile Include="Mapping\Question.cs" />
     <Compile Include="Mapping\ProblemCategory.cs" />
     <Compile Include="Mapping\ImageInfo.cs" />
     <Compile Include="Mapping\Answer.cs" />
     <Compile Include="Mapping\Problem.cs" />
     <Compile Include="Mapping\NewsInfo.cs" />
+    <Compile Include="Mapping\Grade.cs" />
     <Compile Include="Mapping\SysGroupMenu.cs" />
     <Compile Include="Mapping\SysMenu.cs" />
     <Compile Include="Mapping\SysGroup.cs" />

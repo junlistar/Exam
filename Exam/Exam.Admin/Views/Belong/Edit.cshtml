@@ -1,42 +1,31 @@
 ﻿@{
-    ViewBag.Title = "分组编辑";
+    ViewBag.Title = "层级编辑";
 }
-@model Exam.Admin.Models.SysGroupVM
+@model Exam.Admin.Models.BelongVM
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>
-                        分组编辑 <small>添加、修改</small>
+                        层级编辑 <small>添加、修改</small>
                     </h5>
                 </div>
                 <div class="ibox-content">
                     <form id="from" class="form-horizontal">
-                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.SysGroup.SysGroupId">
+                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.Belong.BelongId">
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">分组名称</label>
+                            <label class="col-sm-2 control-label">层级名称</label>
                             <div class="col-sm-4">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入分组名称" value="@(Model.SysGroup.Name ?? "")">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">分组类型</label>
-                            <div class="col-sm-2">
-                                <select class="form-control" name="type" id="type">
-                                    <option value="0">请选中类型</option>
-                                    <option @(Model.SysGroup.Type == 1 ? "selected" : "" ) value="1">后台</option>
-                                    <option @(Model.SysGroup.Type == 2 ? "selected" : "" ) value="2">用户</option>
-                                </select>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入层级名称" value="@(Model.Belong.Title ?? "")">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">排序号</label>
                             <div class="col-sm-2">
-                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.SysGroup.SortNo">
+                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.Belong.Sort">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -53,5 +42,5 @@
     </div>
 </div>
 @section script{
-    <script src="@("/Scripts/ViewJs/SysGroup/sysGroupEdit.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/ViewJs/Belong/BelongEdit.js"+Versions.Ver)"></script>
 }

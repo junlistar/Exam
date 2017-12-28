@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Reply.cs" />
+    <Compile Include="Model\Question.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\Problem.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="Model\Lecturer.cs" />
     <Compile Include="Model\ImageInfo.cs" />
     <Compile Include="Model\NewsInfo.cs" />
+    <Compile Include="Model\Grade.cs" />
     <Compile Include="Model\SysGroupMenu.cs" />
     <Compile Include="Model\SysMenu.cs" />
     <Compile Include="Model\SysGroup.cs" />

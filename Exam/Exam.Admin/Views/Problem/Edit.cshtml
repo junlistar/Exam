@@ -1,7 +1,7 @@
 ﻿@{
-    ViewBag.Title = "分组编辑";
+    ViewBag.Title = "问题编辑";
 }
-@model Exam.Admin.Models.SysGroupVM
+@model Exam.Admin.Models.ProblemVM
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
@@ -13,22 +13,49 @@
                 </div>
                 <div class="ibox-content">
                     <form id="from" class="form-horizontal">
-                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.SysGroup.SysGroupId">
+                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.Problem.ProblemId">
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">分组名称</label>
+                            <label class="col-sm-2 control-label">名称</label>
                             <div class="col-sm-4">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入分组名称" value="@(Model.SysGroup.Name ?? "")">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入名称" value="@(Model.Problem.Title ?? "")">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">分组类型</label>
+                            <label class="col-sm-2 control-label">题目类别</label>
                             <div class="col-sm-2">
-                                <select class="form-control" name="type" id="type">
-                                    <option value="0">请选中类型</option>
-                                    <option @(Model.SysGroup.Type == 1 ? "selected" : "" ) value="1">后台</option>
-                                    <option @(Model.SysGroup.Type == 2 ? "selected" : "" ) value="2">用户</option>
+                                <select class="form-control" name="problemCategory" id="problemCategory">
+                                    <option value="0">请选中类别</option>
+                                     
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">所属层级</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="belongId" id="belongId">
+                                    <option value="0">请选中层级</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">题目章节</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="chapterId" id="chapterId">
+                                    <option value="0">请选中章节</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否热门</label>
+                            <div class="col-sm-4">
+                                <select class="form-control inline" style="width:150px;" name="advertisementTypeId" id="divIsHot">
+                                    <option value="0" @(Model.Problem.IsHot == 0 ? "selected" : "")>否</option>
+                                    <option value="1" @(Model.Problem.IsHot == 1 ? "selected" : "")>是</option>
                                 </select>
                             </div>
                         </div>
@@ -36,7 +63,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">排序号</label>
                             <div class="col-sm-2">
-                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.SysGroup.SortNo">
+                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.Problem.Sort">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -53,5 +80,5 @@
     </div>
 </div>
 @section script{
-    <script src="@("/Scripts/ViewJs/SysGroup/sysGroupEdit.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/ViewJs/Problem/ProblemEdit.js"+Versions.Ver)"></script>
 }

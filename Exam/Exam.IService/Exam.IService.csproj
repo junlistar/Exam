@@ -48,6 +48,9 @@
     <Compile Include="ILecturerService.cs" />
     <Compile Include="INewsInfoService.cs" />
     <Compile Include="INewsCategoryService.cs" />
+    <Compile Include="IGradeService.cs" />
+    <Compile Include="IReplyService.cs" />
+    <Compile Include="IQuestionService.cs" />
     <Compile Include="ISysGroupService.cs" />
     <Compile Include="ISysGroupMenuService.cs" />
     <Compile Include="IImageInfoService.cs" />

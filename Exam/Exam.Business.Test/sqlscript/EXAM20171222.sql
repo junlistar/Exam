@@ -124,7 +124,7 @@ create table Reply
 (
 	Replyid int identity(1000,1),			--编号
 	content nvarchar(max) not null,		--内容
-	userId int,							--用户编号
+	UserInfoId int,							--用户编号
 	QuestionId int,						--提问表编号
 	sort int default(99),				--排序
 	reads int default(0),				--阅读数

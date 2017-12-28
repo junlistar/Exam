@@ -204,6 +204,7 @@
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Infrastructure\WebWorkContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnswerVM.cs" />
     <Compile Include="Models\ChapterVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BelongVM.cs" />
@@ -576,7 +577,11 @@
     <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
+    <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
+    <Content Include="Scripts\ViewJs\Belong\belongEdit.js" />
+    <Content Include="Scripts\ViewJs\ProblemCategory\problemCategoryEdit.js" />
     <Content Include="Scripts\ViewJs\NewsInfo\newsInfoEdit.js" />
+    <Content Include="Scripts\ViewJs\Chapter\chapterEdit.js" />
     <Content Include="Scripts\ViewJs\SysGroup\sysGroupEdit.js" />
     <Content Include="Scripts\ViewJs\NewsCategory\newsCategoryEdit.js" />
     <Content Include="Scripts\ViewJs\SysMenu\sysMenuEdit.js" />
@@ -657,6 +662,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\patterns\" />
     <Folder Include="Scripts\plugins\fileinput\" />
+    <Folder Include="Scripts\ViewJs\Answer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

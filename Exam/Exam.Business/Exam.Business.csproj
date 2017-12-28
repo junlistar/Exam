@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grade\IGradeBusiness.cs" />
+    <Compile Include="Grade\GradeBusiness.cs" />
+    <Compile Include="Reply\IReplyBusiness.cs" />
+    <Compile Include="Reply\ReplyBusiness.cs" />
+    <Compile Include="Question\QuestionBusiness.cs" />
+    <Compile Include="Question\IQuestionBusiness.cs" />
     <Compile Include="Chapter\ChapterBusiness.cs" />
     <Compile Include="Chapter\IChapterBusiness.cs" />
     <Compile Include="Belong\IBelongBusiness.cs" />
