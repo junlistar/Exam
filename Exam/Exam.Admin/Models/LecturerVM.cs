@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Exam.Admin.Models
 {
-    public class LecturerVM
+    public class LecturerVM : BaseImgInfoVM
     {
         public int V { get; set; }
 

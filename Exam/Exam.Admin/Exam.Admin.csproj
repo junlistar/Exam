@@ -580,6 +580,7 @@
     <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
+    <Content Include="Scripts\ViewJs\Lecturer\lecturerEdit.js" />
     <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
     <Content Include="Scripts\ViewJs\Belong\belongEdit.js" />
     <Content Include="Scripts\ViewJs\ProblemCategory\problemCategoryEdit.js" />

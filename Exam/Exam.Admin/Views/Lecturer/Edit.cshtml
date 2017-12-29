@@ -1,42 +1,60 @@
 ﻿@{
-    ViewBag.Title = "分组编辑";
+    ViewBag.Title = "讲师编辑";
 }
-@model Exam.Admin.Models.SysGroupVM
+@model Exam.Admin.Models.LecturerVM
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>
-                        分组编辑 <small>添加、修改</small>
+                        讲师编辑 <small>添加、修改</small>
                     </h5>
                 </div>
                 <div class="ibox-content">
                     <form id="from" class="form-horizontal">
-                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.SysGroup.SysGroupId">
-                        <div class="hr-line-dashed"></div>
+                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.Lecturer.LecturerId">
+                        <input type="hidden" id="imgInfoId" value="@Model.Lecturer.ImageInfoId" />
+                        <input type="hidden" id="oldImgInfoId" value="@Model.Lecturer.ImageInfoId" />
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">分组名称</label>
-                            <div class="col-sm-4">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入分组名称" value="@(Model.SysGroup.Name ?? "")">
+                            <label class="col-sm-2 control-label">图片</label>
+                            <div class="col-sm-6">
+                                <input id="filename" name="filename" type="file" class="file-loading" multiple data-show-upload="true" data-show-caption="true">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">分组类型</label>
-                            <div class="col-sm-2">
-                                <select class="form-control" name="type" id="type">
-                                    <option value="0">请选中类型</option>
-                                    <option @(Model.SysGroup.Type == 1 ? "selected" : "" ) value="1">后台</option>
-                                    <option @(Model.SysGroup.Type == 2 ? "selected" : "" ) value="2">用户</option>
-                                </select>
+                            <label class="col-sm-2 control-label">讲师名称</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="title" id="title" class="form-control" placeholder="请输入讲师名称" value="@(Model.Lecturer.Name ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职位</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="position" id="position" class="form-control" placeholder="请输入讲师职位" value="@(Model.Lecturer.Position ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">介绍</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="abstracts" id="abstracts" class="form-control" placeholder="请输入讲师介绍" value="@(Model.Lecturer.Abstracts ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-6">
+                                <textarea id="contents" name="contents"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">排序号</label>
                             <div class="col-sm-2">
-                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.SysGroup.SortNo">
+                                <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.Lecturer.Sort">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -53,5 +71,40 @@
     </div>
 </div>
 @section script{
-    <script src="@("/Scripts/ViewJs/SysGroup/sysGroupEdit.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/ViewJs/Lecturer/LecturerEdit.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/plugins/fileinput/fileinput.js"+Versions.Ver)"></script>
+    <script src="@("/Scripts/plugins/fileinput/zh.js"+Versions.Ver)"></script>
+    <script type="text/javascript">
+        //初始化编辑器js
+        initEditor('@Html.Raw(Model.Lecturer.Introduce)', 'contents');
+
+        var img = [];
+        if ('@Model.ImgInfo.Url' != '') {
+            var str = '<img src="@(Model.ImgInfo.Url)" class="kv-preview-thumb kv-file-content file-preview-image" />';
+            img.push(str);
+        }
+        //缩略图上传js
+        $('#filename').fileinput({
+            language: 'zh',
+            allowedFileTypes: ['image'],
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            uploadUrl: '/Uploader/ImgFile?folder=Lecturer&title=讲师图片',
+            showUpload: false,  //是否显示上传按钮
+            showRemove: true,   //显示移除按钮
+            maxFileSize: 2000,
+            showCaption: true,  //是否显示标题
+            maxFileCount: 1,    //表示允许同时上传的最大文件个数
+            maxFileSize: 1024,   //单位为kb，如果为0表示不限制文件大小
+            initialPreview: img,
+            dropZoneTitle: '请选择需要上传的图片',
+        });
+        //上传成功回调事件
+        $("#filename").on("fileuploaded", function (event, data, previewId, index) {
+            $('#imgInfoId').val(data.response);
+        });
+        //移除事件
+        $("#filename").on("fileclear", function (event, data, previewId, index) {
+            $.post("/Uploader/DeleteFile", { Id: $('#imgInfoId').val() }, function (data) { });
+        });
+    </script>
 }

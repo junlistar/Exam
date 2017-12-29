@@ -17,9 +17,11 @@ namespace Exam.Admin.Controllers
     {
         // GET: Lecturer
         private readonly ILecturerService _LecturerService;
-        public LecturerController(ILecturerService LecturerService)
+        private readonly IImageInfoService _imageInfoService;
+        public LecturerController(ILecturerService LecturerService, IImageInfoService imageInfoService)
         {
             _LecturerService = LecturerService;
+            _imageInfoService = imageInfoService;
         }
 
         /// <summary>
@@ -52,7 +54,8 @@ namespace Exam.Admin.Controllers
         /// <returns></returns>
         public ActionResult Edit(LecturerVM _LecturerVM)
         {
-            _LecturerVM.Lecturer = _LecturerService.GetById(_LecturerVM.Id) ?? new Lecturer(); 
+            _LecturerVM.Lecturer = _LecturerService.GetById(_LecturerVM.Id) ?? new Lecturer();
+            _LecturerVM.ImgInfo = _imageInfoService.GetById(_LecturerVM.Lecturer.ImageInfoId) ?? new ImageInfo();
             return View(_LecturerVM);
         }
         /// <summary>
@@ -61,6 +64,7 @@ namespace Exam.Admin.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateInput(false)]
         public JsonResult Edit(Lecturer model)
         {
             try
