@@ -136,6 +136,18 @@ namespace Exam.Admin.Controllers
                 return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
             }
         }
-    
+        /// <summary>
+        /// 答案列表
+        /// </summary> 
+        /// <returns></returns>
+        public ActionResult AnswerList(ProblemVM _ProblemVM)
+        { 
+
+            var entity = _ProblemService.GetById(_ProblemVM.Id);
+
+            _ProblemVM.AnswerList = entity.AnswerList; 
+
+            return View(_ProblemVM);
+        }
     }
 }

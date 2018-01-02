@@ -16,5 +16,7 @@ namespace Exam.Domain.Model
         public virtual int ProblemId { get; set; }
         public virtual int IsCorrect { get; set; }
 
+
+        public virtual Problem Problem { get; set; }
     }
 }

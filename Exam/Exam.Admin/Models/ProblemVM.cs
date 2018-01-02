@@ -25,6 +25,11 @@ namespace Exam.Admin.Models
         public List<ProblemCategory> ProblemCategorys { get; set; }
         public List<Belong> Belongs { get; set; }
         public List<Chapter> Chapters { get; set; }
+
+        /// <summary>
+        /// 答案列表
+        /// </summary>
+        public List<Answer> AnswerList { get; set; }
         /// <summary>
         /// 分页
         /// </summary>

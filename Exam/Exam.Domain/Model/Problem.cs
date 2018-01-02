@@ -21,5 +21,6 @@ namespace Exam.Domain.Model
         public virtual DateTime CTime { get; set; } 
         public virtual DateTime UTime { get; set; }
 
+        public virtual List<Answer> AnswerList { get; set; }
     }
 }

@@ -21,8 +21,53 @@ namespace Exam.Admin.Controllers
         {
             _AnswerService = AnswerService;
         }
- 
-    
+
+        /// <summary>
+        /// 编辑
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        public ActionResult Edit(AnswerVM vm)
+        {
+            vm.Answer = _AnswerService.GetById(vm.Id) ?? new Answer();
+              
+            return View(vm);
+        }
+
+        /// <summary>
+        /// 添加、修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult Edit(Answer model)
+        {
+            try
+            {
+                if (model.AnswerId > 0)
+                {
+                    var entity = _AnswerService.GetById(model.AnswerId);
+                    //修改 
+                    entity.AnswerId = model.AnswerId;
+                    entity.Title = model.Title;
+                    entity.IsCorrect = model.IsCorrect; 
+                    _AnswerService.Update(entity);
+                }
+                else
+                {
+                    if (_AnswerService.IsExistName(model.Title))
+                        return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
+                     
+                    _AnswerService.Insert(model);
+                }
+                return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         /// <summary>
         /// 删除
         /// </summary>

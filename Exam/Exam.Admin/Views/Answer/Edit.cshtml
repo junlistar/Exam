@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "答案编辑";
+}
+@model Exam.Admin.Models.AnswerVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        答案编辑 <small>添加、修改</small>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="from" class="form-horizontal">
+                        <input type="hidden" class="form-control" name="id" id="id" value="@Model.Answer.AnswerId">
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">答案名称</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="请输入答案名称" value="@(Model.Answer.Title ?? "")">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否正确答案</label>
+                            <div class="col-sm-4">
+                                <select class="form-control inline" style="width:150px;" name="isCorrect" id="isCorrect">
+                                    <option value="0" @(Model.Answer.IsCorrect == 0 ? "selected" : "")>否</option>
+                                    <option value="1" @(Model.Answer.IsCorrect == 1 ? "selected" : "")>是</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button id="btnSave" class="btn btn-primary" type="button">保存内容</button>
+                                <a class="btn btn-white" href="javascript:history.go(-1);">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="@("/Scripts/ViewJs/Answer/AnswerEdit.js"+Versions.Ver)"></script>
+}

@@ -48,8 +48,8 @@
                                             <td class="text-center">@item.CTime</td>
                                             <td class="text-center">@item.UTime</td>
                                             <td> 
-                                                <a href="/Problem/Edit/@item.ProblemId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
-                                                
+                                                <a href="/Problem/Edit/@item.ProblemId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a> 
+                                                <button onclick="iframe('答案列表','/Problem/AnswerList/@item.ProblemId')" class="btn btn-success">查看答案</button>
                                                 <button onclick="del('/Problem/Delete','/Problem/List','@item.ProblemId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
                                             </td>
                                         </tr>

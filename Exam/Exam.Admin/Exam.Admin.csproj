@@ -580,6 +580,7 @@
     <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
+    <Content Include="Scripts\ViewJs\Answer\answerEdit.js" />
     <Content Include="Scripts\ViewJs\Lecturer\lecturerEdit.js" />
     <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
     <Content Include="Scripts\ViewJs\Belong\belongEdit.js" />
@@ -667,12 +668,13 @@
     <Content Include="Views\Reply\List.cshtml" />
     <Content Include="Views\Grade\Edit.cshtml" />
     <Content Include="Views\Grade\List.cshtml" />
+    <Content Include="Views\Problem\AnswerList.cshtml" />
+    <Content Include="Views\Answer\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\patterns\" />
     <Folder Include="Scripts\plugins\fileinput\" />
-    <Folder Include="Scripts\ViewJs\Answer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

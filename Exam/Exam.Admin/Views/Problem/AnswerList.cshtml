@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "答案列表";
+}
+@model Exam.Admin.Models.ProblemVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">答案内容</th> 
+                                    <th class="text-center">正确答案</th> 
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.AnswerList != null && Model.AnswerList.Count > 0)
+                                {
+                                    foreach (var item in Model.AnswerList)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.AnswerId</td>
+                                            <td class="text-center">@item.Title</td>
+                                            <td class="text-center">@(item.IsCorrect == 1 ? "是" : "")</td> 
+                                            <td>
+                                                <a href="/Answer/Edit/@item.AnswerId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                <a href="/Problem/AnswerList/@Model.Id" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
