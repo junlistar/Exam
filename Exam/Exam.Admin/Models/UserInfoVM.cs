@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Exam.Admin.Models
 {
-    public class UserInfoVM
+    public class UserInfoVM : BaseImgInfoVM
     {
         /// <summary>
         /// 编号
@@ -17,6 +17,16 @@ namespace Exam.Admin.Models
         /// 用户信息
         /// </summary>
         public UserInfo UserInfo { get; set; }
+
+        /// <summary>
+        /// 等级列表
+        /// </summary>
+        public List<Grade> GradeList { get; set; }
+        /// <summary>
+        /// 用户组列表
+        /// </summary>
+        public List<SysGroup> SysGroupList { get; set; }
+
         /// <summary>
         /// 用户分页
         /// </summary>

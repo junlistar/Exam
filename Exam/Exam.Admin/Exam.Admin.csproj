@@ -670,6 +670,7 @@
     <Content Include="Views\Grade\List.cshtml" />
     <Content Include="Views\Problem\AnswerList.cshtml" />
     <Content Include="Views\Answer\Edit.cshtml" />
+    <Content Include="Views\UserInfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

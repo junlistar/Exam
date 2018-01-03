@@ -39,6 +39,17 @@ namespace Exam.Service
         {
             this._userBiz.Update(model);
         }
+
+        /// <summary>
+        /// 删除实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public void Delete(UserInfo model)
+        {
+            this._userBiz.Delete(model);
+        }
+
         /// <summary>
         /// 管理后台用户列表
         /// </summary> 
@@ -46,6 +57,16 @@ namespace Exam.Service
         public List<UserInfo> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
         {
             return _userBiz.GetManagerList(name, pageNum, pageSize, out totalCount);
+        }
+
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        public bool IsExistName(string name)
+        {
+            return this._userBiz.IsExistName(name);
         }
 
     }

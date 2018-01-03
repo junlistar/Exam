@@ -58,7 +58,8 @@
                                                 @if (item.IsEnable == 1)
                                                 {
                                                     <button onclick="disable('/UserInfo/UpdateStatus','/UserInfo/List','@item.UserInfoId','@((int)Exam.Domain.EnumHelp.EnabledEnum.无效)')" class="btn btn-warning"><i class="fa fa-warning padding-right-4"></i>&nbsp;禁用</button>
-                                                }
+                                                } 
+                                                <a href="/UserInfo/Edit/@item.UserInfoId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
                                                 <button onclick="del('/UserInfo/Delete','/UserInfo/List','@item.UserInfoId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
                                             </td>
                                         </tr>

@@ -41,6 +41,16 @@ namespace Exam.Business
         {
             this._repoUserInfo.Update(model);
         }
+
+        /// <summary>
+        /// 删除实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public void Delete(UserInfo model)
+        {
+            this._repoUserInfo.Delete(model);
+        }
         /// <summary>
         /// 管理后台用户列表
         /// </summary> 
@@ -58,6 +68,17 @@ namespace Exam.Business
             totalCount = this._repoUserInfo.Table.Where(where).Count();
             return this._repoUserInfo.Table.Where(where).OrderBy(p => p.UserInfoId).Skip(pageNum * pageSize).Take(pageSize).ToList();
         }
+
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool IsExistName(string name)
+        {
+            return this._repoUserInfo.Table.Any(p => p.NikeName == name);
+        }
+
     }
 }
 
