@@ -240,7 +240,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\common.css" />
     <Content Include="Content\fileinput.min.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\plugins\sweetalert\sweetalert.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -248,7 +250,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\profile_small.jpg" />
+    <Content Include="img\locked.png" />
+    <Content Include="img\login-background.jpg" />
+    <Content Include="img\profile_small.jpg" />
+    <Content Include="img\user.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -581,6 +586,7 @@
     <Content Include="Scripts\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
     <Content Include="Scripts\ViewJs\Answer\answerEdit.js" />
+    <Content Include="Scripts\ViewJs\Home\login.js" />
     <Content Include="Scripts\ViewJs\Lecturer\lecturerEdit.js" />
     <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
     <Content Include="Scripts\ViewJs\Belong\belongEdit.js" />
@@ -671,6 +677,7 @@
     <Content Include="Views\Problem\AnswerList.cshtml" />
     <Content Include="Views\Answer\Edit.cshtml" />
     <Content Include="Views\UserInfo\Edit.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
