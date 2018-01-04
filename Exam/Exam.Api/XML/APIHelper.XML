@@ -492,6 +492,17 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:Exam.Api.Controllers.NewsApiController">
+            <summary>
+            资讯模块
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.NewsApiController.#ctor(Exam.IService.INewsInfoService)">
+            <summary>
+            依赖注入
+            </summary>
+            <param name="newsInfoService"></param>
+        </member>
         <member name="M:Exam.Api.Controllers.UserApiController.a">
             <summary>
             用户注册
