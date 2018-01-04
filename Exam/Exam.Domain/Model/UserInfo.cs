@@ -19,5 +19,8 @@ namespace Exam.Domain.Model
         public virtual DateTime CTime { get; set; }
         public virtual DateTime UTime { get; set; }
 
+        public virtual SysGroup SysGroup { get; set; }
+        public virtual Grade Grade { get; set; }
+
     }
 }

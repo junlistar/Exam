@@ -130,7 +130,7 @@ namespace Exam.Admin.Controllers
                 }
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
             }
