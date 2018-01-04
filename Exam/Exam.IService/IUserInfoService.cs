@@ -31,9 +31,24 @@ namespace Exam.IService
         void Update(UserInfo model);
 
         /// <summary>
+        /// 删除实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        void Delete(UserInfo model);
+
+        /// <summary>
         /// 管理后台用户列表
         /// </summary> 
         /// <returns></returns>
         List<UserInfo> GetManagerList(string name, int pageNum, int pageSize, out int totalCount);
+
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        bool IsExistName(string name);
+
     }
 }

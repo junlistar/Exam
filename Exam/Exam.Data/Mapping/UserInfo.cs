@@ -24,6 +24,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.CTime);
             this.Property(m => m.IsEnable);
 
+            HasRequired(t => t.SysGroup);
+
             //HasMany(m => m.UserFavList).WithRequired(n => n.UserInfo);
         }
     }

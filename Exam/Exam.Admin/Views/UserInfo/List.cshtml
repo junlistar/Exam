@@ -23,7 +23,9 @@
                                     <th class="text-center">序号</th>
                                     <th class="text-center">用户昵称</th>
                                     <th class="text-center">手机号码</th>
-                                    <th class="text-center">性别</th> 
+                                    <th class="text-center">性别</th>
+                                    <th class="text-center">用户组</th>
+                                    <th class="text-center">等级</th> 
                                     <th class="text-center">状态</th>
                                     <th class="text-center">创建时间</th>
                                     <th>操作</th>
@@ -38,7 +40,9 @@
                                             <td class="text-center">@item.UserInfoId</td>
                                             <td class="text-center">@item.NikeName</td>
                                             <td class="text-center">@item.Phone</td>
-                                            <td class="text-center">@item.Gender</td>  
+                                            <td class="text-center">@(item.Gender == 1 ? "男":"女")</td>
+                                            <td class="text-center">@(item.SysGroup == null ? "": item.SysGroup.Name + (item.SysGroup.Type==1 ? "(后)":"(前)"))</td>
+                                            <td class="text-center">@(item.Grade == null ? "" : item.Grade.Title)</td>  
                                             <td class="text-center">
                                                 @if (item.IsEnable == 0)
                                                 {
@@ -58,7 +62,8 @@
                                                 @if (item.IsEnable == 1)
                                                 {
                                                     <button onclick="disable('/UserInfo/UpdateStatus','/UserInfo/List','@item.UserInfoId','@((int)Exam.Domain.EnumHelp.EnabledEnum.无效)')" class="btn btn-warning"><i class="fa fa-warning padding-right-4"></i>&nbsp;禁用</button>
-                                                }
+                                                } 
+                                                <a href="/UserInfo/Edit/@item.UserInfoId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
                                                 <button onclick="del('/UserInfo/Delete','/UserInfo/List','@item.UserInfoId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
                                             </td>
                                         </tr>

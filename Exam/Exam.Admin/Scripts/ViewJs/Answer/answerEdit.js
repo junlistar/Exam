@@ -1,7 +1,8 @@
 ﻿$(function () {
     $('#btnSave').click(function () {
         var id = $('#id'),
-            name = $('#name'), 
+            fid = $('#fid'),
+            name = $('#name'),
             isCorrect = $('#isCorrect');
         //数据校验
         if (name.val() == '' || name.val() == null) {
@@ -19,7 +20,9 @@
             if (data.Status == 200) {
                 swal("提示", "操作成功");
                 setTimeout(function () {
-                    window.location.href = location.href;
+                    //history.go(-1);
+                    //history.back();
+                    window.location.href = "/Problem/AnswerList/" + fid.val();
                 }, 1500);
             }
             if (data.Status == 202) {

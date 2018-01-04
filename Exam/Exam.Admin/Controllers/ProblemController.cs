@@ -146,6 +146,7 @@ namespace Exam.Admin.Controllers
             var entity = _ProblemService.GetById(_ProblemVM.Id);
 
             _ProblemVM.AnswerList = entity.AnswerList; 
+            _ProblemVM.Title = entity.Title;
 
             return View(_ProblemVM);
         }

@@ -15,6 +15,12 @@ namespace Exam.Admin.Models
         /// 主键
         /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// 题目标题
+        /// </summary>
+        public string Title { get; set; }
+
         /// <summary>
         /// 实体信息
         /// </summary>
