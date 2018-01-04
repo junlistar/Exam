@@ -17,6 +17,7 @@ namespace Exam.Api.Controllers
         public IHttpActionResult a()
         {
             throw new Exception("a");
+
             return Json(new { Success = false, Msg = "用户名已存在", Data = "" });
         }
     }
