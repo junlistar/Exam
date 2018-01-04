@@ -243,6 +243,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\NewsApiController.cs" />
+    <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -332,6 +334,10 @@
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
       <Project>{B89242CE-16C6-4A06-95E0-7EF5490B8717}</Project>
       <Name>Exam.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.IService\Exam.IService.csproj">
+      <Project>{D1823CC1-3C81-47BD-962F-9CC00574FDCF}</Project>
+      <Name>Exam.IService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

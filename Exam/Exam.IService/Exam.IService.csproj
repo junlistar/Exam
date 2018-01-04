@@ -51,6 +51,7 @@
     <Compile Include="IGradeService.cs" />
     <Compile Include="IReplyService.cs" />
     <Compile Include="IQuestionService.cs" />
+    <Compile Include="ISmsService.cs" />
     <Compile Include="ISysGroupService.cs" />
     <Compile Include="ISysGroupMenuService.cs" />
     <Compile Include="IImageInfoService.cs" />

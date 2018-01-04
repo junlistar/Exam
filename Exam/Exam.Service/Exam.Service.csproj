@@ -51,6 +51,7 @@
     <Compile Include="GradeService.cs" />
     <Compile Include="ReplyService.cs" />
     <Compile Include="QuestionService.cs" />
+    <Compile Include="SmsService.cs" />
     <Compile Include="SysGroupService.cs" />
     <Compile Include="SysGroupMenuService.cs" />
     <Compile Include="ImageInfoService.cs" />
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\Exam.Business\Exam.Business.csproj">
       <Project>{358ea417-a518-46b6-af6d-9bf71315d851}</Project>
       <Name>Exam.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
+      <Project>{B89242CE-16C6-4A06-95E0-7EF5490B8717}</Project>
+      <Name>Exam.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exam.Domain\Exam.Domain.csproj">
       <Project>{45bebecf-8116-4f31-bc00-3de5cdab13e7}</Project>
