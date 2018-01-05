@@ -79,6 +79,16 @@ namespace Exam.Business
             return this._repoUserInfo.Table.Any(p => p.NikeName == name);
         }
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public UserInfo Login(string phone, string password)
+        {
+            return this._repoUserInfo.Table.Where(p => p.Phone == phone && p.Password == password).FirstOrDefault();
+        }
     }
 }
 

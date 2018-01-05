@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Exam.Admin.Common;
+using Exam.Core.Utils;
+using Exam.IService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,8 +9,17 @@ using System.Web.Mvc;
 
 namespace Exam.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+
+        IUserInfoService _userService;
+
+        public HomeController(IUserInfoService userService)
+        {
+            _userService = userService; 
+        }
+
+
         public ActionResult Index()
         {
             return View();
@@ -31,5 +43,6 @@ namespace Exam.Admin.Controllers
 
             return View();
         }
+         
     }
 }

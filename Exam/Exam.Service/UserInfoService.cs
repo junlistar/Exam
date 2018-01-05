@@ -68,6 +68,15 @@ namespace Exam.Service
         {
             return this._userBiz.IsExistName(name);
         }
-
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public UserInfo Login(string phone, string password)
+        {
+            return this._userBiz.Login(phone, password);
+        }
     }
 }

@@ -135,6 +135,7 @@
     <Compile Include="SMS\SmsSignNameTemplate.cs" />
     <Compile Include="SMS\SmsTemplate.cs" />
     <Compile Include="Utils\ImageHelper.cs" />
+    <Compile Include="Utils\MD5Util.cs" />
     <Compile Include="Utils\Paging.cs" />
     <Compile Include="Utils\StatusCode.cs" />
     <Compile Include="Utils\StringHelper.cs" />

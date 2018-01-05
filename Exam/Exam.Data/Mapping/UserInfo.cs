@@ -20,6 +20,7 @@ namespace Exam.Data.Mapping
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(m => m.NikeName);
             this.Property(m => m.Phone); 
+            this.Property(m => m.Password);
             this.Property(m => m.Gender);
             this.Property(m => m.CTime);
             this.Property(m => m.IsEnable);

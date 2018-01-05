@@ -11,6 +11,7 @@ namespace Exam.Domain.Model
         public virtual int UserInfoId { get; set; }
         public virtual string NikeName { get; set; }
         public virtual string Phone { get; set; }
+        public virtual string Password { get; set; }
         public virtual int ImageInfoId { get; set; }
         public virtual int Gender { get; set; }
         public virtual int SysGroupId { get; set; }

@@ -50,5 +50,13 @@ namespace Exam.IService
         /// <returns></returns>
         bool IsExistName(string name);
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        UserInfo Login(string phone, string password);
+
     }
 }

@@ -508,19 +508,6 @@
             短信发送模块
             </summary>
         </member>
-        <member name="M:Exam.Api.Controllers.SmsApiController.#ctor(Exam.IService.ISmsService)">
-            <summary>
-            依赖注入
-            </summary>
-            <param name="smsService"></param>
-        </member>
-        <member name="M:Exam.Api.Controllers.SmsApiController.SendRegister(System.String)">
-            <summary>
-            发送成功
-            </summary>
-            <param name="phone"></param>
-            <returns></returns>
-        </member>
         <member name="M:Exam.Api.Controllers.UserApiController.a">
             <summary>
             用户注册
