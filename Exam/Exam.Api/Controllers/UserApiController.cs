@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Exam.Api.Common;
 
 namespace Exam.Api.Controllers
 {
@@ -14,11 +15,23 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult a()
+        public IHttpActionResult Register(string phone="",string code="")
         {
-            throw new Exception("a");
-
-            return Json(new { Success = false, Msg = "用户名已存在", Data = "" });
+            string pcode = CacheHelper.GetCache(phone + "Code").ToString();
+            if (!string.IsNullOrWhiteSpace(phone))
+            {
+                if (!string.IsNullOrWhiteSpace(code) && code == pcode)
+                {
+                    return Json(new { Success = true, Msg = "验证码正确", Data = "" });
+                }
+                else
+                {
+                    return Json(new { Success = false, Msg = "验证码不正确", Data = "" });
+                }
+            }
+            else {
+                return Json(new { Success = false, Msg = "手机号码不正确", Data = "" });
+            }
         }
     }
 }

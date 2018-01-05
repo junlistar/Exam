@@ -50,6 +50,10 @@
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -243,12 +247,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Common\CacheHelper.cs" />
+    <Compile Include="Common\RandomHelper.cs" />
     <Compile Include="Controllers\NewsApiController.cs" />
     <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -319,7 +326,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Infrastructure\" />
     <Folder Include="Views\UserApi\" />
     <Folder Include="XML\" />
   </ItemGroup>
@@ -332,13 +338,25 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exam.Business\Exam.Business.csproj">
+      <Project>{358ea417-a518-46b6-af6d-9bf71315d851}</Project>
+      <Name>Exam.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
       <Project>{B89242CE-16C6-4A06-95E0-7EF5490B8717}</Project>
       <Name>Exam.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Exam.Data\Exam.Data.csproj">
+      <Project>{5D850778-7728-4F33-945A-9D21B633AB5E}</Project>
+      <Name>Exam.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exam.IService\Exam.IService.csproj">
       <Project>{D1823CC1-3C81-47BD-962F-9CC00574FDCF}</Project>
       <Name>Exam.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Service\Exam.Service.csproj">
+      <Project>{f4558e2d-1ab0-4e96-bd4b-d296d168df05}</Project>
+      <Name>Exam.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

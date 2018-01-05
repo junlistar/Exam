@@ -492,6 +492,84 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:Exam.Api.Common.CacheHelper">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Common.CacheHelper.GetCache(System.String)">
+            <summary>
+            获取数据缓存
+            </summary>
+            <param name="CacheKey">键</param>
+        </member>
+        <member name="M:Exam.Api.Common.CacheHelper.SetCache(System.String,System.Object)">
+            <summary>
+            设置数据缓存
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Common.CacheHelper.SetCache(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            设置数据缓存
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Common.CacheHelper.SetCache(System.String,System.Object,System.DateTime,System.TimeSpan)">
+            <summary>
+            设置数据缓存
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Common.CacheHelper.RemoveAllCache(System.String)">
+            <summary>
+            移除指定数据缓存
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Common.CacheHelper.RemoveAllCache">
+            <summary>
+            移除全部缓存
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Common.RandomHelper">
+            <summary>
+            使用Random类生成伪随机数
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Common.RandomHelper.MakeRandomString(System.String,System.Int32)">
+            <summary>
+            在指定的字符串随机出现
+            </summary>
+            <param name="pwdchars">字符串</param>
+            <param name="pwdlen">长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Common.RandomHelper.GetRandomArray(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            返回不重复随机数数组
+            </summary>
+            <param name="Num">随机数个数</param>
+            <param name="minNum">随机数下限</param>
+            <param name="maxNum">随机数上限</param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Common.RandomHelper.GenerateCheckCodeNum(System.Int32)">
+            <summary>
+            随机生成不重复数字字符串 
+            </summary>
+            <param name="codeCount">随机数长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Common.RandomHelper.GetOrderNumber">
+            <summary>
+            根据日期和随机码生成订单号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Common.RandomHelper.GenerateCheckCode(System.Int32)">
+            <summary>
+            随机生成字符串（数字和字母混和）
+            </summary>
+            <param name="codeCount">随机数长度</param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.NewsApiController">
             <summary>
             资讯模块
@@ -508,7 +586,14 @@
             短信发送模块
             </summary>
         </member>
-        <member name="M:Exam.Api.Controllers.UserApiController.a">
+        <member name="M:Exam.Api.Controllers.SmsApiController.SendRegister(System.String)">
+            <summary>
+            发送成功
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.UserApiController.Register(System.String,System.String)">
             <summary>
             用户注册
             </summary>
