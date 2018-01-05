@@ -19,7 +19,7 @@ namespace Exam.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //依赖注入配置
-            AutofacIoc.AutofacMvcRegister(GlobalConfiguration.Configuration);
+            //AutofacIoc.AutofacMvcRegister(GlobalConfiguration.Configuration);
         }
     }
 }

@@ -126,7 +126,7 @@ namespace Exam.Core.SMS
                     if (_SignName == null)
                     {
                         //默认短信配置模版
-                        return SmsSignNameTemplate.YssgDefaultSignName;
+                        return SmsSignNameTemplate.DefaultSignName;
                     }
                     else
                     {

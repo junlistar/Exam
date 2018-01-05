@@ -22,7 +22,7 @@ namespace Exam.Service
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("code", code);
-            var a = SendSMSCommon.SendSMSsingleAsync(SmsTemplate.SmsNewYearLogin, phone, dic, SmsSignNameTemplate.NewYear2018);
+            var a = SendSMSCommon.SendSMSsingleAsync(SmsTemplate.SmsRegister, phone, dic, SmsSignNameTemplate.DefaultSignName);
 
         }
     }
