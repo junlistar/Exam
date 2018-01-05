@@ -503,6 +503,11 @@
             </summary>
             <param name="newsInfoService"></param>
         </member>
+        <member name="T:Exam.Api.Controllers.SmsApiController">
+            <summary>
+            短信发送模块
+            </summary>
+        </member>
         <member name="M:Exam.Api.Controllers.UserApiController.a">
             <summary>
             用户注册

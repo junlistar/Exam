@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Exam.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
         IUserInfoService _userService;
@@ -43,36 +43,6 @@ namespace Exam.Admin.Controllers
 
             return View();
         }
-
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <param name="account">账号</param>
-        /// <param name="password">密码</param>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonResult Login(string account = "", string password = "")
-        {
-            var info = _userService.Login(account, MD5Util.GetMD5_32(password));
-            if (info == null)
-            {
-                //无此账号信息
-                return Json(new { Status = -1 }, JsonRequestBehavior.AllowGet);
-            }
-            if (info.IsEnable == (int)Exam.Domain.EnumHelp.EnabledEnum.无效)
-            {
-                //该账号被禁用
-                return Json(new { Status = -2 }, JsonRequestBehavior.AllowGet);
-            } 
-            //缓存用户信息(ID,NICKNAME)
-            SessionHelper.Add(LoginerConst.ACCOUNT_ID, info.UserInfoId.ToString());
-            SessionHelper.Add(LoginerConst.ACCOUNT, info.NikeName); 
-            return Json(new { Status = 1 }, JsonRequestBehavior.AllowGet);
-        }
+         
     }
 }

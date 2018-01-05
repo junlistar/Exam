@@ -23,7 +23,7 @@ $(function () {
 
         $.ajax({
             type: "post",
-            url: "/home/Login",
+            url: "/Login/Login",
             data: {
                 Account: _account.val().trim(), Password: _password.val().trim()
             },
