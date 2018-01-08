@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using Exam.Api.Common;
 using Exam.Api.Models;
@@ -17,6 +21,7 @@ namespace Exam.Api.Controllers
 
         //方式2
         private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>();
+        private readonly IImageInfoService _imageInfo = EngineContext.Current.Resolve<IImageInfoService>();
         /// <summary>
         /// 用户注册
         /// </summary>
@@ -65,15 +70,58 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public IHttpActionResult UpdateUserInfo(UpdateUserInfoVM updateUserInfoVM)
         {
-            var userInfo=_userInfo.GetById(updateUserInfoVM.UserInfoId);
+            var userInfo = _userInfo.GetById(updateUserInfoVM.UserInfoId);
 
             if (userInfo != null)
             {
-                return Json(new { Success = false, Msg = "电话号码已经存在", Data = "" });
+                userInfo.NikeName = updateUserInfoVM.NikeName;
+                userInfo.GradeId = updateUserInfoVM.GradeId;
+                userInfo.Gender = updateUserInfoVM.Gender;
+                userInfo.UTime = DateTime.Now;
+                _userInfo.Update(userInfo);
+                return Json(new { Success = true, Msg = "用户信息修改成功", Data = userInfo });
             }
-            else {
-                return Json(new { Success = false, Msg = "电话号码已经存在", Data = "" });
+            else
+            {
+                return Json(new { Success = false, Msg = "用户不存在", Data = "" });
             }
+        }
+
+        /// <summary>
+        /// 修改用户图像
+        /// </summary>
+        /// <param name="uploadImageVM"></param>
+        /// <returns></returns>
+        public IHttpActionResult UpdateUserHead(UploadImageVM uploadImageVM)
+        {
+            string path = string.Format("/UploadImge/" + DateTime.Now.ToString("yyyyMMdd") + "/");
+            byte[] imgByte = Convert.FromBase64String(uploadImageVM.Base64);
+            MemoryStream ms = new MemoryStream(imgByte);
+            Image image = System.Drawing.Image.FromStream(ms);
+            string fileName = string.Format("{0}." + uploadImageVM.SuffixType, DateTime.Now.ToString("yyyyMMddhhmmssffff") + RandomHelper.GenerateCheckCodeNum(6));
+            string filePath = string.Format("{0}{1}", path, fileName);
+            string serverPath = HttpContext.Current.Server.MapPath("~" + path);
+            if (!Directory.Exists(serverPath))
+            {
+                Directory.CreateDirectory(serverPath);
+            }
+            //保存图片
+            image.Save(serverPath + fileName);
+            var url = ConfigurationManager.AppSettings["ImgUrl"];
+
+            var imageInfo= _imageInfo.Insert(new ImageInfo
+            {
+                CTime = DateTime.Now,
+                Title = "头像",
+                Url = url + filePath
+            });
+
+            var userInfo = _userInfo.GetById(uploadImageVM.UserInfoId);
+            userInfo.ImageInfoId = imageInfo.ImageInfoId;
+            userInfo.UTime = DateTime.Now;
+            _userInfo.Update(userInfo);
+
+            return Json(new { Success = true, Msg = "用户图像修改成功", Data = userInfo });
         }
     }
 }
