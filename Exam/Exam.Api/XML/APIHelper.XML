@@ -575,11 +575,12 @@
             资讯模块
             </summary>
         </member>
-        <member name="M:Exam.Api.Controllers.NewsApiController.#ctor(Exam.IService.INewsInfoService)">
+        <member name="M:Exam.Api.Controllers.NewsApiController.GetNewsList(Exam.Api.Models.PageDto)">
             <summary>
-            依赖注入
+            查询咨询列表
             </summary>
-            <param name="newsInfoService"></param>
+            <param name="pageDto"></param>
+            <returns></returns>
         </member>
         <member name="T:Exam.Api.Controllers.SmsApiController">
             <summary>
@@ -605,6 +606,48 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.UserApiController.UpdateUserHead(Exam.Api.Models.UploadImageVM)">
+            <summary>
+            修改用户图像
+            </summary>
+            <param name="uploadImageVM"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Exam.Api.Models.PageDto">
+            <summary>
+            分布查询
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.PageDto.PageIndex">
+            <summary>
+            开始页
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.PageDto.PageSize">
+            <summary>
+            页面总数
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.ResultJson`1">
+            <summary>
+            分页
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ResultJson`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ResultJson`1.PCount">
+            <summary>
+            总页数输出
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ResultJson`1.RCount">
+            <summary>
+            总记录数输出
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.UpdateUserInfoVM">
             <summary>
             修改用户信息
@@ -628,6 +671,26 @@
         <member name="P:Exam.Api.Models.UpdateUserInfoVM.GradeId">
             <summary>
             级别
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.UploadImageVM">
+            <summary>
+            上传用户图像
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UploadImageVM.Base64">
+            <summary>
+            64位编码
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UploadImageVM.SuffixType">
+            <summary>
+            后缀类型
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UploadImageVM.UserInfoId">
+            <summary>
+            用户id
             </summary>
         </member>
     </members>
