@@ -36,7 +36,7 @@ namespace Exam.Api.Controllers
         /// <param name="pageDto"></param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetNewsList(PageDto pageDto)
+        public IHttpActionResult GetNewsList([FromUri]PageDto pageDto)
         {
             ResultJson<NewsInfo> list = new ResultJson<NewsInfo>();
             int count = 0;
