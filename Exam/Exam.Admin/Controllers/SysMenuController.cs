@@ -31,7 +31,7 @@ namespace Exam.Admin.Controllers
         public ActionResult List(SysMenuVM _sysMenuVM, int pn = 1)
         {
             int totalCount,
-                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
             var list = _sysMenuService.GetManagerList(_sysMenuVM.QueryName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<SysMenu>()

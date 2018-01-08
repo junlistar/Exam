@@ -31,7 +31,7 @@ namespace Exam.Admin.Controllers
         public ActionResult List(ProblemCategoryVM _ProblemCategoryVM, int pn = 1)
         {
             int totalCount,
-                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
             var list = _ProblemCategoryService.GetManagerList(_ProblemCategoryVM.QueryName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<ProblemCategory>()

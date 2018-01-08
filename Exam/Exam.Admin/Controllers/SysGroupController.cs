@@ -31,7 +31,7 @@ namespace Exam.Admin.Controllers
         public ActionResult List(SysGroupVM _sysGroupVM, int pn = 1)
         {
             int totalCount,
-                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
             var list = _sysGroupService.GetManagerList(_sysGroupVM.QueryName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<SysGroup>()

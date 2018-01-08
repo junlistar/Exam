@@ -81,7 +81,7 @@ namespace Exam.Business
             }
 
             totalCount = this._repoBelong.Table.Where(where).Count();
-            return this._repoBelong.Table.Where(where).OrderBy(p => p.BelongId).Skip(pageNum * pageSize).Take(pageSize).ToList();
+            return this._repoBelong.Table.Where(where).OrderBy(p => p.BelongId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace Exam.Admin.Controllers
         public ActionResult List(NewsInfoVM _NewsInfoVM, int pn = 1)
         {
             int totalCount,
-                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
             var list = _newsInfoService.GetManagerList(_NewsInfoVM.QueryName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<NewsInfo>()

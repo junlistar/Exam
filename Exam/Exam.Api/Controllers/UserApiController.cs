@@ -16,7 +16,16 @@ namespace Exam.Api.Controllers
     {
 
         //方式2
-        private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>();
+        private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>(); 
+
+        //方式1
+        IUserInfoService _userService;
+
+        public UserApiController() { }
+        public UserApiController(IUserInfoService userService)
+        {
+            _userService = userService;
+        }
         /// <summary>
         /// 用户注册
         /// </summary>

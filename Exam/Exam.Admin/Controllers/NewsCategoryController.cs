@@ -31,7 +31,7 @@ namespace Exam.Admin.Controllers
         public ActionResult List(NewsCategoryVM _NewsCategoryVM, int pn = 1)
         {
             int totalCount,
-                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
             var list = _newsCategoryService.GetManagerList(_NewsCategoryVM.QueryName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<NewsCategory>()
