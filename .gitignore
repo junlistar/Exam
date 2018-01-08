@@ -23,3 +23,7 @@ Exam/.vs/config/applicationhost.config
 Exam/.vs/Exam/v14/.suo
 Exam/.vs/*
 .vs
+Exam/Exam.Admin/Properties/PublishProfiles/111.pubxml
+Exam/Exam.Admin/Properties/PublishProfiles/111.pubxml.user
+Exam/Exam.Api/Properties/PublishProfiles/222.pubxml
+Exam/Exam.Api/Properties/PublishProfiles/222.pubxml.user
