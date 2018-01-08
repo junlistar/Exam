@@ -58,5 +58,12 @@ namespace Exam.IService
         /// <returns></returns>
         UserInfo Login(string phone, string password);
 
-    }
+        /// <summary>
+        /// 判断是否电话存在
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        bool IsExistPhone(string phone);
+
+        }
 }

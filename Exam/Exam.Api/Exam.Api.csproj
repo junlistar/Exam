@@ -350,6 +350,10 @@
       <Project>{5D850778-7728-4F33-945A-9D21B633AB5E}</Project>
       <Name>Exam.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Exam.Domain\Exam.Domain.csproj">
+      <Project>{45BEBECF-8116-4F31-BC00-3DE5CDAB13E7}</Project>
+      <Name>Exam.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exam.IService\Exam.IService.csproj">
       <Project>{D1823CC1-3C81-47BD-962F-9CC00574FDCF}</Project>
       <Name>Exam.IService</Name>

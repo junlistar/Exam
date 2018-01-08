@@ -89,6 +89,17 @@ namespace Exam.Business
         {
             return this._repoUserInfo.Table.Where(p => p.Phone == phone && p.Password == password).FirstOrDefault();
         }
+
+        /// <summary>
+        /// 判断是否电话存在
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public bool IsExistPhone(string phone)
+        {
+            return this._repoUserInfo.Table.Any(p => p.Phone == phone);
+        }
+
     }
 }
 
