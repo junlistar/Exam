@@ -599,5 +599,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.UserApiController.UpdateUserInfo(Exam.Api.Models.UpdateUserInfoVM)">
+            <summary>
+            修改用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Exam.Api.Models.UpdateUserInfoVM">
+            <summary>
+            修改用户信息
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UpdateUserInfoVM.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UpdateUserInfoVM.NikeName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UpdateUserInfoVM.Gender">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UpdateUserInfoVM.GradeId">
+            <summary>
+            级别
+            </summary>
+        </member>
     </members>
 </doc>

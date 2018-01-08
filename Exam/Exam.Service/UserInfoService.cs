@@ -78,5 +78,15 @@ namespace Exam.Service
         {
             return this._userBiz.Login(phone, password);
         }
+
+        /// <summary>
+        /// 判断是否名称存在
+        /// </summary>
+        /// <param name="name"></param> 
+        /// <returns></returns>
+        public bool IsExistPhone(string phone)
+        {
+            return this._userBiz.IsExistPhone(phone);
+        }
     }
 }
