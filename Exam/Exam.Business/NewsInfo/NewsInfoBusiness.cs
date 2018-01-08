@@ -80,7 +80,7 @@ namespace Exam.Business
             }
 
             totalCount = this._repoNewsInfo.Table.Where(where).Count();
-            return this._repoNewsInfo.Table.Where(where).OrderBy(p => p.NewsInfoId).Skip(pageNum * pageSize).Take(pageSize).ToList();
+            return this._repoNewsInfo.Table.Where(where).OrderBy(p => p.NewsInfoId).Skip((pageNum-1) * pageSize).Take(pageSize).ToList();
         }
 
         /// <summary>

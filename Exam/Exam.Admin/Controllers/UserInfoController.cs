@@ -44,7 +44,7 @@ namespace Exam.Admin.Controllers
         public ActionResult List(UserInfoVM _userInfoVM, int pn = 1)
         {
             int totalCount,
-                pageIndex = (pn - 1) * PagingConfig.PAGE_SIZE,
+                pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
             var list = _userService.GetManagerList(_userInfoVM.QueryLoginName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<UserInfo>()
