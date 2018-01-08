@@ -575,11 +575,11 @@
             资讯模块
             </summary>
         </member>
-        <member name="M:Exam.Api.Controllers.NewsApiController.GetNewsList(Exam.Api.Models.PageDto)">
+        <member name="M:Exam.Api.Controllers.NewsApiController.GetNewsList(Exam.Api.Models.NewsVM)">
             <summary>
             查询咨询列表
             </summary>
-            <param name="pageDto"></param>
+            <param name="newsVM"></param>
             <returns></returns>
         </member>
         <member name="T:Exam.Api.Controllers.SmsApiController">
@@ -612,6 +612,11 @@
             </summary>
             <param name="uploadImageVM"></param>
             <returns></returns>
+        </member>
+        <member name="P:Exam.Api.Models.NewsVM.NewsCategoryId">
+             <summary>
+            消息分类
+             </summary>
         </member>
         <member name="T:Exam.Api.Models.PageDto">
             <summary>

@@ -33,16 +33,16 @@ namespace Exam.Api.Controllers
         /// <summary>
         /// 查询咨询列表
         /// </summary>
-        /// <param name="pageDto"></param>
+        /// <param name="newsVM"></param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetNewsList([FromUri]PageDto pageDto)
+        public IHttpActionResult GetNewsList([FromUri]NewsVM newsVM)
         {
             ResultJson<NewsInfo> list = new ResultJson<NewsInfo>();
             int count = 0;
-            list.Data = _newsInfoService.GetManagerList("", pageDto.PageIndex, pageDto.PageSize, out count);
+            list.Data = _newsInfoService.GetNewsInfoList("", newsVM.NewsCategoryId, newsVM.PageIndex, newsVM.PageSize, out count);
             list.RCount = count;
-            list.PCount = count % pageDto.PageSize == 0 ? (count / pageDto.PageSize) : (count / pageDto.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
+            list.PCount = count % newsVM.PageSize == 0 ? (count / newsVM.PageSize) : (count / newsVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
             return Json(new { Success = true, Msg = "OK", Data = list });
         }

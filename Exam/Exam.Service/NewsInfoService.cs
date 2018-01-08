@@ -16,7 +16,8 @@ namespace Exam.Service
         /// </summary>
         private INewsInfoBusiness _NewsInfoBiz;
 
-        public NewsInfoService(INewsInfoBusiness NewsInfoBiz) {
+        public NewsInfoService(INewsInfoBusiness NewsInfoBiz)
+        {
             _NewsInfoBiz = NewsInfoBiz;
         }
 
@@ -83,6 +84,15 @@ namespace Exam.Service
         public List<NewsInfo> GetAll()
         {
             return this._NewsInfoBiz.GetAll();
+        }
+
+        /// <summary>
+        /// 消息列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int pageNum, int pageSize, out int totalCount)
+        {
+            return this._NewsInfoBiz.GetNewsInfoList(name, newsCategoryId, pageNum, pageSize, out totalCount);
         }
     }
 }

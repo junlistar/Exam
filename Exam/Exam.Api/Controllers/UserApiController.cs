@@ -23,13 +23,13 @@ namespace Exam.Api.Controllers
         private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>(); 
         private readonly IImageInfoService _imageInfo = EngineContext.Current.Resolve<IImageInfoService>();
         //方式1
-        IUserInfoService _userService;
+        //IUserInfoService _userService;
 
-        public UserApiController() { }
-        public UserApiController(IUserInfoService userService)
-        {
-            _userService = userService;
-        }
+        //public UserApiController() { }
+        //public UserApiController(IUserInfoService userService)
+        //{
+        //    _userService = userService;
+        //}
         /// <summary>
         /// 用户注册
         /// </summary>

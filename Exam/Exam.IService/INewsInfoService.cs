@@ -52,5 +52,11 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<NewsInfo> GetAll();
+
+        /// <summary>
+        /// 消息列表
+        /// </summary> 
+        /// <returns></returns>
+        List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int pageNum, int pageSize, out int totalCount);
     }
 }

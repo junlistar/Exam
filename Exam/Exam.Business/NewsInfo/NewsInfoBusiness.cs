@@ -91,7 +91,31 @@ namespace Exam.Business
         {
             return this._repoNewsInfo.Table.ToList();
         }
+
+        /// <summary>
+        /// 消息列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<NewsInfo> GetNewsInfoList(string name,int newsCategoryId, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<NewsInfo>();
+
+            // name过滤
+            if (!string.IsNullOrEmpty(name))
+            {
+                where = where.And(m => m.Title.Contains(name));
+            }
+            if (newsCategoryId!=0)
+            {
+                where = where.And(m => m.NewsCategoryId== newsCategoryId);
+            }
+
+            totalCount = this._repoNewsInfo.Table.Where(where).Count();
+            return this._repoNewsInfo.Table.Where(where).OrderBy(p => p.NewsInfoId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
+
+   
 }
 
 
