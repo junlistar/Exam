@@ -25,5 +25,16 @@ namespace Exam.Service
             var a = SendSMSCommon.SendSMSsingleAsync(SmsTemplate.SmsRegister, phone, dic, SmsSignNameTemplate.DefaultSignName);
 
         }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone">电话</param>
+        /// <param name="code">验证码</param>
+        public void SmsLogin(string phone, string code) {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("code", code);
+            var a = SendSMSCommon.SendSMSsingleAsync(SmsTemplate.SmsRegister, phone, dic, SmsSignNameTemplate.DefaultSignName);
+        }
     }
 }

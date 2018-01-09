@@ -88,5 +88,14 @@ namespace Exam.Service
         {
             return this._userBiz.IsExistPhone(phone);
         }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone">电话</param>
+        /// <returns></returns>
+        public UserInfo Login(string phone) {
+            return this._userBiz.Login(phone);
+        }
     }
 }

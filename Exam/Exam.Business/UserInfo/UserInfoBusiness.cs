@@ -100,6 +100,16 @@ namespace Exam.Business
             return this._repoUserInfo.Table.Any(p => p.Phone == phone);
         }
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone">电话</param>
+        /// <returns></returns>
+        public UserInfo Login(string phone)
+        {
+            return this._repoUserInfo.Table.Where(p => p.Phone == phone).FirstOrDefault();
+        }
+
     }
 }
 

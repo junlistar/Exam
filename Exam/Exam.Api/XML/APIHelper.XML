@@ -589,7 +589,14 @@
         </member>
         <member name="M:Exam.Api.Controllers.SmsApiController.SendRegister(System.String)">
             <summary>
-            发送成功
+            发送注册验证码
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.SmsApiController.SendLogin(System.String)">
+            <summary>
+            发送注册验证码
             </summary>
             <param name="phone"></param>
             <returns></returns>
@@ -598,6 +605,13 @@
             <summary>
             用户注册
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.UserApiController.Login(Exam.Api.Models.LoginVM)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="loginVM"></param>
             <returns></returns>
         </member>
         <member name="M:Exam.Api.Controllers.UserApiController.UpdateUserInfo(Exam.Api.Models.UpdateUserInfoVM)">
@@ -612,6 +626,21 @@
             </summary>
             <param name="uploadImageVM"></param>
             <returns></returns>
+        </member>
+        <member name="T:Exam.Api.Models.LoginVM">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.LoginVM.Phone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.LoginVM.Code">
+            <summary>
+            验证码
+            </summary>
         </member>
         <member name="P:Exam.Api.Models.NewsVM.NewsCategoryId">
              <summary>
