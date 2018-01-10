@@ -18,6 +18,10 @@ namespace Exam.Admin.Common
         /// 账号
         /// </summary>
         public const string ACCOUNT = "Account";
+        /// <summary>
+        /// 头像图片
+        /// </summary>
+        public const string ACCOUNT_IMG = "AccountImg";
     }
 
     /// <summary>
@@ -56,12 +60,28 @@ namespace Exam.Admin.Common
         }
 
         /// <summary>
+        /// 头像图片
+        /// </summary>
+        public static string AccountImg
+        {
+            get
+            {
+                if (SessionHelper.Get(LoginerConst.ACCOUNT_IMG) == null)
+                {
+                    return null;
+                }
+                return SessionHelper.Get(LoginerConst.ACCOUNT_IMG);
+            }
+        }
+
+        /// <summary>
         /// 删除账号缓存
         /// </summary>
         public static void DelAccountCache()
         {
             SessionHelper.Del(LoginerConst.ACCOUNT);
             SessionHelper.Del(LoginerConst.ACCOUNT_ID);
+            SessionHelper.Del(LoginerConst.ACCOUNT_IMG);
         }
     }
 }
