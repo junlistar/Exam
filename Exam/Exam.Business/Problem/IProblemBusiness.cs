@@ -57,5 +57,13 @@ namespace Exam.Business
         /// <param name="model"></param>
         /// <returns></returns>
         List<Problem> GetAll();
+
+        /// <summary>
+        /// 获取题目列表
+        /// </summary>
+        /// <param name="belongId">分类id</param>
+        /// <param name="chapterId">章节id</param>
+        /// <returns></returns>
+        List<Problem> GetProblemList(int belongId, int chapterId);
     }
 }

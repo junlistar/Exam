@@ -92,6 +92,27 @@ namespace Exam.Business
         {
             return this._repoProblem.Table.ToList();
         }
+
+        /// <summary>
+        /// 获取题目列表
+        /// </summary>
+        /// <param name="belongId">分类id</param>
+        /// <param name="chapterId">章节id</param>
+        /// <returns></returns>
+        public List<Problem> GetProblemList(int belongId, int chapterId)
+        {
+            var where = PredicateBuilder.True<Problem>();
+
+            if (belongId!= 0)
+            {
+                where = where.And(m => m.BelongId== belongId);
+            }
+            if (chapterId != 0)
+            {
+                where = where.And(m => m.ChapterId == chapterId);
+            }
+            return this._repoProblem.Table.Where(where).OrderBy(p => p.ProblemId).ToList();
+        }
     }
 }
 

@@ -582,10 +582,35 @@
             <param name="newsVM"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.NewsApiController.GetNewsCategoryList">
+            <summary>
+            获取咨询分类列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.ProblemApiController">
             <summary>
             问题模块
             </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetbelongList">
+            <summary>
+            获取分类列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetchapterList">
+            <summary>
+            获取章节列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetProblemList(Exam.Api.Models.SelctProblemVM)">
+            <summary>
+            获取题目列表
+            </summary>
+            <param name="SelctProblemVM"></param>
+            <returns></returns>
         </member>
         <member name="T:Exam.Api.Controllers.SmsApiController">
             <summary>
@@ -685,6 +710,21 @@
         <member name="P:Exam.Api.Models.ResultJson`1.RCount">
             <summary>
             总记录数输出
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.SelctProblemVM">
+            <summary>
+            题目接口查询
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelctProblemVM.belongId">
+            <summary>
+            题目分类id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelctProblemVM.ChapterId">
+            <summary>
+            题目章节id
             </summary>
         </member>
         <member name="T:Exam.Api.Models.UpdateUserInfoVM">
