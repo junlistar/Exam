@@ -11,6 +11,7 @@ namespace Exam.Domain.Model
         public virtual int ImageInfoId { get; set; }
         public virtual string Title { get; set; } 
         public virtual string Url { get; set; }  
+        public virtual string Source { get; set; }
         public virtual DateTime CTime { get; set; } 
          
     }

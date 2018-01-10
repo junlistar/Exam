@@ -47,7 +47,7 @@ namespace Exam.Admin.Controllers
                 {
                     Url = string.Format("{0}/{1}", path, fileName),
                     Title = title, 
-                    //Source = WebConfigHelper.GetAppSettingsInfo("ImgPath"),
+                    Source = WebConfigHelper.GetAppSettingsInfo("ImgPath"),
                     CTime = DateTime.Now,
                 };
                 var entity = _baseImgInfoService.Insert(model);
@@ -88,6 +88,7 @@ namespace Exam.Admin.Controllers
                 {
                     Url = thumbnailPath,
                     Title = title,
+                    Source = WebConfigHelper.GetAppSettingsInfo("ImgPath"),
                     CTime = DateTime.Now
                 };
                 var entity = _baseImgInfoService.Insert(model);
