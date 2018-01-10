@@ -26,7 +26,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.IsEnable);
 
             HasRequired(t => t.SysGroup);
-
+            HasRequired(m => m.ImageInfo);
             //HasMany(m => m.UserFavList).WithRequired(n => n.UserInfo);
         }
     }

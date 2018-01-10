@@ -582,6 +582,11 @@
             <param name="newsVM"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.ProblemApiController">
+            <summary>
+            问题模块
+            </summary>
+        </member>
         <member name="T:Exam.Api.Controllers.SmsApiController">
             <summary>
             短信发送模块

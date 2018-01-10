@@ -79,10 +79,26 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public IHttpActionResult Login(LoginVM loginVM)
         {
-            string lcode = CacheHelper.GetCache(loginVM.Phone + "Login").ToString();
-            if (!string.IsNullOrWhiteSpace(loginVM.Code) && loginVM.Code == lcode)
+            var lcode = CacheHelper.GetCache(loginVM.Phone + "Login");
+            if (lcode != null && !string.IsNullOrWhiteSpace(loginVM.Code) && loginVM.Code == lcode.ToString())
             {
                 var userInfo = _userInfo.Login(loginVM.Phone);
+
+                if (userInfo == null)
+                {
+                    UserInfo userInfoRegister = _userInfo.Insert(new UserInfo
+                    {
+                        CTime = DateTime.Now,
+                        Gender = 0,
+                        ImageInfoId = 1000,
+                        IsEnable = 1,
+                        Phone = loginVM.Phone,
+                        UTime = DateTime.Now,
+                        NikeName = loginVM.Phone
+                    });
+                    CacheHelper.RemoveAllCache(loginVM.Phone + "Login");
+                    return Json(new { Success = true, Msg = "OK", Data = userInfoRegister });
+                }
                 return Json(new { Success = true, Msg = "OK", Data = userInfo });
             }
             else

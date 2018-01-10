@@ -250,6 +250,7 @@
     <Compile Include="Common\CacheHelper.cs" />
     <Compile Include="Common\RandomHelper.cs" />
     <Compile Include="Controllers\NewsApiController.cs" />
+    <Compile Include="Controllers\ProblemApiController.cs" />
     <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -304,6 +305,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\222.pubxml" />
+    <None Include="Properties\PublishProfiles\ExamApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
