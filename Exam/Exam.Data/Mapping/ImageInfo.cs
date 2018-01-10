@@ -20,6 +20,7 @@ namespace Exam.Data.Mapping
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(m => m.Title);
             this.Property(m => m.Url); 
+            this.Property(m => m.Source);
             this.Property(m => m.CTime); 
              
         }
