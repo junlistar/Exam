@@ -48,6 +48,7 @@ namespace Exam.Admin.Controllers
             //缓存用户信息(ID,NICKNAME)
             SessionHelper.Add(LoginerConst.ACCOUNT_ID, info.UserInfoId.ToString());
             SessionHelper.Add(LoginerConst.ACCOUNT, info.NikeName); 
+            SessionHelper.Add(LoginerConst.ACCOUNT_IMG, info.ImageInfo==null? "" : info.ImageInfo.Source + info.ImageInfo.Url);
             return Json(new { Status = 1 }, JsonRequestBehavior.AllowGet);
         }
 
