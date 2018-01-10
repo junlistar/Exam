@@ -103,12 +103,12 @@ namespace Exam.Admin.Controllers
         [HttpPost]
         public JsonResult DeleteFile(int id = 0)
         {
-            var info = _baseImgInfoService.GetById(id);
-            if (info == null) return Json(0, JsonRequestBehavior.AllowGet);
-            string serverPath = Server.MapPath(Path.Combine(info.Url));
-            if (System.IO.File.Exists(serverPath))
-                System.IO.File.Delete(serverPath);
-            _baseImgInfoService.Delete(info);
+            //var info = _baseImgInfoService.GetById(id);
+            //if (info == null) return Json(0, JsonRequestBehavior.AllowGet);
+            //string serverPath = Server.MapPath(Path.Combine(info.Url));
+            //if (System.IO.File.Exists(serverPath))
+            //    System.IO.File.Delete(serverPath);
+            //_baseImgInfoService.Delete(info);
             return Json(0, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
