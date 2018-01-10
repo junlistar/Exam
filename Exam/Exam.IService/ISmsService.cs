@@ -17,5 +17,12 @@ namespace Exam.IService
         /// <param name="phone">电话</param>
         /// <param name="code">验证码</param>
         void SmsUserInfoRegister(string phone,string code);
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone">电话</param>
+        /// <param name="code">验证码</param>
+        void SmsLogin(string phone, string code);
     }
 }

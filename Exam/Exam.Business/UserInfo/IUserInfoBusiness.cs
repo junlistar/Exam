@@ -57,5 +57,12 @@ namespace Exam.Business
         /// <param name="phone"></param>
         /// <returns></returns>
         bool IsExistPhone(string phone);
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="phone">电话</param>
+        /// <returns></returns>
+        UserInfo Login(string phone);
     }
 }

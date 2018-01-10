@@ -17,6 +17,11 @@ namespace Exam.Core.SMS
         /// </summary>
         public static string SmsRegister = ConfigurationManager.AppSettings["SmsRegister"]==null ? "SMS_61060160" : ConfigurationManager.AppSettings["SmsRegister"];
 
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        public static string SmsLogin = ConfigurationManager.AppSettings["SmsLogin"] == null ? "SMS_61060160" : ConfigurationManager.AppSettings["SmsLogin"];
+
     }
 }
  

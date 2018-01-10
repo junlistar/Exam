@@ -23,5 +23,7 @@ namespace Exam.Domain.Model
         public virtual SysGroup SysGroup { get; set; }
         public virtual Grade Grade { get; set; }
 
+        public virtual ImageInfo ImageInfo { get; set; }
+
     }
 }

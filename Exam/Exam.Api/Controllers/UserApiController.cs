@@ -20,7 +20,7 @@ namespace Exam.Api.Controllers
     {
 
         //方式2
-        private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>(); 
+        private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>();
         private readonly IImageInfoService _imageInfo = EngineContext.Current.Resolve<IImageInfoService>();
         //方式1
         //IUserInfoService _userService;
@@ -72,6 +72,42 @@ namespace Exam.Api.Controllers
         }
 
         /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="loginVM"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IHttpActionResult Login(LoginVM loginVM)
+        {
+            var lcode = CacheHelper.GetCache(loginVM.Phone + "Login");
+            if (lcode != null && !string.IsNullOrWhiteSpace(loginVM.Code) && loginVM.Code == lcode.ToString())
+            {
+                var userInfo = _userInfo.Login(loginVM.Phone);
+
+                if (userInfo == null)
+                {
+                    UserInfo userInfoRegister = _userInfo.Insert(new UserInfo
+                    {
+                        CTime = DateTime.Now,
+                        Gender = 0,
+                        ImageInfoId = 1000,
+                        IsEnable = 1,
+                        Phone = loginVM.Phone,
+                        UTime = DateTime.Now,
+                        NikeName = loginVM.Phone
+                    });
+                    CacheHelper.RemoveAllCache(loginVM.Phone + "Login");
+                    return Json(new { Success = true, Msg = "OK", Data = userInfoRegister });
+                }
+                return Json(new { Success = true, Msg = "OK", Data = userInfo });
+            }
+            else
+            {
+                return Json(new { Success = false, Msg = "验证码不正确", Data = "" });
+            }
+        }
+
+        /// <summary>
         /// 修改用户信息
         /// </summary>
         /// <returns></returns>
@@ -117,7 +153,7 @@ namespace Exam.Api.Controllers
             image.Save(serverPath + fileName);
             var url = ConfigurationManager.AppSettings["ImgUrl"];
 
-            var imageInfo= _imageInfo.Insert(new ImageInfo
+            var imageInfo = _imageInfo.Insert(new ImageInfo
             {
                 CTime = DateTime.Now,
                 Title = "头像",
