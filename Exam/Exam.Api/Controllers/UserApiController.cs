@@ -94,7 +94,8 @@ namespace Exam.Api.Controllers
                         IsEnable = 1,
                         Phone = loginVM.Phone,
                         UTime = DateTime.Now,
-                        NikeName = loginVM.Phone
+                        NikeName = loginVM.Phone,
+                        GradeId=1000
                     });
                     CacheHelper.RemoveAllCache(loginVM.Phone + "Login");
                     return Json(new { Success = true, Msg = "OK", Data = userInfoRegister });
