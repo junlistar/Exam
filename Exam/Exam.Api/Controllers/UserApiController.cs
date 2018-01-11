@@ -95,7 +95,10 @@ namespace Exam.Api.Controllers
                         Phone = loginVM.Phone,
                         UTime = DateTime.Now,
                         NikeName = loginVM.Phone,
-                        GradeId=1000
+                        GradeId=1000,
+                        Password= "e10adc3949ba59abbe56e057f20f883e",
+                        SysGroupId=1002
+
                     });
                     CacheHelper.RemoveAllCache(loginVM.Phone + "Login");
                     return Json(new { Success = true, Msg = "OK", Data = userInfoRegister });
@@ -137,6 +140,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="uploadImageVM"></param>
         /// <returns></returns>
+        [HttpPost]
         public IHttpActionResult UpdateUserHead(UploadImageVM uploadImageVM)
         {
             string path = string.Format("/UploadImge/" + DateTime.Now.ToString("yyyyMMdd") + "/");
@@ -158,7 +162,8 @@ namespace Exam.Api.Controllers
             {
                 CTime = DateTime.Now,
                 Title = "头像",
-                Url = url + filePath
+                Url = filePath,
+                Source= url
             });
 
             var userInfo = _userInfo.GetById(uploadImageVM.UserInfoId);

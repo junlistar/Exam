@@ -21,6 +21,8 @@ namespace Exam.Api.Controllers
         //方式2
         private readonly INewsInfoService _newsInfoService = EngineContext.Current.Resolve<INewsInfoService>();
 
+        private readonly INewsCategoryService _NewsCategoryService = EngineContext.Current.Resolve<INewsCategoryService>();
+
         ///// <summary>
         ///// 依赖注入
         ///// </summary>
@@ -45,6 +47,15 @@ namespace Exam.Api.Controllers
             list.PCount = count % newsVM.PageSize == 0 ? (count / newsVM.PageSize) : (count / newsVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
             return Json(new { Success = true, Msg = "OK", Data = list });
+        }
+        /// <summary>
+        /// 获取咨询分类列表
+        /// </summary>
+        /// <returns></returns>
+
+        [HttpGet]
+        public IHttpActionResult GetNewsCategoryList() {
+            return Json(new { Success = true, Msg = "OK", Data = _NewsCategoryService.GetAll() });
         }
     }
 }

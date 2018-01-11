@@ -84,5 +84,15 @@ namespace Exam.Service
         {
             return this._ProblemBiz.GetAll();
         }
+
+        /// <summary>
+        /// 获取题目列表
+        /// </summary>
+        /// <param name="belongId">分类id</param>
+        /// <param name="chapterId">章节id</param>
+        /// <returns></returns>
+        public List<Problem> GetProblemList(int belongId, int chapterId) {
+            return this._ProblemBiz.GetProblemList(belongId,chapterId);
+        }
     }
 }
