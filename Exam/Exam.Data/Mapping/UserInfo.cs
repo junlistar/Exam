@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Exam.Domain;
 using System.Data.Entity.ModelConfiguration;
 using Exam.Domain.Model;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema; 
 
 namespace Exam.Data.Mapping
 {
@@ -25,9 +25,9 @@ namespace Exam.Data.Mapping
             this.Property(m => m.CTime);
             this.Property(m => m.IsEnable);
 
-            HasRequired(t => t.SysGroup);
-            HasRequired(m => m.ImageInfo);
-            //HasMany(m => m.UserFavList).WithRequired(n => n.UserInfo);
+            HasRequired(t => t.SysGroup); 
+
+            HasRequired(m => m.ImageInfo).WithMany().HasForeignKey(m => m.ImageInfoId).WillCascadeOnDelete(false);
         }
     }
 }
