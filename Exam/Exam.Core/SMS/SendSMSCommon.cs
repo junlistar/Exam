@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+using Aliyun.Acs.Dysmsapi.Model.V20170525;
 using static Exam.Core.SMS.ALiYunSMS;
 
 namespace Exam.Core.SMS
@@ -24,8 +26,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                RecNum = recNum,
-                ParamString = paramString
+                PhoneNumbers = recNum,
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
             };
 
             var reslut = await Task.Run(() =>
@@ -47,8 +49,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                RecNum = recNum,
-                ParamString = paramString
+                PhoneNumbers = recNum,
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
             };
             ALiYunSMS.SendSMS(re);
         }
@@ -68,8 +70,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                RecNum = recNum,
-                ParamString = paramString,
+                PhoneNumbers = recNum,
+                TemplateParam =(new JavaScriptSerializer()).Serialize(paramString),
                 SignName = signName
             };
 
@@ -93,8 +95,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                RecNum = recNum,
-                ParamString = paramString,
+                PhoneNumbers = recNum,
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
                 SignName = signName
             };
             ALiYunSMS.SendSMS(re);
@@ -117,8 +119,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                LiRecNum = liRecNum,
-                ParamString = paramString
+                PhoneNumbers = liRecNum.ToString(),
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
             };
 
             var reslut = await Task.Run(() =>
@@ -140,8 +142,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                LiRecNum = liRecNum,
-                ParamString = paramString
+                PhoneNumbers = liRecNum.ToString(),
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
             };
             ALiYunSMS.SendSMS(re);
         }
@@ -161,9 +163,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                LiRecNum = liRecNum,
-                ParamString = paramString,
-                SignName = signName
+                PhoneNumbers = liRecNum.ToString(),
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
             };
 
             var reslut = await Task.Run(() =>
@@ -186,9 +187,8 @@ namespace Exam.Core.SMS
             SendSmsRequest re = new SendSmsRequest
             {
                 TemplateCode = templateCode,
-                LiRecNum = liRecNum,
-                ParamString = paramString,
-                SignName = signName
+                PhoneNumbers = liRecNum.ToString(),
+                TemplateParam = (new JavaScriptSerializer()).Serialize(paramString),
             };
             ALiYunSMS.SendSMS(re);
         }

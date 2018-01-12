@@ -52,7 +52,7 @@ namespace Exam.Api.Controllers
         {
             string code = RandomHelper.GenerateCheckCodeNum(6);
             CacheHelper.SetCache(phone + "Login", code, TimeSpan.FromMinutes(10));
-            _smsService.SmsUserInfoRegister(phone, code);
+            _smsService.SmsLogin(phone, code);
             return Json(new { Success = true, Msg = "OK", Data = code });
         }
     }

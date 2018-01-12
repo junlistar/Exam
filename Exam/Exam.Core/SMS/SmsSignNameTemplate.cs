@@ -15,6 +15,6 @@ namespace Exam.Core.SMS
         /// <summary>
         /// 一生时光
         /// </summary>
-        public static string DefaultSignName = ConfigurationManager.AppSettings["DefaultSignName"]==null ? "一生时光" : ConfigurationManager.AppSettings["DefaultSignName"];
+        public static string DefaultSignName = ConfigurationManager.AppSettings["DefaultSignName"]==null ? "九润会计" : ConfigurationManager.AppSettings["DefaultSignName"];
     }
 }
