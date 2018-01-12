@@ -75,6 +75,12 @@
     <File Include="Areas/HelpPage/Views/_ViewStart.cshtml">
       <publishTime>01/03/2018 15:01:52</publishTime>
     </File>
+    <File Include="bin/aliyun-net-sdk-core.dll">
+      <publishTime>09/28/2016 11:38:38</publishTime>
+    </File>
+    <File Include="bin/aliyun-net-sdk-dysmsapi.dll">
+      <publishTime>06/16/2017 07:52:14</publishTime>
+    </File>
     <File Include="bin/Aliyun.MNS.dll">
       <publishTime>05/15/2017 09:11:23</publishTime>
     </File>
@@ -109,25 +115,25 @@
       <publishTime>01/03/2018 15:01:52</publishTime>
     </File>
     <File Include="bin/Exam.Api.dll">
-      <publishTime>01/11/2018 16:17:17</publishTime>
+      <publishTime>01/12/2018 14:33:14</publishTime>
     </File>
     <File Include="bin/Exam.Business.dll">
-      <publishTime>01/11/2018 16:17:12</publishTime>
+      <publishTime>01/12/2018 14:33:06</publishTime>
     </File>
     <File Include="bin/Exam.Core.dll">
-      <publishTime>01/10/2018 16:30:19</publishTime>
+      <publishTime>01/12/2018 14:33:05</publishTime>
     </File>
     <File Include="bin/Exam.Data.dll">
-      <publishTime>01/10/2018 16:30:19</publishTime>
+      <publishTime>01/12/2018 14:33:05</publishTime>
     </File>
     <File Include="bin/Exam.Domain.dll">
       <publishTime>01/10/2018 16:30:19</publishTime>
     </File>
     <File Include="bin/Exam.IService.dll">
-      <publishTime>01/11/2018 16:17:11</publishTime>
+      <publishTime>01/12/2018 14:33:06</publishTime>
     </File>
     <File Include="bin/Exam.Service.dll">
-      <publishTime>01/11/2018 16:17:12</publishTime>
+      <publishTime>01/12/2018 14:33:06</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>01/03/2018 15:01:53</publishTime>
@@ -430,7 +436,7 @@
       <publishTime>01/03/2018 15:01:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/10/2018 11:14:48</publishTime>
+      <publishTime>01/12/2018 14:33:15</publishTime>
     </File>
   </ItemGroup>
 </Project>
