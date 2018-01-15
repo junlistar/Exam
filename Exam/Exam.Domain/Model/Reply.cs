@@ -20,5 +20,9 @@ namespace Exam.Domain.Model
 
         public virtual DateTime CTime { get; set; }
 
+        public virtual Question Question { get; set; }
+
+        public virtual UserInfo UserInfo { get; set; }
+
     }
 }

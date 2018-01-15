@@ -18,13 +18,13 @@ namespace Exam.Data.Mapping
             this.HasKey(m => m.ReplyId);
             this.Property(m => m.ReplyId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(m => m.UserInfoId); 
-            this.Property(m => m.Content);  
-            this.Property(m => m.QuestionId); 
+            this.Property(m => m.UserInfoId);
+            this.Property(m => m.Content);
+            this.Property(m => m.QuestionId);
             this.Property(m => m.Reads);
-            this.Property(m => m.Sort);  
+            this.Property(m => m.Sort);
             this.Property(m => m.CTime);
-             
+            HasRequired(t => t.UserInfo);
         }
     }
 }
