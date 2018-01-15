@@ -229,3 +229,13 @@ create table AnswerRecord
 	
 )
 
+--题目收藏表
+create table ProblemCollect
+(
+	ProblemCollectId int identity(1000,1),  --编号
+	ProblemId int,										--问题Id
+	UserInfoId int,										--用户id
+	ctime datetime default(getdate()),	--创建时间
+	utime datetime default(getdate()),	--修改时间
+	
+)
