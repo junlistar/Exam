@@ -90,9 +90,9 @@ namespace Exam.Service
         /// 消息列表
         /// </summary> 
         /// <returns></returns>
-        public List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int pageNum, int pageSize, out int totalCount)
+        public List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int isHot, int pageNum, int pageSize, out int totalCount)
         {
-            return this._NewsInfoBiz.GetNewsInfoList(name, newsCategoryId, pageNum, pageSize, out totalCount);
+            return this._NewsInfoBiz.GetNewsInfoList(name, newsCategoryId, isHot, pageNum, pageSize, out totalCount);
         }
     }
 }

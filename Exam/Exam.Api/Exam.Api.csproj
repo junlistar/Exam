@@ -251,6 +251,7 @@
     <Compile Include="Common\RandomHelper.cs" />
     <Compile Include="Controllers\NewsApiController.cs" />
     <Compile Include="Controllers\ProblemApiController.cs" />
+    <Compile Include="Controllers\QuestionApiController.cs" />
     <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -259,6 +260,8 @@
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddQuestionDto.cs" />
+    <Compile Include="Models\AddReplyDto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\NewsVM.cs" />

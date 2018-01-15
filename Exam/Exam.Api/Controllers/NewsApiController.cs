@@ -42,7 +42,7 @@ namespace Exam.Api.Controllers
         {
             ResultJson<NewsInfo> list = new ResultJson<NewsInfo>();
             int count = 0;
-            list.Data = _newsInfoService.GetNewsInfoList("", newsVM.NewsCategoryId, newsVM.PageIndex, newsVM.PageSize, out count);
+            list.Data = _newsInfoService.GetNewsInfoList("", newsVM.NewsCategoryId, newsVM.IsHot,newsVM.PageIndex, newsVM.PageSize, out count);
             list.RCount = count;
             list.PCount = count % newsVM.PageSize == 0 ? (count / newsVM.PageSize) : (count / newsVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
@@ -56,6 +56,23 @@ namespace Exam.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetNewsCategoryList() {
             return Json(new { Success = true, Msg = "OK", Data = _NewsCategoryService.GetAll() });
+        }
+
+        /// <summary>
+        /// 添加阅读数获取列表
+        /// </summary>
+        /// <param name="NewsInfoId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetNewsReads(int NewsInfoId)
+        {
+             var model= _newsInfoService.GetById(NewsInfoId);
+            if (model != null)
+            {
+                model.Reads = +1;
+                _newsInfoService.Update(model);
+            }
+            return Json(new { Success = true, Msg = "OK", Data = model.Reads });
         }
     }
 }

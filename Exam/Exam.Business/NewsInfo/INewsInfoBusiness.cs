@@ -63,6 +63,6 @@ namespace Exam.Business
         /// 消息列表
         /// </summary> 
         /// <returns></returns>
-        List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int pageNum, int pageSize, out int totalCount);
+        List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int isHot, int pageNum, int pageSize, out int totalCount);
     }
 }
