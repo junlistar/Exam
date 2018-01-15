@@ -26,7 +26,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.IsHot); 
             this.Property(m => m.IsTop); 
             this.Property(m => m.CTime);
-             
+            this.Property(m => m.IsEnable);
+
         }
     }
 }

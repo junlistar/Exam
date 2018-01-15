@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "回答列表";
+}
+@model Exam.Admin.Models.QuestionVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row" style="padding:10px 10px;">
+                         
+                            <div class="col-sm-12">
+                                标题：
+                                <label>@Model.Question.Title</label><br>
+                                描述：<label>@Model.Question.Content</label>
+                            </div> 
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center" width="650px;">回复内容</th> 
+                                    <th class="text-center">用户名</th>
+                                    <th class="text-center">回复时间</th> 
+                                    <th class="text-center">是否有效</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.ReplyList != null && Model.ReplyList.Count > 0)
+                                {
+                                    foreach (var item in Model.ReplyList)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.ReplyId</td>
+                                            <td class="text-center">@item.Content</td>
+                                            <td class="text-center">@item.UserInfoId</td>
+                                            <td class="text-center">@item.CTime</td> 
+                                            <td class="text-center">
+                                                @if (item.IsEnable == 0)
+                                                {
+                                                    <button type="button" class="btn btn-danger btn-xs">无效</button>
+                                                }
+                                                @if (item.IsEnable == 1)
+                                                {
+                                                    <button type="button" class="btn btn-info btn-xs">有效</button>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.IsEnable == 0)
+                                                {
+                                                    <button onclick="enable('/Reply/UpdateStatus','/Question/List','@item.ReplyId','@((int)Exam.Domain.EnumHelp.EnabledEnum.有效)')" class="btn btn-primary"><i class="fa fa-check padding-right-4"></i>&nbsp;启用</button>
+                                                }
+                                                @if (item.IsEnable == 1)
+                                                {
+                                                    <button onclick="disable('/Reply/UpdateStatus','/Question/List','@item.ReplyId','@((int)Exam.Domain.EnumHelp.EnabledEnum.无效)')" class="btn btn-warning"><i class="fa fa-warning padding-right-4"></i>&nbsp;禁用</button>
+                                                }
+                                                <button onclick="del('/Reply/Delete','/Question/List','@item.ReplyId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                <a href="/Question/ReplyList/@Model.Id" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

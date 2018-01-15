@@ -19,6 +19,7 @@ namespace Exam.Domain.Model
         public virtual int Reads { get; set; }
         public virtual int IsTop { get; set; }
         public virtual int IsHot { get; set; }
+        public virtual int IsEnable { get; set; }
 
         public virtual DateTime CTime { get; set; }
 

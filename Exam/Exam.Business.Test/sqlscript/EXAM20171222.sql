@@ -118,6 +118,7 @@ create table Question
 	reads int default(0),				--阅读数
 	isTop int default(0),				--是否置顶
 	isHot int default(0),				--是否热门
+	isEnable int,						--是否启用0为启用，1为禁用
 	ctime datetime default(getdate()),	--创建时间
 )
 --回答表
@@ -128,6 +129,7 @@ create table Reply
 	UserInfoId int,							--用户编号
 	QuestionId int,						--提问表编号
 	sort int default(99),				--排序
+	isEnable int,						--是否启用0为启用，1为禁用
 	reads int default(0),				--阅读数
 	ctime datetime default(getdate()),	--创建时间
 )
