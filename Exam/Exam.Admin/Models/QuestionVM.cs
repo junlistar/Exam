@@ -23,6 +23,11 @@ namespace Exam.Admin.Models
         /// 实体集合
         /// </summary>
         public List<Question> Questions { get; set; }
+
+        /// <summary>
+        /// 回答列表
+        /// </summary>
+        public List<Reply> ReplyList { get; set; }
         /// <summary>
         /// 分页
         /// </summary>

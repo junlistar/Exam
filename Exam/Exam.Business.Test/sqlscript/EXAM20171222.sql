@@ -118,6 +118,7 @@ create table Question
 	reads int default(0),				--阅读数
 	isTop int default(0),				--是否置顶
 	isHot int default(0),				--是否热门
+	isEnable int,						--是否启用0为启用，1为禁用
 	ctime datetime default(getdate()),	--创建时间
 )
 --回答表
@@ -128,6 +129,7 @@ create table Reply
 	UserInfoId int,							--用户编号
 	QuestionId int,						--提问表编号
 	sort int default(99),				--排序
+	isEnable int,						--是否启用0为启用，1为禁用
 	reads int default(0),				--阅读数
 	ctime datetime default(getdate()),	--创建时间
 )
@@ -229,3 +231,13 @@ create table AnswerRecord
 	
 )
 
+--题目收藏表
+create table ProblemCollect
+(
+	ProblemCollectId int identity(1000,1),  --编号
+	ProblemId int,										--问题Id
+	UserInfoId int,										--用户id
+	ctime datetime default(getdate()),	--创建时间
+	utime datetime default(getdate()),	--修改时间
+	
+)

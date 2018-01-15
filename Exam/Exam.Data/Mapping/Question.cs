@@ -26,7 +26,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.IsHot); 
             this.Property(m => m.IsTop); 
             this.Property(m => m.CTime);
-            HasMany(m => m.ReplyList).WithRequired(n => n.Question);
+            this.Property(m => m.IsEnable);
+
         }
     }
 }
