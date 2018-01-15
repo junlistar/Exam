@@ -96,7 +96,7 @@ namespace Exam.Business
         /// 消息列表
         /// </summary> 
         /// <returns></returns>
-        public List<NewsInfo> GetNewsInfoList(string name,int newsCategoryId, int pageNum, int pageSize, out int totalCount)
+        public List<NewsInfo> GetNewsInfoList(string name,int newsCategoryId,int isHot, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<NewsInfo>();
 
@@ -108,6 +108,10 @@ namespace Exam.Business
             if (newsCategoryId!=0)
             {
                 where = where.And(m => m.NewsCategoryId== newsCategoryId);
+            }
+            if (isHot != 0)
+            {
+                where = where.And(m => m.isHot == isHot);
             }
 
             totalCount = this._repoNewsInfo.Table.Where(where).Count();

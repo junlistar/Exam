@@ -588,6 +588,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.NewsApiController.GetNewsReads(System.Int32)">
+            <summary>
+            添加阅读数获取列表
+            </summary>
+            <param name="NewsInfoId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.ProblemApiController">
             <summary>
             问题模块
@@ -610,6 +617,25 @@
             获取题目列表
             </summary>
             <param name="SelctProblemVM"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Exam.Api.Controllers.QuestionApiController">
+            <summary>
+            问题模块
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.QuestionApiController.AddQuestion(Exam.Api.Models.AddQuestionDto)">
+            <summary>
+            新增提问接口
+            </summary>
+            <param name="addQuestionDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.QuestionApiController.AddReply(Exam.Api.Models.AddReplyDto)">
+            <summary>
+            新增提问接口
+            </summary>
+            <param name="addReplyDto"></param>
             <returns></returns>
         </member>
         <member name="T:Exam.Api.Controllers.SmsApiController">
@@ -657,6 +683,36 @@
             <param name="uploadImageVM"></param>
             <returns></returns>
         </member>
+        <member name="P:Exam.Api.Models.AddQuestionDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddQuestionDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddQuestionDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddReplyDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddReplyDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddReplyDto.QuestionId">
+            <summary>
+            问题id
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.LoginVM">
             <summary>
             用户登录
@@ -676,6 +732,11 @@
              <summary>
             消息分类
              </summary>
+        </member>
+        <member name="P:Exam.Api.Models.NewsVM.IsHot">
+            <summary>
+            是否热门
+            </summary>
         </member>
         <member name="T:Exam.Api.Models.PageDto">
             <summary>

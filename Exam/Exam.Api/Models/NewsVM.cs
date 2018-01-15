@@ -11,5 +11,10 @@ namespace Exam.Api.Models
         ///消息分类
         /// </summary>
         public int NewsCategoryId { get; set; }
+
+        /// <summary>
+        /// 是否热门
+        /// </summary>
+        public int IsHot { get; set; }
     }
 }
