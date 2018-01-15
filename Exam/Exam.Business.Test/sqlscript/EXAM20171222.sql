@@ -60,6 +60,7 @@ create table Problem
 	ctime datetime default(getdate()),	--创建时间
 	sort int default(99),				--排序
 	utime datetime default(getdate()),	--修改时间
+	Score int,							--分数
 )
 --答案表
 create table Answer

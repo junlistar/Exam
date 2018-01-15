@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AnswerRecord.cs" />
+    <Compile Include="Model\ProblemRecord.cs" />
     <Compile Include="Model\Reply.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\Answer.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Model\NewsCategory.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="IAggregateRoot.cs" />
+    <Compile Include="Model\UserInfoAnswerRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

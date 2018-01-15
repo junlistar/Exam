@@ -21,6 +21,11 @@ namespace Exam.Domain.Model
         public virtual DateTime CTime { get; set; } 
         public virtual DateTime UTime { get; set; }
 
+        /// <summary>
+        /// 分数
+        /// </summary>
+        public virtual int Score { get; set; }
+
         public virtual List<Answer> AnswerList { get; set; }
     }
 }

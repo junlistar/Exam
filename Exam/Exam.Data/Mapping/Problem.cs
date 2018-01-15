@@ -26,6 +26,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Title);
             this.Property(m => m.UTime);
             this.Property(m => m.Sort);
+            this.Property(m => m.Score);
 
             HasMany(m => m.AnswerList).WithRequired(n => n.Problem);
         }

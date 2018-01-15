@@ -48,8 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnswerRecord\AnswerRecordBusiness.cs" />
+    <Compile Include="AnswerRecord\IAnswerRecordBusiness.cs" />
     <Compile Include="Grade\IGradeBusiness.cs" />
     <Compile Include="Grade\GradeBusiness.cs" />
+    <Compile Include="ProblemRecord\IProblemRecordBusiness.cs" />
+    <Compile Include="ProblemRecord\ProblemRecordBusiness.cs" />
     <Compile Include="Reply\IReplyBusiness.cs" />
     <Compile Include="Reply\ReplyBusiness.cs" />
     <Compile Include="Question\QuestionBusiness.cs" />
@@ -79,6 +83,8 @@
     <Compile Include="SysGroupMenu\SysGroupMenuBusiness.cs" />
     <Compile Include="SysMenu\ISysMenuBusiness.cs" />
     <Compile Include="SysMenu\SysMenuBusiness.cs" />
+    <Compile Include="UserInfoAnswerRecord\IUserInfoAnswerRecordBusiness.cs" />
+    <Compile Include="UserInfoAnswerRecord\UserInfoAnswerRecordBusiness.cs" />
     <Compile Include="UserInfo\IUserInfoBusiness.cs" />
     <Compile Include="UserInfo\UserInfoBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

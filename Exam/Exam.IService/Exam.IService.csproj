@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAnswerRecordService.cs" />
     <Compile Include="IChapterService.cs" />
     <Compile Include="IBelongService.cs" />
     <Compile Include="IAnswerService.cs" />
     <Compile Include="IProblemCategoryService.cs" />
+    <Compile Include="IProblemRecordService.cs" />
     <Compile Include="IProblemService.cs" />
     <Compile Include="ILecturerService.cs" />
     <Compile Include="INewsInfoService.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="ISysGroupMenuService.cs" />
     <Compile Include="IImageInfoService.cs" />
     <Compile Include="ISysMenuService.cs" />
+    <Compile Include="IUserInfoAnswerRecordService.cs" />
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
