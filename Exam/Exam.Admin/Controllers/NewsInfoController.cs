@@ -57,7 +57,7 @@ namespace Exam.Admin.Controllers
         public ActionResult Edit(NewsInfoVM _NewsInfoVM)
         {
             _NewsInfoVM.NewsInfo = _newsInfoService.GetById(_NewsInfoVM.Id) ?? new NewsInfo();
-            _NewsInfoVM.ImgInfo = _imageInfoService.GetById(_NewsInfoVM.NewsInfo.ImageId) ?? new ImageInfo();
+            _NewsInfoVM.ImgInfo = _imageInfoService.GetById(_NewsInfoVM.NewsInfo.ImageInfoId) ?? new ImageInfo();
             _NewsInfoVM.NewsCategories = _newsCategoryService.GetAll();
             return View(_NewsInfoVM);
         }
@@ -78,7 +78,7 @@ namespace Exam.Admin.Controllers
                     entity = _newsInfoService.GetById(model.NewsInfoId);
                     //修改  
                     entity.UTime = DateTime.Now;
-                    entity.ImageId = model.ImageId;
+                    entity.ImageInfoId = model.ImageInfoId;
                     entity.NewsCategoryId = model.NewsCategoryId;
                     entity.Title = model.Title;
                     entity.Author = model.Author;
@@ -94,7 +94,7 @@ namespace Exam.Admin.Controllers
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     entity.Title = model.Title;
-                    entity.ImageId = model.ImageId;
+                    entity.ImageInfoId = model.ImageInfoId;
                     entity.NewsCategoryId = model.NewsCategoryId;
                     entity.Title = model.Title;
                     entity.Author = model.Author;

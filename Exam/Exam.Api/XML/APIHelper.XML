@@ -619,6 +619,11 @@
             <param name="SelctProblemVM"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.ProblemCollectApiController">
+            <summary>
+            收藏模块
+            </summary>
+        </member>
         <member name="T:Exam.Api.Controllers.QuestionApiController">
             <summary>
             问题模块
