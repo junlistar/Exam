@@ -9,6 +9,7 @@ namespace Exam.Business.Test
     public class UnitTest1
     {
         private readonly IUserInfoBusiness _userInfo = EngineContext.Current.Resolve<IUserInfoBusiness>();
+        private readonly IQuestionBusiness _questionInfo = EngineContext.Current.Resolve<IQuestionBusiness>();
         [TestMethod]
         public void AddUserTest()
         {
@@ -26,21 +27,21 @@ namespace Exam.Business.Test
              
         }
         [TestMethod]
-        public void GetUser()
+        public void GetQuestion()
         {
-           // int id = 1;
+            int id = 1000;
 
-           //var getResult = _userInfo.GetUserByID(id);
+            var getResult = _questionInfo.GetById(id);
 
-           // try
-           // {
-           //     var list = getResult.UserFavList;
-           // }
-           // catch (Exception ex)
-           // {
+            try
+            {
+                var list = getResult;
+            }
+            catch (Exception ex)
+            {
 
-           //     throw;
-           // }
+                throw;
+            }
         }
     }
 }
