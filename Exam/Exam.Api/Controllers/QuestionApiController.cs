@@ -80,6 +80,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="QuestionId"></param>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetQuestion(int QuestionId=0)
         {
             return Json(new { Success = true, Msg = "OK", Data = _questionService.GetById(QuestionId) });
