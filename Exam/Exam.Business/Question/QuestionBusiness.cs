@@ -93,6 +93,32 @@ namespace Exam.Business
         {
             return this._repoQuestion.Table.ToList();
         }
+
+        /// <summary>
+        /// 问题列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<Question> GetQuestionList(string name, int isTop, int isHot, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<Question>();
+
+            // name过滤
+            if (!string.IsNullOrEmpty(name))
+            {
+                where = where.And(m => m.Title.Contains(name));
+            }
+            if (isTop != 0)
+            {
+                where = where.And(m => m.IsTop == isTop);
+            }
+            if (isHot != 0)
+            {
+                where = where.And(m => m.IsHot == isHot);
+            }
+            where = where.And(m=>m.IsEnable==1);
+            totalCount = this._repoQuestion.Table.Where(where).Count();
+            return this._repoQuestion.Table.Where(where).OrderBy(p => p.QuestionId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }
 

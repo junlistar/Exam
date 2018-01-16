@@ -83,5 +83,13 @@ namespace Exam.Service
         {
             return this._QuestionBiz.GetAll();
         }
+
+        /// <summary>
+        /// 问题列表
+        /// </summary> 
+        /// <returns></returns>
+       public List<Question> GetQuestionList(string name, int isTop, int isHot, int pageNum, int pageSize, out int totalCount) {
+            return this._QuestionBiz.GetQuestionList(name,isTop,isHot,pageNum,pageSize,out totalCount);
+        }
     }
 }

@@ -52,5 +52,11 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<Question> GetAll();
+
+        /// <summary>
+        /// 问题列表
+        /// </summary> 
+        /// <returns></returns>
+        List<Question> GetQuestionList(string name, int isTop, int isHot, int pageNum, int pageSize, out int totalCount);
     }
 }

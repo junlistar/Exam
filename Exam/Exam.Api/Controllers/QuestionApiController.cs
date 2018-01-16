@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Exam.Api.Models;
 using Exam.Core.Infrastructure;
+using Exam.Domain.Model;
 using Exam.IService;
 
 namespace Exam.Api.Controllers
@@ -55,6 +56,33 @@ namespace Exam.Api.Controllers
                 UserInfoId = addReplyDto.UserInfoId
             });
             return Json(new { Success = true, Msg = "OK", Data = model });
+        }
+
+        /// <summary>
+        /// 查询问题列表
+        /// </summary>
+        /// <param name="slQuestionVM"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetQuestionList([FromUri]SlQuestionVM slQuestionVM)
+        {
+            ResultJson<Question> list = new ResultJson<Question>();
+            int count = 0;
+            list.Data = _questionService.GetQuestionList(slQuestionVM.Title, slQuestionVM.IsTop, slQuestionVM.IsHot, slQuestionVM.PageIndex, slQuestionVM.PageSize, out count);
+            list.RCount = count;
+            list.PCount = count % slQuestionVM.PageSize == 0 ? (count / slQuestionVM.PageSize) : (count / slQuestionVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
+
+            return Json(new { Success = true, Msg = "OK", Data = list });
+        }
+
+        /// <summary>
+        /// 获取单个问题的详细
+        /// </summary>
+        /// <param name="QuestionId"></param>
+        /// <returns></returns>
+        public IHttpActionResult GetQuestion(int QuestionId=0)
+        {
+            return Json(new { Success = true, Msg = "OK", Data = _questionService.GetById(QuestionId) });
         }
     }
 }

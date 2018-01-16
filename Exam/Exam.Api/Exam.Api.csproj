@@ -268,6 +268,7 @@
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\ResultJson.cs" />
     <Compile Include="Models\SelctProblemVM.cs" />
+    <Compile Include="Models\SlQuestionVM.cs" />
     <Compile Include="Models\UpdateUserInfoVM.cs" />
     <Compile Include="Models\UploadImageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -638,6 +638,20 @@
             <param name="addReplyDto"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.QuestionApiController.GetQuestionList(Exam.Api.Models.SlQuestionVM)">
+            <summary>
+            查询问题列表
+            </summary>
+            <param name="slQuestionVM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.QuestionApiController.GetQuestion(System.Int32)">
+            <summary>
+            获取单个问题的详细
+            </summary>
+            <param name="QuestionId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.SmsApiController">
             <summary>
             短信发送模块
@@ -786,6 +800,26 @@
         <member name="P:Exam.Api.Models.SelctProblemVM.ChapterId">
             <summary>
             题目章节id
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.SlQuestionVM">
+            <summary>
+            查询问题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SlQuestionVM.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SlQuestionVM.IsHot">
+            <summary>
+            是否热门
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SlQuestionVM.IsTop">
+            <summary>
+            是是否置顶
             </summary>
         </member>
         <member name="T:Exam.Api.Models.UpdateUserInfoVM">
