@@ -251,6 +251,7 @@
     <Compile Include="Common\RandomHelper.cs" />
     <Compile Include="Controllers\NewsApiController.cs" />
     <Compile Include="Controllers\ProblemApiController.cs" />
+    <Compile Include="Controllers\ProblemCollectApiController.cs" />
     <Compile Include="Controllers\QuestionApiController.cs" />
     <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
