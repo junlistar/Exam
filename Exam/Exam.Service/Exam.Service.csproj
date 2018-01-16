@@ -46,6 +46,7 @@
     <Compile Include="AnswerService.cs" />
     <Compile Include="ProblemCategoryService.cs" />
     <Compile Include="ProblemRecordService.cs" />
+    <Compile Include="ProblemCollectService.cs" />
     <Compile Include="ProblemService.cs" />
     <Compile Include="LecturerService.cs" />
     <Compile Include="NewsInfoService.cs" />
