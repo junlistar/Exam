@@ -72,7 +72,45 @@ namespace Exam.Api.Controllers
             list.RCount = count;
             list.PCount = count % slQuestionVM.PageSize == 0 ? (count / slQuestionVM.PageSize) : (count / slQuestionVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
-            return Json(new { Success = true, Msg = "OK", Data = list });
+            ResultJson<QuestionVM> listVM = new ResultJson<QuestionVM>();
+            listVM.RCount = list.RCount;
+            listVM.PCount = list.PCount;
+            List<QuestionVM> questionVMlist = new List<QuestionVM>();
+            foreach (var result in list.Data)
+            {
+                QuestionVM question = new QuestionVM();
+                question.Content = result.Content;
+                question.Title = result.Title;
+                question.CTime = result.CTime;
+                question.IsHot = result.IsHot;
+                question.IsTop = result.IsTop;
+                question.QuestionId = result.QuestionId;
+                question.Reads = result.Reads;
+                question.Sort = result.Sort;
+                question.UserInfo = result.UserInfo;
+                question.UserInfoId = result.UserInfoId;
+
+                List<ReplyVM> childList = new List<ReplyVM>();
+                foreach (var item in result.ReplyList)
+                {
+
+                    childList.Add(new ReplyVM
+                    {
+                        Content = item.Content,
+                        CTime = item.CTime,
+                        QuestionId = item.QuestionId,
+                        Reads = item.Reads,
+                        ReplyId = item.ReplyId,
+                        Sort = item.Sort,
+                        UserInfo = item.UserInfo,
+                        UserInfoId = item.UserInfoId
+                    });
+                }
+                question.ReplyList = childList;
+                questionVMlist.Add(question);
+            }
+            listVM.Data = questionVMlist;
+            return Json(new { Success = true, Msg = "OK", Data = listVM });
         }
 
         /// <summary>
@@ -83,7 +121,36 @@ namespace Exam.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetQuestion(int QuestionId=0)
         {
-            return Json(new { Success = true, Msg = "OK", Data = _questionService.GetById(QuestionId) });
+            var result = _questionService.GetById(QuestionId);
+            QuestionVM question = new QuestionVM();
+            question.Content = result.Content;
+            question.Title = result.Title;
+            question.CTime = result.CTime;
+            question.IsHot = result.IsHot;
+            question.IsTop = result.IsTop;
+            question.QuestionId = result.QuestionId;
+            question.Reads = result.Reads;
+            question.Sort = result.Sort;
+            question.UserInfo = result.UserInfo;
+            question.UserInfoId = result.UserInfoId;
+
+            List<ReplyVM> childList = new List<ReplyVM>(); 
+            foreach (var item in result.ReplyList)
+            {
+                
+                childList.Add(new ReplyVM { 
+                Content= item.Content,
+                CTime=item.CTime,
+                QuestionId=item.QuestionId,
+                Reads=item.Reads,
+                ReplyId=item.ReplyId,
+                Sort=item.Sort,
+                UserInfo=item.UserInfo,
+                UserInfoId=item.UserInfoId
+                });
+            }
+            question.ReplyList = childList;
+            return Json(new { Success = true, Msg = "OK", Data = question });
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Exam.Domain.Model
 
         public virtual DateTime CTime { get; set; }
 
+        public virtual UserInfo UserInfo { get; set; }
         public virtual List<Reply> ReplyList { get; set; }
 
     }

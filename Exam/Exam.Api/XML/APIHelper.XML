@@ -767,6 +767,16 @@
             页面总数
             </summary>
         </member>
+        <member name="T:Exam.Api.Models.QuestionVM">
+            <summary>
+            问题模型
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.ReplyVM">
+            <summary>
+            回复模型
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.ResultJson`1">
             <summary>
             分页

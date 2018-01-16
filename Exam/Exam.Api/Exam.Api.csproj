@@ -266,6 +266,8 @@
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\NewsVM.cs" />
     <Compile Include="Models\PageDto.cs" />
+    <Compile Include="Models\QuestionVM.cs" />
+    <Compile Include="Models\ReplyVM.cs" />
     <Compile Include="Models\ResultJson.cs" />
     <Compile Include="Models\SelctProblemVM.cs" />
     <Compile Include="Models\SlQuestionVM.cs" />
