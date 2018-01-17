@@ -21,7 +21,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Title);
             this.Property(m => m.Content);
             this.Property(m => m.Author);
-            this.Property(m => m.ImageId);
+            this.Property(m => m.ImageInfoId);
             this.Property(m => m.isHot);
             this.Property(m => m.isTop);
             this.Property(m => m.NewsCategoryId);
@@ -29,7 +29,9 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Sort);  
             this.Property(m => m.CTime);
             this.Property(m => m.UTime);
-             
+
+            HasRequired(t => t.ImageInfo);
+
         }
     }
 }

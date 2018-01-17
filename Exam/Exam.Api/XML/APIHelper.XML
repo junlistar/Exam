@@ -619,6 +619,30 @@
             <param name="SelctProblemVM"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.ProblemCollectApiController">
+            <summary>
+            收藏模块
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemCollectApiController.AddProblemCollect(Exam.Api.Models.AddProblemCollectDto)">
+            <summary>
+            添加收藏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemCollectApiController.DelProblemCollect(Exam.Api.Models.DelProblemCollectDto)">
+            <summary>
+            删除收藏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemCollectApiController.GetMyProblemCollectList(Exam.Api.Models.SelProblemCollectDto)">
+            <summary>
+            查询咨询列表
+            </summary>
+            <param name="selProblemCollectDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.QuestionApiController">
             <summary>
             问题模块
@@ -765,6 +789,26 @@
         <member name="P:Exam.Api.Models.PageDto.PageSize">
             <summary>
             页面总数
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddProblemCollectDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddProblemCollectDto.ProblemId">
+            <summary>
+            问题id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.DelProblemCollectDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.DelProblemCollectDto.ProblemCollectId">
+            <summary>
+            问题id
             </summary>
         </member>
         <member name="T:Exam.Api.Models.QuestionVM">
