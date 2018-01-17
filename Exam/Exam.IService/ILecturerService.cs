@@ -51,5 +51,7 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<Lecturer> GetAll();
+
+        
     }
 }

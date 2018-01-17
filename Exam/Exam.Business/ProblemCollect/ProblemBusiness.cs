@@ -93,7 +93,20 @@ namespace Exam.Business
         {
             return this._repoProblemCollect.Table.ToList();
         }
-         
+
+        /// <summary>
+        /// 我的收藏列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemCollect> GetProblemCollectList(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<ProblemCollect>();
+                where = where.And(m => m.UserInfoId == userInfoId);
+
+            totalCount = this._repoProblemCollect.Table.Where(where).Count();
+            return this._repoProblemCollect.Table.Where(where).OrderBy(p => p.ProblemCollectId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        }
+
     }
 }
 

@@ -87,5 +87,13 @@ namespace Exam.Service
             return this._ProblemCollectBiz.GetAll();
         }
 
+
+        /// <summary>
+        /// 我的收藏列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemCollect> GetProblemCollectList(int userInfoId, int pageNum, int pageSize, out int totalCount) {
+            return this._ProblemCollectBiz.GetProblemCollectList(userInfoId, pageNum, pageSize,out totalCount);
+        }
     }
 }

@@ -267,10 +267,12 @@
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\NewsVM.cs" />
     <Compile Include="Models\PageDto.cs" />
+    <Compile Include="Models\AddProblemCollectDto.cs" />
     <Compile Include="Models\QuestionVM.cs" />
     <Compile Include="Models\ReplyVM.cs" />
     <Compile Include="Models\ResultJson.cs" />
     <Compile Include="Models\SelctProblemVM.cs" />
+    <Compile Include="Models\SelProblemCollectDto.cs" />
     <Compile Include="Models\SlQuestionVM.cs" />
     <Compile Include="Models\UpdateUserInfoVM.cs" />
     <Compile Include="Models\UploadImageVM.cs" />

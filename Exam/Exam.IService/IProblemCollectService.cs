@@ -53,6 +53,12 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<ProblemCollect> GetAll();
-         
+
+        /// <summary>
+        /// 我的收藏列表
+        /// </summary> 
+        /// <returns></returns>
+        List<ProblemCollect> GetProblemCollectList(int userInfoId, int pageNum, int pageSize, out int totalCount);
+
     }
 }
