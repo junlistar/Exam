@@ -241,3 +241,15 @@ create table ProblemCollect
 	utime datetime default(getdate()),	--修改时间
 	
 )
+
+--消息通知表
+create table [Notification]
+(
+	NotificationId int identity(1000,1),  --编号
+	ObjectId int,										--实体对象Id
+	UserInfoId int,									--用户id
+	TypeId int,										--消息类型id
+	ctime datetime default(getdate()),	--创建时间
+	utime datetime default(getdate()),	--修改时间
+	
+)
