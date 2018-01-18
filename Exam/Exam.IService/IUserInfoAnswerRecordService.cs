@@ -32,13 +32,6 @@ namespace Exam.IService
         /// <returns></returns>
         void Delete(UserInfoAnswerRecord model);
 
-        /// <summary>
-        /// 判断是否名称存在
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        bool IsExistName(string name, int type);
 
         /// <summary>
         /// 添加管理后台菜单列表

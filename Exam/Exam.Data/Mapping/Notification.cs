@@ -12,7 +12,7 @@ namespace Exam.Data.Mapping
     /// <summary>
     /// 消息
     /// </summary>
-    public class NotificationMap : EntityTypeConfiguration<Notification>
+    public class NotificationMap : EntityTypeConfiguration<Domain.Model.Notification>
     {
         public NotificationMap()
         {

@@ -17,21 +17,20 @@ namespace Exam.Api.Controllers
     public class ProblemApiController : ApiController
     {
         //方式2
+
+        private readonly IUserInfoAnswerRecordService userInfoAnswerRecordService = EngineContext.Current.Resolve<IUserInfoAnswerRecordService>();
+
         private readonly IProblemService problemService = EngineContext.Current.Resolve<IProblemService>();
 
         private readonly IBelongService belongService = EngineContext.Current.Resolve<IBelongService>();
 
         private readonly IChapterService chapterService = EngineContext.Current.Resolve<IChapterService>();
 
-        private readonly IUserInfoAnswerRecordService userInfoAnswerRecordService = EngineContext.Current.Resolve<IUserInfoAnswerRecordService>();
+       
 
         private readonly IProblemRecordService problemRecordService = EngineContext.Current.Resolve<IProblemRecordService>();
 
         private readonly IAnswerRecordService answerRecordService = EngineContext.Current.Resolve<IAnswerRecordService>();
-
-        public ProblemApiController() { 
-        
-        }
 
         /// <summary>
         /// 获取分类列表

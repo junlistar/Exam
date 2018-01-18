@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam.Business;
 using Exam.Domain.Model;
 using Exam.IService;
 
@@ -13,9 +14,9 @@ namespace Exam.Service
         /// <summary>
         /// The user biz
         /// </summary>
-        private IProblemRecordService _ProblemRecordBiz;
+        private IProblemRecordBusiness _ProblemRecordBiz;
 
-        public ProblemRecordService(IProblemRecordService ProblemRecordBiz)
+        public ProblemRecordService(IProblemRecordBusiness ProblemRecordBiz)
         {
             _ProblemRecordBiz = ProblemRecordBiz;
         }

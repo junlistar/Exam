@@ -12,7 +12,7 @@ namespace Exam.Data.Mapping
     /// <summary>
     /// 问题记录表
     /// </summary>
-    public class ProblemRecordMap : EntityTypeConfiguration<ProblemRecord>
+    public class ProblemRecordMap : EntityTypeConfiguration<Domain.Model.ProblemRecord>
     {
         public ProblemRecordMap()
         {
