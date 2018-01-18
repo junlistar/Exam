@@ -638,6 +638,26 @@
             <param name="SelctProblemVM"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.AddUserInfoAnswerRecord(Exam.Api.Models.AddUserInfoAnswerRecordDto)">
+            <summary>
+            添加答题记录
+            </summary>
+            <param name="addUserInfoAnswerRecordDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetUserInfoAnswerRecord(Exam.Api.Models.SelUserInfoAnswerRecordDto)">
+            <summary>
+            获取答题记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetProblemRecord(System.Int32)">
+            <summary>
+            根据答题记录id获取答题
+            </summary>
+            <param name="UserInfoAnswerRecordId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.ProblemCollectApiController">
             <summary>
             收藏模块
@@ -758,6 +778,31 @@
         <member name="P:Exam.Api.Models.AddNotificationDto.ObjectId">
             <summary>
             实体id
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.AddUserInfoAnswerRecordDto">
+            <summary>
+            添加答题记录
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddUserInfoAnswerRecordDto.AddProblemRecordDto">
+            <summary>
+            问题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddUserInfoAnswerRecordDto.BelongId">
+            <summary>
+            题目所属分类
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddUserInfoAnswerRecordDto.ChapterId">
+            <summary>
+            章节分类
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddUserInfoAnswerRecordDto.UserInfoId">
+            <summary>
+            用户id
             </summary>
         </member>
         <member name="P:Exam.Api.Models.AddQuestionDto.Title">
@@ -901,6 +946,11 @@
             </summary>
         </member>
         <member name="P:Exam.Api.Models.SelNotificationDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelUserInfoAnswerRecordDto.UserInfoId">
             <summary>
             用户id
             </summary>

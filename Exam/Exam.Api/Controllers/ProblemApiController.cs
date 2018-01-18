@@ -29,6 +29,9 @@ namespace Exam.Api.Controllers
 
         private readonly IAnswerRecordService answerRecordService = EngineContext.Current.Resolve<IAnswerRecordService>();
 
+        public ProblemApiController() { 
+        
+        }
 
         /// <summary>
         /// 获取分类列表
