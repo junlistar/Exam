@@ -26,6 +26,10 @@ namespace Exam.Domain.Model
         /// </summary>
         public virtual int Score { get; set; }
 
+        public ProblemCategory ProblemCategory { get; set; }
+
         public virtual List<Answer> AnswerList { get; set; }
+
+
     }
 }

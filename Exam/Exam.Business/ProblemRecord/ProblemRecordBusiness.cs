@@ -8,7 +8,7 @@ using Exam.Domain.Model;
 
 namespace Exam.Business
 {
-    public class ProblemRecordBusiness: IProblemRecordBusiness
+    public class ProblemRecordBusiness : IProblemRecordBusiness
     {
         private IRepository<ProblemRecord> _repoProblemRecord;
 
@@ -92,5 +92,19 @@ namespace Exam.Business
         {
             return this._repoProblemRecord.Table.ToList();
         }
+
+        /// <summary>
+        /// 根据记录id获取测试过的题目
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId)
+        {
+            var where = PredicateBuilder.True<ProblemRecord>();
+
+            where = where.And(m => m.UserInfoAnswerRecordId == userInfoAnswerRecordId);
+            
+            return this._repoProblemRecord.Table.Where(where).OrderBy(p => p.ProblemRecordId).ToList();
+        }
+
     }
 }

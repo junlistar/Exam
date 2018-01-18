@@ -8,7 +8,7 @@ using Exam.Domain.Model;
 
 namespace Exam.Business
 {
-   public class UserInfoAnswerRecordBusiness:IUserInfoAnswerRecordBusiness
+    public class UserInfoAnswerRecordBusiness : IUserInfoAnswerRecordBusiness
     {
         private IRepository<UserInfoAnswerRecord> _repoUserInfoAnswerRecord;
 
@@ -91,6 +91,20 @@ namespace Exam.Business
         public List<UserInfoAnswerRecord> GetAll()
         {
             return this._repoUserInfoAnswerRecord.Table.ToList();
+        }
+
+        /// <summary>
+        /// 根据用户ID得到答题记录
+        /// </summary>
+        /// <returns></returns>
+        public List<UserInfoAnswerRecord> GetListForUserInfoId(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<UserInfoAnswerRecord>();
+
+            where = where.And(m => m.UserInfoId == userInfoId);
+
+            totalCount = this._repoUserInfoAnswerRecord.Table.Where(where).Count();
+            return this._repoUserInfoAnswerRecord.Table.Where(where).OrderBy(p => p.UserInfoAnswerRecordId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
         }
     }
 }

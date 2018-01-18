@@ -50,5 +50,16 @@ namespace Exam.Domain.Model
         /// 修改时间
         /// </summary>
         public DateTime UTime { get; set; }
+
+
+        /// <summary>
+        /// 问题记录表id
+        /// </summary>
+
+        public int UserInfoAnswerRecordId { get; set; }
+
+        public ProblemCategory ProblemCategory { get; set; }
+
+        public List<AnswerRecord> AnswerRecordList { get; set; }
     }
 }

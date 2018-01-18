@@ -201,10 +201,10 @@ create table UserInfoAnswerRecord
 	UserInfoId int,							--用户编号
 	Score int,							--分数
 	Title nvarchar(200),                --考试标题
-	belongId int,						--题目所属编号
+	BelongId int,						--题目所属编号
 	ChapterId int,						--章节分类
-	ctime datetime default(getdate()),	--创建时间
-	utime datetime default(getdate()),	--修改时间
+	CTime datetime default(getdate()),	--创建时间
+	UTime datetime default(getdate()),	--修改时间
 )
 
 --问题记录表
@@ -212,12 +212,12 @@ create table ProblemRecord
 (
 	ProblemRecordId int identity(1000,1),	
 	ProblemId int,			--编号
-	title nvarchar(50) not null,		--标题
+	Title nvarchar(50) not null,		--标题
 	ProblemCategoryId int,				--类别分类
 	CorrectAnswer nvarchar(50),			--正确答案
 	ErrorAnswer nvarchar(50),			--错误答案
-	ctime datetime default(getdate()),	--创建时间
-	utime datetime default(getdate()),	--修改时间
+	CTime datetime default(getdate()),	--创建时间
+	UTime datetime default(getdate()),	--修改时间
 )
 --答案记录表
 create table AnswerRecord
@@ -225,9 +225,9 @@ create table AnswerRecord
 	AnswerRecordId int identity(1000,1),  --编号
 	ProblemRecordId int,				---问题记录表Id
 	AnswerId int,						--答案id
-	title nvarchar(50) not null,		--标题
+	Title nvarchar(50) not null,		--标题
 	ProblemId int,						--问题表编号
-	isCorrect int,						--是否正确答案 0错误1正确
+	IsCorrect int,						--是否正确答案 0错误1正确
 	
 )
 
@@ -247,7 +247,8 @@ create table [Notification]
 (
 	NotificationId int identity(1000,1),  --编号
 	ObjectId int,										--实体对象Id
-	UserInfoId int,									--用户id
+	UserInfoId int,	--用户id
+	Title nvarchar(500),								--标题
 	TypeId int,										--消息类型id
 	ctime datetime default(getdate()),	--创建时间
 	utime datetime default(getdate()),	--修改时间

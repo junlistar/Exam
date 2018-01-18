@@ -5,63 +5,59 @@ using System.Text;
 using System.Threading.Tasks;
 using Exam.Domain.Model;
 
-namespace Exam.Business
+namespace Exam.IService
 {
-   public interface IProblemRecordBusiness
+    public interface INotificationService
     {
-        /// <summary>
-        /// 根据ID查找实体
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        ProblemRecord GetById(int id);
+        Notification GetById(int Id);
 
         /// <summary>
-        /// 添加实体
+        /// 新增实体
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        ProblemRecord Insert(ProblemRecord model);
+        Notification Insert(Notification model);
 
         /// <summary>
         /// 修改实体
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        void Update(ProblemRecord model);
+        void Update(Notification model);
 
         /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        void Delete(ProblemRecord model);
+        void Delete(Notification model);
 
         /// <summary>
         /// 判断是否名称存在
         /// </summary>
-        /// <param name="name"></param> 
+        /// <param name="userid"></param> 
+        /// <param name="notificationId"></param> 
         /// <returns></returns>
-        bool IsExistName(string name);
+        bool IsExistName(int userid, int notificationId);
 
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="userid"></param>
         /// <returns></returns>
-        List<ProblemRecord> GetManagerList(string name, int pageNum, int pageSize, out int totalCount);
+        List<Notification> GetManagerList(int userid, int pageNum, int pageSize, out int totalCount);
 
         /// <summary>
         /// 获取所有
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        List<ProblemRecord> GetAll();
+        List<Notification> GetAll();
 
         /// <summary>
-        /// 根据记录id获取测试过的题目
+        /// 我的收藏列表
         /// </summary> 
         /// <returns></returns>
-        List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId);
+        List<Notification> GetNotificationList(int userInfoId, int pageNum, int pageSize, out int totalCount);
     }
 }

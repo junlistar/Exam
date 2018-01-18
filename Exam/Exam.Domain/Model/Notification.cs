@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 namespace Exam.Domain.Model
 {
     /// <summary>
-    /// 答案记录表
+    /// 消息
     /// </summary>
-    public class AnswerRecord : IAggregateRoot
+   public class Notification : IAggregateRoot
     {
         /// <summary>
         /// 编号
         /// </summary>
-        public int AnswerRecordId { get; set; }
+        public int NotificationId { get; set; }
 
         /// <summary>
-        /// 问题记录表Id
+        /// 实体对象Id
         /// </summary>
-        public int ProblemRecordId { get; set; }
+        public int ObjectId { get; set; }
 
         /// <summary>
-        /// 答案id
+        /// 用户id
         /// </summary>
-        public int AnswerId { get; set; }
+        public int UserInfoId { get; set; }
 
         /// <summary>
         /// 标题
@@ -32,15 +32,22 @@ namespace Exam.Domain.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// 问题表编号
+        /// 消息类型id
         /// </summary>
-        public int ProblemId { get; set; }
+
+        public int TypeId { get; set; }
 
         /// <summary>
-        /// 是否正确答案 0错误1正确
+        /// 创建时间
         /// </summary>
-        public int IsCorrect { get; set; }
 
-        public ProblemRecord ProblemRecord { get; set; }
+        public DateTime CTime { get; set; }
+
+        /// <summary>
+        /// 修改时间
+        /// </summary>
+        public DateTime UTime { get; set; }
+
+        public UserInfo UserInfo { get; set; }
     }
 }

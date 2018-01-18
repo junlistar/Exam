@@ -62,6 +62,7 @@
     <Compile Include="Mapping\AnswerRecordMap.cs" />
     <Compile Include="Mapping\Chapter.cs" />
     <Compile Include="Mapping\Belong.cs" />
+    <Compile Include="Mapping\NotificationMap.cs" />
     <Compile Include="Mapping\ProblemCollect.cs" />
     <Compile Include="Mapping\ProblemRecordMap.cs" />
     <Compile Include="Mapping\Reply.cs" />

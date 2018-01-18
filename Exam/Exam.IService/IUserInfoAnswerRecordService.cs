@@ -53,5 +53,11 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<UserInfoAnswerRecord> GetAll();
+
+        /// <summary>
+        /// 根据用户ID得到答题记录
+        /// </summary>
+        /// <returns></returns>
+        List<UserInfoAnswerRecord> GetListForUserInfoId(int userInfoId, int pageNum, int pageSize, out int totalCount);
     }
 }
