@@ -13,15 +13,20 @@ namespace Exam.Admin.Controllers
     {
 
         IUserInfoService _userService;
+        ISysMenuService _menuService;
 
-        public HomeController(IUserInfoService userService)
+
+        public HomeController(IUserInfoService userService, ISysMenuService menuService)
         {
-            _userService = userService; 
+            _userService = userService;
+            _menuService = menuService;
         }
 
 
         public ActionResult Index()
         {
+            _menuService.GetManagerList()
+
             return View();
         }
 
