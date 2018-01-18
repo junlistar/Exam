@@ -51,7 +51,34 @@ namespace Exam.Api.Controllers
         {
             if (SelctProblemVM != null)
             {
-                return Json(new { Success = true, Msg = "OK", Data = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId) });
+                //ProblemVM
+                var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId);
+
+                List<ProblemVM> problemVMlist = new List<ProblemVM>();
+                foreach (var result in problemList)
+                {
+                    ProblemVM problem = new ProblemVM();
+                    problem.ProblemId = result.ProblemId;
+                    problem.Title = result.Title;
+                    problem.ProblemCategoryId = result.ProblemCategoryId;
+                    problem.ProblemCategory = result.ProblemCategory;
+
+                    List<AnswerVM> childList = new List<AnswerVM>();
+                    foreach (var item in result.AnswerList)
+                    {
+
+                        childList.Add(new AnswerVM
+                        {
+                            AnswerId = item.AnswerId,
+                            ProblemId = item.ProblemId,
+                            IsCorrect = item.IsCorrect,
+                            Title = item.Title
+                        });
+                    }
+                    problem.AnswerList = childList;
+                    problemVMlist.Add(problem);
+                }
+                return Json(new { Success = true, Msg = "OK", Data = problemVMlist });
             }
             else
             {

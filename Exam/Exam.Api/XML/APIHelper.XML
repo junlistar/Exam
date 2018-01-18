@@ -595,6 +595,25 @@
             <param name="NewsInfoId"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.NotificationApiController">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.NotificationApiController.AddNotification(Exam.Api.Models.AddNotificationDto)">
+            <summary>
+            添加消息
+            </summary>
+            <param name="addNotificationDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.NotificationApiController.GetNotificationList(Exam.Api.Models.SelNotificationDto)">
+            <summary>
+            我的消息
+            </summary>
+            <param name="selNotificationDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.ProblemApiController">
             <summary>
             问题模块
@@ -721,6 +740,26 @@
             <param name="uploadImageVM"></param>
             <returns></returns>
         </member>
+        <member name="P:Exam.Api.Models.AddNotificationDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddNotificationDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddNotificationDto.TypeId">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddNotificationDto.ObjectId">
+            <summary>
+            实体id
+            </summary>
+        </member>
         <member name="P:Exam.Api.Models.AddQuestionDto.Title">
             <summary>
             标题
@@ -811,6 +850,11 @@
             问题id
             </summary>
         </member>
+        <member name="T:Exam.Api.Models.ProblemVM">
+            <summary>
+            题目
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.QuestionVM">
             <summary>
             问题模型
@@ -854,6 +898,11 @@
         <member name="P:Exam.Api.Models.SelctProblemVM.ChapterId">
             <summary>
             题目章节id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelNotificationDto.UserInfoId">
+            <summary>
+            用户id
             </summary>
         </member>
         <member name="T:Exam.Api.Models.SlQuestionVM">

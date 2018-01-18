@@ -44,6 +44,7 @@
     <Compile Include="ChapterService.cs" />
     <Compile Include="BelongService.cs" />
     <Compile Include="AnswerService.cs" />
+    <Compile Include="NotificationService.cs" />
     <Compile Include="ProblemCategoryService.cs" />
     <Compile Include="ProblemRecordService.cs" />
     <Compile Include="ProblemCollectService.cs" />

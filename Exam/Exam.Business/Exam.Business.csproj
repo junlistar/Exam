@@ -52,6 +52,8 @@
     <Compile Include="AnswerRecord\IAnswerRecordBusiness.cs" />
     <Compile Include="Grade\IGradeBusiness.cs" />
     <Compile Include="Grade\GradeBusiness.cs" />
+    <Compile Include="Notification\INotificationBusiness.cs" />
+    <Compile Include="Notification\NotificationBusiness.cs" />
     <Compile Include="ProblemCollect\IProblemBusiness.cs" />
     <Compile Include="ProblemCollect\ProblemBusiness.cs" />
     <Compile Include="ProblemRecord\IProblemRecordBusiness.cs" />
