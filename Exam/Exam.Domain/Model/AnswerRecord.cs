@@ -14,33 +14,33 @@ namespace Exam.Domain.Model
         /// <summary>
         /// 编号
         /// </summary>
-        public int AnswerRecordId { get; set; }
+        public virtual int AnswerRecordId { get; set; }
 
         /// <summary>
         /// 问题记录表Id
         /// </summary>
-        public int ProblemRecordId { get; set; }
+        public virtual int ProblemRecordId { get; set; }
 
         /// <summary>
         /// 答案id
         /// </summary>
-        public int AnswerId { get; set; }
+        public virtual int AnswerId { get; set; }
 
         /// <summary>
         /// 标题
         /// </summary>
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
         /// <summary>
         /// 问题表编号
         /// </summary>
-        public int ProblemId { get; set; }
+        public virtual int ProblemId { get; set; }
 
         /// <summary>
         /// 是否正确答案 0错误1正确
         /// </summary>
-        public int IsCorrect { get; set; }
+        public virtual int IsCorrect { get; set; }
 
-        public ProblemRecord ProblemRecord { get; set; }
+        public virtual ProblemRecord ProblemRecord { get; set; }
     }
 }

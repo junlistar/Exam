@@ -14,52 +14,52 @@ namespace Exam.Domain.Model
         /// <summary>
         /// 编号
         /// </summary>
-       public int ProblemRecordId { get; set; }
+       public virtual int ProblemRecordId { get; set; }
 
        /// <summary>
        /// 问题id
        /// </summary>
-	   public int ProblemId { get; set; }
+	   public virtual int ProblemId { get; set; }
 
         /// <summary>
         /// 标题
         /// </summary>
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
         /// <summary>
         /// 类别分类
         /// </summary>
-        public int ProblemCategoryId { get; set; }
+        public virtual int ProblemCategoryId { get; set; }
 
         /// <summary>
         /// 正确答案
         /// </summary>
-        public string CorrectAnswer{get;set;}
+        public virtual string CorrectAnswer{get;set;}
 
         /// <summary>
         /// 错误答案
         /// </summary>
-        public string ErrorAnswer { get; set; }
+        public virtual string ErrorAnswer { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CTime { get; set; }
+        public virtual DateTime CTime { get; set; }
 
         /// <summary>
         /// 修改时间
         /// </summary>
-        public DateTime UTime { get; set; }
+        public virtual DateTime UTime { get; set; }
 
 
         /// <summary>
         /// 问题记录表id
         /// </summary>
 
-        public int UserInfoAnswerRecordId { get; set; }
+        public virtual int UserInfoAnswerRecordId { get; set; }
 
-        public ProblemCategory ProblemCategory { get; set; }
+        public virtual ProblemCategory ProblemCategory { get; set; }
 
-        public List<AnswerRecord> AnswerRecordList { get; set; }
+        public virtual List<AnswerRecord> AnswerRecordList { get; set; }
     }
 }

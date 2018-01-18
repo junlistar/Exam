@@ -148,7 +148,7 @@ namespace Exam.Api.Controllers
                         ErrorAnswer = item.AnswerIds,
                         ProblemCategoryId = problem.ProblemCategoryId,
                         ProblemId = item.ProblemId,
-                        UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
+                        UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId
                     });
 
                     foreach (var itemChild in item.AnswerRecordList)
@@ -175,7 +175,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetUserInfoAnswerRecord(SelUserInfoAnswerRecordDto selUserInfoAnswerRecordDto)
+        public IHttpActionResult GetUserInfoAnswerRecord([FromUri]SelUserInfoAnswerRecordDto selUserInfoAnswerRecordDto)
         {
             ResultJson<UserInfoAnswerRecord> list = new ResultJson<UserInfoAnswerRecord>();
             int count = 0;
@@ -191,6 +191,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="UserInfoAnswerRecordId"></param>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0)
         {
             var problemRecordList = problemRecordService.GetForUserInfoRecordId(UserInfoAnswerRecordId);
