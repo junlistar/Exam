@@ -40,5 +40,7 @@ namespace Exam.Domain.Model
         /// 是否正确答案 0错误1正确
         /// </summary>
         public int IsCorrect { get; set; }
+
+        public ProblemRecord ProblemRecord { get; set; }
     }
 }

@@ -57,5 +57,11 @@ namespace Exam.Business
         /// <param name="model"></param>
         /// <returns></returns>
         List<ProblemRecord> GetAll();
+
+        /// <summary>
+        /// 根据记录id获取测试过的题目
+        /// </summary> 
+        /// <returns></returns>
+        List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId);
     }
 }

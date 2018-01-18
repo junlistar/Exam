@@ -8,7 +8,7 @@ using Exam.IService;
 
 namespace Exam.Service
 {
-   public class UserInfoAnswerRecordService: IUserInfoAnswerRecordService
+    public class UserInfoAnswerRecordService : IUserInfoAnswerRecordService
     {
         /// <summary>
         /// The user biz
@@ -83,6 +83,15 @@ namespace Exam.Service
         public List<UserInfoAnswerRecord> GetAll()
         {
             return this._userInfoAnswerRecordService.GetAll();
+        }
+
+        /// <summary>
+        /// 根据用户ID得到答题记录
+        /// </summary>
+        /// <returns></returns>
+        public List<UserInfoAnswerRecord> GetListForUserInfoId(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        {
+            return this._userInfoAnswerRecordService.GetListForUserInfoId(userInfoId, pageNum, pageSize, out totalCount);
         }
     }
 }

@@ -256,6 +256,7 @@
     <Compile Include="Controllers\QuestionApiController.cs" />
     <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
+    <Compile Include="Controllers\UserInfoAnswerRecordApi.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +264,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddNotificationDto.cs" />
+    <Compile Include="Models\AddProblemDto.cs" />
     <Compile Include="Models\AddQuestionDto.cs" />
     <Compile Include="Models\AddReplyDto.cs" />
     <Compile Include="Models\AnswerVM.cs" />
@@ -271,6 +273,7 @@
     <Compile Include="Models\NewsVM.cs" />
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\AddProblemCollectDto.cs" />
+    <Compile Include="Models\ProblemRecordVM.cs" />
     <Compile Include="Models\ProblemVM.cs" />
     <Compile Include="Models\QuestionVM.cs" />
     <Compile Include="Models\ReplyVM.cs" />
@@ -278,6 +281,7 @@
     <Compile Include="Models\SelctProblemVM.cs" />
     <Compile Include="Models\SelNotificationDto.cs" />
     <Compile Include="Models\SelProblemCollectDto.cs" />
+    <Compile Include="Models\SelUserInfoAnswerRecordDto.cs" />
     <Compile Include="Models\SlQuestionVM.cs" />
     <Compile Include="Models\UpdateUserInfoVM.cs" />
     <Compile Include="Models\UploadImageVM.cs" />

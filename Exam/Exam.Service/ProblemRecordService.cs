@@ -84,5 +84,13 @@ namespace Exam.Service
         {
             return this._ProblemRecordBiz.GetAll();
         }
+
+        /// <summary>
+        /// 根据记录id获取测试过的题目
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId) {
+            return this._ProblemRecordBiz.GetForUserInfoRecordId(userInfoAnswerRecordId);
+        }
     }
 }

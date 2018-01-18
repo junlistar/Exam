@@ -27,6 +27,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.ErrorAnswer);
             this.Property(m => m.CTime);
             this.Property(m => m.UTime);
+            HasRequired(m => m.ProblemCategory);
+            HasMany(m => m.AnswerRecordList).WithRequired(n => n.ProblemRecord);
         }
     }
 }
