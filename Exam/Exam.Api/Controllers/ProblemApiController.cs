@@ -47,7 +47,7 @@ namespace Exam.Api.Controllers
         /// <returns></returns>
         public IHttpActionResult GetchapterList()
         {
-            return Json(new { Success = true, Msg = "OK", Data = belongService.GetAll() });
+            return Json(new { Success = true, Msg = "OK", Data = chapterService.GetAll() });
         }
 
         /// <summary>
