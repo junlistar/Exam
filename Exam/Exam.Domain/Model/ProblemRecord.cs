@@ -51,6 +51,8 @@ namespace Exam.Domain.Model
         /// </summary>
         public virtual DateTime UTime { get; set; }
 
+        public virtual string Analysis { get; set; }
+
 
         /// <summary>
         /// 问题记录表id

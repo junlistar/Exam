@@ -71,6 +71,7 @@ namespace Exam.Api.Controllers
                     problem.Title = result.Title;
                     problem.ProblemCategoryId = result.ProblemCategoryId;
                     problem.ProblemCategory = result.ProblemCategory;
+                    problem.Analysis = result.Analysis;
 
                     List<AnswerVM> childList = new List<AnswerVM>();
                     foreach (var item in result.AnswerList)
@@ -148,7 +149,8 @@ namespace Exam.Api.Controllers
                         ErrorAnswer = item.AnswerIds,
                         ProblemCategoryId = problem.ProblemCategoryId,
                         ProblemId = item.ProblemId,
-                        UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId
+                        UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
+                        Analysis= problem.Analysis
                     });
 
                     foreach (var itemChild in item.AnswerRecordList)
@@ -204,6 +206,7 @@ namespace Exam.Api.Controllers
                 problem.Title = result.Title;
                 problem.ProblemCategoryId = result.ProblemCategoryId;
                 problem.ProblemCategory = result.ProblemCategory;
+                problem.Analysis = result.Analysis;
 
                 List<AnswerRecordVM> childList = new List<AnswerRecordVM>();
                 foreach (var item in result.AnswerRecordList)

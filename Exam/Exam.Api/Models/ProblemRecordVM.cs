@@ -11,6 +11,8 @@ namespace Exam.Api.Models
         public int ProblemRecordId { get; set; }
         public string Title { get; set; }
         public int ProblemCategoryId { get; set; }
+
+        public string Analysis { get; set; }
         public ProblemCategory ProblemCategory { get; set; }
         public List<AnswerRecordVM> AnswerRecordList { get; set; }
     }
