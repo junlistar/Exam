@@ -60,5 +60,11 @@ namespace Exam.IService
         /// <returns></returns>
         List<ProblemCollect> GetProblemCollectList(int userInfoId, int pageNum, int pageSize, out int totalCount);
 
+        /// <summary>
+        /// 是否收藏此题目
+        /// </summary> 
+        /// <returns></returns>
+        ProblemCollect IsProblemCollect(int userInfoId, int problemId);
+
     }
 }

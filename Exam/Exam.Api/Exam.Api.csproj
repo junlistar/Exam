@@ -249,6 +249,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\CacheHelper.cs" />
     <Compile Include="Common\RandomHelper.cs" />
+    <Compile Include="Controllers\AdvertisementApiController.cs" />
+    <Compile Include="Controllers\LecturerApiController.cs" />
     <Compile Include="Controllers\NewsApiController.cs" />
     <Compile Include="Controllers\NotificationApiController.cs" />
     <Compile Include="Controllers\ProblemApiController.cs" />
@@ -277,7 +279,9 @@
     <Compile Include="Models\QuestionVM.cs" />
     <Compile Include="Models\ReplyVM.cs" />
     <Compile Include="Models\ResultJson.cs" />
+    <Compile Include="Models\SelAdvertisementDto.cs" />
     <Compile Include="Models\SelctProblemVM.cs" />
+    <Compile Include="Models\SelLecturerDto.cs" />
     <Compile Include="Models\SelNotificationDto.cs" />
     <Compile Include="Models\SelProblemCollectDto.cs" />
     <Compile Include="Models\SelUserInfoAnswerRecordDto.cs" />

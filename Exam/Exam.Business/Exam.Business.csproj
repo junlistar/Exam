@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advertisement\AdvertisementBusiness.cs" />
+    <Compile Include="Advertisement\IAdvertisementBusiness.cs" />
     <Compile Include="AnswerRecord\AnswerRecordBusiness.cs" />
     <Compile Include="AnswerRecord\IAnswerRecordBusiness.cs" />
     <Compile Include="Grade\IGradeBusiness.cs" />

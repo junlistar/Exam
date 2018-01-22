@@ -570,6 +570,30 @@
             <param name="codeCount">随机数长度</param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.AdvertisementApiController">
+            <summary>
+            广告
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.AdvertisementApiController.GetAdvertisementList(Exam.Api.Models.SelAdvertisementDto)">
+            <summary>
+            根据分类获取广告
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Exam.Api.Controllers.LecturerApiController">
+            <summary>
+            讲师
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.LecturerApiController.GetLecturerList(Exam.Api.Models.SelLecturerDto)">
+            <summary>
+            讲师列表
+            </summary>
+            <param name="selLecturerDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.NewsApiController">
             <summary>
             资讯模块
@@ -651,11 +675,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Exam.Api.Controllers.ProblemApiController.GetProblemRecord(System.Int32)">
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetProblemRecord(System.Int32,System.Int32)">
             <summary>
             根据答题记录id获取答题
             </summary>
             <param name="UserInfoAnswerRecordId"></param>
+            <param name="UserInfoId"></param>
             <returns></returns>
         </member>
         <member name="T:Exam.Api.Controllers.ProblemCollectApiController">
@@ -860,6 +885,11 @@
             是否热门
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.NewsVM.IsTop">
+            <summary>
+            是否置顶
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.PageDto">
             <summary>
             分布查询
@@ -943,6 +973,11 @@
         <member name="P:Exam.Api.Models.SelctProblemVM.ChapterId">
             <summary>
             题目章节id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelctProblemVM.UserInfoId">
+            <summary>
+            用户id
             </summary>
         </member>
         <member name="P:Exam.Api.Models.SelNotificationDto.UserInfoId">

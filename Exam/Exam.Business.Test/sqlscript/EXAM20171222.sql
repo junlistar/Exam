@@ -254,3 +254,18 @@ create table [Notification]
 	utime datetime default(getdate()),	--修改时间
 	
 )
+
+
+
+--广告表
+create table Advertisement
+(
+	AdvertisementId int identity(1000,1),   --编号
+	UserInfoId int,						    --用户id
+	Title nvarchar(500),					--标题
+	TypeId int,								--广告类型
+	ImageInfoId	int,						--广告图片
+	CTime datetime default(getdate()),		--创建时间
+	UTime datetime default(getdate()),		--修改时间
+	
+)

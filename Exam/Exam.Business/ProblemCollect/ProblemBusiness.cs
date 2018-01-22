@@ -107,6 +107,18 @@ namespace Exam.Business
             return this._repoProblemCollect.Table.Where(where).OrderBy(p => p.ProblemCollectId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
         }
 
+        /// <summary>
+        /// 是否收藏此题目
+        /// </summary> 
+        /// <returns></returns>
+        public ProblemCollect IsProblemCollect(int userInfoId, int problemId)
+        {
+            var where = PredicateBuilder.True<ProblemCollect>();
+            where = where.And(m => m.UserInfoId == userInfoId&& m.ProblemId == problemId);
+            return this._repoProblemCollect.Table.Where(where).FirstOrDefault();
+        }
+        //public ProblemCollect 
+
     }
 }
 

@@ -16,5 +16,11 @@ namespace Exam.Api.Models
         /// 是否热门
         /// </summary>
         public int IsHot { get; set; }
+
+        /// <summary>
+        /// 是否置顶
+        /// </summary>
+
+        public int IsTop { get; set; }
     }
 }

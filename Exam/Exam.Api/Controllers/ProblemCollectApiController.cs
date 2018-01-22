@@ -25,15 +25,25 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public IHttpActionResult AddProblemCollect(AddProblemCollectDto addProblemCollectDto)
         {
+            //var m= _problemCollectService.
 
-            var model= _problemCollectService.Insert(new Domain.Model.ProblemCollect
+            var m = _problemCollectService.IsProblemCollect(addProblemCollectDto.UserInfoId, addProblemCollectDto.ProblemId);
+
+            if (m == null)
             {
-                ProblemId = addProblemCollectDto.ProblemId,
-                UserInfoId = addProblemCollectDto.UserInfoId,
-                CTime = DateTime.Now,
-                UTime = DateTime.Now
-            });
-            return Json(new { Success = true, Msg = "OK", Data = model });
+                var model = _problemCollectService.Insert(new Domain.Model.ProblemCollect
+                {
+                    ProblemId = addProblemCollectDto.ProblemId,
+                    UserInfoId = addProblemCollectDto.UserInfoId,
+                    CTime = DateTime.Now,
+                    UTime = DateTime.Now
+                });
+                return Json(new { Success = true, Msg = "OK", Data = model });
+            }
+            else {
+                return Json(new { Success = false, Msg = "您已收藏过此题目了", Data = "" });
+            }
+            
         }
 
         /// <summary>
