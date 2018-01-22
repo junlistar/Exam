@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam.Business;
 using Exam.Domain.Model;
 using Exam.IService;
 
@@ -13,9 +14,9 @@ namespace Exam.Service
         /// <summary>
         /// The user biz
         /// </summary>
-        private IUserInfoAnswerRecordService _userInfoAnswerRecordService;
+        private IUserInfoAnswerRecordBusiness _userInfoAnswerRecordService;
 
-        public UserInfoAnswerRecordService(IUserInfoAnswerRecordService userInfoAnswerRecordService)
+        public UserInfoAnswerRecordService(IUserInfoAnswerRecordBusiness userInfoAnswerRecordService)
         {
             _userInfoAnswerRecordService = userInfoAnswerRecordService;
         }
@@ -57,16 +58,7 @@ namespace Exam.Service
             this._userInfoAnswerRecordService.Delete(model);
         }
 
-        /// <summary>
-        /// 判断是否名称存在
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public bool IsExistName(string name, int type)
-        {
-            return this._userInfoAnswerRecordService.IsExistName(name, type);
-        }
+        
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>

@@ -22,6 +22,11 @@ namespace Exam.Domain.Model
         public virtual DateTime UTime { get; set; }
 
         /// <summary>
+        /// 解析
+        /// </summary>
+        public virtual string Analysis { get; set; }
+
+        /// <summary>
         /// 分数
         /// </summary>
         public virtual int Score { get; set; }

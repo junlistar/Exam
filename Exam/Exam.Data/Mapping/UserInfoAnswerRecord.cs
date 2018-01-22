@@ -12,7 +12,7 @@ namespace Exam.Data.Mapping
     /// <summary>
     /// 用户答题记录表
     /// </summary>
-    public class UserInfoAnswerRecordMap : EntityTypeConfiguration<UserInfoAnswerRecord>
+    public class UserInfoAnswerRecordMap : EntityTypeConfiguration<Domain.Model.UserInfoAnswerRecord>
     {
         public UserInfoAnswerRecordMap()
         {

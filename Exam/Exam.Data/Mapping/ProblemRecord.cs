@@ -12,7 +12,7 @@ namespace Exam.Data.Mapping
     /// <summary>
     /// 问题记录表
     /// </summary>
-    public class ProblemRecordMap : EntityTypeConfiguration<ProblemRecord>
+    public class ProblemRecordMap : EntityTypeConfiguration<Domain.Model.ProblemRecord>
     {
         public ProblemRecordMap()
         {
@@ -27,6 +27,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.ErrorAnswer);
             this.Property(m => m.CTime);
             this.Property(m => m.UTime);
+            this.Property(m => m.Analysis);
             HasRequired(m => m.ProblemCategory);
             HasMany(m => m.AnswerRecordList).WithRequired(n => n.ProblemRecord);
         }

@@ -17,21 +17,20 @@ namespace Exam.Api.Controllers
     public class ProblemApiController : ApiController
     {
         //方式2
+
+        private readonly IUserInfoAnswerRecordService userInfoAnswerRecordService = EngineContext.Current.Resolve<IUserInfoAnswerRecordService>();
+
         private readonly IProblemService problemService = EngineContext.Current.Resolve<IProblemService>();
 
         private readonly IBelongService belongService = EngineContext.Current.Resolve<IBelongService>();
 
         private readonly IChapterService chapterService = EngineContext.Current.Resolve<IChapterService>();
 
-        private readonly IUserInfoAnswerRecordService userInfoAnswerRecordService = EngineContext.Current.Resolve<IUserInfoAnswerRecordService>();
+       
 
         private readonly IProblemRecordService problemRecordService = EngineContext.Current.Resolve<IProblemRecordService>();
 
         private readonly IAnswerRecordService answerRecordService = EngineContext.Current.Resolve<IAnswerRecordService>();
-
-        public ProblemApiController() { 
-        
-        }
 
         /// <summary>
         /// 获取分类列表
@@ -48,7 +47,7 @@ namespace Exam.Api.Controllers
         /// <returns></returns>
         public IHttpActionResult GetchapterList()
         {
-            return Json(new { Success = true, Msg = "OK", Data = belongService.GetAll() });
+            return Json(new { Success = true, Msg = "OK", Data = chapterService.GetAll() });
         }
 
         /// <summary>
@@ -72,6 +71,7 @@ namespace Exam.Api.Controllers
                     problem.Title = result.Title;
                     problem.ProblemCategoryId = result.ProblemCategoryId;
                     problem.ProblemCategory = result.ProblemCategory;
+                    problem.Analysis = result.Analysis;
 
                     List<AnswerVM> childList = new List<AnswerVM>();
                     foreach (var item in result.AnswerList)
@@ -150,6 +150,7 @@ namespace Exam.Api.Controllers
                         ProblemCategoryId = problem.ProblemCategoryId,
                         ProblemId = item.ProblemId,
                         UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
+                        Analysis= problem.Analysis
                     });
 
                     foreach (var itemChild in item.AnswerRecordList)
@@ -176,7 +177,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetUserInfoAnswerRecord(SelUserInfoAnswerRecordDto selUserInfoAnswerRecordDto)
+        public IHttpActionResult GetUserInfoAnswerRecord([FromUri]SelUserInfoAnswerRecordDto selUserInfoAnswerRecordDto)
         {
             ResultJson<UserInfoAnswerRecord> list = new ResultJson<UserInfoAnswerRecord>();
             int count = 0;
@@ -192,6 +193,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="UserInfoAnswerRecordId"></param>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0)
         {
             var problemRecordList = problemRecordService.GetForUserInfoRecordId(UserInfoAnswerRecordId);
@@ -204,6 +206,7 @@ namespace Exam.Api.Controllers
                 problem.Title = result.Title;
                 problem.ProblemCategoryId = result.ProblemCategoryId;
                 problem.ProblemCategory = result.ProblemCategory;
+                problem.Analysis = result.Analysis;
 
                 List<AnswerRecordVM> childList = new List<AnswerRecordVM>();
                 foreach (var item in result.AnswerRecordList)
