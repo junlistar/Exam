@@ -920,7 +920,7 @@
             用户id
             </summary>
         </member>
-        <member name="P:Exam.Api.Models.DelProblemCollectDto.ProblemCollectId">
+        <member name="P:Exam.Api.Models.DelProblemCollectDto.ProblemId">
             <summary>
             问题id
             </summary>

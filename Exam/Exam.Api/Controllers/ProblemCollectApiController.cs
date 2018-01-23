@@ -53,12 +53,17 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public IHttpActionResult DelProblemCollect(DelProblemCollectDto delProblemCollectDto)
         {
-            _problemCollectService.Delete(new Domain.Model.ProblemCollect
+
+            var model= _problemCollectService.IsProblemCollect(delProblemCollectDto.UserInfoId, delProblemCollectDto.ProblemId);
+            if (model != null)
             {
-                ProblemCollectId = delProblemCollectDto.ProblemCollectId,
-                UserInfoId = delProblemCollectDto.UserInfoId
-            });
-            return Json(new { Success = true, Msg = "OK", Data = "" });
+                _problemCollectService.Delete(model);
+                return Json(new { Success = true, Msg = "OK", Data = "" });
+            }
+            else {
+                return Json(new { Success = false, Msg = "您还没有收藏此题目", Data = "" });
+            }
+            
         }
 
         /// <summary>
