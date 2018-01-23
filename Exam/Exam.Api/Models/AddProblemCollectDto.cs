@@ -27,7 +27,7 @@ namespace Exam.Api.Models
         /// <summary>
         /// 问题id
         /// </summary>
-        public int ProblemCollectId { get; set; }
+        public int ProblemId { get; set; }
     }
 
 }

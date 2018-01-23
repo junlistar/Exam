@@ -95,5 +95,13 @@ namespace Exam.Service
         public List<ProblemCollect> GetProblemCollectList(int userInfoId, int pageNum, int pageSize, out int totalCount) {
             return this._ProblemCollectBiz.GetProblemCollectList(userInfoId, pageNum, pageSize,out totalCount);
         }
+
+        /// <summary>
+        /// 是否收藏此题目
+        /// </summary> 
+        /// <returns></returns>
+        public ProblemCollect IsProblemCollect(int userInfoId, int problemId) {
+            return this._ProblemCollectBiz.IsProblemCollect(userInfoId,problemId);
+        }
     }
 }

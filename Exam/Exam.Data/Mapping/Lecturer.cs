@@ -26,8 +26,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.LecturerId);
             this.Property(m => m.Name);
             this.Property(m => m.Position);
-            this.Property(m => m.Sort); 
-             
+            this.Property(m => m.Sort);
+            HasRequired(t => t.ImageInfo);
         }
     }
 }
