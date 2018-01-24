@@ -23,7 +23,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="selLecturerDto"></param>
         /// <returns></returns>
-        public IHttpActionResult GetLecturerList(SelLecturerDto selLecturerDto)
+        public IHttpActionResult GetLecturerList([FromUri]SelLecturerDto selLecturerDto)
         {
 
             ResultJson<Lecturer> list = new ResultJson<Lecturer>();
