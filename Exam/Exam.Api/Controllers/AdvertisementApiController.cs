@@ -23,7 +23,7 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public IHttpActionResult GetAdvertisementList(SelAdvertisementDto dto)
+        public IHttpActionResult GetAdvertisementList([FromUri]SelAdvertisementDto dto)
         {
             ResultJson<Advertisement> list = new ResultJson<Advertisement>();
             int count = 0;
