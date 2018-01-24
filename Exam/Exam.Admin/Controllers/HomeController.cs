@@ -1,5 +1,6 @@
 ﻿using Exam.Admin.Common;
 using Exam.Core.Utils;
+using Exam.Domain.Model;
 using Exam.IService;
 using System;
 using System.Collections.Generic;
@@ -14,20 +15,32 @@ namespace Exam.Admin.Controllers
 
         IUserInfoService _userService;
         ISysMenuService _menuService;
+        ISysGroupMenuService _groupmenuService;
 
 
-        public HomeController(IUserInfoService userService, ISysMenuService menuService)
+        public HomeController(IUserInfoService userService, ISysMenuService menuService, ISysGroupMenuService groupmenuService)
         {
             _userService = userService;
             _menuService = menuService;
+            _groupmenuService = groupmenuService;
         }
 
 
         public ActionResult Index()
         {
-            _menuService.GetManagerList()
-
-            return View();
+            // var menulist = _menuService.GetAll().ToList().Select(p => p.SysMenuId);
+            var mylist = from p in _groupmenuService.GetAll().Where(p => p.SysGroupId == Loginer.GroupId)
+                         select new SysMenu
+                         {
+                             SysMenuId = p.SysMenu.SysMenuId,
+                             Icon = p.SysMenu.Icon,
+                             Fid = p.SysMenu.Fid,
+                             Name = p.SysMenu.Name,
+                             IsEnable = p.SysMenu.IsEnable,
+                             Url = p.SysMenu.Url
+                         };
+              
+            return View(mylist.ToList());
         }
 
         public ActionResult About()

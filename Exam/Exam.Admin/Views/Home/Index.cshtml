@@ -1,4 +1,6 @@
-﻿@using Exam.Admin.Common
+﻿@using Exam.Admin.Common;
+@using Exam.Domain.Model;
+@model List<SysMenu>
 @{
     ViewBag.Title = "九润-后台管理系统";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,7 +32,24 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var a in Model.Where(p => p.Fid ==0))
+                        {
+                            <li>
+                                <a href="#">
+                                    <i class="@(a.Icon ?? "")"></i><span class="nav-label">@(a.Name ?? "")</span> <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    @foreach (var b in Model.Where(p=>p.Fid==a.SysMenuId))
+                                    {
+                                        <li><a class="J_menuItem" href="@(b.Url??"")" data-index="0">@(b.Name ?? "")</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                    @*<li>
                         <a href="#">
                             <i class="fa fa-cog"></i>
                             <span class="nav-label">资讯管理</span>
@@ -90,7 +109,7 @@
                                 <a class="J_menuItem" href="/Question/List" data-index="0">问答管理</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>*@
 
                 </ul>
             </div>

@@ -22,7 +22,9 @@ namespace Exam.Data.Mapping
             this.Property(m => m.SysGroupMenuId);
             this.Property(m => m.CTime);
             this.Property(m => m.UTime);
-             
+
+
+            HasRequired(m => m.SysMenu); 
         }
     }
 }
