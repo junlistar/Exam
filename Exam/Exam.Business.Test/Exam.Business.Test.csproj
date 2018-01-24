@@ -101,6 +101,10 @@
       <Project>{d1823cc1-3c81-47bd-962f-9cc00574fdcf}</Project>
       <Name>Exam.IService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Exam.Service\Exam.Service.csproj">
+      <Project>{F4558E2D-1AB0-4E96-BD4B-D296D168DF05}</Project>
+      <Name>Exam.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -4,6 +4,7 @@ using Exam.Core.Data;
 using Exam.Core.Infrastructure.DependencyManagement;
 using Exam.Data;
 using Exam.Data.Repositories;
+using Exam.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,9 @@ namespace Exam.Business.Test
             #endregion
 
             builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IUserInfoBusiness))).AsImplementedInterfaces();
-
+            builder.RegisterAssemblyTypes(typeof(UserInfoService).Assembly)
+              .AsImplementedInterfaces()
+              .InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
         }
         public int Order

@@ -7,6 +7,7 @@ using System.Text;
 using System.Collections;
 using System.IO;
 using System.Web;
+using Exam.IService;
 
 namespace Exam.Business.Test
 {
@@ -15,6 +16,17 @@ namespace Exam.Business.Test
     {
         private readonly IUserInfoBusiness _userInfo = EngineContext.Current.Resolve<IUserInfoBusiness>();
         private readonly IQuestionBusiness _questionInfo = EngineContext.Current.Resolve<IQuestionBusiness>();
+
+        private readonly IGrabTopicService _grabTopic = EngineContext.Current.Resolve<IGrabTopicService>();
+        [TestMethod]
+        public void TestGrab() {
+            var bl = _grabTopic.StartGrab("注会");
+            if (bl)
+            {
+                string msg = "抓取程序已启动，请稍后查看内容库！";
+            }
+        }
+
         [TestMethod]
         public void AddUserTest()
         {

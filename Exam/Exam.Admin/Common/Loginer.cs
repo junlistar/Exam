@@ -22,6 +22,10 @@ namespace Exam.Admin.Common
         /// 头像图片
         /// </summary>
         public const string ACCOUNT_IMG = "AccountImg";
+        /// <summary>
+        /// 用户组ID
+        /// </summary>
+        public const string GROUP_ID = "GroupId";
     }
 
     /// <summary>
@@ -75,6 +79,21 @@ namespace Exam.Admin.Common
         }
 
         /// <summary>
+        /// 用户组ID
+        /// </summary>
+        public static int GroupId
+        {
+            get
+            {
+                if (SessionHelper.Get(LoginerConst.GROUP_ID) == null)
+                {
+                    return 0;
+                }
+                return Convert.ToInt32(SessionHelper.GetSession(LoginerConst.GROUP_ID));
+            }
+        }
+
+        /// <summary>
         /// 删除账号缓存
         /// </summary>
         public static void DelAccountCache()
@@ -82,6 +101,7 @@ namespace Exam.Admin.Common
             SessionHelper.Del(LoginerConst.ACCOUNT);
             SessionHelper.Del(LoginerConst.ACCOUNT_ID);
             SessionHelper.Del(LoginerConst.ACCOUNT_IMG);
+            SessionHelper.Del(LoginerConst.GROUP_ID);
         }
     }
 }
