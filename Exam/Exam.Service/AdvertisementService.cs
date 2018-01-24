@@ -1,24 +1,24 @@
-﻿using Exam.Business;
-using Exam.IService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam.Business;
 using Exam.Domain.Model;
+using Exam.IService;
 
 namespace Exam.Service
 {
-    public class NewsInfoService : INewsInfoService
+    public class AdvertisementService : IAdvertisementService
     {
         /// <summary>
         /// The user biz
         /// </summary>
-        private INewsInfoBusiness _NewsInfoBiz;
+        private IAdvertisementBusiness _AdvertisementBiz;
 
-        public NewsInfoService(INewsInfoBusiness NewsInfoBiz)
+        public AdvertisementService(IAdvertisementBusiness AdvertisementBiz)
         {
-            _NewsInfoBiz = NewsInfoBiz;
+            _AdvertisementBiz = AdvertisementBiz;
         }
 
         /// <summary>
@@ -26,36 +26,36 @@ namespace Exam.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public NewsInfo GetById(int id)
+        public Advertisement GetById(int id)
         {
-            return this._NewsInfoBiz.GetById(id);
+            return this._AdvertisementBiz.GetById(id);
         }
         /// <summary>
         /// 添加实体
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public NewsInfo Insert(NewsInfo model)
+        public Advertisement Insert(Advertisement model)
         {
-            return this._NewsInfoBiz.Insert(model);
+            return this._AdvertisementBiz.Insert(model);
         }
         /// <summary>
         /// 修改实体
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public void Update(NewsInfo model)
+        public void Update(Advertisement model)
         {
-            this._NewsInfoBiz.Update(model);
+            this._AdvertisementBiz.Update(model);
         }
         /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public void Delete(NewsInfo model)
+        public void Delete(Advertisement model)
         {
-            this._NewsInfoBiz.Delete(model);
+            this._AdvertisementBiz.Delete(model);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Exam.Service
         /// <returns></returns>
         public bool IsExistName(string name)
         {
-            return this._NewsInfoBiz.IsExistName(name);
+            return this._AdvertisementBiz.IsExistName(name);
         }
 
         /// <summary>
@@ -73,26 +73,17 @@ namespace Exam.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<NewsInfo> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<Advertisement> GetManagerList(string name, int typeId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._NewsInfoBiz.GetManagerList(name, pageNum, pageSize, out totalCount);
+            return this._AdvertisementBiz.GetManagerList(name,typeId,pageNum, pageSize, out totalCount);
         }
         /// <summary>
         /// 获取所有
         /// </summary> 
         /// <returns></returns>
-        public List<NewsInfo> GetAll()
+        public List<Advertisement> GetAll()
         {
-            return this._NewsInfoBiz.GetAll();
-        }
-
-        /// <summary>
-        /// 消息列表
-        /// </summary> 
-        /// <returns></returns>
-        public List<NewsInfo> GetNewsInfoList(string name, int newsCategoryId, int isHot,int isTop, int pageNum, int pageSize, out int totalCount)
-        {
-            return this._NewsInfoBiz.GetNewsInfoList(name, newsCategoryId, isHot,isTop, pageNum, pageSize, out totalCount);
+            return this._AdvertisementBiz.GetAll();
         }
     }
 }

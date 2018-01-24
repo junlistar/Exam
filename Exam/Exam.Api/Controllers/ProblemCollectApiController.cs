@@ -25,15 +25,25 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public IHttpActionResult AddProblemCollect(AddProblemCollectDto addProblemCollectDto)
         {
+            //var m= _problemCollectService.
 
-            var model= _problemCollectService.Insert(new Domain.Model.ProblemCollect
+            var m = _problemCollectService.IsProblemCollect(addProblemCollectDto.UserInfoId, addProblemCollectDto.ProblemId);
+
+            if (m == null)
             {
-                ProblemId = addProblemCollectDto.ProblemId,
-                UserInfoId = addProblemCollectDto.UserInfoId,
-                CTime = DateTime.Now,
-                UTime = DateTime.Now
-            });
-            return Json(new { Success = true, Msg = "OK", Data = model });
+                var model = _problemCollectService.Insert(new Domain.Model.ProblemCollect
+                {
+                    ProblemId = addProblemCollectDto.ProblemId,
+                    UserInfoId = addProblemCollectDto.UserInfoId,
+                    CTime = DateTime.Now,
+                    UTime = DateTime.Now
+                });
+                return Json(new { Success = true, Msg = "OK", Data = model });
+            }
+            else {
+                return Json(new { Success = false, Msg = "您已收藏过此题目了", Data = "" });
+            }
+            
         }
 
         /// <summary>
@@ -43,12 +53,17 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public IHttpActionResult DelProblemCollect(DelProblemCollectDto delProblemCollectDto)
         {
-            _problemCollectService.Delete(new Domain.Model.ProblemCollect
+
+            var model= _problemCollectService.IsProblemCollect(delProblemCollectDto.UserInfoId, delProblemCollectDto.ProblemId);
+            if (model != null)
             {
-                ProblemCollectId = delProblemCollectDto.ProblemCollectId,
-                UserInfoId = delProblemCollectDto.UserInfoId
-            });
-            return Json(new { Success = true, Msg = "OK", Data = "" });
+                _problemCollectService.Delete(model);
+                return Json(new { Success = true, Msg = "OK", Data = "" });
+            }
+            else {
+                return Json(new { Success = false, Msg = "您还没有收藏此题目", Data = "" });
+            }
+            
         }
 
         /// <summary>

@@ -16,6 +16,8 @@ namespace Exam.Api.Models
 
         public string Analysis { get; set; }
         public int ProblemCategoryId { get; set; }
+
+        public int IsCollect { get; set; }
         public ProblemCategory ProblemCategory { get; set; }
         public List<AnswerVM> AnswerList { get; set; }
     }

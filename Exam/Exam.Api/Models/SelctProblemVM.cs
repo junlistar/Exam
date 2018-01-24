@@ -19,5 +19,11 @@ namespace Exam.Api.Models
         /// 题目章节id
         /// </summary>
         public int ChapterId { get; set; }
+
+        /// <summary>
+        /// 用户id
+        /// </summary>
+
+        public int UserInfoId { get; set; }
     }
 }

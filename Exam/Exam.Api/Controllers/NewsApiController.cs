@@ -42,7 +42,7 @@ namespace Exam.Api.Controllers
         {
             ResultJson<NewsInfo> list = new ResultJson<NewsInfo>();
             int count = 0;
-            list.Data = _newsInfoService.GetNewsInfoList("", newsVM.NewsCategoryId, newsVM.IsHot,newsVM.PageIndex, newsVM.PageSize, out count);
+            list.Data = _newsInfoService.GetNewsInfoList("", newsVM.NewsCategoryId, newsVM.IsHot,newsVM.IsTop, newsVM.PageIndex, newsVM.PageSize, out count);
             list.RCount = count;
             list.PCount = count % newsVM.PageSize == 0 ? (count / newsVM.PageSize) : (count / newsVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 

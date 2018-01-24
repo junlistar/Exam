@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAdvertisementService.cs" />
     <Compile Include="IAnswerRecordService.cs" />
     <Compile Include="IChapterService.cs" />
     <Compile Include="IBelongService.cs" />
     <Compile Include="IAnswerService.cs" />
+    <Compile Include="IGrabTopicService.cs" />
     <Compile Include="INotificationService.cs" />
     <Compile Include="IProblemCategoryService.cs" />
     <Compile Include="IProblemRecordService.cs" />

@@ -27,5 +27,7 @@ namespace Exam.Domain.Model
         public virtual DateTime CTime { get; set; } 
         public virtual DateTime UTime { get; set; }
 
+        public virtual ImageInfo ImageInfo { get; set; }
+
     }
 }

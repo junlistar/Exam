@@ -32,6 +32,8 @@ namespace Exam.Api.Controllers
 
         private readonly IAnswerRecordService answerRecordService = EngineContext.Current.Resolve<IAnswerRecordService>();
 
+        private readonly IProblemCollectService problemCollectService = EngineContext.Current.Resolve<IProblemCollectService>();
+
         /// <summary>
         /// 获取分类列表
         /// </summary>
@@ -60,19 +62,32 @@ namespace Exam.Api.Controllers
         {
             if (SelctProblemVM != null)
             {
+                int count = 0;
+                var problemCollectList = problemCollectService.GetProblemCollectList(SelctProblemVM.UserInfoId, 1, 10000, out count);
                 //ProblemVM
                 var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId);
 
                 List<ProblemVM> problemVMlist = new List<ProblemVM>();
                 foreach (var result in problemList)
                 {
+                    int IsCollect = 0;
+                    if (problemCollectList != null && problemCollectList.Count > 0)
+                    {
+                        var problemCollect = (from a in problemCollectList
+                                             where a.ProblemId == result.ProblemId
+                                             select a).FirstOrDefault();
+                        if (problemCollect != null)
+                        {
+                            IsCollect = 1;
+                        }
+                    }
                     ProblemVM problem = new ProblemVM();
                     problem.ProblemId = result.ProblemId;
                     problem.Title = result.Title;
                     problem.ProblemCategoryId = result.ProblemCategoryId;
                     problem.ProblemCategory = result.ProblemCategory;
                     problem.Analysis = result.Analysis;
-
+                    problem.IsCollect = IsCollect;
                     List<AnswerVM> childList = new List<AnswerVM>();
                     foreach (var item in result.AnswerList)
                     {
@@ -192,21 +207,37 @@ namespace Exam.Api.Controllers
         /// 根据答题记录id获取答题
         /// </summary>
         /// <param name="UserInfoAnswerRecordId"></param>
+        /// <param name="UserInfoId"></param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0)
+        public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0,int UserInfoId=0)
         {
             var problemRecordList = problemRecordService.GetForUserInfoRecordId(UserInfoAnswerRecordId);
+
+            int count = 0;
+            var problemCollectList = problemCollectService.GetProblemCollectList(UserInfoId, 1, 10000, out count);
 
             List<ProblemRecordVM> problemRecordVMlist = new List<ProblemRecordVM>();
             foreach (var result in problemRecordList)
             {
+                int IsCollect = 0;
+                if (problemCollectList != null && problemCollectList.Count > 0)
+                {
+                    var problemCollect = (from a in problemCollectList
+                                          where a.ProblemId == result.ProblemId
+                                          select a).FirstOrDefault();
+                    if (problemCollect != null)
+                    {
+                        IsCollect = 1;
+                    }
+                }
                 ProblemRecordVM problem = new ProblemRecordVM();
                 problem.ProblemRecordId = result.ProblemRecordId;
                 problem.Title = result.Title;
                 problem.ProblemCategoryId = result.ProblemCategoryId;
                 problem.ProblemCategory = result.ProblemCategory;
                 problem.Analysis = result.Analysis;
+                problem.IsCollect = IsCollect;
 
                 List<AnswerRecordVM> childList = new List<AnswerRecordVM>();
                 foreach (var item in result.AnswerRecordList)
