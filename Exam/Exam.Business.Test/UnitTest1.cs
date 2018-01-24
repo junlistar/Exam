@@ -20,7 +20,9 @@ namespace Exam.Business.Test
         private readonly IGrabTopicService _grabTopic = EngineContext.Current.Resolve<IGrabTopicService>();
         [TestMethod]
         public void TestGrab() {
-            var bl = _grabTopic.StartGrab("注会");
+            //var bl = _grabTopic.StartGrab("注会");
+            var bl = _grabTopic.StartGrab("中级");
+
             if (bl)
             {
                 string msg = "抓取程序已启动，请稍后查看内容库！";

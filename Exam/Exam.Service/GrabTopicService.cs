@@ -16,9 +16,16 @@ namespace Exam.Service
     public class GrabTopicService : IGrabTopicService
     {
         public static CookieContainer cc = new CookieContainer();//维持cookie或Session
+        /// <summary>
+        /// 注会Cookie
+        /// </summary>
+        public static string zkCookie = "";
+        /// <summary>
+        /// 中级cookie
+        /// </summary>
+        public static string zjCookie = "";
 
-        public static string cookie = "";
-        public static string httpHead = "http://zk.0373kj.com";
+        //public static string httpHead = "";
         /// <summary>
         /// 抓取题库服务
         /// </summary>
@@ -31,7 +38,13 @@ namespace Exam.Service
                 case "注会":
                     //Task.Run(() =>
                     //{
-                    CPA();
+                    CPA("http://zk.0373kj.com");
+                    //});
+                    break;
+                case "中级":
+                    //Task.Run(() =>
+                    //{
+                    ZJ("http://zj.0373kj.com");
                     //});
                     break;
                 default:
@@ -39,18 +52,31 @@ namespace Exam.Service
             }
             return true;
         }
+
+        public void ZJ(string httpHead)
+        {
+            //获取token
+            var url1 = httpHead + "/Account/UserLogin?Account=8368000";
+            //获取登录cookie
+            var url4 = httpHead + "/Account/UserLogin";
+            if (GetToken(url1, url4))
+            {
+                //
+            }
+        }
+
         /// <summary>
         /// 注会
         /// </summary>
-        public void CPA()
+        public void CPA(string httpHead)
         {
 
             //获取token
-            var url1 = httpHead+"/Account/UserLogin?Account=18707928905&WeiXinOpenId=";
+            var url1 = httpHead + "/Account/UserLogin?Account=18707928905&WeiXinOpenId=";
             //获取科目列表
             var url2 = httpHead + "/Subjects/Chapter.php?tid=0&t=" + DateTime.Now.ToString("yyyyMMddhhmmss");
             //获取分类详细题目
-            var url3 = httpHead + "/Topic/GetQuestionList?sctid={0}&pagesize=10&page=1";
+            var url3 = httpHead + "/Topic/GetQuestionList?sctid={0}&pagesize=1000&page=1";
             //获取登录cookie
             var url4 = httpHead + "/Account/UserLogin";
 
@@ -60,12 +86,21 @@ namespace Exam.Service
                 //获取科目列表
                 var subList = GetSubjectsList(url2).ToList();
                 //遍历科目列表，取得列表对应的
-                foreach (LinkAndTile item in subList)
+                for (int i = 0; i < subList.Count; i++)
                 {
-                    //DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds
-                    var str = GetHtml1(url5, "logoutnum=20; urltimestamp=2018120; LogonAccount=18707928905;");
-                    //pageindex=1&type=0&courseId =1&pagesize=10
-
+                    System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+                    long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
+                    url5 += "?_=" + t;
+                    var str = GetHtml(url5 + "&pageindex=1&type=0&courseId=" + i + 1 + "&pagesize=1000", "LogonAccount=18707928905;");
+                    //这里得到科目章节
+                    var model = JsonHelper.ParseFormJson<SectionVM>(str);
+                    foreach (SectionModel item in model.ds)
+                    {
+                        //这里得到章节里所有的题目
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "");
+                        //这里执行插入数据库的操作
+                        var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
+                    }
 
                 }
             }
@@ -106,93 +141,40 @@ namespace Exam.Service
 
             //获得Cookie 保存到Appliction中
             string cookieHeader = request.CookieContainer.GetCookieHeader(new Uri(url4));
-            cookie = cookieHeader;
+            if (url.Contains("zk.0373kj"))
+            {
+                zkCookie = cookieHeader;
+            }
+            else if (url.Contains("zj.0373kj"))
+            {
+                zjCookie = cookieHeader;
+            }
+            
             //HttpContext.Current.Application.Lock();
             //HttpContext.Current.Application["cookieHeader"] = cookieHeader;
             //HttpContext.Current.Application.UnLock();
 
             return true;
         }
-
-
-        public static string GetHtml(string url,string addCookie) {
-
-            //DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds
-            //var str = GetHtml(item.Link, "logoutnum=20; urltimestamp=2018120; LogonAccount=18707928905;");
-            //pageindex=1&type=0&courseId =1&pagesize=10
-            //http://zk.0373kj.com/Subjects/GetSectionList?_=1516768958691
-
-
-
-
+        /// <summary>
+        /// 获取连接的返回值
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="addCookie"></param>
+        /// <returns></returns>
+        public static string GetHtml(string url, string addCookie)
+        {
             HttpWebRequest request1 = (HttpWebRequest)WebRequest.Create(url);
-            //string cookhead = HttpContext.Current.Application["cookieHeader"].ToString();
-            string cookhead = cookie;
+            string cookhead = zkCookie;
             request1.Method = "GET";
             request1.Headers.Add("cookie:" + addCookie + cookhead);
             request1.KeepAlive = true;
             request1.AllowAutoRedirect = true;
-
             HttpWebResponse response1 = (HttpWebResponse)request1.GetResponse();
             Stream stream2 = response1.GetResponseStream();//获得回应的数据流
                                                            //将数据流转成 String
             return new StreamReader(stream2, System.Text.Encoding.UTF8).ReadToEnd();
         }
-
-        public static string GetHtml1(string url, string addCookie)
-        {
-
-            //DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds
-            //var str = GetHtml(item.Link, "logoutnum=20; urltimestamp=2018120; LogonAccount=18707928905;");
-            //pageindex=1&type=0&courseId =1&pagesize=10
-            //http://zk.0373kj.com/Subjects/GetSectionList?_=1516768958691
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
-            long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
-            url += "?_=" + t;
-            //formData用于保存提交的信息
-            string formData = "pageindex=1&type=0&courseId =1&pagesize=10";
-
-
-//        Accept: */*
-//Accept-Encoding:gzip, deflate
-//Accept-Language:zh-CN,zh;q=0.9
-//Content-Length:63
-//Content-Type:application/x-www-form-urlencoded
-//Cookie:ASP.NET_SessionId=32fttu3g21cgthsuh5bsholi; urltimestamp=20181; usertoken=da57c562c956a502409f3403f3feec872422415039
-//Host:zk.0373kj.com
-//Origin:http://zk.0373kj.com
-//Proxy-Connection:keep-alive
-//Referer:http://zk.0373kj.com/Subjects/List.php?scid=1&tid=0&t=201801241311
-//User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
-//X-Requested-With:XMLHttpRequest
-
-
-            //if (formData.Length > 0)
-            //    formData = formData.Substring(0, formData.Length - 1); //去除最后一个 '&'
-
-            //把提交的信息转码（post提交必须转码）
-            ASCIIEncoding encoding = new ASCIIEncoding();
-            byte[] data = encoding.GetBytes(formData);
-
-            HttpWebRequest request1 = (HttpWebRequest)WebRequest.Create(url);
-            //string cookhead = HttpContext.Current.Application["cookieHeader"].ToString();
-            string cookhead = cookie;
-            request1.Method = "POST";
-            request1.Accept = "*/*";
-            request1.ContentLength = data.Length;
-            request1.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
-            request1.Headers.Add("cookie:" + cookhead+ ";urltimestamp=20181");
-            request1.KeepAlive = true;
-            request1.AllowAutoRedirect = true;
-            Stream newStream = request1.GetRequestStream();
-            newStream.Write(data, 0, data.Length);//将请求的信息写入request
-            newStream.Close();
-            HttpWebResponse response1 = (HttpWebResponse)request1.GetResponse();
-            Stream stream2 = response1.GetResponseStream();//获得回应的数据流
-                                                           //将数据流转成 String
-            return new StreamReader(stream2, System.Text.Encoding.UTF8).ReadToEnd();
-        }
-
         /// <summary>
         /// 获取科目列表
         /// </summary>
@@ -200,12 +182,12 @@ namespace Exam.Service
         /// <returns></returns>
         public static IEnumerable<LinkAndTile> GetSubjectsList(string url)
         {
-            string result1 = GetHtml(url,"");
+            string result1 = GetHtml(url, "");
             var match = Regex.Matches(result1, @"<a href=.*?>([\s\S]*?)</a>");
             var subList = new List<LinkAndTile>();
             foreach (Match m in match)
             {
-                var link = httpHead + Regex.Match(m.Value, "href=.*?>").Value.Replace("href=\"", "")
+                var link = Regex.Match(m.Value, "href=.*?>").Value.Replace("href=\"", "")
                     .Replace("\">", "").Replace("/r", "").Replace("/n", "").Trim();
                 var title = HttpHelp.ClearHtml(m.Value);
                 subList.Add(new LinkAndTile()
@@ -216,7 +198,14 @@ namespace Exam.Service
             }
             return subList;
         }
-
+    }
+    /// <summary>
+    /// 题目列表
+    /// </summary>
+    public class TopicListVM
+    {
+        public List<TopicVM> ds { get; set; }
+        public List<Num> ds1 { get; set; }
     }
     /// <summary>
     /// 科目列表页面
@@ -225,5 +214,94 @@ namespace Exam.Service
     {
         public string Link { get; set; }
         public string Title { get; set; }
+    }
+    /// <summary>
+    /// 章节页面
+    /// </summary>
+    public class SectionVM
+    {
+        public List<SectionModel> ds { get; set; }
+        public List<Num> ds1 { get; set; }
+    }
+    /// <summary>
+    /// 题目
+    /// </summary>
+    public class TopicVM
+    {
+        /// <summary>
+        /// 题目编号
+        /// </summary>
+        public int c_qid { get; set; }
+        /// <summary>
+        /// 章节编号
+        /// </summary>
+        public int c_sctid { get; set; }
+        /// <summary>
+        /// 问题类型，目前还不知道是啥规则
+        /// </summary>
+        public int c_questiontype { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public string c_sortid { get; set; }
+        /// <summary>
+        /// 助理排序
+        /// </summary>
+        public string c_assistantsortid { get; set; }
+        /// <summary>
+        /// 问题
+        /// </summary>
+        public string c_text { get; set; }
+        /// <summary>
+        /// 选项|分割
+        /// </summary>
+        public string c_options { get; set; }
+        /// <summary>
+        /// 正确答案，不是，分割 就是|分割
+        /// </summary>
+        public string c_answer { get; set; }
+        /// <summary>
+        /// 解释
+        /// </summary>
+        public string c_tips { get; set; }
+        /// <summary>
+        /// 分数
+        /// </summary>
+        public string c_score { get; set; }
+        /// <summary>
+        /// 是否视频，为0则不是
+        /// </summary>
+        public int isVideo { get; set; }
+        /// <summary>
+        /// 错误次数，不知道有啥用
+        /// </summary>
+        public int c_MistakeNum { get; set; }
+        //      "c_qid": 20609,
+        //"c_sctid": 366,
+        //"c_questiontype": 4,
+        //"c_sortid": 1.0,
+        //"c_assistantsortid": "0",
+        //"c_text": "下列关于税收法律的说法中，不正确的是（　）。",
+        //"c_options": "税法是依据《宪法》的原则制定的|当涉及税收征纳关系的问题时，一般应以民法的规范为准则。|当税法的某些规范同民法的规范基本相同时，税法一般援引民法条款|税收法律关系中居于领导地位的一方总是国家",
+        //"c_answer": "2",
+        //"c_tips": "当涉及税收征纳关系的问题时，一般应以税法的规范为准则。",
+        //"c_score": 1.0,
+        //"isVideo": 0,
+        //"c_MistakeNum": 30
+    }
+    /// <summary>
+    /// 章节
+    /// </summary>
+    public class SectionModel
+    {
+        public string c_sctid { get; set; }
+        public string c_sctname { get; set; }
+    }
+    /// <summary>
+    /// 数量
+    /// </summary>
+    public class Num
+    {
+        public string num { get; set; }
     }
 }
