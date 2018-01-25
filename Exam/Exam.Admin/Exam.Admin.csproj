@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\AdvertisementController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\BelongController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Infrastructure\WebWorkContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AnswerVM.cs" />
+    <Compile Include="Models\AdvertisementVM.cs" />
     <Compile Include="Models\ChapterVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BelongVM.cs" />
@@ -591,6 +593,7 @@
     <Content Include="Scripts\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
     <Content Include="Scripts\ViewJs\Answer\answerEdit.js" />
+    <Content Include="Scripts\ViewJs\Advertisement\advertisementEdit.js" />
     <Content Include="Scripts\ViewJs\Login\login.js" />
     <Content Include="Scripts\ViewJs\Lecturer\lecturerEdit.js" />
     <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
@@ -683,6 +686,8 @@
     <Content Include="Views\UserInfo\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Question\ReplyList.cshtml" />
+    <Content Include="Views\Advertisement\Edit.cshtml" />
+    <Content Include="Views\Advertisement\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
