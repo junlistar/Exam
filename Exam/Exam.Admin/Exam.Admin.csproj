@@ -184,7 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
-    <Compile Include="Controllers\AdvertisementController.cs" />
+    <Compile Include="Controllers\AdManageController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\BelongController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -686,8 +686,8 @@
     <Content Include="Views\UserInfo\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Question\ReplyList.cshtml" />
-    <Content Include="Views\Advertisement\Edit.cshtml" />
-    <Content Include="Views\Advertisement\List.cshtml" />
+    <Content Include="Views\AdManage\Edit.cshtml" />
+    <Content Include="Views\AdManage\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

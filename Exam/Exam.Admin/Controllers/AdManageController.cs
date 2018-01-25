@@ -14,13 +14,13 @@ namespace Exam.Admin.Controllers
     /// <summary>
     /// Advertisement
     /// </summary>
-    public class AdvertisementController : BaseController
+    public class AdManageController : BaseController
     {
         // GET: Advertisement
         private readonly IAdvertisementService _AdvertisementService;
         private readonly IImageInfoService _imageInfoService;
 
-        public AdvertisementController(IAdvertisementService AdvertisementService,
+        public AdManageController(IAdvertisementService AdvertisementService,
              IImageInfoService imageInfoService)
         {
             _AdvertisementService = AdvertisementService;
