@@ -74,12 +74,42 @@ namespace Exam.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetMyProblemCollectList([FromUri]SelProblemCollectDto selProblemCollectDto)
         {
-            ResultJson<ProblemCollect> list = new ResultJson<ProblemCollect>();
+            ResultJson<ProblemCollectVM> list = new ResultJson<ProblemCollectVM>();
             int count = 0;
-            list.Data = _problemCollectService.GetProblemCollectList(selProblemCollectDto.UserInfoId, selProblemCollectDto.PageIndex, selProblemCollectDto.PageSize, out count);
+            //list.Data = _problemCollectService.GetProblemCollectList(selProblemCollectDto.UserInfoId, selProblemCollectDto.PageIndex, selProblemCollectDto.PageSize, out count);
             list.RCount = count;
             list.PCount = count % selProblemCollectDto.PageSize == 0 ? (count / selProblemCollectDto.PageSize) : (count / selProblemCollectDto.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
+
+            var problemCollectList = _problemCollectService.GetProblemCollectList(selProblemCollectDto.UserInfoId, selProblemCollectDto.PageIndex, selProblemCollectDto.PageSize, out count);
+
+            List<ProblemCollectVM> problemRecordVMlist = new List<ProblemCollectVM>();
+            foreach (var result in problemCollectList)
+            {
+                ProblemCollectVM problem = new ProblemCollectVM();
+                problem.ProblemId = result.ProblemId;
+                problem.Title = result.Problem.Title ;
+                problem.ProblemCategoryId = result.Problem.ProblemCategoryId;
+                problem.ProblemCategory = result.Problem.ProblemCategory;
+                problem.Analysis = result.Problem.Analysis;
+
+                List<AnswerVM> childList = new List<AnswerVM>();
+                foreach (var item in result.Problem.AnswerList)
+                {
+
+                    childList.Add(new AnswerVM
+                    {
+                        ProblemId = item.ProblemId,
+                        IsCorrect = item.IsCorrect,
+                        Title = item.Title,
+                        AnswerId = item.AnswerId
+
+                    });
+                }
+                problem.AnswerList = childList;
+                problemRecordVMlist.Add(problem);
+            }
+            list.Data = problemRecordVMlist;
             return Json(new { Success = true, Msg = "OK", Data = list });
         }
     }

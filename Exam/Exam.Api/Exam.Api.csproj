@@ -274,6 +274,7 @@
     <Compile Include="Models\NewsVM.cs" />
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\AddProblemCollectDto.cs" />
+    <Compile Include="Models\ProblemCollectVM.cs" />
     <Compile Include="Models\ProblemRecordVM.cs" />
     <Compile Include="Models\ProblemVM.cs" />
     <Compile Include="Models\QuestionVM.cs" />

@@ -9,6 +9,8 @@ namespace Exam.Api.Models
     public class ProblemRecordVM
     {
         public int ProblemRecordId { get; set; }
+
+        public int ProblemId { get; set; }
         public string Title { get; set; }
         public int ProblemCategoryId { get; set; }
 
