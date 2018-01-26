@@ -8,7 +8,7 @@ using Exam.Domain.Model;
 
 namespace Exam.Business
 {
-    public class NotificationBusiness
+    public class NotificationBusiness: INotificationBusiness
     {
         private IRepository<Notification> _repoNotification;
 

@@ -67,7 +67,7 @@ namespace Exam.Api.Controllers
         }
 
         /// <summary>
-        /// 查询咨询列表
+        /// 查询收藏列表
         /// </summary>
         /// <param name="selProblemCollectDto"></param>
         /// <returns></returns>
