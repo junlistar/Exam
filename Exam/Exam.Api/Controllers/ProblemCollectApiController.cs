@@ -81,7 +81,7 @@ namespace Exam.Api.Controllers
             list.PCount = count % selProblemCollectDto.PageSize == 0 ? (count / selProblemCollectDto.PageSize) : (count / selProblemCollectDto.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
 
-            var problemCollectList = _problemCollectService.GetProblemCollectList(selProblemCollectDto.UserInfoId, selProblemCollectDto.PageIndex, selProblemCollectDto.PageSize, out count);
+            var problemCollectList = _problemCollectService.GetProblemCollectList(selProblemCollectDto.UserInfoId, 1, 10000, out count);
 
             List<ProblemCollectVM> problemRecordVMlist = new List<ProblemCollectVM>();
             foreach (var result in problemCollectList)
@@ -110,7 +110,7 @@ namespace Exam.Api.Controllers
                 problemRecordVMlist.Add(problem);
             }
             list.Data = problemRecordVMlist;
-            return Json(new { Success = true, Msg = "OK", Data = list });
+            return Json(new { Success = true, Msg = "OK", Data = problemRecordVMlist });
         }
     }
 }
