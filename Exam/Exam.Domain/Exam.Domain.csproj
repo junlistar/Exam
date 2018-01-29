@@ -44,6 +44,7 @@
     <Compile Include="Model\AnswerRecord.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\ProblemCollect.cs" />
+    <Compile Include="Model\ProblemLibrary.cs" />
     <Compile Include="Model\ProblemRecord.cs" />
     <Compile Include="Model\Reply.cs" />
     <Compile Include="Model\Question.cs" />

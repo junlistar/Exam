@@ -65,6 +65,7 @@
     <Compile Include="Mapping\Belong.cs" />
     <Compile Include="Mapping\Notification.cs" />
     <Compile Include="Mapping\ProblemCollect.cs" />
+    <Compile Include="Mapping\ProblemLibraryMap.cs" />
     <Compile Include="Mapping\ProblemRecord.cs" />
     <Compile Include="Mapping\Reply.cs" />
     <Compile Include="Mapping\Question.cs" />

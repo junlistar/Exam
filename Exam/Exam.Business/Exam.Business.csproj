@@ -58,6 +58,8 @@
     <Compile Include="Notification\NotificationBusiness.cs" />
     <Compile Include="ProblemCollect\IProblemBusiness.cs" />
     <Compile Include="ProblemCollect\ProblemBusiness.cs" />
+    <Compile Include="ProblemLibrary\ProblemLibraryBusiness.cs" />
+    <Compile Include="ProblemLibrary\IProblemLibraryBusiness.cs" />
     <Compile Include="ProblemRecord\IProblemRecordBusiness.cs" />
     <Compile Include="ProblemRecord\ProblemRecordBusiness.cs" />
     <Compile Include="Reply\IReplyBusiness.cs" />

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using Exam.Core.Infrastructure;
+using Exam.Business;
 
 namespace Exam.Service
 {
@@ -16,6 +18,17 @@ namespace Exam.Service
     public class GrabTopicService : IGrabTopicService
     {
         public static CookieContainer cc = new CookieContainer();//维持cookie或Session
+
+        /// <summary>
+        /// The user biz
+        /// </summary>
+        private IProblemLibraryBusiness _ProblemLibraryBiz;
+
+        public GrabTopicService(IProblemLibraryBusiness ProblemLibraryBiz)
+        {
+            _ProblemLibraryBiz = ProblemLibraryBiz;
+        }
+        //private readonly ProblemLibraryService _ProblemLibraryService = EngineContext.Current.Resolve<ProblemLibraryService>();
         /// <summary>
         /// 注会Cookie
         /// </summary>
@@ -100,6 +113,27 @@ namespace Exam.Service
                         string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "");
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
+
+                        foreach (var im in model1.ds)
+                        {
+                            _ProblemLibraryBiz.Insert(new Domain.Model.ProblemLibrary
+                            {
+                                CTime = DateTime.Now,
+                                c_answer = im.c_answer,
+                                c_assistantsortid = im.c_assistantsortid,
+                                c_MistakeNum = im.c_MistakeNum,
+                                c_options = im.c_options,
+                                c_qid = im.c_qid,
+                                c_qustiontype = im.c_questiontype,
+                                c_score = im.c_score,
+                                c_sctid = im.c_sctid,
+                                c_sortid = im.c_sortid,
+                                c_tips = im.c_tips,
+                                isVideo = im.isVideo,
+                                Title = im.c_text,
+                                IsUse = 0
+                            });
+                        }
                     }
 
                 }
@@ -149,7 +183,7 @@ namespace Exam.Service
             {
                 zjCookie = cookieHeader;
             }
-            
+
             //HttpContext.Current.Application.Lock();
             //HttpContext.Current.Application["cookieHeader"] = cookieHeader;
             //HttpContext.Current.Application.UnLock();
