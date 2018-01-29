@@ -131,7 +131,8 @@ namespace Exam.Service
                                 c_tips = im.c_tips,
                                 isVideo = im.isVideo,
                                 Title = im.c_text,
-                                IsUse = 0
+                                IsUse = 0,
+                                BelongId=1000
                             });
                         }
                     }
