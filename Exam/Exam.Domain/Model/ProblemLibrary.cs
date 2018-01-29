@@ -44,5 +44,7 @@ namespace Exam.Domain.Model
         public virtual int isVideo { get; set; }
 
         public virtual int IsUse { get; set; }
+
+        public virtual string c_sctname { get; set; }
     }
 }

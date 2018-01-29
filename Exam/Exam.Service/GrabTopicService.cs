@@ -132,7 +132,8 @@ namespace Exam.Service
                                 isVideo = im.isVideo,
                                 Title = im.c_text,
                                 IsUse = 0,
-                                BelongId=1000
+                                BelongId=1000,
+                                c_sctname = item.c_sctname
                             });
                         }
                     }

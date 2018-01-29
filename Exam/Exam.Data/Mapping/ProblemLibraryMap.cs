@@ -36,6 +36,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.c_assistantsortid);
             this.Property(m => m.c_answer);
             this.Property(m => m.BelongId);
+            this.Property(m => m.c_sctname);
+            
         }
     }
 }
