@@ -98,7 +98,7 @@ namespace Exam.Business
         /// 问题列表
         /// </summary> 
         /// <returns></returns>
-        public List<Question> GetQuestionList(string name, int isTop, int isHot, int pageNum, int pageSize, out int totalCount)
+        public List<Question> GetQuestionList(string name, int isTop, int isHot,int userInfoId, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<Question>();
 
@@ -114,6 +114,11 @@ namespace Exam.Business
             if (isHot != 0)
             {
                 where = where.And(m => m.IsHot == isHot);
+            }
+
+            if (userInfoId != 0)
+            {
+                where = where.And(m => m.UserInfoId == userInfoId);
             }
             where = where.And(m=>m.IsEnable==1);
             totalCount = this._repoQuestion.Table.Where(where).Count();

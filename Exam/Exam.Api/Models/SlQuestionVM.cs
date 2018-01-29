@@ -25,5 +25,11 @@ namespace Exam.Api.Models
         /// </summary>
 
         public int IsTop { get; set; }
+
+        /// <summary>
+        /// 用户id
+        /// </summary>
+
+        public int UserInfoId { get; set; }
     }
 }

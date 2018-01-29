@@ -1010,6 +1010,11 @@
             是是否置顶
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.SlQuestionVM.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.UpdateUserInfoVM">
             <summary>
             修改用户信息

@@ -68,7 +68,7 @@ namespace Exam.Api.Controllers
         {
             ResultJson<Question> list = new ResultJson<Question>();
             int count = 0;
-            list.Data = _questionService.GetQuestionList(slQuestionVM.Title, slQuestionVM.IsTop, slQuestionVM.IsHot, slQuestionVM.PageIndex, slQuestionVM.PageSize, out count);
+            list.Data = _questionService.GetQuestionList(slQuestionVM.Title, slQuestionVM.IsTop, slQuestionVM.IsHot, slQuestionVM.UserInfoId, slQuestionVM.PageIndex, slQuestionVM.PageSize, out count);
             list.RCount = count;
             list.PCount = count % slQuestionVM.PageSize == 0 ? (count / slQuestionVM.PageSize) : (count / slQuestionVM.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 

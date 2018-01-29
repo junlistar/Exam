@@ -88,8 +88,8 @@ namespace Exam.Service
         /// 问题列表
         /// </summary> 
         /// <returns></returns>
-       public List<Question> GetQuestionList(string name, int isTop, int isHot, int pageNum, int pageSize, out int totalCount) {
-            return this._QuestionBiz.GetQuestionList(name,isTop,isHot,pageNum,pageSize,out totalCount);
+       public List<Question> GetQuestionList(string name, int isTop, int isHot,int userInfoId, int pageNum, int pageSize, out int totalCount) {
+            return this._QuestionBiz.GetQuestionList(name,isTop,isHot,userInfoId,pageNum,pageSize,out totalCount);
         }
     }
 }
