@@ -127,7 +127,7 @@ namespace Exam.Service
                                 c_qustiontype = im.c_questiontype,
                                 c_score = im.c_score,
                                 c_sctid = im.c_sctid,
-                                c_sortid = im.c_sortid,
+                                c_sortid = decimal.Parse(im.c_sortid),
                                 c_tips = im.c_tips,
                                 isVideo = im.isVideo,
                                 Title = im.c_text,

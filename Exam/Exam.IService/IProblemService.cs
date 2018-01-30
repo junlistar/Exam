@@ -31,12 +31,14 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         void Delete(Problem model);
+
         /// <summary>
         /// 判断是否名称存在
         /// </summary>
         /// <param name="name"></param> 
+        /// <param name="chapterid"></param> 
         /// <returns></returns>
-        bool IsExistName(string name);
+        bool IsExistName(string name,int chapterid);
 
         /// <summary>
         /// 添加管理后台菜单列表

@@ -29,7 +29,7 @@ namespace Exam.Domain.Model
         /// <summary>
         /// 分数
         /// </summary>
-        public virtual int Score { get; set; }
+        public virtual decimal Score { get; set; }
 
         public virtual ProblemCategory ProblemCategory { get; set; }
 
