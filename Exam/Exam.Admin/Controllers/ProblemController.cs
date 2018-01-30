@@ -5,7 +5,9 @@ using Exam.Domain;
 using Exam.Domain.Model;
 using Exam.IService;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Exam.Admin.Controllers
@@ -20,16 +22,22 @@ namespace Exam.Admin.Controllers
         private readonly IProblemCategoryService _ProblemCategoryService;
         private readonly IBelongService _BelongService;
         private readonly IChapterService _ChapterService;
+        private readonly IProblemLibraryService _ProblemLibraryService;
+        private readonly IAnswerService _AnswerService;
 
         public ProblemController(IProblemService ProblemService,
             IProblemCategoryService ProblemCategoryService,
             IBelongService BelongService,
-            IChapterService ChapterService)
+            IChapterService ChapterService,
+            IProblemLibraryService ProblemLibraryService,
+            IAnswerService AnswerService)
         {
             _ProblemService = ProblemService;
             _ProblemCategoryService = ProblemCategoryService;
             _BelongService = BelongService;
             _ChapterService = ChapterService;
+            _ProblemLibraryService = ProblemLibraryService;
+            _AnswerService = AnswerService;
         }
 
         /// <summary>
@@ -54,7 +62,7 @@ namespace Exam.Admin.Controllers
             _ProblemVM.Paging = paging;
             return View(_ProblemVM);
         }
-        
+
         /// <summary>
         /// 编辑
         /// </summary>
@@ -89,13 +97,13 @@ namespace Exam.Admin.Controllers
                     entity.ProblemCategoryId = model.ProblemCategoryId;
                     entity.Title = model.Title;
                     entity.BelongId = model.BelongId;
-                    entity.Sort= model.Sort; 
-                    entity.UTime= DateTime.Now; 
+                    entity.Sort = model.Sort;
+                    entity.UTime = DateTime.Now;
                     _ProblemService.Update(entity);
                 }
                 else
                 {
-                    if (_ProblemService.IsExistName(model.Title))
+                    if (_ProblemService.IsExistName(model.Title,model.ChapterId))
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     model.CTime = DateTime.Now;
@@ -141,14 +149,130 @@ namespace Exam.Admin.Controllers
         /// </summary> 
         /// <returns></returns>
         public ActionResult AnswerList(ProblemVM _ProblemVM)
-        { 
+        {
 
             var entity = _ProblemService.GetById(_ProblemVM.Id);
 
-            _ProblemVM.AnswerList = entity.AnswerList; 
+            _ProblemVM.AnswerList = entity.AnswerList;
             _ProblemVM.Title = entity.Title;
 
             return View(_ProblemVM);
+        }
+
+        /// <summary>
+        /// 同步题库数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult SyncProblemData(int id = 0)
+        {
+            try
+            {
+                Task.Run(() =>
+                {
+                    NewMethod();
+                });
+
+
+                return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = Successed.Error
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private void NewMethod()
+        {
+            //获取题目类型
+            var qtypelist = _ProblemCategoryService.GetAll().ToList();
+            //章节列表
+            var chapterlist = _ChapterService.GetAll().ToList();
+            //题目类别（注会、初级、中级等）
+            var belonglist = _BelongService.GetAll().ToList();
+
+
+            //注会数据（临时表）
+            var fromList = _ProblemLibraryService.GetAll().Where(p => p.BelongId == 1000).ToList();
+
+            if (fromList != null && fromList.Count > 0)
+            {
+                foreach (var item in fromList)
+                {
+                    switch (item.c_qustiontype)
+                    {
+                        //目前只判断了单选和多选
+                        case 4:
+                        case 5:
+                            Problem pitem = new Problem();
+                            pitem.Title = item.Title;
+                            pitem.Analysis = item.c_tips;
+                            pitem.BelongId = item.BelongId;
+                            if (!chapterlist.Any(p => p.Title == item.c_sctname))
+                            {
+                                //_ChapterService.Insert(new Chapter
+                                //{
+                                //    CTime = DateTime.Now,
+                                //    Title = item.c_sctname,
+                                //    Sort = 1,
+                                //    UTime = DateTime.Now
+                                //});
+                                //chapterlist= _ChapterService.GetAll().ToList();
+                                chapterlist.Add(_ChapterService.Insert(new Chapter
+                                {
+                                    CTime = DateTime.Now,
+                                    Title = item.c_sctname,
+                                    Sort = 1,
+                                    UTime = DateTime.Now
+                                }));
+                            }
+                            pitem.ChapterId = chapterlist.Where(p => p.Title == item.c_sctname).FirstOrDefault().ChapterId;
+                            pitem.ProblemCategoryId = item.c_qustiontype == 4 ? 1000 : 1001;  //等于4 单选，等于5 多选 
+                            pitem.Score = decimal.Parse(item.c_score);
+                            pitem.Sort = 1;
+                            pitem.IsHot = 0;
+                            pitem.CTime = DateTime.Now;
+                            pitem.UTime = DateTime.Now;
+
+                            //写入题目
+                            if (!_ProblemService.IsExistName(pitem.Title, pitem.ChapterId))
+                            {
+                                var returnProblemModel = _ProblemService.Insert(pitem);
+
+                                var _options = item.c_options;
+                                var _answer = item.c_answer;
+
+                                if (!string.IsNullOrWhiteSpace(_answer))
+                                {
+                                    var _correctlist = _answer.Split('|');
+                                    var _optionlist = _options.Split('|');
+                                    for (int i = 0; i < _optionlist.Length; i++)
+                                    {
+                                        Answer _answermodel = new Answer();
+                                        _answermodel.ProblemId = returnProblemModel.ProblemId;
+                                        _answermodel.Title = _optionlist[i];
+                                        _answermodel.IsCorrect = _correctlist.Contains((i + 1).ToString()) ? 1 : 0;
+                                        //添加答案
+                                        _AnswerService.Insert(_answermodel);
+                                    }
+                                }
+                            }
+
+                            //更新标识状态
+                            item.IsUse = 1;
+                            _ProblemLibraryService.Update(item);
+
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
     }
 }

@@ -60,10 +60,11 @@ namespace Exam.Business
         /// 判断是否名称存在
         /// </summary>
         /// <param name="name"></param> 
+        /// <param name="chapterid"></param> 
         /// <returns></returns>
-        public bool IsExistName(string name)
+        public bool IsExistName(string name,int chapterid)
         {
-            return this._repoProblem.Table.Any(p => p.Title == name);
+            return this._repoProblem.Table.Any(p => p.Title == name && p.ChapterId ==chapterid);
         }
 
         /// <summary>

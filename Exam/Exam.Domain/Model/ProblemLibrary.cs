@@ -23,7 +23,7 @@ namespace Exam.Domain.Model
 
         public virtual string c_tips { get; set; }
 
-        public virtual string c_sortid { get; set; }
+        public virtual decimal c_sortid { get; set; }
 
         public virtual int c_sctid { get; set; }
 
