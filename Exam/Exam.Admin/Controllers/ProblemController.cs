@@ -59,7 +59,8 @@ namespace Exam.Admin.Controllers
                 Total = totalCount,
                 Index = pn,
             };
-            _ProblemVM.Paging = paging;
+            _ProblemVM.Paging = paging; 
+            _ProblemVM.Belongs = _BelongService.GetAll();
             return View(_ProblemVM);
         }
 
@@ -94,6 +95,7 @@ namespace Exam.Admin.Controllers
                     //修改 
                     entity.ChapterId = model.ChapterId;
                     entity.IsHot = model.IsHot;
+                    entity.IsImportant = model.IsImportant;
                     entity.ProblemCategoryId = model.ProblemCategoryId;
                     entity.Title = model.Title;
                     entity.BelongId = model.BelongId;
@@ -171,7 +173,7 @@ namespace Exam.Admin.Controllers
             {
                 Task.Run(() =>
                 {
-                    NewMethod();
+                    NewMethod(id);
                 });
 
 
@@ -186,18 +188,22 @@ namespace Exam.Admin.Controllers
             }
         }
 
-        private void NewMethod()
+        private void NewMethod(int belongId)
         {
+            if (belongId<=0)
+            {
+                return;
+            }
+
             //获取题目类型
             var qtypelist = _ProblemCategoryService.GetAll().ToList();
             //章节列表
             var chapterlist = _ChapterService.GetAll().ToList();
             //题目类别（注会、初级、中级等）
             var belonglist = _BelongService.GetAll().ToList();
-
-
+             
             //注会数据（临时表）
-            var fromList = _ProblemLibraryService.GetAll().Where(p => p.BelongId == 1000).ToList();
+            var fromList = _ProblemLibraryService.GetAll().Where(p => p.BelongId == belongId).ToList();
 
             if (fromList != null && fromList.Count > 0)
             {
@@ -235,6 +241,7 @@ namespace Exam.Admin.Controllers
                             pitem.Score = decimal.Parse(item.c_score);
                             pitem.Sort = 1;
                             pitem.IsHot = 0;
+                            pitem.IsImportant = 0;
                             pitem.CTime = DateTime.Now;
                             pitem.UTime = DateTime.Now;
 
