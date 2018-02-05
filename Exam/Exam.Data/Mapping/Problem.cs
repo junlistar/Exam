@@ -22,6 +22,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.ChapterId); 
             this.Property(m => m.CTime);
             this.Property(m => m.IsHot);
+            this.Property(m => m.IsImportant);
             this.Property(m => m.ProblemCategoryId);
             this.Property(m => m.Title);
             this.Property(m => m.UTime);
