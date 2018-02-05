@@ -258,6 +258,7 @@
     <Compile Include="Controllers\QuestionApiController.cs" />
     <Compile Include="Controllers\SmsApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
+    <Compile Include="Controllers\VersionTableApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

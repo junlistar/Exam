@@ -269,3 +269,15 @@ create table Advertisement
 	UTime datetime default(getdate()),		--修改时间
 	
 )
+
+--版本表VersionTable
+
+create table VersionTable
+(
+	VersionTableId int identity(1000,1),   --编号
+	Title nvarchar(50),						    --版本名称
+	VersionText nvarchar(500),					--版本编号
+	TypeId int,								--版本类型
+	CTime datetime default(getdate()),		--创建时间
+	
+)

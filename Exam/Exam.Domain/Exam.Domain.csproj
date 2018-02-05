@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\VersionTable.cs" />
     <Compile Include="Model\Advertisement.cs" />
     <Compile Include="Model\AnswerRecord.cs" />
     <Compile Include="Model\Notification.cs" />
