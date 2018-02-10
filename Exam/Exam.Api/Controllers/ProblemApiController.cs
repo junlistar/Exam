@@ -26,7 +26,7 @@ namespace Exam.Api.Controllers
 
         private readonly IChapterService chapterService = EngineContext.Current.Resolve<IChapterService>();
 
-       
+
 
         private readonly IProblemRecordService problemRecordService = EngineContext.Current.Resolve<IProblemRecordService>();
 
@@ -74,8 +74,8 @@ namespace Exam.Api.Controllers
                     if (problemCollectList != null && problemCollectList.Count > 0)
                     {
                         var problemCollect = (from a in problemCollectList
-                                             where a.ProblemId == result.ProblemId
-                                             select a).FirstOrDefault();
+                                              where a.ProblemId == result.ProblemId
+                                              select a).FirstOrDefault();
                         if (problemCollect != null)
                         {
                             IsCollect = 1;
@@ -165,7 +165,7 @@ namespace Exam.Api.Controllers
                         ProblemCategoryId = problem.ProblemCategoryId,
                         ProblemId = item.ProblemId,
                         UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
-                        Analysis= problem.Analysis
+                        Analysis = problem.Analysis
                     });
 
                     foreach (var itemChild in item.AnswerRecordList)
@@ -210,7 +210,7 @@ namespace Exam.Api.Controllers
         /// <param name="UserInfoId"></param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0,int UserInfoId=0)
+        public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0, int UserInfoId = 0)
         {
             var problemRecordList = problemRecordService.GetForUserInfoRecordId(UserInfoAnswerRecordId);
 
@@ -257,6 +257,24 @@ namespace Exam.Api.Controllers
             }
 
             return Json(new { Success = true, Msg = "OK", Data = problemRecordVMlist });
+        }
+
+        /// <summary>
+        /// 根据级别获取必刷的题目
+        /// </summary>
+        /// <param name="belongId">注会 1000 整数的</param>
+        /// <returns></returns>
+        public IHttpActionResult GetIntensive(int belongId = 0)
+        {
+            if (belongId == 0)
+            {
+                var problemlist = problemService.GetIntensive(belongId);
+                return Json(new { Success = true, Msg = "OK", Data = problemlist });
+            }
+            else
+            {
+                return Json(new { Success = true, Msg = "请输入对应的级别", Data = "" });
+            }
         }
 
     }

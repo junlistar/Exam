@@ -56,15 +56,17 @@ namespace Exam.Business
             this._repoProblem.Delete(model);
         }
 
+
+
         /// <summary>
         /// 判断是否名称存在
         /// </summary>
         /// <param name="name"></param> 
         /// <param name="chapterid"></param> 
         /// <returns></returns>
-        public bool IsExistName(string name,int chapterid)
+        public bool IsExistName(string name, int chapterid)
         {
-            return this._repoProblem.Table.Any(p => p.Title == name && p.ChapterId ==chapterid);
+            return this._repoProblem.Table.Any(p => p.Title == name && p.ChapterId == chapterid);
         }
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace Exam.Business
         public List<Problem> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<Problem>();
-             
+
             // name过滤
             if (!string.IsNullOrEmpty(name))
             {
@@ -93,7 +95,27 @@ namespace Exam.Business
         {
             return this._repoProblem.Table.ToList();
         }
+        /// <summary>
+        /// 根据分类获取必刷题目
+        /// </summary>
+        /// <param name="belongId"></param>
+        /// <returns></returns>
+        public List<Problem> GetIntensive(int belongId)
+        {
+            var where = PredicateBuilder.True<Problem>();
 
+            if (belongId != 0)
+            {
+                where = where.And(m => m.BelongId == belongId);
+            }
+            else
+            {
+                return new List<Problem>();
+            }
+            where = where.And(m => m.IsImportant == 1);
+
+            return this._repoProblem.Table.Where(where).OrderBy(p => p.ProblemId).ToList();
+        }
         /// <summary>
         /// 获取题目列表
         /// </summary>
@@ -104,9 +126,9 @@ namespace Exam.Business
         {
             var where = PredicateBuilder.True<Problem>();
 
-            if (belongId!= 0)
+            if (belongId != 0)
             {
-                where = where.And(m => m.BelongId== belongId);
+                where = where.And(m => m.BelongId == belongId);
             }
             if (chapterId != 0)
             {
