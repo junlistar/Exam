@@ -57,6 +57,7 @@ create table Problem
 	belongId int,						--题目所属编号
 	ChapterId int,						--章节分类
 	isHot int,							--是否热门
+	isImportant int default(0),							--是否重要
 	ctime datetime default(getdate()),	--创建时间
 	sort int default(99),				--排序
 	utime datetime default(getdate()),	--修改时间
@@ -267,5 +268,17 @@ create table Advertisement
 	ImageInfoId	int,						--广告图片
 	CTime datetime default(getdate()),		--创建时间
 	UTime datetime default(getdate()),		--修改时间
+	
+)
+
+--版本表VersionTable
+
+create table VersionTable
+(
+	VersionTableId int identity(1000,1),   --编号
+	Title nvarchar(50),						    --版本名称
+	VersionText nvarchar(500),					--版本编号
+	TypeId int,								--版本类型
+	CTime datetime default(getdate()),		--创建时间
 	
 )

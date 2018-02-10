@@ -785,6 +785,19 @@
             <param name="uploadImageVM"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.VersionTableApiController">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.VersionTableApiController.GetVersionTableList(System.String,System.Int32)">
+            <summary>
+            根据分类获取广告
+            </summary>
+            <param name="Title"></param>
+            <param name="TypeId"></param>
+            <returns></returns>
+        </member>
         <member name="P:Exam.Api.Models.AddNotificationDto.UserInfoId">
             <summary>
             用户id

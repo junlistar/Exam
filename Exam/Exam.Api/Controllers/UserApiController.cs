@@ -123,7 +123,7 @@ namespace Exam.Api.Controllers
             if (userInfo != null)
             {
                 userInfo.NikeName = updateUserInfoVM.NikeName;
-                userInfo.GradeId = updateUserInfoVM.GradeId;
+                //userInfo.GradeId = updateUserInfoVM.GradeId;
                 userInfo.Gender = updateUserInfoVM.Gender;
                 userInfo.UTime = DateTime.Now;
                 _userInfo.Update(userInfo);

@@ -16,7 +16,8 @@ namespace Exam.Domain.Model
         public virtual int ProblemCategoryId { get; set; }
         public virtual int BelongId { get; set; }
         public virtual int ChapterId { get; set; } 
-        public virtual int IsHot { get; set; }  
+        public virtual int IsHot { get; set; }
+        public virtual int IsImportant { get; set; } 
         public virtual int Sort { get; set; }
         public virtual DateTime CTime { get; set; } 
         public virtual DateTime UTime { get; set; }
@@ -29,7 +30,7 @@ namespace Exam.Domain.Model
         /// <summary>
         /// 分数
         /// </summary>
-        public virtual int Score { get; set; }
+        public virtual decimal Score { get; set; }
 
         public virtual ProblemCategory ProblemCategory { get; set; }
 
