@@ -70,11 +70,15 @@ namespace Exam.Service
         {
             //获取token
             var url1 = httpHead + "/Account/UserLogin?Account=8368000";
+            var url2 = httpHead + "/Home/index.php";
             //获取登录cookie
             var url4 = httpHead + "/Account/UserLogin";
             if (GetToken(url1, url4))
             {
                 //
+                var indexHtml = GetHtml(url2, "logoutnum=8;urltimestamp=201818;LogonAccount=8368000;");
+                //先获取中级的分类
+
             }
         }
 
@@ -132,7 +136,7 @@ namespace Exam.Service
                                 isVideo = im.isVideo,
                                 Title = im.c_text,
                                 IsUse = 0,
-                                BelongId=1000,
+                                BelongId = 1000,
                                 c_sctname = item.c_sctname
                             });
                         }
@@ -201,7 +205,16 @@ namespace Exam.Service
         public static string GetHtml(string url, string addCookie)
         {
             HttpWebRequest request1 = (HttpWebRequest)WebRequest.Create(url);
-            string cookhead = zkCookie;
+            string cookhead = "";
+
+            if (url.Contains("zk.0373kj"))
+            {
+                cookhead = zkCookie;
+            }
+            else if (url.Contains("zj.0373kj"))
+            {
+                cookhead = zjCookie;
+            }
             request1.Method = "GET";
             request1.Headers.Add("cookie:" + addCookie + cookhead);
             request1.KeepAlive = true;
@@ -212,7 +225,7 @@ namespace Exam.Service
             return new StreamReader(stream2, System.Text.Encoding.UTF8).ReadToEnd();
         }
         /// <summary>
-        /// 获取科目列表
+        /// 获取注会科目列表
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
