@@ -26,6 +26,19 @@ namespace Exam.Api.Controllers
         /// <returns></returns>
         public IHttpActionResult AddQuestion(AddQuestionDto addQuestionDto)
         {
+            if (string.IsNullOrWhiteSpace(addQuestionDto.Title))
+            {
+                return Json(new { Success = false, Msg = "标题不能为空！", Data = "" });
+            }
+            if (string.IsNullOrWhiteSpace(addQuestionDto.Content))
+            {
+                return Json(new { Success = false, Msg = "内容不能为空！", Data = "" });
+            }
+            if (addQuestionDto.UserInfoId==0)
+            {
+                return Json(new { Success = false, Msg = "用户不能为空！", Data = "" });
+            }
+
             var model = _questionService.Insert(new Domain.Model.Question
             {
                 Content = addQuestionDto.Content,
@@ -41,7 +54,7 @@ namespace Exam.Api.Controllers
         }
 
         /// <summary>
-        /// 新增提问接口
+        /// 新增回答接口
         /// </summary>
         /// <param name="addReplyDto"></param>
         /// <returns></returns>

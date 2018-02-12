@@ -120,7 +120,7 @@ namespace Exam.Business
             {
                 where = where.And(m => m.UserInfoId == userInfoId);
             }
-            where = where.And(m=>m.IsEnable==1);
+            //where = where.And(m=>m.IsEnable==1);
             totalCount = this._repoQuestion.Table.Where(where).Count();
             return this._repoQuestion.Table.Where(where).OrderBy(p => p.QuestionId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
         }
