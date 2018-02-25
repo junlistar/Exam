@@ -21,8 +21,11 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Title); 
             this.Property(m => m.Sort); 
             this.Property(m => m.CTime); 
-            this.Property(m => m.UTime); 
-             
+            this.Property(m => m.UTime);
+            this.Property(m => m.SubjectInfoId);
+
+            HasRequired(m => m.SubjectInfo);
+
         }
     }
 }

@@ -18,6 +18,11 @@ namespace Exam.Domain.Model
         public virtual DateTime CTime { get; set; }
         public virtual DateTime UTime { get; set; }
 
+        /// <summary>
+        ///科目
+        /// </summary>
+        public virtual int SubjectInfoId { get; set; }
 
+        public virtual SubjectInfo SubjectInfo { get; set; }
     }
 }

@@ -20,5 +20,7 @@ namespace Exam.Api.Models
         public int IsCollect { get; set; }
         public ProblemCategory ProblemCategory { get; set; }
         public List<AnswerVM> AnswerList { get; set; }
+
+        public Chapter Chapter { get; set; }
     }
 }

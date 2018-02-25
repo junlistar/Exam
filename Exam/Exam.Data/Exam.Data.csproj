@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="IDbContext.cs" />
     <Compile Include="ExamDbContext.cs" />
+    <Compile Include="Mapping\SubjectInfoMap.cs" />
     <Compile Include="Mapping\VersionTableMap.cs" />
     <Compile Include="Mapping\AdvertisementMap.cs" />
     <Compile Include="Mapping\AnswerRecord.cs" />

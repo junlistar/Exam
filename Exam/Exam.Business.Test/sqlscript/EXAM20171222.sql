@@ -282,3 +282,13 @@ create table VersionTable
 	CTime datetime default(getdate()),		--创建时间
 	
 )
+
+--科目表SubjectInfo
+create table SubjectInfo
+(
+	SubjectInfoId int identity(1000,1),     --编号
+	Title nvarchar(500),					--名称
+	Sort int,								--排序
+	CTime datetime default(getdate()),		--创建时间
+	UTime datetime default(getdate()),		--修改时间
+)

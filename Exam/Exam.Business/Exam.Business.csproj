@@ -96,6 +96,8 @@
     <Compile Include="UserInfo\IUserInfoBusiness.cs" />
     <Compile Include="UserInfo\UserInfoBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubjectInfo\ISubjectInfoBusiness.cs" />
+    <Compile Include="SubjectInfo\SubjectInfoBusiness.cs" />
     <Compile Include="VersionTable\IVersionTableBusiness.cs" />
     <Compile Include="VersionTable\VersionTableBusiness.cs" />
   </ItemGroup>

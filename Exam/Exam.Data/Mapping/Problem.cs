@@ -29,8 +29,11 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Sort);
             this.Property(m => m.Score);
             this.Property(m => m.Analysis);
+            this.Property(m => m.SubjectInfoId);
             HasRequired(m => m.ProblemCategory);
+            HasRequired(m => m.Chapter);
             HasMany(m => m.AnswerList).WithRequired(n => n.Problem);
+
         }
     }
 }

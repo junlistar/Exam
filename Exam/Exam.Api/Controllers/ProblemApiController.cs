@@ -87,18 +87,22 @@ namespace Exam.Api.Controllers
                     problem.ProblemCategoryId = result.ProblemCategoryId;
                     problem.ProblemCategory = result.ProblemCategory;
                     problem.Analysis = result.Analysis;
+                    problem.Chapter = result.Chapter;
                     problem.IsCollect = IsCollect;
                     List<AnswerVM> childList = new List<AnswerVM>();
-                    foreach (var item in result.AnswerList)
+                    if (result.AnswerList != null)
                     {
-
-                        childList.Add(new AnswerVM
+                        foreach (var item in result.AnswerList)
                         {
-                            AnswerId = item.AnswerId,
-                            ProblemId = item.ProblemId,
-                            IsCorrect = item.IsCorrect,
-                            Title = item.Title
-                        });
+
+                            childList.Add(new AnswerVM
+                            {
+                                AnswerId = item.AnswerId,
+                                ProblemId = item.ProblemId,
+                                IsCorrect = item.IsCorrect,
+                                Title = item.Title
+                            });
+                        }
                     }
                     problem.AnswerList = childList;
                     problemVMlist.Add(problem);
