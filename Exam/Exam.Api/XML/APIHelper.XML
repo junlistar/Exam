@@ -728,7 +728,7 @@
         </member>
         <member name="M:Exam.Api.Controllers.QuestionApiController.AddReply(Exam.Api.Models.AddReplyDto)">
             <summary>
-            新增提问接口
+            新增回答接口
             </summary>
             <param name="addReplyDto"></param>
             <returns></returns>

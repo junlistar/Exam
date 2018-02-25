@@ -26,11 +26,11 @@ namespace Exam.Api.Controllers
         /// <returns></returns>
         public IHttpActionResult AddQuestion(AddQuestionDto addQuestionDto)
         {
-            if (string.IsNullOrWhiteSpace(addQuestionDto.Title))
+            if (!string.IsNullOrWhiteSpace(addQuestionDto.Title))
             {
                 return Json(new { Success = false, Msg = "标题不能为空！", Data = "" });
             }
-            if (string.IsNullOrWhiteSpace(addQuestionDto.Content))
+            if (!string.IsNullOrWhiteSpace(addQuestionDto.Content))
             {
                 return Json(new { Success = false, Msg = "内容不能为空！", Data = "" });
             }
@@ -48,7 +48,8 @@ namespace Exam.Api.Controllers
                 IsTop = 0,
                 Reads = 0,
                 Title = addQuestionDto.Title,
-                UserInfoId = addQuestionDto.UserInfoId
+                UserInfoId = addQuestionDto.UserInfoId,
+                IsEnable = 1
             });
             return Json(new { Success = true, Msg = "OK", Data = model });
         }
