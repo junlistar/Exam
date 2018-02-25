@@ -85,6 +85,16 @@ namespace Exam.Service
         {
             return this._ProblemBiz.GetAll();
         }
+        /// <summary>
+        /// 根据分类获取必刷题目
+        /// </summary>
+        /// <param name="belongId">分类编号，注会</param>
+        /// <returns></returns>
+        public List<Problem> GetIntensive(int belongId)
+        {
+            return this._ProblemBiz.GetIntensive(belongId);
+        }
+
 
         /// <summary>
         /// 获取题目列表

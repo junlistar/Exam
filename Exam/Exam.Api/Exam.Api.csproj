@@ -328,6 +328,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="XML\APIHelper.XML" />
     <None Include="Properties\PublishProfiles\222.pubxml" />
     <None Include="Properties\PublishProfiles\ExamApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -361,7 +362,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Service\" />
     <Folder Include="Views\UserApi\" />
-    <Folder Include="XML\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -60,6 +60,13 @@ namespace Exam.Business
         List<Problem> GetAll();
 
         /// <summary>
+        /// 根据分类获取必刷题目
+        /// </summary>
+        /// <param name="belongId"></param>
+        /// <returns></returns>
+        List<Problem> GetIntensive(int belongId);
+
+        /// <summary>
         /// 获取题目列表
         /// </summary>
         /// <param name="belongId">分类id</param>

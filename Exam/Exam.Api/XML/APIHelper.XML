@@ -683,6 +683,13 @@
             <param name="UserInfoId"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetIntensive(System.Int32)">
+            <summary>
+            根据级别获取必刷的题目
+            </summary>
+            <param name="belongId">注会 1000 整数的</param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.ProblemCollectApiController">
             <summary>
             收藏模块
@@ -721,7 +728,7 @@
         </member>
         <member name="M:Exam.Api.Controllers.QuestionApiController.AddReply(Exam.Api.Models.AddReplyDto)">
             <summary>
-            新增提问接口
+            新增回答接口
             </summary>
             <param name="addReplyDto"></param>
             <returns></returns>

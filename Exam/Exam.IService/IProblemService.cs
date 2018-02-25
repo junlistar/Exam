@@ -53,6 +53,12 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<Problem> GetAll();
+        /// <summary>
+        /// 根据分类获取必刷题目
+        /// </summary>
+        /// <param name="belongId">分类编号，注会</param>
+        /// <returns></returns>
+        List<Problem> GetIntensive(int belongId);
 
         /// <summary>
         /// 获取题目列表
