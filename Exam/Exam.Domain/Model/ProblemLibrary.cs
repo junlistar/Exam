@@ -46,5 +46,10 @@ namespace Exam.Domain.Model
         public virtual int IsUse { get; set; }
 
         public virtual string c_sctname { get; set; }
+
+        /// <summary>
+        /// 科目名称
+        /// </summary>
+        public virtual string SubjectInfoTitle { get; set; }
     }
 }

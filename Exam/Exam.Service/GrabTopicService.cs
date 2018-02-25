@@ -102,6 +102,8 @@ namespace Exam.Service
             {
                 //获取科目列表
                 var subList = GetSubjectsList(url2).ToList();
+
+                //subList[i].Title.ToString().Trim(); 科目
                 //遍历科目列表，取得列表对应的
                 for (int i = 0; i < subList.Count; i++)
                 {
@@ -137,8 +139,9 @@ namespace Exam.Service
                                 Title = im.c_text,
                                 IsUse = 0,
                                 BelongId = 1000,
-                                c_sctname = item.c_sctname
-                            });
+                                c_sctname = item.c_sctname,
+                                SubjectInfoTitle= subList[i].Title.ToString().Trim()
+                        });
                         }
                     }
 
