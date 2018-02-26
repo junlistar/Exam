@@ -99,10 +99,20 @@ namespace Exam.Business
         /// 我的收藏列表
         /// </summary> 
         /// <returns></returns>
-        public List<Notification> GetNotificationList(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        public List<Notification> GetNotificationList(int userInfoId,int Status,int TypeId, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<Notification>();
             where = where.And(m => m.UserInfoId == userInfoId);
+
+            if (Status != 0)
+            {
+                where = where.And(m => m.Status == Status);
+            }
+
+            if (TypeId != 0)
+            {
+                where = where.And(m => m.TypeId == TypeId);
+            }
 
             totalCount = this._repoNotification.Table.Where(where).Count();
             return this._repoNotification.Table.Where(where).OrderBy(p => p.NotificationId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();

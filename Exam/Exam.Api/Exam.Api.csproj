@@ -279,6 +279,7 @@
     <Compile Include="Models\ProblemRecordVM.cs" />
     <Compile Include="Models\ProblemVM.cs" />
     <Compile Include="Models\QuestionVM.cs" />
+    <Compile Include="Models\ReadNotificationDto.cs" />
     <Compile Include="Models\ReplyVM.cs" />
     <Compile Include="Models\ResultJson.cs" />
     <Compile Include="Models\SelAdvertisementDto.cs" />

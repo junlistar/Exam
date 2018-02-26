@@ -92,9 +92,9 @@ namespace Exam.Service
         /// 我的收藏列表
         /// </summary> 
         /// <returns></returns>
-        public List<Notification> GetNotificationList(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        public List<Notification> GetNotificationList(int userInfoId, int Status, int TypeId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._NotificationtBiz.GetNotificationList(userInfoId, pageNum, pageSize, out totalCount);
+            return this._NotificationtBiz.GetNotificationList(userInfoId,Status,TypeId, pageNum, pageSize, out totalCount);
         }
     }
 }

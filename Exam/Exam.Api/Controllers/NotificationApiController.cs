@@ -32,9 +32,39 @@ namespace Exam.Api.Controllers
                 Title = addNotificationDto.Title,
                 TypeId = addNotificationDto.TypeId,
                 UserInfoId = addNotificationDto.UserInfoId,
-                UTime = DateTime.Now
+                UTime = DateTime.Now,
+                Status=1
             });
             return Json(new { Success = true, Msg = "OK", Data = "" });
+        }
+
+        /// <summary>
+        /// 把未读消息变成已读消息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IHttpActionResult ReadNotification(ReadNotificationDto readNotificationDto)
+        {
+           var notification= _notificationService.GetById(readNotificationDto.NotificationId);
+            if (notification != null)
+            {
+                if (notification.UserInfoId == readNotificationDto.UserInfoId&& notification.Status==1)
+                {
+                    notification.Status = 2;
+                    _notificationService.Update(notification);
+                    return Json(new { Success = true, Msg = "OK", Data = "" });
+                }
+                else {
+                    return Json(new { Success = false, Msg = "消息已读或者用户不存在", Data = "" });
+                }
+                
+                
+
+            }
+            else {
+                return Json(new { Success = false, Msg = "消息不存在", Data = "" });
+            }
+
         }
 
         /// <summary>
@@ -47,7 +77,7 @@ namespace Exam.Api.Controllers
         {
             ResultJson<Notification> list = new ResultJson<Notification>();
             int count = 0;
-            list.Data = _notificationService.GetNotificationList(selNotificationDto.UserInfoId, selNotificationDto.PageIndex, selNotificationDto.PageSize, out count);
+            list.Data = _notificationService.GetNotificationList(selNotificationDto.UserInfoId, selNotificationDto.Status, selNotificationDto.TypeId, selNotificationDto.PageIndex, selNotificationDto.PageSize, out count);
             list.RCount = count;
             list.PCount = count % selNotificationDto.PageSize == 0 ? (count / selNotificationDto.PageSize) : (count / selNotificationDto.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 

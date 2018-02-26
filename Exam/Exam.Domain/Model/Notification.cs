@@ -48,6 +48,11 @@ namespace Exam.Domain.Model
         /// </summary>
         public virtual DateTime UTime { get; set; }
 
+        /// <summary>
+        /// 状态 1.未读 2已读
+        /// </summary>
+        public virtual int Status { get; set; }
+
         public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -66,6 +66,6 @@ namespace Exam.Business
         /// 我的收藏列表
         /// </summary> 
         /// <returns></returns>
-        List<Notification> GetNotificationList(int userInfoId, int pageNum, int pageSize, out int totalCount);
+        List<Notification> GetNotificationList(int userInfoId, int Status, int TypeId, int pageNum, int pageSize, out int totalCount);
     }
 }

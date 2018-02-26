@@ -631,6 +631,12 @@
             <param name="addNotificationDto"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.NotificationApiController.ReadNotification(Exam.Api.Models.ReadNotificationDto)">
+            <summary>
+            把未读消息变成已读消息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Exam.Api.Controllers.NotificationApiController.GetNotificationList(Exam.Api.Models.SelNotificationDto)">
             <summary>
             我的消息
@@ -955,6 +961,21 @@
             问题模型
             </summary>
         </member>
+        <member name="T:Exam.Api.Models.ReadNotificationDto">
+            <summary>
+            读消息
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ReadNotificationDto.NotificationId">
+            <summary>
+            消息中心
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ReadNotificationDto.UserInfoId">
+            <summary>
+            userinfoId
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.ReplyVM">
             <summary>
             回复模型
@@ -1003,6 +1024,16 @@
         <member name="P:Exam.Api.Models.SelNotificationDto.UserInfoId">
             <summary>
             用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelNotificationDto.Status">
+            <summary>
+            消息状态 1是未读 2是只读
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelNotificationDto.TypeId">
+            <summary>
+            消息类型
             </summary>
         </member>
         <member name="P:Exam.Api.Models.SelUserInfoAnswerRecordDto.UserInfoId">
