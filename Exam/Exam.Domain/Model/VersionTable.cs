@@ -38,5 +38,11 @@ namespace Exam.Domain.Model
         /// </summary>
 
         public virtual DateTime CTime { get; set; }
+
+
+        /// <summary>
+        /// 链接
+        /// </summary>
+        public virtual string Link { get; set; }
     }
 }
