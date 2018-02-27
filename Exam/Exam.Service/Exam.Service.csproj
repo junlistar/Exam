@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntermediateService.cs" />
+    <Compile Include="PrimaryService.cs" />
     <Compile Include="SubjectInfoService.cs" />
     <Compile Include="VersionTableService.cs" />
     <Compile Include="ProblemLibraryService.cs" />
