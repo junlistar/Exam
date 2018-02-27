@@ -37,6 +37,10 @@ namespace Exam.Service
         /// 中级cookie
         /// </summary>
         public static string zjCookie = "";
+        /// <summary>
+        /// 初级cookie
+        /// </summary>
+        public static string cjCookie = "";
 
         //public static string httpHead = "";
         /// <summary>
@@ -52,6 +56,12 @@ namespace Exam.Service
                     //Task.Run(() =>
                     //{
                     CPA("http://zk.0373kj.com");
+                    //});
+                    break;
+                case "初级":
+                    //Task.Run(() =>
+                    //{
+                    CJ("http://cj.0373kj.com");
                     //});
                     break;
                 case "中级":
@@ -71,7 +81,75 @@ namespace Exam.Service
             }
             return true;
         }
+        /// <summary>
+        /// 初级
+        /// </summary>
+        /// <param name="httpHead"></param>
+        public void CJ(string httpHead)
+        {
+            //获取token
+            var url1 = httpHead + "/Oper/UserLogin?phone=18707928905&password=123456&accountType=0";
+            var url2 = httpHead + "/Home/index.php";
+            //获取分类详细题目
+            var url3 = httpHead + "/Topic/GetQuestionList?sctid={0}&pagesize=1000&page=1";
+            //获取登录cookie
+            var url4 = httpHead + "/Oper/UserLogin";
+            var url5 = httpHead + "/Subjects/GetSectionList";
+            var primary = new PrimaryService();
+            cjCookie = primary.GetToken(url1, url4);
+            if (!string.IsNullOrWhiteSpace(cjCookie))
+            {
+                //
+                var indexHtml = GetHtml(url2, "logoutnum=8;urltimestamp=201818;LogonAccount=62G26;");
+                //先获取中级的科目
+                var subList = IntermediateService.GetZJKeMu(indexHtml);
+                //遍历科目列表，取得列表对应的章节
+                for (int i = 0; i < subList.Count; i++)
+                {
+                    System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+                    long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
+                    url5 += "?_=" + t;
+                    var str = GetHtml(url5 + "&pageindex=1&type=0&courseId=" + i + 1 + "&pagesize=1000", "LogonAccount=8368000;");
+                    var model = JsonHelper.ParseFormJson<SectionVM>(str);
+                    foreach (SectionModel item in model.ds)
+                    {
+                        //这里得到章节里所有的题目
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "");
+                        //这里执行插入数据库的操作
+                        var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
+                        foreach (var im in model1.ds)
+                        {
+                            _ProblemLibraryBiz.Insert(new Domain.Model.ProblemLibrary
+                            {
+                                CTime = DateTime.Now,
+                                c_answer = im.c_answer,
+                                c_assistantsortid = im.c_assistantsortid,
+                                c_MistakeNum = im.c_MistakeNum,
+                                c_options = im.c_options,
+                                c_qid = im.c_qid,
+                                c_qustiontype = im.c_questiontype,
+                                c_score = im.c_score,
+                                c_sctid = im.c_sctid,
+                                c_sortid = decimal.Parse(im.c_sortid),
+                                c_tips = im.c_tips,
+                                isVideo = im.isVideo,
+                                Title = im.c_text,
+                                IsUse = 0,
+                                BelongId = 1001,
+                                c_sctname = item.c_sctname,
+                                SubjectInfoTitle = subList[i].Title.ToString().Trim()
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 中级
+        /// </summary>
+        /// <param name="httpHead"></param>
         public void ZJ(string httpHead)
         {
             //获取token
@@ -265,6 +343,10 @@ namespace Exam.Service
             else if (url.Contains("zj.0373kj"))
             {
                 cookhead = zjCookie;
+            }
+            else if (url.Contains("cj.0373kj"))
+            {
+                cookhead = cjCookie;
             }
             request1.Method = "GET";
             request1.Headers.Add("cookie:" + addCookie + cookhead);
