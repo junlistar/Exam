@@ -22,6 +22,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.TypeId);
             this.Property(m => m.VersionText);
             this.Property(m => m.CTime);
+            this.Property(m=>m.Link);
 
         }
     }

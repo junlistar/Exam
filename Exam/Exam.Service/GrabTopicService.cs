@@ -122,26 +122,26 @@ namespace Exam.Service
 
                         foreach (var im in model1.ds)
                         {
-                            _ProblemLibraryBiz.Insert(new Domain.Model.ProblemLibrary
-                            {
-                                CTime = DateTime.Now,
-                                c_answer = im.c_answer,
-                                c_assistantsortid = im.c_assistantsortid,
-                                c_MistakeNum = im.c_MistakeNum,
-                                c_options = im.c_options,
-                                c_qid = im.c_qid,
-                                c_qustiontype = im.c_questiontype,
-                                c_score = im.c_score,
-                                c_sctid = im.c_sctid,
-                                c_sortid = decimal.Parse(im.c_sortid),
-                                c_tips = im.c_tips,
-                                isVideo = im.isVideo,
-                                Title = im.c_text,
-                                IsUse = 0,
-                                BelongId = 1000,
-                                c_sctname = item.c_sctname,
-                                SubjectInfoTitle= subList[i].Title.ToString().Trim()
-                        });
+                        //    _ProblemLibraryBiz.Insert(new Domain.Model.ProblemLibrary
+                        //    {
+                        //        CTime = DateTime.Now,
+                        //        c_answer = im.c_answer,
+                        //        c_assistantsortid = im.c_assistantsortid,
+                        //        c_MistakeNum = im.c_MistakeNum,
+                        //        c_options = im.c_options,
+                        //        c_qid = im.c_qid,
+                        //        c_qustiontype = im.c_questiontype,
+                        //        c_score = im.c_score,
+                        //        c_sctid = im.c_sctid,
+                        //        c_sortid = decimal.Parse(im.c_sortid),
+                        //        c_tips = im.c_tips,
+                        //        isVideo = im.isVideo,
+                        //        Title = im.c_text,
+                        //        IsUse = 0,
+                        //        BelongId = 1000,
+                        //        c_sctname = item.c_sctname,
+                        //        SubjectInfoTitle= subList[i].Title.ToString().Trim()
+                        //});
                         }
                     }
 
