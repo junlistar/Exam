@@ -59,7 +59,7 @@ namespace Exam.Admin.Controllers
                 Total = totalCount,
                 Index = pn,
             };
-            _ProblemVM.Paging = paging; 
+            _ProblemVM.Paging = paging;
             _ProblemVM.Belongs = _BelongService.GetAll();
             return View(_ProblemVM);
         }
@@ -105,7 +105,7 @@ namespace Exam.Admin.Controllers
                 }
                 else
                 {
-                    if (_ProblemService.IsExistName(model.Title,model.ChapterId))
+                    if (_ProblemService.IsExistName(model.Title, model.ChapterId))
                         return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     model.CTime = DateTime.Now;
@@ -190,7 +190,7 @@ namespace Exam.Admin.Controllers
 
         private void NewMethod(int belongId)
         {
-            if (belongId<=0)
+            if (belongId <= 0)
             {
                 return;
             }
@@ -201,7 +201,7 @@ namespace Exam.Admin.Controllers
             var chapterlist = _ChapterService.GetAll().ToList();
             //题目类别（注会、初级、中级等）
             var belonglist = _BelongService.GetAll().ToList();
-             
+
             //注会数据（临时表）
             var fromList = _ProblemLibraryService.GetAll().Where(p => p.BelongId == belongId).ToList();
 
@@ -214,6 +214,9 @@ namespace Exam.Admin.Controllers
                         //目前只判断了单选和多选
                         case 4:
                         case 5:
+                        case 6:
+                        case 11:
+                        case 12:
                             Problem pitem = new Problem();
                             pitem.Title = item.Title;
                             pitem.Analysis = item.c_tips;
@@ -237,7 +240,22 @@ namespace Exam.Admin.Controllers
                                 }));
                             }
                             pitem.ChapterId = chapterlist.Where(p => p.Title == item.c_sctname).FirstOrDefault().ChapterId;
-                            pitem.ProblemCategoryId = item.c_qustiontype == 4 ? 1000 : 1001;  //等于4 单选，等于5 多选 
+                            if (item.c_qustiontype == 4)
+                            {
+                                pitem.ProblemCategoryId = 1000;//等于4 单选
+                            }
+                            else if (item.c_qustiontype == 5)
+                            {
+                                pitem.ProblemCategoryId = 1001;//等于5 多选
+                            }
+                            else if (item.c_qustiontype == 6)
+                            {
+                                pitem.ProblemCategoryId = 1002;//等于6 判断
+                            }
+                            else if (item.c_qustiontype == 11 || item.c_qustiontype == 12)
+                            {
+                                pitem.ProblemCategoryId = 1003;//等于11，12 计算回答
+                            }
                             pitem.Score = decimal.Parse(item.c_score);
                             pitem.Sort = 1;
                             pitem.IsHot = 0;
@@ -249,24 +267,42 @@ namespace Exam.Admin.Controllers
                             if (!_ProblemService.IsExistName(pitem.Title, pitem.ChapterId))
                             {
                                 var returnProblemModel = _ProblemService.Insert(pitem);
-
-                                var _options = item.c_options;
-                                var _answer = item.c_answer;
-
-                                if (!string.IsNullOrWhiteSpace(_answer))
+                                //单选，多选
+                                if (item.c_qustiontype == 4 || item.c_qustiontype == 5)
                                 {
-                                    var _correctlist = _answer.Split('|');
-                                    var _optionlist = _options.Split('|');
-                                    for (int i = 0; i < _optionlist.Length; i++)
+                                    var _options = item.c_options;
+                                    var _answer = item.c_answer;
+
+                                    if (!string.IsNullOrWhiteSpace(_answer))
                                     {
-                                        Answer _answermodel = new Answer();
-                                        _answermodel.ProblemId = returnProblemModel.ProblemId;
-                                        _answermodel.Title = _optionlist[i];
-                                        _answermodel.IsCorrect = _correctlist.Contains((i + 1).ToString()) ? 1 : 0;
-                                        //添加答案
-                                        _AnswerService.Insert(_answermodel);
+                                        var _correctlist = _answer.Split('|');
+                                        var _optionlist = _options.Split('|');
+                                        for (int i = 0; i < _optionlist.Length; i++)
+                                        {
+                                            Answer _answermodel = new Answer();
+                                            _answermodel.ProblemId = returnProblemModel.ProblemId;
+                                            _answermodel.Title = _optionlist[i];
+                                            _answermodel.IsCorrect = _correctlist.Contains((i + 1).ToString()) ? 1 : 0;
+                                            //添加答案
+                                            _AnswerService.Insert(_answermodel);
+                                        }
                                     }
                                 }
+                                //判断
+                                else if (item.c_qustiontype == 6)
+                                {
+                                    Answer _answermodel = new Answer();
+                                    _answermodel.ProblemId = returnProblemModel.ProblemId;
+                                    _answermodel.Title = item.c_tips;
+                                    _answermodel.IsCorrect = item.c_answer == "1" ? 1 : 0;
+                                    //添加答案
+                                    _AnswerService.Insert(_answermodel);
+                                }
+                                //回答
+                                else if (item.c_qustiontype == 11 || item.c_qustiontype == 12)
+                                {
+                                    //计算题，回答题。
+                                } 
                             }
 
                             //更新标识状态
