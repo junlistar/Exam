@@ -64,9 +64,9 @@ namespace Exam.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<UserInfoAnswerRecord> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<UserInfoAnswerRecord> GetManagerList(int userinfoId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._userInfoAnswerRecordService.GetManagerList(name, pageNum, pageSize, out totalCount);
+            return this._userInfoAnswerRecordService.GetManagerList(userinfoId, pageNum, pageSize, out totalCount);
         }
         /// <summary>
         /// 获取所有

@@ -50,7 +50,7 @@ namespace Exam.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        List<UserInfoAnswerRecord> GetManagerList(string name, int pageNum, int pageSize, out int totalCount);
+        List<UserInfoAnswerRecord> GetManagerList(int userinfoId, int pageNum, int pageSize, out int totalCount);
 
         /// <summary>
         /// 获取所有

@@ -50,5 +50,9 @@ namespace Exam.Domain.Model
         /// 修改时间
         /// </summary>
         public virtual DateTime UTime { get; set; }
+
+        public virtual UserInfo UserInfo { get; set; }
+        public virtual Belong Belong { get; set; }
+        public virtual Chapter Chapter { get; set; }
     }
 }
