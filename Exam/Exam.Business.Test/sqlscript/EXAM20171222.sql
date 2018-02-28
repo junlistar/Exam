@@ -292,3 +292,77 @@ create table SubjectInfo
 	CTime datetime default(getdate()),		--创建时间
 	UTime datetime default(getdate()),		--修改时间
 )
+--考试分类记录表
+create table UserExamClass
+(
+	UserExamClassId int identity(1000,1),			--编号
+	UserInfoId int,								--用户id
+	ExamClassId int,							--考试分类表Id
+	Title nvarchar(500),						--标题
+	StartTime datetime default(getdate()),		--考试开始时间
+	EndTime  datetime default(getdate()),		--考试结束时间
+	IsShow int default(1),						--是否显示考试
+	Score decimal(18, 2),						--考试分数
+	Sort int,									--排序
+	CreateTime datetime default(getdate()),		--创建时间
+	IsExam int	 default(1),					--是否改卷 1默认2是已经批卷
+)
+--考试问题记录表
+create table UserExamProblem
+(
+	UserExamProblemId int identity(1000,1),	--编号
+	title nvarchar(50) not null,		--标题
+	ProblemCategoryId int,				--类别分类
+	UserExamClassId int,					--考试分类表Id
+	CTime datetime default(getdate()),	--创建时间
+	Sort int default(99),				--排序
+	UTime datetime default(getdate()),	--修改时间
+	Score decimal(18, 2),				--分数
+	CorrectAnswer nvarchar(2000),			--正确答案
+	ErrorAnswer nvarchar(2000),			--错误答案
+)
+
+--考试问题表答案选项表
+create table UserExamAnswer
+(
+	UserExamAnswerId int identity(1000,1),			--编号
+	Title nvarchar(50) not null,		--标题
+	ExamProblemId int,						--问题表编号
+	isCorrect int,						--是否正确答案 0错误1正确
+)
+
+
+--考试分类表
+create table ExamClass
+(
+	ExamClassId int identity(1000,1),			--编号
+	Title nvarchar(500),						--标题
+	StartTime datetime default(getdate()),		--考试开始时间
+	EndTime  datetime default(getdate()),		--考试结束时间
+	IsShow int default(1),						--是否显示考试
+	Score decimal(18, 2),						--考试分数
+	Sort int,									--排序
+	CreateTime datetime default(getdate()),		--创建时间
+
+)
+--考试问题表
+create table ExamProblem
+(
+	ExamProblemId int identity(1000,1),	--编号
+	title nvarchar(50) not null,		--标题
+	ProblemCategoryId int,				--类别分类
+	ExamClassId int,					--考试分类表Id
+	CTime datetime default(getdate()),	--创建时间
+	Sort int default(99),				--排序
+	UTime datetime default(getdate()),	--修改时间
+	Score decimal(18, 2),				--分数
+)
+
+--考试问题表答案选项表
+create table ExamAnswer
+(
+	ExamAnswerId int identity(1000,1),			--编号
+	Title nvarchar(50) not null,		--标题
+	ExamProblemId int,						--问题表编号
+	isCorrect int,						--是否正确答案 0错误1正确
+)

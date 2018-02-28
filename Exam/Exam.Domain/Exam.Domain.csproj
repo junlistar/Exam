@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\SubjectInfo.cs" />
+    <Compile Include="Model\UserExamClass.cs" />
+    <Compile Include="Model\UserExamProblem.cs" />
     <Compile Include="Model\VersionTable.cs" />
     <Compile Include="Model\Advertisement.cs" />
     <Compile Include="Model\AnswerRecord.cs" />
