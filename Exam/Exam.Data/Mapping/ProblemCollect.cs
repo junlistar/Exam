@@ -24,6 +24,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.UTime);
 
             HasRequired(m => m.Problem);
+            HasRequired(m => m.UserInfo);
         }
     }
 }

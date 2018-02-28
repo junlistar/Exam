@@ -70,14 +70,14 @@ namespace Exam.Business
         /// 添加管理后台菜单列表
         /// </summary> 
         /// <returns></returns>
-        public List<ProblemRecord> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<ProblemRecord> GetManagerList(int parentRecordId, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<ProblemRecord>();
 
-            // name过滤
-            if (!string.IsNullOrEmpty(name))
+            // parentRecordId
+            if (parentRecordId!=0)
             {
-                where = where.And(m => m.Title.Contains(name));
+                where = where.And(m => m.UserInfoAnswerRecordId== parentRecordId);
             }
 
             totalCount = this._repoProblemRecord.Table.Where(where).Count();

@@ -18,5 +18,6 @@ namespace Exam.Domain.Model
         public virtual DateTime UTime { get; set; } 
 
         public virtual Problem Problem { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -188,6 +188,8 @@
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\BelongController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProblemRecordController.cs" />
+    <Compile Include="Controllers\ProblemCollectController.cs" />
     <Compile Include="Controllers\ProblemCategoryController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\NewsInfoController.cs" />
@@ -214,6 +216,8 @@
     <Compile Include="Models\ChapterVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BelongVM.cs" />
+    <Compile Include="Models\ProblemRecordVM.cs" />
+    <Compile Include="Models\ProblemCollectVM.cs" />
     <Compile Include="Models\ProblemCategoryVM.cs" />
     <Compile Include="Models\ProblemVM.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -688,6 +692,11 @@
     <Content Include="Views\Question\ReplyList.cshtml" />
     <Content Include="Views\AdManage\Edit.cshtml" />
     <Content Include="Views\AdManage\List.cshtml" />
+    <Content Include="Views\ProblemCollect\Edit.cshtml" />
+    <Content Include="Views\ProblemCollect\List.cshtml" />
+    <Content Include="Views\ProblemRecord\Edit.cshtml" />
+    <Content Include="Views\ProblemRecord\List.cshtml" />
+    <Content Include="Views\ProblemRecord\ProblemList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
