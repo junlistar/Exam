@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ExamAnswer.cs" />
+    <Compile Include="Model\ExamProblem.cs" />
+    <Compile Include="Model\ExamClass.cs" />
     <Compile Include="Model\SubjectInfo.cs" />
+    <Compile Include="Model\UserExamAnswer.cs" />
     <Compile Include="Model\UserExamClass.cs" />
     <Compile Include="Model\UserExamProblem.cs" />
     <Compile Include="Model\VersionTable.cs" />

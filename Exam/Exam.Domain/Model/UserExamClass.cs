@@ -9,7 +9,7 @@ namespace Exam.Domain.Model
     /// <summary>
     /// 考试分类记录表
     /// </summary>
-    public class UserExamClass
+    public class UserExamClass:IAggregateRoot
     {
         /// <summary>
         /// 编号
