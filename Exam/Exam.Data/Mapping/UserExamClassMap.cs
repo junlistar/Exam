@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Exam.Domain.Model;
 
-namespace Exam.Data
+namespace Exam.Data.Mapping
 {
     public class UserExamClassMap : EntityTypeConfiguration<UserExamClass>
     {
