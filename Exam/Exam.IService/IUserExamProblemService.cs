@@ -43,7 +43,7 @@ namespace Exam.IService
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        List<UserExamProblem> GetManagerList(string name, int pageNum, int pageSize,out int totalCount);
+        List<UserExamProblem> GetManagerList(int parentRecordId, int pageNum, int pageSize,out int totalCount);
 
         /// <summary>
         /// 获取所有

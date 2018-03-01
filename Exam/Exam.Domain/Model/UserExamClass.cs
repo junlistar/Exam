@@ -44,6 +44,10 @@ namespace Exam.Domain.Model
         public virtual DateTime CreateTime { get; set; }
         
         ///--是否改卷 1默认2是已经批卷
-        public virtual int IsExam { get; set; }				
+        public virtual int IsExam { get; set; }
+
+
+        public virtual UserInfo UserInfo { get; set; }
+        public virtual ExamClass ExamClass { get; set; }
     }
 }

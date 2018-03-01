@@ -72,9 +72,9 @@ namespace Exam.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<UserExamProblem> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<UserExamProblem> GetManagerList(int parentRecordId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._UserExamProblemBiz.GetManagerList(name, pageNum, pageSize, out totalCount);
+            return this._UserExamProblemBiz.GetManagerList(parentRecordId, pageNum, pageSize, out totalCount);
         }
         /// <summary>
         /// 获取所有

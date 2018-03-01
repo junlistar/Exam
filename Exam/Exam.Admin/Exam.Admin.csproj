@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\BelongController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserExamClassController.cs" />
     <Compile Include="Controllers\ProblemRecordController.cs" />
     <Compile Include="Controllers\ProblemCollectController.cs" />
     <Compile Include="Controllers\ProblemCategoryController.cs" />
