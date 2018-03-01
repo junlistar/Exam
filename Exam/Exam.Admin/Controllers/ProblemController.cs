@@ -169,14 +169,15 @@ namespace Exam.Admin.Controllers
         /// </summary> 
         /// <returns></returns>
         [HttpPost]
-        public JsonResult GrabProblemData()
+        public JsonResult GrabProblemData(string text)
         {
             try
             {
-                _grabTopic.StartGrab("注会");
-                _grabTopic.StartGrab("初级");
-                _grabTopic.StartGrab("中级");
-                 
+                //_grabTopic.StartGrab("注会");
+                //_grabTopic.StartGrab("初级");
+                //_grabTopic.StartGrab("中级");
+                _grabTopic.StartGrab(text);
+
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)

@@ -14,7 +14,7 @@
                                 <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询问题名称" value="@(Model.QueryName ?? "")">
                             </div> 
                             <button type="submit" class="btn btn-info">搜索</button>
-                            <button type="button" class="btn btn-danger right garbdata">拉取第三方题库</button>
+                           
                             @foreach (var item in Model.Belongs)
                             {
                                 <button type="button" data-belongId="@item.BelongId" class="btn btn-danger right syncdata">同步题库(@item.Title)</button>
@@ -68,6 +68,9 @@
                             <div class="btn-group">
                                 <a href="/Problem/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>
                                 <a href="/Problem/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                                <button type="button" data-text="注会" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取注会</button>
+                                <button type="button" data-text="初级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取初级</button>
+                                <button type="button" data-text="中级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取中级</button>
                             </div>
                             @Html.Raw(Model.Paging.Text)
                         </div>
@@ -99,10 +102,11 @@
             return false;
         })
 
-        $(".garbdata").click(function () { 
+        $(".garbdata").click(function () {
+            var _text = $(this).attr("data-text");
             //提交
             $.post('/Problem/GrabProblemData',
-                { },
+                  { text: _text },
                 function (data) {
                     if (data.Status == 200) {
                         swal("提示", "操作进行中，请耐心等待。");
