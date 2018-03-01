@@ -216,6 +216,7 @@
     <Compile Include="Models\ChapterVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BelongVM.cs" />
+    <Compile Include="Models\UserExamClassVM.cs" />
     <Compile Include="Models\ProblemRecordVM.cs" />
     <Compile Include="Models\ProblemCollectVM.cs" />
     <Compile Include="Models\ProblemCategoryVM.cs" />
@@ -697,6 +698,9 @@
     <Content Include="Views\ProblemRecord\Edit.cshtml" />
     <Content Include="Views\ProblemRecord\List.cshtml" />
     <Content Include="Views\ProblemRecord\ProblemList.cshtml" />
+    <Content Include="Views\UserExamClass\Edit.cshtml" />
+    <Content Include="Views\UserExamClass\List.cshtml" />
+    <Content Include="Views\UserExamClass\ProblemList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
