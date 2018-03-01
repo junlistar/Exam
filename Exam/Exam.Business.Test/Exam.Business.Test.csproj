@@ -81,6 +81,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sqlscript\EXAM20171222.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Exam.Business\Exam.Business.csproj">
       <Project>{358ea417-a518-46b6-af6d-9bf71315d851}</Project>
       <Name>Exam.Business</Name>
@@ -102,16 +109,9 @@
       <Name>Exam.IService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exam.Service\Exam.Service.csproj">
-      <Project>{F4558E2D-1AB0-4E96-BD4B-D296D168DF05}</Project>
+      <Project>{f4558e2d-1ab0-4e96-bd4b-d296d168df05}</Project>
       <Name>Exam.Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="sqlscript\EXAM20171222.sql" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
