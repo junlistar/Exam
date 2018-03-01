@@ -91,7 +91,7 @@
     <Compile Include="Mapping\UserInfoAnswerRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
-    <Compile Include="UserExamClassMap.cs" />
+    <Compile Include="Mapping\UserExamClassMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
