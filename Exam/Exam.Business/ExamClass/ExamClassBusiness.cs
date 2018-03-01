@@ -93,6 +93,17 @@ namespace Exam.Business
         {
             return this._repoExamClass.Table.ToList();
         }
+
+        /// <summary>
+        /// 获取考试分类
+        /// </summary> 
+        /// <returns></returns>
+        public List<ExamClass> GetExamClassList()
+        {
+            var where = PredicateBuilder.True<ExamClass>();
+            where = where.And(m => m.IsShow==1);
+            return this._repoExamClass.Table.Where(where).OrderBy(p => p.ExamClassId).ToList();
+        }
     }
 }
 

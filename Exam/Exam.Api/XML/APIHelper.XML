@@ -798,6 +798,17 @@
             <param name="uploadImageVM"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.UserExamController">
+            <summary>
+            考试模块
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.UserExamController.GetExamClassList">
+            <summary>
+            得到考试分类表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.VersionTableApiController">
             <summary>
             版本号

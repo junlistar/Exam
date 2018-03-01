@@ -51,5 +51,13 @@ namespace Exam.IService
         /// <param name="model"></param>
         /// <returns></returns>
         List<ExamClass> GetAll();
+
+
+        /// <summary>
+        /// 获取考试分类
+        /// </summary> 
+        /// <returns></returns>
+
+        List<ExamClass> GetExamClassList();
     }
 }
