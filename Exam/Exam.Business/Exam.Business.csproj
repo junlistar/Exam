@@ -52,6 +52,12 @@
     <Compile Include="Advertisement\IAdvertisementBusiness.cs" />
     <Compile Include="AnswerRecord\AnswerRecordBusiness.cs" />
     <Compile Include="AnswerRecord\IAnswerRecordBusiness.cs" />
+    <Compile Include="ExamAnswer\ExamAnswerBusiness.cs" />
+    <Compile Include="ExamAnswer\IExamAnswerBusiness.cs" />
+    <Compile Include="ExamClass\ExamClassBusiness.cs" />
+    <Compile Include="ExamClass\IExamClassBusiness.cs" />
+    <Compile Include="ExamProblem\ExamProblemBusiness.cs" />
+    <Compile Include="ExamProblem\IExamProblemBusiness.cs" />
     <Compile Include="Grade\IGradeBusiness.cs" />
     <Compile Include="Grade\GradeBusiness.cs" />
     <Compile Include="Notification\INotificationBusiness.cs" />
@@ -91,6 +97,12 @@
     <Compile Include="SysGroupMenu\SysGroupMenuBusiness.cs" />
     <Compile Include="SysMenu\ISysMenuBusiness.cs" />
     <Compile Include="SysMenu\SysMenuBusiness.cs" />
+    <Compile Include="UserExamAnswer\UserExamAnswerBusiness.cs" />
+    <Compile Include="UserExamAnswer\IUserExamAnswerBusiness.cs" />
+    <Compile Include="UserExamClass\UserExamClassBusiness.cs" />
+    <Compile Include="UserExamClass\IUserExamClassBusiness.cs" />
+    <Compile Include="UserExamProblem\IUserExamProblemBusiness.cs" />
+    <Compile Include="UserExamProblem\UserExamProblemBusiness.cs" />
     <Compile Include="UserInfoAnswerRecord\IUserInfoAnswerRecordBusiness.cs" />
     <Compile Include="UserInfoAnswerRecord\UserInfoAnswerRecordBusiness.cs" />
     <Compile Include="UserInfo\IUserInfoBusiness.cs" />
