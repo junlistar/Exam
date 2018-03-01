@@ -84,5 +84,13 @@ namespace Exam.Service
         {
             return this._ExamClassBiz.GetAll();
         }
+
+        /// <summary>
+        /// 获取考试分类
+        /// </summary> 
+        /// <returns></returns>
+        public List<ExamClass> GetExamClassList() {
+            return this._ExamClassBiz.GetExamClassList();
+        }
     }
 }
