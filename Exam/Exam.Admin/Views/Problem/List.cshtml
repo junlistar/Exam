@@ -14,6 +14,7 @@
                                 <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询问题名称" value="@(Model.QueryName ?? "")">
                             </div> 
                             <button type="submit" class="btn btn-info">搜索</button>
+                            <button type="button" class="btn btn-danger right garbdata">拉取第三方题库</button>
                             @foreach (var item in Model.Belongs)
                             {
                                 <button type="button" data-belongId="@item.BelongId" class="btn btn-danger right syncdata">同步题库(@item.Title)</button>
@@ -98,6 +99,24 @@
             return false;
         })
 
+        $(".garbdata").click(function () { 
+            //提交
+            $.post('/Problem/GrabProblemData',
+                { },
+                function (data) {
+                    if (data.Status == 200) {
+                        swal("提示", "操作进行中，请耐心等待。");
+                    }
+                    if (data.Status == 202) {
+                        swal("提示", "操作失败");
+                    }
+                    if (data.Status == 203) {
+                        swal("提示", "数据重复");
+                    }
+                });
+            return false;
+        })
+        
     })
 
 </script>}

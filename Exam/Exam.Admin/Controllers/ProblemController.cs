@@ -24,13 +24,15 @@ namespace Exam.Admin.Controllers
         private readonly IChapterService _ChapterService;
         private readonly IProblemLibraryService _ProblemLibraryService;
         private readonly IAnswerService _AnswerService;
-
+        private readonly IGrabTopicService _grabTopic;
+          
         public ProblemController(IProblemService ProblemService,
             IProblemCategoryService ProblemCategoryService,
             IBelongService BelongService,
             IChapterService ChapterService,
             IProblemLibraryService ProblemLibraryService,
-            IAnswerService AnswerService)
+            IAnswerService AnswerService,
+            IGrabTopicService grabTopic)
         {
             _ProblemService = ProblemService;
             _ProblemCategoryService = ProblemCategoryService;
@@ -38,6 +40,7 @@ namespace Exam.Admin.Controllers
             _ChapterService = ChapterService;
             _ProblemLibraryService = ProblemLibraryService;
             _AnswerService = AnswerService;
+            _grabTopic = grabTopic;
         }
 
         /// <summary>
@@ -162,6 +165,30 @@ namespace Exam.Admin.Controllers
         }
 
         /// <summary>
+        /// 拉取题库数据
+        /// </summary> 
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GrabProblemData()
+        {
+            try
+            {
+                _grabTopic.StartGrab("注会");
+                _grabTopic.StartGrab("初级");
+                _grabTopic.StartGrab("中级");
+                 
+                return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = Successed.Error
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
         /// 同步题库数据
         /// </summary>
         /// <param name="id"></param>
@@ -211,12 +238,12 @@ namespace Exam.Admin.Controllers
                 {
                     switch (item.c_qustiontype)
                     {
-                        //目前只判断了单选和多选
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 11:
-                        case 12:
+                        //目前判断了单选和多选，判断和回答
+                        case 4://单选
+                        case 5://多选
+                        case 6://判断
+                        case 11://回答
+                        case 12://回答
                             Problem pitem = new Problem();
                             pitem.Title = item.Title;
                             pitem.Analysis = item.c_tips;
@@ -301,7 +328,7 @@ namespace Exam.Admin.Controllers
                                 //回答
                                 else if (item.c_qustiontype == 11 || item.c_qustiontype == 12)
                                 {
-                                    //计算题，回答题。
+                                    //计算题，回答题。 没有答案选项。忽略
                                 } 
                             }
 
