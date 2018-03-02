@@ -41,6 +41,7 @@
 
         public new IDbSet<T> Set<T>() where T : class
         {
+            base.SaveChanges();
             return base.Set<T>();            
         }
 
