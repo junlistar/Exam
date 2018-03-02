@@ -57,5 +57,12 @@ namespace Exam.Business
         /// <param name="model"></param>
         /// <returns></returns>
         List<ProblemLibrary> GetAll();
+
+
+        /// <summary>
+        /// 获取所有(分页)
+        /// </summary> 
+        /// <returns></returns>
+        List<ProblemLibrary> GetAllByPage(int belongId, int pageNum, int pageSize);
     }
 }

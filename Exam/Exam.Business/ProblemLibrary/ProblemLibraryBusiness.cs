@@ -98,6 +98,22 @@ namespace Exam.Business
         {
             return this._repoProblemLibrary.Table.ToList();
         }
+
+        /// <summary>
+        /// 获取所有(分页)
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemLibrary> GetAllByPage(int belongId,int pageNum, int pageSize)
+        {
+            var where = PredicateBuilder.True<ProblemLibrary>();
+
+            // name过滤
+            if (belongId!=0)
+            {
+                where = where.And(m => m.BelongId == belongId);
+            }
+            return this._repoProblemLibrary.Table.Where(where).OrderBy(p => p.ProblemLibraryId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }
 

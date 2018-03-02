@@ -75,7 +75,7 @@ namespace Exam.Service
         /// <returns></returns>
         public List<ProblemLibrary> GetManagerList(string name, int typeId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._ProblemLibraryBiz.GetManagerList(name,typeId,pageNum, pageSize, out totalCount);
+            return this._ProblemLibraryBiz.GetManagerList(name, typeId, pageNum, pageSize, out totalCount);
         }
         /// <summary>
         /// 获取所有
@@ -84,6 +84,16 @@ namespace Exam.Service
         public List<ProblemLibrary> GetAll()
         {
             return this._ProblemLibraryBiz.GetAll();
+        }
+
+
+        /// <summary>
+        /// 获取所有(分页)
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemLibrary> GetAllByPage(int belongId, int pageNum, int pageSize)
+        {
+            return this._ProblemLibraryBiz.GetAllByPage(belongId, pageNum, pageSize);
         }
     }
 }
