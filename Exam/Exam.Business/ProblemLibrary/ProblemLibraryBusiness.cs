@@ -106,7 +106,7 @@ namespace Exam.Business
         public List<ProblemLibrary> GetAllByPage(int belongId,int pageNum, int pageSize)
         {
             var where = PredicateBuilder.True<ProblemLibrary>();
-
+            where = where.And(m => m.IsUse == 0);
             // name过滤
             if (belongId!=0)
             {
