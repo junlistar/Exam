@@ -173,5 +173,15 @@ namespace Exam.Api.Controllers
 
             return Json(new { Success = true, Msg = "用户图像修改成功", Data = userInfo });
         }
+        /// <summary>
+        /// 根据UserInfoId得到用户信息
+        /// </summary>
+        /// <param name="UserInfoId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetUserInfo(int UserInfoId=0)
+        {
+            return Json(new { Success = true, Msg = "OK", Data = _userInfo.GetById(UserInfoId) });
+        }
     }
 }

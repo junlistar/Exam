@@ -798,6 +798,13 @@
             <param name="uploadImageVM"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.UserApiController.GetUserInfo(System.Int32)">
+            <summary>
+            根据UserInfoId得到用户信息
+            </summary>
+            <param name="UserInfoId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Exam.Api.Controllers.UserExamController">
             <summary>
             考试模块
