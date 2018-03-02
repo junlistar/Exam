@@ -44,14 +44,19 @@ namespace Exam.Domain.Model
         public virtual int Sort { get; set; }
 
         /// <summary>
-        /// 	--修改时间
+        /// 修改时间
         /// </summary>
         public virtual DateTime UTime { get; set; }
         /// <summary>
         /// --分数
         /// </summary>
         public virtual decimal Score { get; set; }
-        ///--解析			
+
+        /// <summary>
+        /// --解析	
+        /// </summary>
         public virtual string Analysis { get; set; }
+
+        public virtual ExamClass ExamClass { get; set; }
     }
 }
