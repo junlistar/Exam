@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Exam.Core.Infrastructure;
 using Exam.Business;
+using System.Threading.Tasks;
 
 namespace Exam.Service
 {
@@ -53,28 +54,28 @@ namespace Exam.Service
             switch (title)
             {
                 case "注会":
-                    //Task.Run(() =>
-                    //{
-                    CPA("http://zk.0373kj.com");
-                    //});
+                    Task.Run(() =>
+                    {
+                        CPA("http://zk.0373kj.com");
+                    });
                     break;
                 case "初级":
-                    //Task.Run(() =>
-                    //{
-                    CJ("http://cj.0373kj.com");
-                    //});
+                    Task.Run(() =>
+                    {
+                        CJ("http://cj.0373kj.com");
+                    });
                     break;
                 case "中级":
-                    //Task.Run(() =>
-                    //{
-                    ZJ("http://zj.0373kj.com");
-                    //});
+                    Task.Run(() =>
+                    {
+                        ZJ("http://zj.0373kj.com");
+                    });
                     break;
                 case "税务师":
-                    //Task.Run(() =>
-                    //{
-                    ZJ("http://zj.0373kj.com");
-                    //});
+                    Task.Run(() =>
+                    {
+                        ZJ("http://zj.0373kj.com");
+                    });
                     break;
                 default:
                     break;

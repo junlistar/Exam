@@ -29,7 +29,7 @@
         }
         var dataArr = {
             NewsInfoId: id.val(),
-            ImageId: imgInfoId.val(),
+            ImageInfoId: imgInfoId.val(),
             NewsCategoryId: advertisementTypeId.val(),
             Title: title.val(),
             Author: author.val(), 
