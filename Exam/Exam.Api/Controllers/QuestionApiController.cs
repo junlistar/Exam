@@ -35,7 +35,7 @@ namespace Exam.Api.Controllers
             {
                 return Json(new { Success = false, Msg = "内容不能为空！", Data = "" });
             }
-            if (addQuestionDto.UserInfoId==0)
+            if (addQuestionDto.UserInfoId == 0)
             {
                 return Json(new { Success = false, Msg = "用户不能为空！", Data = "" });
             }
@@ -108,7 +108,7 @@ namespace Exam.Api.Controllers
                     question.UserInfoId = result.UserInfoId;
 
                     List<ReplyVM> childList = new List<ReplyVM>();
-                    if (result.ReplyList!=null)
+                    if (result.ReplyList != null)
                     {
                         foreach (var item in result.ReplyList)
                         {
@@ -139,7 +139,7 @@ namespace Exam.Api.Controllers
         /// <param name="QuestionId"></param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult GetQuestion(int QuestionId=0)
+        public IHttpActionResult GetQuestion(int QuestionId = 0)
         {
             var result = _questionService.GetById(QuestionId);
             QuestionVM question = new QuestionVM();
@@ -153,21 +153,24 @@ namespace Exam.Api.Controllers
             question.Sort = result.Sort;
             question.UserInfo = result.UserInfo;
             question.UserInfoId = result.UserInfoId;
-
-            List<ReplyVM> childList = new List<ReplyVM>(); 
-            foreach (var item in result.ReplyList)
+            List<ReplyVM> childList = new List<ReplyVM>();
+            if (result.ReplyList != null)
             {
-                
-                childList.Add(new ReplyVM { 
-                Content= item.Content,
-                CTime=item.CTime,
-                QuestionId=item.QuestionId,
-                Reads=item.Reads,
-                ReplyId=item.ReplyId,
-                Sort=item.Sort,
-                UserInfo=item.UserInfo,
-                UserInfoId=item.UserInfoId
-                });
+                foreach (var item in result.ReplyList)
+                {
+
+                    childList.Add(new ReplyVM
+                    {
+                        Content = item.Content,
+                        CTime = item.CTime,
+                        QuestionId = item.QuestionId,
+                        Reads = item.Reads,
+                        ReplyId = item.ReplyId,
+                        Sort = item.Sort,
+                        UserInfo = item.UserInfo,
+                        UserInfoId = item.UserInfoId
+                    });
+                }
             }
             question.ReplyList = childList;
             return Json(new { Success = true, Msg = "OK", Data = question });
