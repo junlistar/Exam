@@ -235,23 +235,24 @@ namespace Exam.Admin.Controllers
             bool isOver = false;
 
             while (!isOver)
-            { 
-                //注会数据（临时表）
-                var fromList = _ProblemLibraryService.GetAllByPage(belongId, pageNum++, pageSize);
+            {
+                //注会数据（临时表） pageNum不自增 每次取500条未处理的
+                var fromList = _ProblemLibraryService.GetAllByPage(belongId, pageNum, pageSize);
 
                 if (fromList != null && fromList.Count > 0)
                 {
                     foreach (var item in fromList)
                     {
-                        switch (item.c_qustiontype)
-                        {
-                            //目前判断了单选和多选，判断和回答
-                            case 4://单选
-                            case 5://多选
-                            case 6://判断
-                            case 11://回答
-                            case 12://回答
-                                Problem pitem = new Problem();
+                        //switch (item.c_qustiontype)
+                        //{
+                        //    //目前判断了单选和多选，判断和回答
+                        //    case 4://单选
+                        //    case 5://多选
+                        //    case 6://判断
+                        //    case 11://回答
+                        //    case 12://回答
+                        //    case 13://回答
+                        Problem pitem = new Problem();
                                 pitem.Title = item.Title;
                                 pitem.Analysis = item.c_tips;
                                 pitem.BelongId = item.BelongId;
@@ -286,9 +287,9 @@ namespace Exam.Admin.Controllers
                                 {
                                     pitem.ProblemCategoryId = 1002;//等于6 判断
                                 }
-                                else if (item.c_qustiontype == 11 || item.c_qustiontype == 12)
+                                else if (item.c_qustiontype == 11 || item.c_qustiontype == 12 || item.c_qustiontype == 13)
                                 {
-                                    pitem.ProblemCategoryId = 1003;//等于11，12 计算回答
+                                    pitem.ProblemCategoryId = 1003;//等于11，12，13 计算回答
                                 }
                                 pitem.Score = decimal.Parse(item.c_score);
                                 pitem.Sort = 1;
@@ -298,8 +299,8 @@ namespace Exam.Admin.Controllers
                                 pitem.UTime = DateTime.Now;
 
                                 //写入题目
-                                if (!_ProblemService.IsExistName(pitem.Title, pitem.ChapterId))
-                                {
+                                //if (!_ProblemService.IsExistName(pitem.Title, pitem.ChapterId))
+                                //{
                                     var returnProblemModel = _ProblemService.Insert(pitem);
                                     //单选，多选
                                     if (item.c_qustiontype == 4 || item.c_qustiontype == 5)
@@ -333,21 +334,21 @@ namespace Exam.Admin.Controllers
                                         _AnswerService.Insert(_answermodel);
                                     }
                                     //回答
-                                    else if (item.c_qustiontype == 11 || item.c_qustiontype == 12)
+                                    else if (item.c_qustiontype == 11 || item.c_qustiontype == 12 || item.c_qustiontype == 13)
                                     {
                                         //计算题，回答题。 没有答案选项。忽略
                                     }
-                                }
+                                //}
 
                                 //更新标识状态
                                 item.IsUse = 1;
                                 _ProblemLibraryService.Update(item);
 
 
-                                break;
-                            default:
-                                break;
-                        }
+                            //    break;
+                            //default:
+                            //    break;
+                        //}
                     }
                 }
                 else
