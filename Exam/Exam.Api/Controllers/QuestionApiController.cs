@@ -91,38 +91,43 @@ namespace Exam.Api.Controllers
             listVM.RCount = list.RCount;
             listVM.PCount = list.PCount;
             List<QuestionVM> questionVMlist = new List<QuestionVM>();
-            foreach (var result in list.Data)
+            if (list.Data != null)
             {
-                QuestionVM question = new QuestionVM();
-                question.Content = result.Content;
-                question.Title = result.Title;
-                question.CTime = result.CTime;
-                question.IsHot = result.IsHot;
-                question.IsTop = result.IsTop;
-                question.QuestionId = result.QuestionId;
-                question.Reads = result.Reads;
-                question.Sort = result.Sort;
-                question.UserInfo = result.UserInfo;
-                question.UserInfoId = result.UserInfoId;
-
-                List<ReplyVM> childList = new List<ReplyVM>();
-                foreach (var item in result.ReplyList)
+                foreach (var result in list.Data)
                 {
+                    QuestionVM question = new QuestionVM();
+                    question.Content = result.Content;
+                    question.Title = result.Title;
+                    question.CTime = result.CTime;
+                    question.IsHot = result.IsHot;
+                    question.IsTop = result.IsTop;
+                    question.QuestionId = result.QuestionId;
+                    question.Reads = result.Reads;
+                    question.Sort = result.Sort;
+                    question.UserInfo = result.UserInfo;
+                    question.UserInfoId = result.UserInfoId;
 
-                    childList.Add(new ReplyVM
+                    List<ReplyVM> childList = new List<ReplyVM>();
+                    if (result.ReplyList!=null)
                     {
-                        Content = item.Content,
-                        CTime = item.CTime,
-                        QuestionId = item.QuestionId,
-                        Reads = item.Reads,
-                        ReplyId = item.ReplyId,
-                        Sort = item.Sort,
-                        UserInfo = item.UserInfo,
-                        UserInfoId = item.UserInfoId
-                    });
+                        foreach (var item in result.ReplyList)
+                        {
+                            childList.Add(new ReplyVM
+                            {
+                                Content = item.Content,
+                                CTime = item.CTime,
+                                QuestionId = item.QuestionId,
+                                Reads = item.Reads,
+                                ReplyId = item.ReplyId,
+                                Sort = item.Sort,
+                                UserInfo = item.UserInfo,
+                                UserInfoId = item.UserInfoId
+                            });
+                        }
+                    }
+                    question.ReplyList = childList;
+                    questionVMlist.Add(question);
                 }
-                question.ReplyList = childList;
-                questionVMlist.Add(question);
             }
             listVM.Data = questionVMlist;
             return Json(new { Success = true, Msg = "OK", Data = listVM });
