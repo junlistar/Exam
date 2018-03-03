@@ -25,9 +25,11 @@ namespace Exam.Data.Repositories
         {
             get
             {
-                if (_entities == null)
-                    _entities = _dbContext.Set<T>();
-                return _entities;
+                //if (_entities == null)
+                //    _entities = _dbContext.Set<T>();
+                //return _entities;
+
+                return new ExamDbContext("Exam").Set<T>();
             }
         }
 
