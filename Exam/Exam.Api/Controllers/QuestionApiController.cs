@@ -60,7 +60,8 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="addReplyDto"></param>
         /// <returns></returns>
-        public IHttpActionResult AddReply(AddReplyDto addReplyDto)
+        [HttpPost]
+        public IHttpActionResult AddReply([FromUri]AddReplyDto addReplyDto)
         {
             var model = _replyService.Insert(new Domain.Model.Reply
             {
@@ -68,6 +69,7 @@ namespace Exam.Api.Controllers
                 Sort = 0,
                 CTime = DateTime.Now,
                 Reads = 0,
+                QuestionId = addReplyDto.QuestionId,
                 UserInfoId = addReplyDto.UserInfoId
             });
             return Json(new { Success = true, Msg = "OK", Data = model });
