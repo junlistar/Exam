@@ -38,10 +38,11 @@ namespace Exam.Core.Infrastructure
         {
             get
             {
-                if (Singleton<IEngine>.Instance == null)
-                {
-                    Initialize(false);
-                }
+                Initialize(true);
+                //if (Singleton<IEngine>.Instance == null)
+                //{
+                //    Initialize(false);
+                //}
                 return Singleton<IEngine>.Instance;
             }
         }
