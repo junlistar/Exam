@@ -290,6 +290,7 @@
     <Compile Include="Models\SelProblemCollectDto.cs" />
     <Compile Include="Models\SelUserInfoAnswerRecordDto.cs" />
     <Compile Include="Models\SlQuestionVM.cs" />
+    <Compile Include="Models\SubjectInfoVM.cs" />
     <Compile Include="Models\UpdateUserInfoVM.cs" />
     <Compile Include="Models\UploadImageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

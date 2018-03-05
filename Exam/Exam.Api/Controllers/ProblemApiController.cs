@@ -34,6 +34,8 @@ namespace Exam.Api.Controllers
 
         private readonly IProblemCollectService problemCollectService = EngineContext.Current.Resolve<IProblemCollectService>();
 
+        private readonly ISubjectInfoService subjectInfoService = EngineContext.Current.Resolve<ISubjectInfoService>();
+
         /// <summary>
         /// 获取分类列表
         /// </summary>
@@ -50,6 +52,45 @@ namespace Exam.Api.Controllers
         public IHttpActionResult GetchapterList()
         {
             return Json(new { Success = true, Msg = "OK", Data = chapterService.GetAll() });
+        }
+
+        /// <summary>
+        /// 根据分类id获取科目列表
+        /// </summary>
+        /// <param name="BelongId"></param>
+        /// <returns></returns>
+        public IHttpActionResult GetSubjectInfoList(int BelongId = 0)
+        {
+            var list = subjectInfoService.GetSubjectInfoList(BelongId);
+            List<SubjectInfoVM> subjectInfoList = new List<SubjectInfoVM>();
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    SubjectInfoVM model = new SubjectInfoVM();
+                    model.BelongId = item.BelongId;
+                    model.Sort = item.Sort;
+                    model.SubjectInfoId = item.SubjectInfoId;
+                    model.Title = item.Title;
+
+                    List<ChapterVM> childChapter = new List<ChapterVM>();
+                    if (item.ChapterList != null)
+                    {
+                        foreach (var childItem in item.ChapterList)
+                        {
+                            childChapter.Add(new ChapterVM
+                            {
+                                ChapterId = childItem.ChapterId,
+                                Sort = childItem.Sort,
+                                Title = childItem.Title
+                            });
+                        }
+                    }
+                    model.ChapterList = childChapter;
+                    subjectInfoList.Add(model);
+                }
+            }
+            return Json(new { Success = true, Msg = "OK", Data = subjectInfoList });
         }
 
         /// <summary>
@@ -279,7 +320,7 @@ namespace Exam.Api.Controllers
                 foreach (var result in problemlist)
                 {
                     int IsCollect = 0;
-                  
+
                     ProblemVM problem = new ProblemVM();
                     problem.ProblemId = result.ProblemId;
                     problem.Title = result.Title;

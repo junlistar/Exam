@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Exam.Domain.Model
+namespace Exam.Api.Models
 {
-    public class SubjectInfo: IAggregateRoot
+    /// <summary>
+    /// 科目
+    /// </summary>
+    public class SubjectInfoVM
     {
         /// <summary>
         /// 编号
@@ -24,19 +26,6 @@ namespace Exam.Domain.Model
 
         public virtual int Sort { get; set; }
 
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-
-        public virtual DateTime CTime { get; set; }
-
-        /// <summary>
-        /// 修改时间
-        /// </summary>
-
-        public virtual DateTime UTime { get; set; }
-
         /// <summary>
         /// 分类id
         /// </summary>
@@ -45,7 +34,15 @@ namespace Exam.Domain.Model
         /// <summary>
         /// 章节分类
         /// </summary>
-        public virtual List<Chapter> ChapterList { get; set; }
+        public virtual List<ChapterVM> ChapterList { get; set; }
+    }
 
+    /// <summary>
+    /// 章节
+    /// </summary>
+    public class ChapterVM {
+        public  int ChapterId { get; set; }
+        public string Title { get; set; }
+        public int Sort { get; set; }
     }
 }

@@ -57,5 +57,12 @@ namespace Exam.Business
         /// <param name="model"></param>
         /// <returns></returns>
         List<SubjectInfo> GetAll();
+
+
+        /// <summary>
+        /// 根据分类id获取科目列表
+        /// </summary>
+        /// <returns></returns>
+        List<SubjectInfo> GetSubjectInfoList(int belongId);
     }
 }

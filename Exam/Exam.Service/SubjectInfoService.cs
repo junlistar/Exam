@@ -85,5 +85,14 @@ namespace Exam.Service
         {
             return this._SubjectInfoBiz.GetAll();
         }
+
+        /// <summary>
+        /// 根据分类id获取科目列表
+        /// </summary>
+        /// <returns></returns>
+        public List<SubjectInfo> GetSubjectInfoList(int belongId)
+        {
+            return this._SubjectInfoBiz.GetSubjectInfoList(belongId);
+        }
     }
 }

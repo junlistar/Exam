@@ -661,6 +661,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetSubjectInfoList(System.Int32)">
+            <summary>
+            根据分类id获取科目列表
+            </summary>
+            <param name="BelongId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Exam.Api.Controllers.ProblemApiController.GetProblemList(Exam.Api.Models.SelctProblemVM)">
             <summary>
             获取题目列表
@@ -1082,6 +1089,41 @@
         <member name="P:Exam.Api.Models.SlQuestionVM.UserInfoId">
             <summary>
             用户id
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.SubjectInfoVM">
+            <summary>
+            科目
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SubjectInfoVM.SubjectInfoId">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SubjectInfoVM.Title">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SubjectInfoVM.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SubjectInfoVM.BelongId">
+            <summary>
+            分类id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SubjectInfoVM.ChapterList">
+            <summary>
+            章节分类
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.ChapterVM">
+            <summary>
+            章节
             </summary>
         </member>
         <member name="T:Exam.Api.Models.UpdateUserInfoVM">

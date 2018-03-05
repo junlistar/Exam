@@ -93,5 +93,23 @@ namespace Exam.Business
         {
             return this._repoSubjectInfo.Table.ToList();
         }
+
+
+        /// <summary>
+        /// 根据分类id获取科目列表
+        /// </summary>
+        /// <returns></returns>
+        public List<SubjectInfo> GetSubjectInfoList(int belongId)
+        {
+
+            var where = PredicateBuilder.True<SubjectInfo>();
+
+            // name过滤
+            if (belongId != 0)
+            {
+                where = where.And(m => m.BelongId == belongId);
+            }
+            return this._repoSubjectInfo.Table.Where(where).ToList();
+        }
     }
 }
