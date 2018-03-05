@@ -29,35 +29,94 @@ namespace Exam.Api.Controllers
         /// 得到考试分类表
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetExamClassList(int BelongId = 0)
         {
             var list = _examClassService.GetExamClassList().Where(c => c.BelongId == BelongId);
-            return Json(new { Success = true, Msg = "OK", Data = list });
+
+            List<ExamClassVM> examClassVMList = new List<ExamClassVM>();
+            if (list != null && list.Count() > 0)
+            {
+                foreach (var item in list)
+                {
+                    List<ExamProblemVM> examProblemVM = new List<ExamProblemVM>();
+                    if (item.ExamProblemList != null)
+                    {
+                        
+                        foreach (var ExamProblem in item.ExamProblemList)
+                        {
+                            ExamProblemVM model = new ExamProblemVM();
+                            model.Analysis = ExamProblem.Analysis;
+                            model.ExamClass = ExamProblem.ExamClass;
+                            model.ExamClassId = ExamProblem.ExamClassId;
+                            model.ExamProblemId = ExamProblem.ExamProblemId;
+                            model.ProblemCategoryId = ExamProblem.ProblemCategoryId;
+                            model.Score = item.Score;
+                            model.Sort = item.Sort;
+                            model.Title = item.Title;
+                            List<ExamAnswerVM> examAnswerVMList = new List<ExamAnswerVM>();
+
+                            if (model.ExamAnswerList != null)
+                            {
+                                foreach (var cItem in model.ExamAnswerList)
+                                {
+                                    examAnswerVMList.Add(new ExamAnswerVM
+                                    {
+                                        ExamAnswerId = cItem.ExamAnswerId,
+                                        IsCorrect = cItem.IsCorrect,
+                                        Title = cItem.Title
+                                    });
+                                }
+
+                            }
+                            model.ExamAnswerList = examAnswerVMList;
+                            examProblemVM.Add(model);
+                        }
+                    }
+                    List<ExamProblemVM> examProblemVMList = new List<ExamProblemVM>();
+                    examClassVMList.Add(new ExamClassVM { 
+                    BelongId=item.BelongId,
+                    CreateTime=item.CreateTime,
+                    EndTime=item.EndTime,
+                    ExamClassId=item.ExamClassId,
+                    IsShow=item.IsShow,
+                    Score=item.Score,
+                    Sort=item.Score,
+                    StartTime=item.StartTime,
+                    Title=item.Title,
+                    ExamProblemVMList= examProblemVM
+                    });
+                }
+                
+            }
+
+            return Json(new { Success = true, Msg = "OK", Data = examClassVMList });
         }
 
         /// <summary>
         /// 根据考试分类Id得到题目表
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetExamProblemList(int ExamClassId = 0)
         {
             var list = _examProblemService.GetAll().Where(c => c.ExamClassId == ExamClassId);
 
             List<ExamProblemVM> examProblemVMList = new List<ExamProblemVM>();
 
-            if (list != null)
+            if (list != null&&list.Count() > 0)
             {
                 foreach (var item in list)
                 {
                     ExamProblemVM model = new ExamProblemVM();
-                    model.Analysis = model.Analysis;
-                    model.ExamClass = model.ExamClass;
-                    model.ExamClassId = model.ExamClassId;
-                    model.ExamProblemId = model.ExamProblemId;
-                    model.ProblemCategoryId = model.ProblemCategoryId;
-                    model.Score = model.Score;
-                    model.Sort = model.Sort;
-                    model.Title = model.Title;
+                    model.Analysis = item.Analysis;
+                    model.ExamClass = item.ExamClass;
+                    model.ExamClassId = item.ExamClassId;
+                    model.ExamProblemId = item.ExamProblemId;
+                    model.ProblemCategoryId = item.ProblemCategoryId;
+                    model.Score = item.Score;
+                    model.Sort = item.Sort;
+                    model.Title = item.Title;
                     List<ExamAnswerVM> examAnswerVMList = new List<ExamAnswerVM>();
 
                     if (model.ExamAnswerList != null)
@@ -178,11 +237,12 @@ namespace Exam.Api.Controllers
         /// </summary>
         /// <param name="UserInfoId"></param>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetUserExamList(int UserInfoId = 0)
         {
             var list = _userExamClassService.GetAll().Where(c => c.UserInfoId == UserInfoId);
 
-            if (list != null)
+            if (list != null&&list.Count()>0)
             {
                 List<UserExamClassVM> userExamClassList = new List<UserExamClassVM>();
                 foreach (var item in list)

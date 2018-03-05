@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Exam.Domain.Model
+namespace Exam.Api.Models
 {
-    /// <summary>
-    /// 考试分类表
-    /// </summary>
-    public class ExamClass:IAggregateRoot
+    public class ExamClassVM
     {
         /// <summary>
         /// --编号
@@ -54,6 +50,8 @@ namespace Exam.Domain.Model
         /// </summary>
         public virtual int BelongId { get; set; }
 
-        public virtual List<ExamProblem> ExamProblemList { get; set; }
+        public virtual List<ExamProblemVM> ExamProblemVMList { get; set; }
     }
+
+
 }

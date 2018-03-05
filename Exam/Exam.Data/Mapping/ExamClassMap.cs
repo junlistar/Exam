@@ -25,6 +25,9 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Sort);
             this.Property(m => m.CreateTime);
             this.Property(m => m.BelongId);
+
+            HasMany(m => m.ExamProblemList).WithRequired(n => n.ExamClass);
+            
         }
     }
 }

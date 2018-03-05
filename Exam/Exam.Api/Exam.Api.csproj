@@ -272,6 +272,7 @@
     <Compile Include="Models\AddReplyDto.cs" />
     <Compile Include="Models\AddUserExamDto.cs" />
     <Compile Include="Models\AnswerVM.cs" />
+    <Compile Include="Models\ExamClassVM.cs" />
     <Compile Include="Models\ExamProblemVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginVM.cs" />
