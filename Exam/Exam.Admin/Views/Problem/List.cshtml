@@ -71,6 +71,12 @@
                                 <button type="button" data-text="注会" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取注会</button>
                                 <button type="button" data-text="初级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取初级</button>
                                 <button type="button" data-text="中级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取中级</button>
+
+                                <button type="button" data-text="会计实务(初)" style="margin-left:10px;" class="btn btn-danger right exam">会计实务(初)</button>
+                                <button type="button" data-text="经济法基础(初)" style="margin-left:10px;" class="btn btn-danger right exam">经济法基础(初)</button>
+                                <button type="button" data-text="财务管理(中)" style="margin-left:10px;" class="btn btn-danger right exam">财务管理(中)</button>
+                                <button type="button" data-text="会计实务(中)" style="margin-left:10px;" class="btn btn-danger right exam">会计实务(中)</button>
+                                <button type="button" data-text="经济法基础(中)" style="margin-left:10px;" class="btn btn-danger right exam">经济法基础(中)</button>
                             </div>
                             @Html.Raw(Model.Paging.Text)
                         </div>
@@ -106,6 +112,25 @@
             var _text = $(this).attr("data-text");
             //提交
             $.post('/Problem/GrabProblemData',
+                  { text: _text },
+                function (data) {
+                    if (data.Status == 200) {
+                        swal("提示", "操作进行中，请耐心等待。");
+                    }
+                    if (data.Status == 202) {
+                        swal("提示", "操作失败");
+                    }
+                    if (data.Status == 203) {
+                        swal("提示", "数据重复");
+                    }
+                });
+            return false;
+        })
+
+        $(".exam").click(function () {
+            var _text = $(this).attr("data-text");
+            //提交
+            $.post('/Problem/ScExam1',
                   { text: _text },
                 function (data) {
                     if (data.Status == 200) {

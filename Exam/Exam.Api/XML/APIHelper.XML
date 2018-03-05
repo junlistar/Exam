@@ -946,6 +946,51 @@
             考试分类id
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.ExamClassId">
+            <summary>
+            --编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.Title">
+            <summary>
+            --标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.StartTime">
+            <summary>
+            --考试开始时间
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.EndTime">
+            <summary>
+            --考试结束时间
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.IsShow">
+            <summary>
+            --是否显示考试
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.Score">
+            <summary>
+            --考试分数
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.Sort">
+            <summary>
+            --排序
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.CreateTime">
+            <summary>
+            --创建时间
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamClassVM.BelongId">
+            <summary>
+            分类id
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.ExamProblemVM">
             <summary>
             考试题目

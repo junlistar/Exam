@@ -47,7 +47,6 @@ namespace Exam.Api.Controllers
                         {
                             ExamProblemVM model = new ExamProblemVM();
                             model.Analysis = ExamProblem.Analysis;
-                            model.ExamClass = ExamProblem.ExamClass;
                             model.ExamClassId = ExamProblem.ExamClassId;
                             model.ExamProblemId = ExamProblem.ExamProblemId;
                             model.ProblemCategoryId = ExamProblem.ProblemCategoryId;
@@ -81,7 +80,7 @@ namespace Exam.Api.Controllers
                     ExamClassId=item.ExamClassId,
                     IsShow=item.IsShow,
                     Score=item.Score,
-                    Sort=item.Score,
+                    Sort=item.Sort,
                     StartTime=item.StartTime,
                     Title=item.Title,
                     ExamProblemVMList= examProblemVM
@@ -110,7 +109,6 @@ namespace Exam.Api.Controllers
                 {
                     ExamProblemVM model = new ExamProblemVM();
                     model.Analysis = item.Analysis;
-                    model.ExamClass = item.ExamClass;
                     model.ExamClassId = item.ExamClassId;
                     model.ExamProblemId = item.ExamProblemId;
                     model.ProblemCategoryId = item.ProblemCategoryId;

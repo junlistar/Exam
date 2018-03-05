@@ -34,7 +34,7 @@ namespace Exam.Api.Models
         /// <summary>
         /// --考试分数
         /// </summary>
-        public virtual int Score { get; set; }
+        public virtual decimal Score { get; set; }
 
         /// <summary>
         /// --排序

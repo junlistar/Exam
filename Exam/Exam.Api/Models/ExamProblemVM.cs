@@ -48,8 +48,7 @@ namespace Exam.Api.Models
         /// --解析	
         /// </summary>
         public  string Analysis { get; set; }
-
-        public  ExamClass ExamClass { get; set; }
+        
 
         public virtual List<ExamAnswerVM> ExamAnswerList { get; set; }
     }

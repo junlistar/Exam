@@ -26,6 +26,9 @@ namespace Exam.Admin.Controllers
         private readonly IProblemLibraryService _ProblemLibraryService;
         private readonly IAnswerService _AnswerService;
         private readonly IGrabTopicService _grabTopic;
+        private readonly IExamClassService _examClassService;
+        private readonly IExamProblemService _examProblemService;
+        private readonly IExamAnswerService _examAnswerService;
 
         public ProblemController(IProblemService ProblemService,
             IProblemCategoryService ProblemCategoryService,
@@ -33,7 +36,10 @@ namespace Exam.Admin.Controllers
             IChapterService ChapterService, ISubjectInfoService SubjectInfoService,
             IProblemLibraryService ProblemLibraryService,
             IAnswerService AnswerService,
-            IGrabTopicService grabTopic)
+            IGrabTopicService grabTopic,
+            IExamClassService examClassService,
+            IExamProblemService examProblemService,
+            IExamAnswerService examAnswerService)
         {
             _ProblemService = ProblemService;
             _ProblemCategoryService = ProblemCategoryService;
@@ -43,6 +49,9 @@ namespace Exam.Admin.Controllers
             _ProblemLibraryService = ProblemLibraryService;
             _AnswerService = AnswerService;
             _grabTopic = grabTopic;
+            _examClassService = examClassService;
+            _examProblemService = examProblemService;
+            _examAnswerService = examAnswerService;
         }
 
         /// <summary>
@@ -260,7 +269,7 @@ namespace Exam.Admin.Controllers
                         pitem.Title = item.Title;
                         pitem.Analysis = item.c_tips;
                         pitem.BelongId = item.BelongId;
-                      
+
                         if (!subjectlist.Any(p => p.Title == item.SubjectInfoTitle))
                         {
                             subjectlist.Add(_SubjectInfoService.Insert(new SubjectInfo
@@ -368,6 +377,215 @@ namespace Exam.Admin.Controllers
                 }
 
             }
+        }
+
+        /// <summary>
+        /// 会计实务(初)
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ScExam1()
+        {
+            //1001初级 1002中级
+            var ProblemList = _ProblemService.GetProblemList(1001, 0).Where(c => c.SubjectInfoId == 1001).ToList();
+
+            if (ProblemList != null)
+            {
+                var examClassModel = _examClassService.Insert(new ExamClass
+                {
+                    CreateTime = DateTime.Now,
+                    BelongId = 1001,
+                    EndTime = DateTime.Now,
+                    IsShow = 1,
+                    Score = 1,
+                    Sort = 100,
+                    StartTime = DateTime.Now,
+                    Title = "会计实务(初)"
+                });
+
+                //单选
+                var dProblemList = from a in ProblemList
+                                   where a.ProblemCategoryId == 1000
+                                   select a;
+
+                //多选
+                var dProblemList2 = from a in ProblemList
+                                    where a.ProblemCategoryId == 1001
+                                    select a;
+
+                //判断
+                var dProblemList3 = from a in ProblemList
+                                    where a.ProblemCategoryId == 1002
+                                    select a;
+                //回答
+                var dProblemList4 = from a in ProblemList
+                                    where a.ProblemCategoryId == 1003
+                                    select a;
+                if (dProblemList.Count() >= 24 && dProblemList2.Count() >= 12 && dProblemList3.Count() >= 10)
+                {
+                    var ResltProblemList = dProblemList.OrderBy(c => Guid.NewGuid()).Take(24);
+                    foreach (var item in ResltProblemList)
+                    {
+
+                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
+                        {
+                            Title = item.Title,
+                            CTime = DateTime.Now,
+                            Analysis = item.Analysis,
+                            ExamClassId = examClassModel.ExamClassId,
+                            Score = 1,
+                            UTime = DateTime.Now,
+                            Sort = 1,
+                            ProblemCategoryId= item.ProblemCategoryId
+                        });
+                        if (item.AnswerList != null)
+                        {
+                            foreach (var citem in item.AnswerList)
+                            {
+                                _examAnswerService.Insert(new ExamAnswer
+                                {
+                                    ExamProblemId = examProblemmodel.ExamProblemId,
+                                    IsCorrect = citem.IsCorrect,
+                                    Title = citem.Title
+                                });
+                            }
+                        }
+                    }
+                    var ResltProblemList2 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(12);
+                    foreach (var item in ResltProblemList2)
+                    {
+                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
+                        {
+                            Title = item.Title,
+                            CTime = DateTime.Now,
+                            Analysis = item.Analysis,
+                            ExamClassId = examClassModel.ExamClassId,
+                            Score = Convert.ToDecimal(1.5),
+                            UTime = DateTime.Now,
+                            Sort = 1
+                        });
+                        if (item.AnswerList != null)
+                        {
+                            foreach (var citem in item.AnswerList)
+                            {
+                                _examAnswerService.Insert(new ExamAnswer
+                                {
+                                    ExamProblemId = examProblemmodel.ExamProblemId,
+                                    IsCorrect = citem.IsCorrect,
+                                    Title = citem.Title
+                                });
+                            }
+                        }
+                    }
+                    var ResltProblemList3 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(10);
+                    foreach (var item in ResltProblemList3)
+                    {
+                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
+                        {
+                            Title = item.Title,
+                            CTime = DateTime.Now,
+                            Analysis = item.Analysis,
+                            ExamClassId = examClassModel.ExamClassId,
+                            Score = Convert.ToDecimal(1.5),
+                            UTime = DateTime.Now,
+                            Sort = 1
+                        });
+                        if (item.AnswerList != null)
+                        {
+                            foreach (var citem in item.AnswerList)
+                            {
+                                _examAnswerService.Insert(new ExamAnswer
+                                {
+                                    ExamProblemId = examProblemmodel.ExamProblemId,
+                                    IsCorrect = citem.IsCorrect,
+                                    Title = citem.Title
+                                });
+                            }
+                        }
+                    }
+                    var ResltProblemList4 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(15);
+                    foreach (var item in ResltProblemList4)
+                    {
+                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
+                        {
+                            Title = item.Title,
+                            CTime = DateTime.Now,
+                            Analysis = item.Analysis,
+                            ExamClassId = examClassModel.ExamClassId,
+                            Score = Convert.ToDecimal(1.5),
+                            UTime = DateTime.Now,
+                            Sort = 1
+                        });
+                        if (item.AnswerList != null)
+                        {
+                            foreach (var citem in item.AnswerList)
+                            {
+                                _examAnswerService.Insert(new ExamAnswer
+                                {
+                                    ExamProblemId = examProblemmodel.ExamProblemId,
+                                    IsCorrect = citem.IsCorrect,
+                                    Title = citem.Title
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return Json(new
+            {
+                Status = Successed.Ok
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        ///  经济法基础(初)
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ScExam2()
+        {
+            var ProblemList = _ProblemService.GetProblemList(1001, 0);
+            return Json(new
+            {
+                Status = Successed.Ok
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 财务管理(中)
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ScExam3()
+        {
+            var ProblemList = _ProblemService.GetProblemList(1002, 0);
+            return Json(new
+            {
+                Status = Successed.Ok
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 会计实务(中)
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ScExam4()
+        {
+            var ProblemList = _ProblemService.GetProblemList(1002, 0);
+            return Json(new
+            {
+                Status = Successed.Ok
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 经济法基础(中)
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ScExam5()
+        {
+            var ProblemList = _ProblemService.GetProblemList(1002, 0);
+            return Json(new
+            {
+                Status = Successed.Ok
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
