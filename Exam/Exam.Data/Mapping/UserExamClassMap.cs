@@ -27,6 +27,10 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Sort);
             this.Property(m => m.CreateTime);
             this.Property(m => m.IsExam);
+
+            HasRequired(m => m.UserInfo);
+            HasRequired(m => m.ExamClass);
+            HasMany(m => m.UserExamProblemList).WithRequired(n => n.UserExamClass);
         }
     }
 }

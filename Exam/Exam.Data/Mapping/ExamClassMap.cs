@@ -24,6 +24,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.Score);
             this.Property(m => m.Sort);
             this.Property(m => m.CreateTime);
+            this.Property(m => m.BelongId);
         }
     }
 }

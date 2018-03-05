@@ -18,8 +18,9 @@ namespace Exam.Data.Mapping
             this.Property(m => m.UserExamAnswerId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(m => m.Title);
-            this.Property(m => m.ExamProblemId);
+            this.Property(m => m.UserExamProblemId);
             this.Property(m => m.IsCorrect);
+            HasRequired(m => m.UserExamProblem);
         }
     }
 }

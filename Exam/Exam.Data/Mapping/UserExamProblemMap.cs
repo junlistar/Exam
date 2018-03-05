@@ -27,6 +27,8 @@ namespace Exam.Data.Mapping
             this.Property(m => m.CorrectAnswer);
             this.Property(m => m.ErrorAnswer);
             this.Property(m => m.Analysis);
+            HasRequired(m => m.UserExamClass);
+            HasMany(m => m.UserExamAnswerList).WithRequired(n => n.UserExamProblem);
         }
     }
 }

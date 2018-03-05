@@ -48,5 +48,10 @@ namespace Exam.Domain.Model
         /// --创建时间
         /// </summary>
         public virtual DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 分类id
+        /// </summary>
+        public virtual int BelongId { get; set; }
     }
 }

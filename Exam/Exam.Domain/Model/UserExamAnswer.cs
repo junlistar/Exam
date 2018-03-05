@@ -9,7 +9,7 @@ namespace Exam.Domain.Model
     /// <summary>
     /// 考试问题表答案选项表
     /// </summary>
-    public class UserExamAnswer:IAggregateRoot
+    public class UserExamAnswer : IAggregateRoot
     {
         /// <summary>
         /// --编号
@@ -23,11 +23,14 @@ namespace Exam.Domain.Model
         /// <summary>
         /// --问题表编号
         /// </summary>
-        public virtual int ExamProblemId { get; set; }
+        public virtual int UserExamProblemId { get; set; }
 
         /// <summary>
         /// --是否正确答案 0错误1正确
         /// </summary>
-        public virtual int IsCorrect { get; set; }				
+        public virtual int IsCorrect { get; set; }
+
+
+        public virtual UserExamProblem UserExamProblem { get; set; }
     }
 }

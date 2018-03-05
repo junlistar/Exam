@@ -49,5 +49,7 @@ namespace Exam.Domain.Model
 
         public virtual UserInfo UserInfo { get; set; }
         public virtual ExamClass ExamClass { get; set; }
+
+        public virtual List<UserExamProblem> UserExamProblemList { get; set; }
     }
 }

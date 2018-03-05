@@ -58,5 +58,7 @@ namespace Exam.Domain.Model
         public virtual string Analysis { get; set; }
 
         public virtual ExamClass ExamClass { get; set; }
+        
+        public virtual List<ExamAnswer> ExamAnswerList { get; set; }
     }
 }

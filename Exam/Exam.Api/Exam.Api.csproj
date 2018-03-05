@@ -270,7 +270,9 @@
     <Compile Include="Models\AddProblemDto.cs" />
     <Compile Include="Models\AddQuestionDto.cs" />
     <Compile Include="Models\AddReplyDto.cs" />
+    <Compile Include="Models\AddUserExamDto.cs" />
     <Compile Include="Models\AnswerVM.cs" />
+    <Compile Include="Models\ExamProblemVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\NewsVM.cs" />
@@ -293,6 +295,7 @@
     <Compile Include="Models\SubjectInfoVM.cs" />
     <Compile Include="Models\UpdateUserInfoVM.cs" />
     <Compile Include="Models\UploadImageVM.cs" />
+    <Compile Include="Models\UserExamClassVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

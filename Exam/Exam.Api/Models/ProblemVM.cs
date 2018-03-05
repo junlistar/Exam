@@ -21,6 +21,6 @@ namespace Exam.Api.Models
         public ProblemCategory ProblemCategory { get; set; }
         public List<AnswerVM> AnswerList { get; set; }
 
-        public Chapter Chapter { get; set; }
+        public ChapterVM Chapter { get; set; }
     }
 }

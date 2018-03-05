@@ -61,5 +61,9 @@ namespace Exam.Domain.Model
         /// 解析
         /// </summary>
         public virtual string Analysis { get; set; }
+
+        public virtual UserExamClass UserExamClass { get; set; }
+
+        public virtual List<UserExamAnswer> UserExamAnswerList { get; set; }
     }
 }

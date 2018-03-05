@@ -20,8 +20,8 @@ namespace Exam.Data.Mapping
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(m => m.IsCorrect);
             this.Property(m => m.ProblemId); 
-            this.Property(m => m.Title); 
-             
+            this.Property(m => m.Title);
+            
         }
     }
 }

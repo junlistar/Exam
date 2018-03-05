@@ -128,7 +128,15 @@ namespace Exam.Api.Controllers
                     problem.ProblemCategoryId = result.ProblemCategoryId;
                     problem.ProblemCategory = result.ProblemCategory;
                     problem.Analysis = result.Analysis;
-                    problem.Chapter = result.Chapter;
+                    ChapterVM chapterVM = new ChapterVM();
+
+                    if (result.Chapter != null)
+                    {
+                        chapterVM.ChapterId = result.Chapter.ChapterId;
+                        chapterVM.Title = result.Chapter.Title;
+                        chapterVM.Sort = result.Chapter.Sort;
+                    }
+                    problem.Chapter = chapterVM;
                     problem.IsCollect = IsCollect;
                     List<AnswerVM> childList = new List<AnswerVM>();
                     if (result.AnswerList != null)

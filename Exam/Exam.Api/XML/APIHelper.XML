@@ -817,10 +817,30 @@
             考试模块
             </summary>
         </member>
-        <member name="M:Exam.Api.Controllers.UserExamController.GetExamClassList">
+        <member name="M:Exam.Api.Controllers.UserExamController.GetExamClassList(System.Int32)">
             <summary>
             得到考试分类表
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.UserExamController.GetExamProblemList(System.Int32)">
+            <summary>
+            根据考试分类Id得到题目表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.UserExamController.AddUserExam(Exam.Api.Models.AddUserExamDto)">
+            <summary>
+            添加考试记录
+            </summary>
+            <param name="addUserExamDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Exam.Api.Controllers.UserExamController.GetUserExamList(System.Int32)">
+            <summary>
+            通过userinfoId得到考试记录
+            </summary>
+            <param name="UserInfoId"></param>
             <returns></returns>
         </member>
         <member name="T:Exam.Api.Controllers.VersionTableApiController">
@@ -909,6 +929,76 @@
         <member name="P:Exam.Api.Models.AddReplyDto.QuestionId">
             <summary>
             问题id
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.AddUserExamDto">
+            <summary>
+            添加考试记录
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddUserExamDto.UserInfoId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.AddUserExamDto.ExamClassId">
+            <summary>
+            考试分类id
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.ExamProblemVM">
+            <summary>
+            考试题目
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.ExamProblemId">
+            <summary>
+            --编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.Title">
+            <summary>
+            --标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.ProblemCategoryId">
+            <summary>
+            -类别分类
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.ExamClassId">
+            <summary>
+            --考试分类表Id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.Sort">
+            <summary>
+            --排序
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.Score">
+            <summary>
+            --分数
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamProblemVM.Analysis">
+            <summary>
+            --解析	
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamAnswerVM.ExamAnswerId">
+            <summary>
+            --编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamAnswerVM.Title">
+            <summary>
+            --标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ExamAnswerVM.IsCorrect">
+            <summary>
+            -是否正确答案 0错误1正确
             </summary>
         </member>
         <member name="T:Exam.Api.Models.LoginVM">
@@ -1169,6 +1259,115 @@
         <member name="P:Exam.Api.Models.UploadImageVM.UserInfoId">
             <summary>
             用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.UserExamClassId">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.UserInfoId">
+            <summary>
+            --用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.ExamClassId">
+            --考试分类表Id
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.StartTime">
+            --考试开始时间					
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.EndTime">
+            --考试结束时间		
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.IsShow">
+            --是否显示考试 1显示2不显示		
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.Score">
+            --考试分数					
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.Sort">
+            --排序			
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.CreateTime">
+            --创建时间							
+        </member>
+        <member name="P:Exam.Api.Models.UserExamClassVM.IsExam">
+            --是否改卷 1默认2是已经批卷
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.UserExamProblemId">
+            <summary>
+            --编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.Title">
+            <summary>
+            --标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.ProblemCategoryId">
+            <summary>
+            --类别分类
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.UserExamClassId">
+            <summary>
+            --考试分类表Id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.CTime">
+            <summary>
+            --创建时间
+            </summary>		
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.Sort">
+            <summary>
+            --排序
+            </summary>	
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.UTime">
+            <summary>
+            --修改时间
+            </summary>	
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.Score">
+            <summary>
+            --分数
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.CorrectAnswer">
+            <summary>
+            正确答案
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.ErrorAnswer">
+            <summary>
+            错误答案
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamProblemVM.Analysis">
+            <summary>
+            解析
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamAnswerVM.UserExamAnswerId">
+            <summary>
+            --编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamAnswerVM.Title">
+            <summary>
+            --标题
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamAnswerVM.UserExamProblemId">
+            <summary>
+            --问题表编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserExamAnswerVM.IsCorrect">
+            <summary>
+            --是否正确答案 0错误1正确
             </summary>
         </member>
     </members>
