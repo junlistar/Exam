@@ -277,7 +277,8 @@ namespace Exam.Admin.Controllers
                                 CTime = DateTime.Now,
                                 Title = item.SubjectInfoTitle,
                                 Sort = 1,
-                                UTime = DateTime.Now
+                                UTime = DateTime.Now,
+                                BelongId= item.BelongId
                             }));
                         }
                         pitem.SubjectInfoId = subjectlist.Where(p => p.Title == item.SubjectInfoTitle).FirstOrDefault().SubjectInfoId;
