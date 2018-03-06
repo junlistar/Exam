@@ -237,7 +237,7 @@ namespace Exam.Api.Controllers
                     }
                 }
             }
-            return Json(new { Success = true, Msg = "OK", Data = userInfoAnswerRecord });
+            return Json(new { Success = true, Msg = "OK", Data = "" });
         }
 
         /// <summary>
