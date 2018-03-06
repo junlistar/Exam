@@ -72,7 +72,7 @@ namespace Exam.Api.Controllers
                 QuestionId = addReplyDto.QuestionId,
                 UserInfoId = addReplyDto.UserInfoId
             });
-            return Json(new { Success = true, Msg = "OK", Data = model });
+            return Json(new { Success = true, Msg = "OK", Data = "" });
         }
 
         /// <summary>
