@@ -61,7 +61,7 @@ namespace Exam.Api.Controllers
         /// <param name="addReplyDto"></param>
         /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult AddReply([FromUri]AddReplyDto addReplyDto)
+        public IHttpActionResult AddReply(AddReplyDto addReplyDto)
         {
             var model = _replyService.Insert(new Domain.Model.Reply
             {
