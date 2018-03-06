@@ -901,6 +901,11 @@
             用户id
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.AddProblemRecordDto.YesOrNo">
+            <summary>
+            1正确2错误
+            </summary>
+        </member>
         <member name="P:Exam.Api.Models.AddQuestionDto.Title">
             <summary>
             标题

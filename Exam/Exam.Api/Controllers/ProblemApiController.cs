@@ -218,21 +218,19 @@ namespace Exam.Api.Controllers
                         ProblemCategoryId = problem.ProblemCategoryId,
                         ProblemId = item.ProblemId,
                         UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
-                        Analysis = problem.Analysis
+                        Analysis = problem.Analysis,
+                        YesOrNo= item.YesOrNo
                     });
 
-                    foreach (var itemChild in item.AnswerRecordList)
+                    foreach (var itemChild in problem.AnswerList)
                     {
-                        var Answer = (from n in problem.AnswerList
-                                      where n.AnswerId == itemChild.AnswerId
-                                      select n).FirstOrDefault();
                         answerRecordService.Insert(new Domain.Model.AnswerRecord
                         {
                             AnswerId = itemChild.AnswerId,
                             ProblemId = problem.ProblemId,
-                            IsCorrect = Answer.IsCorrect,
+                            IsCorrect = itemChild.IsCorrect,
                             ProblemRecordId = problemRecord.ProblemRecordId,
-                            Title = Answer.Title
+                            Title = itemChild.Title
                         });
                     }
                 }

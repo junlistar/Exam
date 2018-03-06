@@ -28,6 +28,7 @@ namespace Exam.Data.Mapping
             this.Property(m => m.CTime);
             this.Property(m => m.UTime);
             this.Property(m => m.Analysis);
+            this.Property(m=>m.YesOrNo);
             HasRequired(m => m.ProblemCategory);
             HasMany(m => m.AnswerRecordList).WithRequired(n => n.ProblemRecord);
         }

@@ -51,6 +51,11 @@ namespace Exam.Domain.Model
         /// </summary>
         public virtual DateTime UTime { get; set; }
 
+        /// <summary>
+        /// 1对 2错
+        /// </summary>
+        public virtual int YesOrNo { get; set; }
+
         public virtual string Analysis { get; set; }
 
 

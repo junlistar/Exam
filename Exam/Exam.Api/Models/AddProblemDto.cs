@@ -37,8 +37,14 @@ namespace Exam.Api.Models
     {
         public int ProblemId { get; set; }
 
+        /// <summary>
+        /// 1正确2错误
+        /// </summary>
+
+        public int YesOrNo { get; set; }
+
         public string AnswerIds { get; set; }
-        public List<AddAnswerRecordDto> AnswerRecordList { get; set; }
+        //public List<AddAnswerRecordDto> AnswerRecordList { get; set; }
     }
 
     public class AddAnswerRecordDto
