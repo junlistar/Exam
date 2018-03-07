@@ -29,11 +29,11 @@
         };
         window.parent.showModal();
         //提交
-        $.post('/Advertisement/Edit', dataArr, function (data) {
+        $.post('/AdManage/Edit', dataArr, function (data) {
             if (data.Status == 200) {
                 swal("提示", "操作成功");
                 setTimeout(function () {
-                    window.location.href = '/Advertisement/List';
+                    window.location.href = '/AdManage/List';
                 }, 1500);
             }
             if (data.Status == 202) {
