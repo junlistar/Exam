@@ -202,6 +202,8 @@
     <Compile Include="Controllers\SysGroupController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\ProblemPractiseReportController.cs" />
+    <Compile Include="Controllers\UserPractiseReportController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
