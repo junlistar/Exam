@@ -274,6 +274,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\111.pubxml" />
+    <None Include="Properties\PublishProfiles\admin.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common\common.js" />
     <Content Include="Scripts\contabs.js" />

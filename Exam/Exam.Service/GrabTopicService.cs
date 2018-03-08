@@ -109,13 +109,13 @@ namespace Exam.Service
                 {
                     System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
                     long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
-                    url5 += "?_=" + t;
-                    var str = GetHtml(url5 + "&pageindex=1&type=0&courseId=" + i + 1 + "&pagesize=1000", "LogonAccount=8368000;");
+                    string newurl = url5 + "?_=" + t;
+                    var str = GetHtml(newurl + "&pageindex=1&type=0&courseId=" + (i + 1 + 2) + "&pagesize=1000", "LogonAccount=8368000;");
                     var model = JsonHelper.ParseFormJson<SectionVM>(str);
                     foreach (SectionModel item in model.ds)
                     {
                         //这里得到章节里所有的题目
-                        string topicListStr = GetHtml(string.Format(url3, int.Parse(item.c_sctid) + 2), "");
+                        string topicListStr = GetHtml(string.Format(url3, int.Parse(item.c_sctid) + 2), "").Replace("null","0");
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
