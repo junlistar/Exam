@@ -58,6 +58,12 @@ namespace Exam.Domain.Model
 
         public virtual string Analysis { get; set; }
 
+        /// <summary>
+        /// 用户id
+        /// </summary>
+
+        public virtual int UserInfoId { get; set; }
+
 
         /// <summary>
         /// 问题记录表id
