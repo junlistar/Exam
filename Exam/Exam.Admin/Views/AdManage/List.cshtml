@@ -8,11 +8,11 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="row" style="padding:10px 10px;">
-                        <form action="/Advertisement/List" method="get">
+                        <form action="/AdManage/List" method="get">
                             <div class="col-sm-4">
                                 广告名称：
                                 <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入广告名称" value="@(Model.QueryName ?? "")">
-                            </div> 
+                            </div>
                             <button type="submit" class="btn btn-info">搜索</button>
                         </form>
                     </div>
@@ -21,8 +21,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">序号</th>
-                                    <th class="text-center">广告标题</th> 
-                                    <th class="text-center">广告类型</th> 
+                                    <th class="text-center">广告标题</th>
+                                    <th class="text-center">广告类型</th>
                                     <th class="text-center">创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -35,12 +35,21 @@
                                         <tr>
                                             <td class="text-center">@item.AdvertisementId</td>
                                             <td class="text-center">@item.Title</td>
-                                            <td class="text-center">@item.TypeId</td> 
+                                            <td class="text-center">
+                                                @if (item.TypeId == 1)
+                                                { 
+                                                    @("首页广告")
+                                                }
+                                                else if (item.TypeId == 2)
+                                                {
+                                                    @("题库广告")
+                                                }
+                                            </td>
                                             <td class="text-center">@item.CTime</td>
-                                            <td> 
-                                                <a href="/Advertisement/Edit/@item.AdvertisementId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
-                                                
-                                                <button onclick="del('/Advertisement/Delete','/Advertisement/List','@item.AdvertisementId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
+                                            <td>
+                                                <a href="/AdManage/Edit/@item.AdvertisementId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
+
+                                                <button onclick="del('/AdManage/Delete','/AdManage/List','@item.AdvertisementId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
                                             </td>
                                         </tr>
                                     }
@@ -51,8 +60,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="btn-group">
-                                <a href="/Advertisement/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>
-                                <a href="/Advertisement/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                                <a href="/AdManage/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>
+                                <a href="/AdManage/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
                             </div>
                             @Html.Raw(Model.Paging.Text)
                         </div>

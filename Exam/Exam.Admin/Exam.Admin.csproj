@@ -599,7 +599,7 @@
     <Content Include="Scripts\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
     <Content Include="Scripts\ViewJs\Answer\answerEdit.js" />
-    <Content Include="Scripts\ViewJs\Advertisement\advertisementEdit.js" />
+    <Content Include="Scripts\ViewJs\AdManage\adManageEdit.js" />
     <Content Include="Scripts\ViewJs\Login\login.js" />
     <Content Include="Scripts\ViewJs\Lecturer\lecturerEdit.js" />
     <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
