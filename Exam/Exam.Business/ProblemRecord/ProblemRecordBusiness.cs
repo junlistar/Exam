@@ -106,5 +106,30 @@ namespace Exam.Business
             return this._repoProblemRecord.Table.Where(where).OrderBy(p => p.ProblemRecordId).ToList();
         }
 
+        /// <summary>
+        /// 获取个人做题统计
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemRecord> GetUserPractiseReportList(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<ProblemRecord>();
+
+
+            //t-sql
+            string t_sql = @" select UserInfoId,COUNT(1) as totalCount,
+  (select COUNT(1) from ProblemRecord a where YesOrNo = 1 and a.userinfoid = tmp_a.userinfoid) as rightCount,
+  (select COUNT(1) from ProblemRecord a where YesOrNo = 2 and a.userinfoid = tmp_a.userinfoid) as wrongCount
+  FROM ProblemRecord tmp_a
+  group by userinfoid";
+
+            var result = this._repoProblemRecord.SqlQuery(t_sql,null).AsQueryable();
+
+            if (userInfoId != 0)
+            {
+                where = where.And(m => m.UserInfoId == userInfoId);
+            } 
+            totalCount = result.Where(where).GroupBy(p=>p.UserInfoId).Count();
+            return this._repoProblemRecord.Table.Where(where).OrderBy(p => p.UserInfoId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        } 
     }
 }
