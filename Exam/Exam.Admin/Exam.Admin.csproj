@@ -704,6 +704,10 @@
     <Content Include="Views\UserExamClass\Edit.cshtml" />
     <Content Include="Views\UserExamClass\List.cshtml" />
     <Content Include="Views\UserExamClass\ProblemList.cshtml" />
+    <Content Include="Views\UserPractiseReport\List.cshtml" />
+    <Content Include="Views\UserPractiseReport\ProblemList.cshtml" />
+    <Content Include="Views\ProblemPractiseReport\List.cshtml" />
+    <Content Include="Views\ProblemPractiseReport\ProblemList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

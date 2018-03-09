@@ -74,5 +74,26 @@ namespace Exam.Domain.Model
         public virtual ProblemCategory ProblemCategory { get; set; }
 
         public virtual List<AnswerRecord> AnswerRecordList { get; set; }
+
+
+        
+    }
+
+
+    public class UserPractiseReportModel : IAggregateRoot
+    {
+        public int UserInfoId { get; set; }
+        public int totalCount { get; set; }
+        public int rightCount { get; set; }
+        public int wrongCount { get; set; } 
+        public DateTime CTime { get; set; }
+    }
+    public class ProblemPractiseReportModel : IAggregateRoot
+    {
+        public int ProblemId { get; set; }
+        public int totalCount { get; set; }
+        public int rightCount { get; set; }
+        public int wrongCount { get; set; }
+        public DateTime CTime { get; set; }
     }
 }

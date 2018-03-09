@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "答题记录列表";
+}
+@model Exam.Admin.Models.ProblemRecordVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row" style="padding:10px 10px;">
+                        <form action="/ProblemPractiseReport/List" method="get">
+                            <div class="col-sm-4">
+                                根据题目查询：
+                                <input type="text" name="QueryProblemId" class="form-control inline" style="width:70%;" placeholder="请输入查询题目ID" value="@(Model.QueryProblemId == 0 ? "":Model.QueryProblemId.ToString() )">
+                            </div>
+                            <button type="submit" class="btn btn-info">搜索</button>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">题目ID</th>
+                                    <th class="text-center">用户答题次数</th>
+                                    <th class="text-center">正确数(百分比)</th>
+                                    <th class="text-center">错误数(百分比)</th>
+                                    <th class="text-center">最后答题时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.ProblemPractiseReportModelPaging.Items != null && Model.ProblemPractiseReportModelPaging.Items.Count > 0)
+                                {
+                                    foreach (var item in Model.ProblemPractiseReportModelPaging.Items)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.ProblemId</td>
+                                            <td class="text-center">
+                                                @(item.totalCount )
+                                            </td>
+                                            <td class="text-center">
+                                                @(item.rightCount + " (" + (Convert.ToDouble(item.rightCount) / Convert.ToDouble(item.totalCount)).ToString("p") + ")")
+                                            </td>
+                                            <td class="text-center">
+                                                @(item.wrongCount + " (" + (Convert.ToDouble(item.wrongCount) / Convert.ToDouble(item.totalCount)).ToString("p") + ")")
+                                            </td>
+                                            <td class="text-center">@item.CTime</td>
+                                            <td>
+                                                <button onclick="iframe('答题详情展示','/ProblemPractiseReport/ProblemList/@item.ProblemId')" class="btn btn-success">答题详情</button>
+                                                @*<button onclick="del('/ProblemRecord/Delete','/ProblemRecord/List','@item.UserInfoAnswerRecordId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                <a href="/ProblemPractiseReport/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                            </div>
+                            @Html.Raw(Model.ProblemPractiseReportModelPaging.Text)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

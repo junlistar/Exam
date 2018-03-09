@@ -28,7 +28,7 @@ namespace Exam.Admin.Controllers
         }
 
         /// <summary>
-        /// 列表
+        /// 获取个人做题统计
         /// </summary>
         /// <param name="_ProblemRecordVM"></param>
         /// <param name="pn"></param>
@@ -38,7 +38,30 @@ namespace Exam.Admin.Controllers
             int totalCount,
                 pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
-            var list = _problemRecordService.GetManagerList(_ProblemRecordVM.QueryUserInfoId, pageIndex, pageSize, out totalCount);
+            var list = _problemRecordService.GetUserPractiseReportList(_ProblemRecordVM.QueryUserInfoId, pageIndex, pageSize, out totalCount);
+            var paging = new Paging<UserPractiseReportModel>()
+            {
+                Items = list,
+                Size = PagingConfig.PAGE_SIZE,
+                Total = totalCount,
+                Index = pn,
+            };
+            _ProblemRecordVM.UserPractiseReportModelPaging = paging;
+            return View(_ProblemRecordVM);
+        }
+
+        /// <summary>
+        /// 获取个人做题统计(正确或者错误的题目列表)
+        /// </summary>
+        /// <param name="_ProblemRecordVM"></param>
+        /// <param name="pn"></param>
+        /// <returns></returns>
+        public ActionResult ProblemList(ProblemRecordVM _ProblemRecordVM, int pn = 1)
+        {
+            int totalCount,
+                pageIndex = pn,
+                pageSize = PagingConfig.PAGE_SIZE;
+            var list = _problemRecordService.GetUserPractiseReportList(_ProblemRecordVM.Id, _ProblemRecordVM.YesNo, pageIndex, pageSize, out totalCount);
             var paging = new Paging<ProblemRecord>()
             {
                 Items = list,

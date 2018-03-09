@@ -9,7 +9,7 @@ using Exam.IService;
 
 namespace Exam.Service
 {
-   public class ProblemRecordService: IProblemRecordService
+    public class ProblemRecordService : IProblemRecordService
     {
         /// <summary>
         /// The user biz
@@ -90,8 +90,54 @@ namespace Exam.Service
         /// 根据记录id获取测试过的题目
         /// </summary> 
         /// <returns></returns>
-        public List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId) {
+        public List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId)
+        {
             return this._ProblemRecordBiz.GetForUserInfoRecordId(userInfoAnswerRecordId);
+        }
+
+
+        /// <summary>
+        /// 用户答题记录统计列表
+        /// </summary>
+        /// <param name="userInfoId"></param>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <returns></returns>
+        public List<UserPractiseReportModel> GetUserPractiseReportList(int userInfoId, int pageNum, int pageSize, out int totalCount)
+        {
+            return this._ProblemRecordBiz.GetUserPractiseReportList(userInfoId, pageNum, pageSize, out totalCount);
+        }
+
+        /// <summary>
+        /// 获取个人做题统计(正确或者错误的题目列表)
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemRecord> GetUserPractiseReportList(int userInfoId, int yesno, int pageNum, int pageSize, out int totalCount)
+        {
+            return this._ProblemRecordBiz.GetUserPractiseReportList(userInfoId, yesno, pageNum, pageSize, out totalCount);
+        }
+
+        /// <summary>
+        /// 获取题目做题统计列表
+        /// </summary>
+        /// <param name="problemId"></param>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <returns></returns>
+        public List<ProblemPractiseReportModel> GetProblemPractiseReportList(int problemId, int pageNum, int pageSize, out int totalCount)
+        {
+            return this._ProblemRecordBiz.GetProblemPractiseReportList(problemId, pageNum, pageSize, out totalCount);
+        }
+
+        /// <summary>
+        /// 获取题目做题统计列表(正确或者错误的题目列表)
+        /// </summary> 
+        /// <returns></returns>
+        public List<ProblemRecord> GetProblemPractiseReportList(int problemId, int yesno, int pageNum, int pageSize, out int totalCount)
+        {
+            return this._ProblemRecordBiz.GetProblemPractiseReportList(problemId, yesno, pageNum, pageSize, out totalCount);
         }
     }
 }

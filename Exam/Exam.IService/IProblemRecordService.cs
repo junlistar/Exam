@@ -57,5 +57,37 @@ namespace Exam.IService
         /// </summary> 
         /// <returns></returns>
         List<ProblemRecord> GetForUserInfoRecordId(int userInfoAnswerRecordId);
+
+        /// <summary>
+        /// 用户答题记录统计列表
+        /// </summary>
+        /// <param name="userInfoId"></param>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <returns></returns>
+        List<UserPractiseReportModel> GetUserPractiseReportList(int userInfoId, int pageNum, int pageSize, out int totalCount);
+
+        /// <summary>
+        /// 获取个人做题统计(正确或者错误的题目列表)
+        /// </summary> 
+        /// <returns></returns>
+        List<ProblemRecord> GetUserPractiseReportList(int userInfoId, int yesno, int pageNum, int pageSize, out int totalCount);
+
+        /// <summary>
+        /// 获取题目做题统计列表
+        /// </summary>
+        /// <param name="problemId"></param>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <returns></returns>
+        List<ProblemPractiseReportModel> GetProblemPractiseReportList(int problemId, int pageNum, int pageSize, out int totalCount);
+
+        /// <summary>
+        /// 获取题目做题统计列表(正确或者错误的题目列表)
+        /// </summary> 
+        /// <returns></returns>
+        List<ProblemRecord> GetProblemPractiseReportList(int problemId, int yesno, int pageNum, int pageSize, out int totalCount);
     }
 }

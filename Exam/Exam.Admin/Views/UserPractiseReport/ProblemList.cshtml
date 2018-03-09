@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "答题记录列表";
+}
+@model Exam.Admin.Models.ProblemRecordVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    @*<div class="row" style="padding:10px 10px;">
+                        <form action="/ProblemRecord/List" method="get">
+                            <div class="col-sm-4">
+                                根据用户查询：
+                                <input type="text" name="QueryUserInfoId" class="form-control inline" style="width:70%;" placeholder="请输入查询用户ID" value="@(Model.QueryUserInfoId == 0 ? "":Model.QueryUserInfoId.ToString() )">
+                            </div> 
+                            <button type="submit" class="btn btn-info">搜索</button>
+                        </form>
+                    </div>*@
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">题目ID</th> 
+                                    <th class="text-center" style="width:400px;">题目标题</th>
+                                    <th class="text-center">题目类型</th>
+                                    <th class="text-center">正确答案</th>
+                                    <th class="text-center">用户回答</th> 
+                                    <th class="text-center" style="width:200px;">题目分析</th>
+                                    <th class="text-center">答题时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.DetailPaging.Items != null && Model.DetailPaging.Items.Count > 0)
+                                {
+                                    foreach (var item in Model.DetailPaging.Items)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.ProblemRecordId</td>
+                                            <td class="text-center">@item.ProblemId</td> 
+                                            <td class="text-center">@item.Title</td>
+                                            <td class="text-center">@item.ProblemCategory.Title</td>
+                                            <td class="text-center">@item.CorrectAnswer</td>
+                                            <td class="text-center">@item.ErrorAnswer</td>
+                                            <td class="text-center">@item.Analysis</td> 
+                                            <td class="text-center">@item.CTime</td>
+                                            <td>   
+                                                @*<button onclick="del('/ProblemRecord/Delete','/ProblemRecord/List','@item.UserInfoAnswerRecordId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+                                @*<a href="/ProblemRecord/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>*@
+                                <a href="javascript:window.location = location.href;" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                            </div>
+                            @Html.Raw(Model.DetailPaging.Text)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
