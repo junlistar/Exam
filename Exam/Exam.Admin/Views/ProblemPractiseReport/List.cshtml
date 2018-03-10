@@ -39,10 +39,10 @@
                                                 @(item.totalCount )
                                             </td>
                                             <td class="text-center">
-                                                @(item.rightCount + " (" + (Convert.ToDouble(item.rightCount) / Convert.ToDouble(item.totalCount)).ToString("p") + ")")
+                                                @Html.Raw(item.rightCount + " (" +("<span style='color:green;'>"+ (Convert.ToDouble(item.rightCount) / Convert.ToDouble(item.totalCount)).ToString("p") + "</span>") + ")")
                                             </td>
                                             <td class="text-center">
-                                                @(item.wrongCount + " (" + (Convert.ToDouble(item.wrongCount) / Convert.ToDouble(item.totalCount)).ToString("p") + ")")
+                                                @Html.Raw(item.wrongCount + " (" + ("<span style='color:red;'>" + (Convert.ToDouble(item.wrongCount) / Convert.ToDouble(item.totalCount)).ToString("p") + "</span>") + ")")
                                             </td>
                                             <td class="text-center">@item.CTime</td>
                                             <td>
