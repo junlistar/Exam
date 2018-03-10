@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System;
 
 namespace Exam.Admin
 {
@@ -17,10 +18,10 @@ namespace Exam.Admin
             {
                 if (_version == null)
                 {
-                    Assembly assembly = Assembly.GetExecutingAssembly();
-                    FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-                    string version = fvi.FileVersion;
-                    return string.Format("?{0}", version);
+                    //Assembly assembly = Assembly.GetExecutingAssembly();
+                    //FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+                    //string version = fvi.FileVersion;
+                    return string.Format("?t={0}", DateTime.Now.Ticks);
                 }
                 return _version;
             }
