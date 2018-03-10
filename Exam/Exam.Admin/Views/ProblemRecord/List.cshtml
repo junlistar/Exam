@@ -12,7 +12,7 @@
                             <div class="col-sm-4">
                                 根据用户查询：
                                 <input type="text" name="QueryUserInfoId" class="form-control inline" style="width:70%;" placeholder="请输入查询用户ID" value="@(Model.QueryUserInfoId == 0 ? "":Model.QueryUserInfoId.ToString() )">
-                            </div> 
+                            </div>
                             <button type="submit" class="btn btn-info">搜索</button>
                         </form>
                     </div>
@@ -22,10 +22,10 @@
                                 <tr>
                                     <th class="text-center">序号</th>
                                     <th class="text-center">用户ID</th>
-                                    <th class="text-center" style="width:200px;">用户昵称</th> 
+                                    <th class="text-center" style="width:200px;">用户昵称</th>
                                     <th class="text-center" style="width:600px;">考试标题</th>
                                     <th class="text-center">所属类别</th>
-                                    <th class="text-center">章节</th> 
+                                    <th class="text-center">章节</th>
                                     <th class="text-center">收藏时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -41,9 +41,18 @@
                                             <td class="text-center">@item.UserInfo.NikeName</td>
                                             <td class="text-center">@item.Title</td>
                                             <td class="text-center">@item.Belong.Title</td>
-                                            <td class="text-center">@item.Chapter.Title</td> 
+                                            <td class="text-center">
+                                                @if (item.Chapter != null)
+                                                {
+                                                    @item.Chapter.Title
+                                                }
+                                                else
+                                                {
+                                                    @("N/A");
+                                                }
+                                            </td>
                                             <td class="text-center">@item.CTime</td>
-                                            <td>   
+                                            <td>
                                                 <button onclick="iframe('答题详情展示','/ProblemRecord/ProblemList/@item.UserInfoAnswerRecordId')" class="btn btn-success">答题详情</button>
                                                 @*<button onclick="del('/ProblemRecord/Delete','/ProblemRecord/List','@item.UserInfoAnswerRecordId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>*@
                                             </td>

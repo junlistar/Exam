@@ -79,7 +79,9 @@ namespace Exam.Domain.Model
         
     }
 
-
+    /// <summary>
+    /// 用户答题统计实体
+    /// </summary>
     public class UserPractiseReportModel : IAggregateRoot
     {
         public int UserInfoId { get; set; }
@@ -88,6 +90,9 @@ namespace Exam.Domain.Model
         public int wrongCount { get; set; } 
         public DateTime CTime { get; set; }
     }
+    /// <summary>
+    /// 题目统计实体
+    /// </summary>
     public class ProblemPractiseReportModel : IAggregateRoot
     {
         public int ProblemId { get; set; }

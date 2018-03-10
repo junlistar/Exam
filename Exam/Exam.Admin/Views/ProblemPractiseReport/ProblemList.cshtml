@@ -26,6 +26,7 @@
                                     <th class="text-center">题目类型</th>
                                     <th class="text-center">正确答案</th>
                                     <th class="text-center">用户回答</th> 
+                                    <th class="text-center">是否回答正确</th>
                                     <th class="text-center" style="width:200px;">题目分析</th>
                                     <th class="text-center">答题时间</th>
                                     <th>操作</th>
@@ -43,9 +44,24 @@
                                             <td class="text-center">@item.ProblemCategory.Title</td>
                                             <td class="text-center">@item.CorrectAnswer</td>
                                             <td class="text-center">@item.ErrorAnswer</td>
+                                            <td class="text-center">
+                                                @if (item.YesOrNo == 1)
+                                                {
+                                                    @("正确");
+                                                }
+                                                else if (item.YesOrNo == 2)
+                                                {
+                                                    @("错误");
+                                                }
+                                                else
+                                                {
+                                                    @("N/A");
+                                                }
+                                            </td>
                                             <td class="text-center">@item.Analysis</td> 
                                             <td class="text-center">@item.CTime</td>
-                                            <td>   
+                                            <td>    
+                                                <button onclick="iframe('答案列表','/Problem/AnswerList/@item.ProblemId')" class="btn btn-success">查看答案</button>
                                                 @*<button onclick="del('/ProblemRecord/Delete','/ProblemRecord/List','@item.UserInfoAnswerRecordId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>*@
                                             </td>
                                         </tr>
