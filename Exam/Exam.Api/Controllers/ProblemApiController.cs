@@ -223,7 +223,8 @@ namespace Exam.Api.Controllers
                         ProblemId = item.ProblemId,
                         UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
                         Analysis = problem.Analysis,
-                        YesOrNo= item.YesOrNo
+                        YesOrNo= item.YesOrNo,
+                        UserInfoId=addUserInfoAnswerRecordDto.UserInfoId
                     });
 
                     foreach (var itemChild in problem.AnswerList)
