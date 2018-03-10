@@ -33,8 +33,16 @@ namespace Exam.Admin.Models
         /// </summary>
         public Paging<ProblemRecord> DetailPaging { get; set; }
 
+        /// <summary>
+        /// 分页
+        /// </summary>
+        public Paging<UserPractiseReportModel> UserPractiseReportModelPaging { get; set; }
+        public Paging<ProblemPractiseReportModel> ProblemPractiseReportModelPaging { get; set; }
+        
         //查询条件
         public string QueryProblemTitle{ get; set; } 
         public int QueryUserInfoId{ get; set; }
+        public int QueryProblemId{ get; set; }
+        public int YesNo{ get; set; }
     }
 }

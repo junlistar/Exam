@@ -7,53 +7,61 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <div class="row" style="padding:10px 10px;">
+                    @*<div class="row" style="padding:10px 10px;">
                         <form action="/ProblemRecord/List" method="get">
                             <div class="col-sm-4">
                                 根据用户查询：
                                 <input type="text" name="QueryUserInfoId" class="form-control inline" style="width:70%;" placeholder="请输入查询用户ID" value="@(Model.QueryUserInfoId == 0 ? "":Model.QueryUserInfoId.ToString() )">
-                            </div>
+                            </div> 
                             <button type="submit" class="btn btn-info">搜索</button>
                         </form>
-                    </div>
+                    </div>*@
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">序号</th>
-                                    <th class="text-center">用户ID</th>
-                                    <th class="text-center" style="width:200px;">用户昵称</th>
-                                    <th class="text-center" style="width:600px;">考试标题</th>
-                                    <th class="text-center">所属类别</th>
-                                    <th class="text-center">章节</th>
-                                    <th class="text-center">收藏时间</th>
+                                    <th class="text-center">题目ID</th> 
+                                    <th class="text-center" style="width:400px;">题目标题</th>
+                                    <th class="text-center">题目类型</th>
+                                    <th class="text-center">正确答案</th>
+                                    <th class="text-center">用户回答</th> 
+                                    <th class="text-center">是否回答正确</th>
+                                    <th class="text-center" style="width:200px;">题目分析</th>
+                                    <th class="text-center">答题时间</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Paging.Items != null && Model.Paging.Items.Count > 0)
+                                @if (Model.DetailPaging.Items != null && Model.DetailPaging.Items.Count > 0)
                                 {
-                                    foreach (var item in Model.Paging.Items)
+                                    foreach (var item in Model.DetailPaging.Items)
                                     {
                                         <tr>
-                                            <td class="text-center">@item.UserInfoAnswerRecordId</td>
-                                            <td class="text-center">@item.UserInfo.UserInfoId</td>
-                                            <td class="text-center">@item.UserInfo.NikeName</td>
+                                            <td class="text-center">@item.ProblemRecordId</td>
+                                            <td class="text-center">@item.ProblemId</td> 
                                             <td class="text-center">@item.Title</td>
-                                            <td class="text-center">@item.Belong.Title</td>
+                                            <td class="text-center">@item.ProblemCategory.Title</td>
+                                            <td class="text-center">@item.CorrectAnswer</td>
+                                            <td class="text-center">@item.ErrorAnswer</td>
                                             <td class="text-center">
-                                                @if (item.Chapter != null)
+                                                @if (item.YesOrNo == 1)
                                                 {
-                                                    @item.Chapter.Title
+                                                    @Html.Raw("<span style='color:green;'>正确</span>");
+                                                }
+                                                else if (item.YesOrNo == 2)
+                                                {
+                                                    @Html.Raw("<span style='color:red;'>错误</span>");
                                                 }
                                                 else
                                                 {
                                                     @("N/A");
                                                 }
                                             </td>
+                                            <td class="text-center">@item.Analysis</td> 
                                             <td class="text-center">@item.CTime</td>
-                                            <td>
-                                                <button onclick="iframe('答题详情展示','/ProblemRecord/ProblemList/@item.UserInfoAnswerRecordId')" class="btn btn-success">答题详情</button>
+                                            <td>    
+                                                <button onclick="iframe('答案列表','/Problem/AnswerList/@item.ProblemId')" class="btn btn-success">查看答案</button>
                                                 @*<button onclick="del('/ProblemRecord/Delete','/ProblemRecord/List','@item.UserInfoAnswerRecordId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>*@
                                             </td>
                                         </tr>
@@ -66,9 +74,9 @@
                         <div class="col-sm-12">
                             <div class="btn-group">
                                 @*<a href="/ProblemRecord/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>*@
-                                <a href="/ProblemRecord/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
+                                <a href="javascript:window.location = location.href;" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
                             </div>
-                            @Html.Raw(Model.Paging.Text)
+                            @Html.Raw(Model.DetailPaging.Text)
                         </div>
                     </div>
                 </div>

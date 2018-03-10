@@ -202,6 +202,8 @@
     <Compile Include="Controllers\SysGroupController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\ProblemPractiseReportController.cs" />
+    <Compile Include="Controllers\UserPractiseReportController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -702,6 +704,10 @@
     <Content Include="Views\UserExamClass\Edit.cshtml" />
     <Content Include="Views\UserExamClass\List.cshtml" />
     <Content Include="Views\UserExamClass\ProblemList.cshtml" />
+    <Content Include="Views\UserPractiseReport\List.cshtml" />
+    <Content Include="Views\UserPractiseReport\ProblemList.cshtml" />
+    <Content Include="Views\ProblemPractiseReport\List.cshtml" />
+    <Content Include="Views\ProblemPractiseReport\ProblemList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

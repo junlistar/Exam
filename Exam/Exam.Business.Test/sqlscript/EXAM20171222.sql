@@ -217,6 +217,10 @@ create table ProblemRecord
 	ProblemCategoryId int,				--类别分类
 	CorrectAnswer nvarchar(50),			--正确答案
 	ErrorAnswer nvarchar(50),			--错误答案
+	UserInfoAnswerRecord int,			--用户答题记录表ID
+	UserInfoId int,			--用户ID
+	Analysis nvarchar(max),			--答案分析
+	YesOrNo int,		--是否正确（1，2）
 	CTime datetime default(getdate()),	--创建时间
 	UTime datetime default(getdate()),	--修改时间
 )
