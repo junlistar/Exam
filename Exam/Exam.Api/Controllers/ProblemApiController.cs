@@ -202,12 +202,16 @@ namespace Exam.Api.Controllers
                     var answer = (from b in problem.AnswerList
                                   where b.IsCorrect == 1
                                   select b).ToList();
+                    
                     string CorrectAnswer = string.Empty;
                     foreach (var a in answer)
                     {
                         CorrectAnswer += a.AnswerId + ",";
                     }
-                    CorrectAnswer = CorrectAnswer.Substring(0, CorrectAnswer.Length - 1);
+                    if (CorrectAnswer.Length > 0)
+                    {
+                        CorrectAnswer = CorrectAnswer.Substring(0, CorrectAnswer.Length - 1);
+                    }
                     var problemRecord = problemRecordService.Insert(new Domain.Model.ProblemRecord
                     {
                         CTime = DateTime.Now,
@@ -219,7 +223,8 @@ namespace Exam.Api.Controllers
                         ProblemId = item.ProblemId,
                         UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
                         Analysis = problem.Analysis,
-                        YesOrNo= item.YesOrNo
+                        YesOrNo= item.YesOrNo,
+                        UserInfoId=addUserInfoAnswerRecordDto.UserInfoId
                     });
 
                     foreach (var itemChild in problem.AnswerList)

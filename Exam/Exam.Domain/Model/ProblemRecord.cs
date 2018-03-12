@@ -58,6 +58,12 @@ namespace Exam.Domain.Model
 
         public virtual string Analysis { get; set; }
 
+        /// <summary>
+        /// 用户id
+        /// </summary>
+
+        public virtual int UserInfoId { get; set; }
+
 
         /// <summary>
         /// 问题记录表id
@@ -68,5 +74,31 @@ namespace Exam.Domain.Model
         public virtual ProblemCategory ProblemCategory { get; set; }
 
         public virtual List<AnswerRecord> AnswerRecordList { get; set; }
+
+
+        
+    }
+
+    /// <summary>
+    /// 用户答题统计实体
+    /// </summary>
+    public class UserPractiseReportModel : IAggregateRoot
+    {
+        public int UserInfoId { get; set; }
+        public int totalCount { get; set; }
+        public int rightCount { get; set; }
+        public int wrongCount { get; set; } 
+        public DateTime CTime { get; set; }
+    }
+    /// <summary>
+    /// 题目统计实体
+    /// </summary>
+    public class ProblemPractiseReportModel : IAggregateRoot
+    {
+        public int ProblemId { get; set; }
+        public int totalCount { get; set; }
+        public int rightCount { get; set; }
+        public int wrongCount { get; set; }
+        public DateTime CTime { get; set; }
     }
 }
