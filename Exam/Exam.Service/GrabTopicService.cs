@@ -115,7 +115,7 @@ namespace Exam.Service
                     foreach (SectionModel item in model.ds)
                     {
                         //这里得到章节里所有的题目
-                        string topicListStr = GetHtml(string.Format(url3, int.Parse(item.c_sctid) + 2), "").Replace("null","0");
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null","0");
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
