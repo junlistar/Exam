@@ -42,6 +42,10 @@ namespace Exam.Service
         /// 初级cookie
         /// </summary>
         public static string cjCookie = "";
+        /// <summary>
+        /// 税务师cookie
+        /// </summary>
+        public static string zsCookie = "";
 
         //public static string httpHead = "";
         /// <summary>
@@ -74,7 +78,7 @@ namespace Exam.Service
                 case "税务师":
                     Task.Run(() =>
                     {
-                        ZJ("http://zj.0373kj.com");
+                        SWS("http://zs.0373kj.com");
                     });
                     break;
                 default:
@@ -109,13 +113,13 @@ namespace Exam.Service
                 {
                     System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
                     long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
-                    url5 += "?_=" + t;
-                    var str = GetHtml(url5 + "&pageindex=1&type=0&courseId=" + i + 1 + "&pagesize=1000", "LogonAccount=8368000;");
+                    string newurl = url5 + "?_=" + t;
+                    var str = GetHtml(newurl + "&pageindex=1&type=0&courseId=" + (i + 1 + 2) + "&pagesize=1000", "LogonAccount=8368000;");
                     var model = JsonHelper.ParseFormJson<SectionVM>(str);
                     foreach (SectionModel item in model.ds)
                     {
                         //这里得到章节里所有的题目
-                        string topicListStr = GetHtml(string.Format(url3, int.Parse(item.c_sctid) + 2), "");
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null", "0");
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
@@ -172,13 +176,13 @@ namespace Exam.Service
                 {
                     System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
                     long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
-                    url5 += "?_=" + t;
-                    var str = GetHtml(url5 + "&pageindex=1&type=0&courseId=" + i + 1 + "&pagesize=1000", "LogonAccount=8368000;");
+                    string newurl = url5 + "?_=" + t;
+                    var str = GetHtml(newurl + "&pageindex=1&type=0&courseId=" + (i + 1) + "&pagesize=1000", "LogonAccount=8368000;");
                     var model = JsonHelper.ParseFormJson<SectionVM>(str);
                     foreach (SectionModel item in model.ds)
                     {
                         //这里得到章节里所有的题目
-                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "");
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null", "0"); ;
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
@@ -236,14 +240,14 @@ namespace Exam.Service
                 {
                     System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
                     long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
-                    url5 += "?_=" + t;
-                    var str = GetHtml(url5 + "&pageindex=1&type=0&courseId=" + i + 1 + "&pagesize=1000", "LogonAccount=18707928905;");
+                    string newurl = url5 + "?_=" + t;
+                    var str = GetHtml(newurl + "&pageindex=1&type=0&courseId=" + (i + 1) + "&pagesize=1000", "LogonAccount=18707928905;");
                     //这里得到科目章节
                     var model = JsonHelper.ParseFormJson<SectionVM>(str);
                     foreach (SectionModel item in model.ds)
                     {
                         //这里得到章节里所有的题目
-                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "");
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null", "0"); ;
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
@@ -276,6 +280,77 @@ namespace Exam.Service
             }
 
         }
+
+        /// <summary>
+        /// 税务师
+        /// </summary>
+        /// <param name="httpHead"></param>
+        public void SWS(string httpHead)
+        {
+            //获取token
+            var url1 = httpHead + "/Account/UserLogin?phone=18707928905&password=123456&accountType=0";
+            //获取科目列表
+            var url2 = httpHead + "/Subjects/Chapter.php?tid=0&t=" + DateTime.Now.ToString("yyyyMMddhhmmss");
+            //获取分类详细题目
+            var url3 = httpHead + "/Topic/GetQuestionList?sctid={0}&pagesize=1000&page=1";
+            //获取登录cookie
+            var url4 = httpHead + "/Account/UserLogin";
+
+            var url5 = httpHead + "/Subjects/GetSectionList";
+            var primary = new PrimaryService();
+            zsCookie = primary.GetToken(url1, url4);
+            if (!string.IsNullOrWhiteSpace(zsCookie))
+            {
+                //获取科目列表
+                var subList = GetSubjectsList(url2).ToList();
+
+                //subList[i].Title.ToString().Trim(); 科目
+                //遍历科目列表，取得列表对应的章节
+                for (int i = 0; i < subList.Count; i++)
+                {
+                    System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+                    long t = (DateTime.Now.Ticks - startTime.Ticks) / 10000;
+                    string newurl = url5 + "?_=" + t;
+                    var str = GetHtml(newurl + "&pageindex=1&type=0&courseId=" + (i + 1) + "&pagesize=1000", "LogonAccount=18707928905;");
+                    //这里得到科目章节
+                    var model = JsonHelper.ParseFormJson<SectionVM>(str);
+                    foreach (SectionModel item in model.ds)
+                    {
+                        //这里得到章节里所有的题目
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null", "0"); ;
+                        //这里执行插入数据库的操作
+                        var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
+
+                        foreach (var im in model1.ds)
+                        {
+                            _ProblemLibraryBiz.Insert(new Domain.Model.ProblemLibrary
+                            {
+                                CTime = DateTime.Now,
+                                c_answer = im.c_answer,
+                                c_assistantsortid = im.c_assistantsortid,
+                                c_MistakeNum = im.c_MistakeNum,
+                                c_options = im.c_options,
+                                c_qid = im.c_qid,
+                                c_qustiontype = im.c_questiontype,
+                                c_score = im.c_score,
+                                c_sctid = im.c_sctid,
+                                c_sortid = decimal.Parse(im.c_sortid),
+                                c_tips = im.c_tips,
+                                isVideo = im.isVideo,
+                                Title = im.c_text,
+                                IsUse = 0,
+                                BelongId = 1004,
+                                c_sctname = item.c_sctname,
+                                SubjectInfoTitle = subList[i].Title.ToString().Trim()
+                            });
+                        }
+                    }
+
+                }
+            }
+        }
+
+
         /// <summary>
         /// 获取token
         /// </summary>
@@ -348,6 +423,10 @@ namespace Exam.Service
             else if (url.Contains("cj.0373kj"))
             {
                 cookhead = cjCookie;
+            }
+            else if (url.Contains("zs.0373kj"))
+            {
+                cookhead = zsCookie;
             }
             request1.Method = "GET";
             request1.Headers.Add("cookie:" + addCookie + cookhead);
