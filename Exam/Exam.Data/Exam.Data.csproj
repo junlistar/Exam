@@ -62,6 +62,7 @@
     <Compile Include="Mapping\ExamAnswerMap.cs" />
     <Compile Include="Mapping\ExamClassMap.cs" />
     <Compile Include="Mapping\ExamProblemMap.cs" />
+    <Compile Include="Mapping\Log.cs" />
     <Compile Include="Mapping\SubjectInfoMap.cs" />
     <Compile Include="Mapping\UserExamAnswer.cs" />
     <Compile Include="Mapping\UserExamProblemMap.cs" />
