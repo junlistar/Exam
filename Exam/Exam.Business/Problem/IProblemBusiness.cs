@@ -50,7 +50,8 @@ namespace Exam.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        List<Problem> GetManagerList(string name, int pageNum, int pageSize, out int totalCount);
+
+        List<Problem> GetManagerList(string name, int belongId, int chapterId, int subjectInfoId, int problemCategoryId, int pageNum, int pageSize, out int totalCount);
 
         /// <summary>
         /// 获取所有

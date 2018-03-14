@@ -73,14 +73,30 @@ namespace Exam.Business
         /// 添加管理后台菜单列表
         /// </summary> 
         /// <returns></returns>
-        public List<Problem> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<Problem> GetManagerList(string name,int belongId, int chapterId, int subjectInfoId, int problemCategoryId, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<Problem>();
 
-            // name过滤
+            // 过滤
             if (!string.IsNullOrEmpty(name))
             {
                 where = where.And(m => m.Title.Contains(name));
+            }
+            if (belongId!=0)
+            {
+                where = where.And(m => m.BelongId == belongId);
+            }
+            if (chapterId != 0)
+            {
+                where = where.And(m => m.ChapterId == chapterId);
+            }
+            if (subjectInfoId != 0)
+            {
+                where = where.And(m => m.SubjectInfoId == subjectInfoId);
+            }
+            if (problemCategoryId != 0)
+            {
+                where = where.And(m => m.ProblemCategoryId == problemCategoryId);
             }
 
             totalCount = this._repoProblem.Table.Where(where).Count();

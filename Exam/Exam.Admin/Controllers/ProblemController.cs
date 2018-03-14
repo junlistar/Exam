@@ -65,7 +65,7 @@ namespace Exam.Admin.Controllers
             int totalCount,
                 pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
-            var list = _ProblemService.GetManagerList(_ProblemVM.QueryName, pageIndex, pageSize, out totalCount);
+            var list = _ProblemService.GetManagerList(_ProblemVM.QueryName, _ProblemVM.QueryBelongId, _ProblemVM.QueryChapterId, _ProblemVM.QuerySubjectInfoId, _ProblemVM.QueryProblemCategoryId, pageIndex, pageSize, out totalCount);
             var paging = new Paging<Problem>()
             {
                 Items = list,
@@ -75,6 +75,9 @@ namespace Exam.Admin.Controllers
             };
             _ProblemVM.Paging = paging;
             _ProblemVM.Belongs = _BelongService.GetAll();
+            _ProblemVM.ProblemCategorys = _ProblemCategoryService.GetAll(); 
+            _ProblemVM.Chapters = _ChapterService.GetAll();
+            _ProblemVM.SubjectInfos = _SubjectInfoService.GetAll();
             return View(_ProblemVM);
         }
 
@@ -90,6 +93,7 @@ namespace Exam.Admin.Controllers
             _ProblemVM.ProblemCategorys = _ProblemCategoryService.GetAll();
             _ProblemVM.Belongs = _BelongService.GetAll();
             _ProblemVM.Chapters = _ChapterService.GetAll();
+            _ProblemVM.SubjectInfos = _SubjectInfoService.GetAll();
 
             return View(_ProblemVM);
         }
@@ -113,6 +117,7 @@ namespace Exam.Admin.Controllers
                     entity.ProblemCategoryId = model.ProblemCategoryId;
                     entity.Title = model.Title;
                     entity.BelongId = model.BelongId;
+                    entity.SubjectInfoId = model.SubjectInfoId;
                     entity.Sort = model.Sort;
                     entity.UTime = DateTime.Now;
                     _ProblemService.Update(entity);

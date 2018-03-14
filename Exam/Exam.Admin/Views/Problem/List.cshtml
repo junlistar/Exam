@@ -9,17 +9,65 @@
                 <div class="ibox-content">
                     <div class="row" style="padding:10px 10px;">
                         <form action="/Problem/List" method="get">
-                            <div class="col-sm-4">
-                                问题名称：
-                                <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询问题名称" value="@(Model.QueryName ?? "")">
-                            </div> 
-                            <button type="submit" class="btn btn-info">搜索</button>
-                           
-                            @foreach (var item in Model.Belongs)
-                            {
-                                <button type="button" data-belongId="@item.BelongId" class="btn btn-danger right syncdata">同步题库(@item.Title)</button>
-                            } 
+                            <div class="col-sm-12" style="padding-left:0;padding-bottom:10px;">
+                                <div class="col-sm-3">
+                                    问题名称：
+                                    <input type="text" name="QueryName" class="form-control inline" style="width:70%;" placeholder="请输入查询问题名称" value="@(Model.QueryName ?? "")">
+                                </div>
+                                <div class="col-sm-3">
+                                    问题层级：
+                                    <select class="form-control inline" style="width:70%;" id="QueryBelongId" name="QueryBelongId">
+                                        <option value="0">请选择问题层级</option>
+                                        @foreach (var item in Model.Belongs)
+                                        {
+                                            <option @(Model.QueryBelongId == item.BelongId ? "selected" : "") value="@item.BelongId">@item.Title</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    问题科目：
+                                    <select class="form-control inline" style="width:70%;" id="QuerySubjectInfoId" name="QuerySubjectInfoId">
+                                        <option value="0">请选择问题科目</option>
+                                        @foreach (var item in Model.SubjectInfos)
+                                        {
+                                            <option @(Model.QuerySubjectInfoId == item.SubjectInfoId ? "selected" : "") value="@item.SubjectInfoId">@item.Title</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="padding-left:0;">
+                                <div class="col-sm-3">
+                                    问题章节：
+                                    <select class="form-control inline" style="width:70%;" id="QueryChapterId" name="QueryChapterId">
+                                        <option value="0">请选择问题章节</option>
+                                        @foreach (var item in Model.Chapters)
+                                        {
+                                            <option @(Model.QueryChapterId == item.ChapterId ? "selected" : "") value="@item.ChapterId">@item.Title</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    问题类型：
+                                    <select class="form-control inline" style="width:70%;" id="QueryProblemCategoryId" name="QueryProblemCategoryId">
+                                        <option value="0">请选择问题类型</option>
+                                        @foreach (var item in Model.ProblemCategorys)
+                                        {
+                                            <option @(Model.QueryProblemCategoryId == item.ProblemCategoryId ? "selected" : "") value="@item.ProblemCategoryId">@item.Title</option>
+                                        }
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-info">搜索题目</button>
+                                <button type="button" class="btn btn-info pull-right btn-grabproblem">拉取题目</button>
+                            </div>
                         </form>
+                        <div class="col-sm-12" style="padding-left:0;">
+                            <div style="display:none;" class="div-grabProblem">
+                                @foreach (var item in Model.Belongs)
+                                {
+                                    <button type="button" data-belongId="@item.BelongId" class="btn btn-danger right syncdata">同步题库(@item.Title)</button>
+                                }
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
@@ -30,8 +78,9 @@
                                     <th class="text-center">类别分类</th>
                                     <th class="text-center">所属层级</th>
                                     <th class="text-center">章节分类</th>
-                                    <th class="text-center">是否热门</th> 
-                                    <th class="text-center">排序号</th> 
+                                    <th class="text-center">科目</th>
+                                    <th class="text-center">是否热门</th>
+                                    <th class="text-center">排序号</th>
                                     <th class="text-center">创建时间</th>
                                     <th class="text-center">修改时间</th>
                                     <th>操作</th>
@@ -45,15 +94,16 @@
                                         <tr>
                                             <td class="text-center">@item.ProblemId</td>
                                             <td class="text-center">@item.Title</td>
-                                            <td class="text-center">@item.ProblemCategoryId</td>
-                                            <td class="text-center">@item.BelongId</td>
-                                            <td class="text-center">@item.ChapterId</td>
-                                            <td class="text-center">@(item.IsHot == 1 ? "是":"否")</td>
-                                            <td class="text-center">@item.Sort</td> 
+                                            <td class="text-center">@item.ProblemCategory.Title</td>
+                                            <td class="text-center">@item.Belong.Title</td>
+                                            <td class="text-center">@item.Chapter.Title</td>
+                                            <td class="text-center">@item.SubjectInfo.Title</td>
+                                            <td class="text-center">@(item.IsHot == 1 ? "是" : "否")</td>
+                                            <td class="text-center">@item.Sort</td>
                                             <td class="text-center">@item.CTime</td>
                                             <td class="text-center">@item.UTime</td>
-                                            <td> 
-                                                <a href="/Problem/Edit/@item.ProblemId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a> 
+                                            <td>
+                                                <a href="/Problem/Edit/@item.ProblemId" class="btn btn-info"><i class="fa fa-paste padding-right-4"></i>&nbsp;编辑</a>
                                                 <button onclick="iframe('答案列表','/Problem/AnswerList/@item.ProblemId')" class="btn btn-success">查看答案</button>
                                                 <button onclick="del('/Problem/Delete','/Problem/List','@item.ProblemId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>
                                             </td>
@@ -68,17 +118,23 @@
                             <div class="btn-group">
                                 <a href="/Problem/Edit" class="btn btn-info" data-refresh="0"><i class="fa fa-plus padding-right-4"></i>&nbsp;添加</a>
                                 <a href="/Problem/List" class="btn btn-info" style="margin-left:10px;" data-refresh="0"><i class="fa fa-refresh padding-right-4"></i>&nbsp;刷新</a>
-                                <button type="button" data-text="注会" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取注会</button>
-                                <button type="button" data-text="初级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取初级</button>
-                                <button type="button" data-text="中级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取中级</button>
 
-                                <button type="button" data-text="会计实务(初)" style="margin-left:10px;" class="btn btn-danger right exam">会计实务(初)</button>
-                                <button type="button" data-text="经济法基础(初)" style="margin-left:10px;" class="btn btn-danger right exam">经济法基础(初)</button>
-                                <button type="button" data-text="财务管理(中)" style="margin-left:10px;" class="btn btn-danger right exam">财务管理(中)</button>
-                                <button type="button" data-text="会计实务(中)" style="margin-left:10px;" class="btn btn-danger right exam">会计实务(中)</button>
-                                <button type="button" data-text="经济法基础(中)" style="margin-left:10px;" class="btn btn-danger right exam">经济法基础(中)</button>
                             </div>
+
                             @Html.Raw(Model.Paging.Text)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="display:none;padding-left:0;" class="col-sm-12 div-grabProblem">
+                            <button type="button" data-text="注会" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取注会</button>
+                            <button type="button" data-text="初级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取初级</button>
+                            <button type="button" data-text="中级" style="margin-left:10px;" class="btn btn-danger right garbdata">拉取中级</button>
+
+                            <button type="button" data-text="会计实务(初)" style="margin-left:10px;" class="btn btn-danger right exam">会计实务(初)</button>
+                            <button type="button" data-text="经济法基础(初)" style="margin-left:10px;" class="btn btn-danger right exam">经济法基础(初)</button>
+                            <button type="button" data-text="财务管理(中)" style="margin-left:10px;" class="btn btn-danger right exam">财务管理(中)</button>
+                            <button type="button" data-text="会计实务(中)" style="margin-left:10px;" class="btn btn-danger right exam">会计实务(中)</button>
+                            <button type="button" data-text="经济法基础(中)" style="margin-left:10px;" class="btn btn-danger right exam">经济法基础(中)</button>
                         </div>
                     </div>
                 </div>
@@ -87,65 +143,68 @@
     </div>
 </div>
 @section script{
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".syncdata").click(function () {
-            var belongid = $(this).attr("data-belongId");
-            //提交
-            $.post('/Problem/SyncProblemData',
-                { id: belongid },
-                function (data) {
-                if (data.Status == 200) {
-                    swal("提示", "操作成功"); 
-                }
-                if (data.Status == 202) {
-                    swal("提示", "操作失败");
-                }
-                if (data.Status == 203) {
-                    swal("提示", "数据重复");
-                }
-            });
-            return false;
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".syncdata").click(function () {
+                var belongid = $(this).attr("data-belongId");
+                //提交
+                $.post('/Problem/SyncProblemData',
+                    { id: belongid },
+                    function (data) {
+                        if (data.Status == 200) {
+                            swal("提示", "操作成功");
+                        }
+                        if (data.Status == 202) {
+                            swal("提示", "操作失败");
+                        }
+                        if (data.Status == 203) {
+                            swal("提示", "数据重复");
+                        }
+                    });
+                return false;
+            })
+
+            $(".garbdata").click(function () {
+                var _text = $(this).attr("data-text");
+                //提交
+                $.post('/Problem/GrabProblemData',
+                      { text: _text },
+                    function (data) {
+                        if (data.Status == 200) {
+                            swal("提示", "操作进行中，请耐心等待。");
+                        }
+                        if (data.Status == 202) {
+                            swal("提示", "操作失败");
+                        }
+                        if (data.Status == 203) {
+                            swal("提示", "数据重复");
+                        }
+                    });
+                return false;
+            })
+
+            $(".exam").click(function () {
+                var _text = $(this).attr("data-text");
+                //提交
+                $.post('/Problem/ScExam1',
+                      { text: _text },
+                    function (data) {
+                        if (data.Status == 200) {
+                            swal("提示", "操作进行中，请耐心等待。");
+                        }
+                        if (data.Status == 202) {
+                            swal("提示", "操作失败");
+                        }
+                        if (data.Status == 203) {
+                            swal("提示", "数据重复");
+                        }
+                    });
+                return false;
+            })
+
+            $(".btn-grabproblem").click(function () {
+                $(".div-grabProblem").toggle();
+            })
         })
 
-        $(".garbdata").click(function () {
-            var _text = $(this).attr("data-text");
-            //提交
-            $.post('/Problem/GrabProblemData',
-                  { text: _text },
-                function (data) {
-                    if (data.Status == 200) {
-                        swal("提示", "操作进行中，请耐心等待。");
-                    }
-                    if (data.Status == 202) {
-                        swal("提示", "操作失败");
-                    }
-                    if (data.Status == 203) {
-                        swal("提示", "数据重复");
-                    }
-                });
-            return false;
-        })
-
-        $(".exam").click(function () {
-            var _text = $(this).attr("data-text");
-            //提交
-            $.post('/Problem/ScExam1',
-                  { text: _text },
-                function (data) {
-                    if (data.Status == 200) {
-                        swal("提示", "操作进行中，请耐心等待。");
-                    }
-                    if (data.Status == 202) {
-                        swal("提示", "操作失败");
-                    }
-                    if (data.Status == 203) {
-                        swal("提示", "数据重复");
-                    }
-                });
-            return false;
-        })
-        
-    })
-
-</script>}
+    </script>}
