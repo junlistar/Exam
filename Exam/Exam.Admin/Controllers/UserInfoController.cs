@@ -1,4 +1,5 @@
-﻿using Exam.Admin.Models;
+﻿using Exam.Admin.Common;
+using Exam.Admin.Models;
 using Exam.Business;
 using Exam.Common;
 using Exam.Core.Infrastructure;
@@ -14,7 +15,7 @@ using System.Web.Mvc;
 
 namespace Exam.Admin.Controllers
 {
-    public class UserInfoController : Controller
+    public class UserInfoController : BaseController
     {
         //方式1
         IUserInfoService _userService; 
@@ -43,6 +44,15 @@ namespace Exam.Admin.Controllers
         /// <returns></returns>
         public ActionResult List(UserInfoVM _userInfoVM, int pn = 1)
         {
+            //写日志 
+            WriteLogAnysc(new Log()
+            {
+                TargetId=0,
+                TargetTitle ="",
+                CTime=DateTime.Now,
+                UserInfoId = Loginer.AccountId
+            });
+
             int totalCount,
                 pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;

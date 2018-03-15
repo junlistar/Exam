@@ -43,5 +43,7 @@ namespace Exam.Domain.Model
         public virtual List<Answer> AnswerList { get; set; }
 
         public virtual Chapter Chapter { get; set; }
+        public virtual Belong Belong { get; set; } 
+        public virtual SubjectInfo SubjectInfo { get; set; }
     }
 }

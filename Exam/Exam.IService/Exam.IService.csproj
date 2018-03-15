@@ -43,6 +43,7 @@
     <Compile Include="IExamAnswerService.cs" />
     <Compile Include="IExamProblemService.cs" />
     <Compile Include="IExamClassService.cs" />
+    <Compile Include="ILogService.cs" />
     <Compile Include="IUserExamAnswerService.cs" />
     <Compile Include="IUserExamProblemService.cs" />
     <Compile Include="IUserExamClassService.cs" />

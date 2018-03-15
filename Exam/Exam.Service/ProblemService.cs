@@ -73,9 +73,9 @@ namespace Exam.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<Problem> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<Problem> GetManagerList(string name, int belongId, int chapterId, int subjectInfoId, int problemCategoryId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._ProblemBiz.GetManagerList(name, pageNum, pageSize, out totalCount);
+            return this._ProblemBiz.GetManagerList(name, belongId, chapterId, subjectInfoId, problemCategoryId, pageNum, pageSize, out totalCount);
         }
         /// <summary>
         /// 获取所有

@@ -40,6 +40,8 @@ namespace Exam.Data.Repositories
         {
             get
             {
+                this._dbContext = new ExamDbContext("Exam"); this._entities = null;
+                //return _dbContext.Set<T>();
                 return this.Entities;
             }
         }
@@ -56,6 +58,7 @@ namespace Exam.Data.Repositories
         /// <returns></returns>
         public virtual T GetById(object id)
         {
+            this._dbContext = new ExamDbContext("Exam");this._entities = null;
             return this.Entities.Find(id);
         }
 
@@ -168,7 +171,8 @@ namespace Exam.Data.Repositories
         /// <param name="parameters"></param>
         /// <returns></returns>
         public IEnumerable<T> SqlQuery(string sql, object[] parameters)
-        {
+        { 
+            this._dbContext = new ExamDbContext("Exam");
             return this._dbContext.SqlQuery<T>(sql, parameters);
         }
     }

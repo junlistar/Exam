@@ -31,6 +31,7 @@ namespace Exam.Admin.Models
         public List<ProblemCategory> ProblemCategorys { get; set; }
         public List<Belong> Belongs { get; set; }
         public List<Chapter> Chapters { get; set; }
+        public List<SubjectInfo> SubjectInfos { get; set; }
 
         /// <summary>
         /// 答案列表
@@ -43,5 +44,9 @@ namespace Exam.Admin.Models
 
         //查询条件
         public string QueryName { get; set; } 
+        public int QueryBelongId { get; set; } 
+        public int QueryChapterId { get; set; } 
+        public int QuerySubjectInfoId { get; set; } 
+        public int QueryProblemCategoryId { get; set; }
     }
 }

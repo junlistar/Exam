@@ -99,7 +99,7 @@
         
         var img = [];
         if ('@Model.ImgInfo.Url' != '') {
-            var str = '<img src="@(Model.ImgInfo.Url)" class="kv-preview-thumb kv-file-content file-preview-image" />';
+            var str = '<img src="@(Model.ImgInfo.Source + Model.ImgInfo.Url)" class="kv-preview-thumb kv-file-content file-preview-image" />';
             img.push(str);
         }
         //缩略图上传js

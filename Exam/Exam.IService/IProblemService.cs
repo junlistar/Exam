@@ -38,14 +38,14 @@ namespace Exam.IService
         /// <param name="name"></param> 
         /// <param name="chapterid"></param> 
         /// <returns></returns>
-        bool IsExistName(string name,int chapterid);
+        bool IsExistName(string name, int chapterid);
 
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        List<Problem> GetManagerList(string name, int pageNum, int pageSize,out int totalCount);
+        List<Problem> GetManagerList(string name, int belongId, int chapterId, int subjectInfoId, int problemCategoryId, int pageNum, int pageSize,out int totalCount);
 
         /// <summary>
         /// 获取所有
