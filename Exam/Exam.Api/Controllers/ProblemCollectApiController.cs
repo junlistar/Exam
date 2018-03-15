@@ -86,28 +86,31 @@ namespace Exam.Api.Controllers
             List<ProblemCollectVM> problemRecordVMlist = new List<ProblemCollectVM>();
             foreach (var result in problemCollectList)
             {
-                ProblemCollectVM problem = new ProblemCollectVM();
-                problem.ProblemId = result.ProblemId;
-                problem.Title = result.Problem.Title ;
-                problem.ProblemCategoryId = result.Problem.ProblemCategoryId;
-                problem.ProblemCategory = result.Problem.ProblemCategory;
-                problem.Analysis = result.Problem.Analysis;
-
-                List<AnswerVM> childList = new List<AnswerVM>();
-                foreach (var item in result.Problem.AnswerList)
+                if (result.Problem != null)
                 {
+                    ProblemCollectVM problem = new ProblemCollectVM();
+                    problem.ProblemId = result.ProblemId;
+                    problem.Title = result.Problem.Title;
+                    problem.ProblemCategoryId = result.Problem.ProblemCategoryId;
+                    problem.ProblemCategory = result.Problem.ProblemCategory;
+                    problem.Analysis = result.Problem.Analysis;
 
-                    childList.Add(new AnswerVM
+                    List<AnswerVM> childList = new List<AnswerVM>();
+                    foreach (var item in result.Problem.AnswerList)
                     {
-                        ProblemId = item.ProblemId,
-                        IsCorrect = item.IsCorrect,
-                        Title = item.Title,
-                        AnswerId = item.AnswerId
 
-                    });
+                        childList.Add(new AnswerVM
+                        {
+                            ProblemId = item.ProblemId,
+                            IsCorrect = item.IsCorrect,
+                            Title = item.Title,
+                            AnswerId = item.AnswerId
+
+                        });
+                    }
+                    problem.AnswerList = childList;
+                    problemRecordVMlist.Add(problem);
                 }
-                problem.AnswerList = childList;
-                problemRecordVMlist.Add(problem);
             }
             list.Data = problemRecordVMlist;
             return Json(new { Success = true, Msg = "OK", Data = problemRecordVMlist });
