@@ -18,15 +18,15 @@ namespace Exam.Admin.Controllers
     public class UserInfoController : BaseController
     {
         //方式1
-        IUserInfoService _userService; 
-        IGradeService _gradeService; 
+        IUserInfoService _userService;
+        IGradeService _gradeService;
         ISysGroupService _sysGroupService;
         IImageInfoService _imageInfoService;
 
         //方式2
-        private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>(); 
+        private readonly IUserInfoService _userInfo = EngineContext.Current.Resolve<IUserInfoService>();
 
-        public UserInfoController(IUserInfoService userService, IGradeService gradeService, 
+        public UserInfoController(IUserInfoService userService, IGradeService gradeService,
             ISysGroupService sysGroupService,
             IImageInfoService imageInfoService)
         {
@@ -42,21 +42,22 @@ namespace Exam.Admin.Controllers
         /// <param name="_userInfoVM"></param>
         /// <param name="pn"></param>
         /// <returns></returns>
-        public ActionResult List(UserInfoVM _userInfoVM, int pn = 1)
+        public ActionResult List(UserInfoVM vm, int pn = 1)
         {
-            //写日志 
-            WriteLogAnysc(new Log()
+            if (Session["QueryData"] != null && vm.RefreshFlag == 1)
             {
-                TargetId=0,
-                TargetTitle ="",
-                CTime=DateTime.Now,
-                UserInfoId = Loginer.AccountId
-            });
-
+                vm = (UserInfoVM)Session["QueryData"];  
+                vm.RefreshFlag = 0; 
+            }
+            else
+            {
+                Session["QueryData"] = vm; 
+            }
+             
             int totalCount,
                 pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
-            var list = _userService.GetManagerList(_userInfoVM.QueryLoginName, pageIndex, pageSize, out totalCount);
+            var list = _userService.GetManagerList(vm.QueryLoginName, pageIndex, pageSize, out totalCount);
             var paging = new Paging<UserInfo>()
             {
                 Items = list,
@@ -64,8 +65,8 @@ namespace Exam.Admin.Controllers
                 Total = totalCount,
                 Index = pn,
             };
-            _userInfoVM.Paging = paging;
-            return View(_userInfoVM);
+            vm.Paging = paging;
+            return View(vm);
         }
         /// <summary>
         /// 状态修改
@@ -171,6 +172,6 @@ namespace Exam.Admin.Controllers
                 return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
     }
 }

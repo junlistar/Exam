@@ -29,8 +29,8 @@
             if (data.Status == 200) {
                 swal("提示", "操作成功");
                 setTimeout(function () {
-                    //window.location.href = '/Problem/List';
-                    history.go(-1);
+                    window.location.href = '/Problem/List?RefreshFlag=1';
+                    //history.go(-1);
                 }, 1500);
             }
             if (data.Status == 202) {

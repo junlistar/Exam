@@ -60,12 +60,23 @@ namespace Exam.Admin.Controllers
         /// <param name="_ProblemVM"></param>
         /// <param name="pn"></param>
         /// <returns></returns>
-        public ActionResult List(ProblemVM _ProblemVM, int pn = 1)
+        public ActionResult List(ProblemVM vm, int pn = 1)
         {
+            if (Session["QueryData"] != null && vm.RefreshFlag == 1)
+            {
+                vm = (ProblemVM)Session["QueryData"];
+                vm.RefreshFlag = 0;
+            }
+            else
+            {
+                Session["QueryData"] = vm;
+            } 
+
+
             int totalCount,
                 pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
-            var list = _ProblemService.GetManagerList(_ProblemVM.QueryName, _ProblemVM.QueryBelongId, _ProblemVM.QueryChapterId, _ProblemVM.QuerySubjectInfoId, _ProblemVM.QueryProblemCategoryId, pageIndex, pageSize, out totalCount);
+            var list = _ProblemService.GetManagerList(vm.QueryName, vm.QueryBelongId, vm.QueryChapterId, vm.QuerySubjectInfoId, vm.QueryProblemCategoryId, pageIndex, pageSize, out totalCount);
             var paging = new Paging<Problem>()
             {
                 Items = list,
@@ -73,12 +84,13 @@ namespace Exam.Admin.Controllers
                 Total = totalCount,
                 Index = pn,
             };
-            _ProblemVM.Paging = paging;
-            _ProblemVM.Belongs = _BelongService.GetAll();
-            _ProblemVM.ProblemCategorys = _ProblemCategoryService.GetAll(); 
-            _ProblemVM.Chapters = _ChapterService.GetAll();
-            _ProblemVM.SubjectInfos = _SubjectInfoService.GetAll();
-            return View(_ProblemVM);
+
+            vm.Paging = paging;
+            vm.Belongs = _BelongService.GetAll();
+            vm.ProblemCategorys = _ProblemCategoryService.GetAll();
+            vm.Chapters = _ChapterService.GetAll();
+            vm.SubjectInfos = _SubjectInfoService.GetAll();
+            return View(vm);
         }
 
         /// <summary>
@@ -283,7 +295,7 @@ namespace Exam.Admin.Controllers
                                 Title = item.SubjectInfoTitle,
                                 Sort = 1,
                                 UTime = DateTime.Now,
-                                BelongId= item.BelongId
+                                BelongId = item.BelongId
                             }));
                         }
                         pitem.SubjectInfoId = subjectlist.Where(p => p.Title == item.SubjectInfoTitle).FirstOrDefault().SubjectInfoId;
@@ -441,7 +453,7 @@ namespace Exam.Admin.Controllers
                             Score = 1,
                             UTime = DateTime.Now,
                             Sort = 1,
-                            ProblemCategoryId= item.ProblemCategoryId
+                            ProblemCategoryId = item.ProblemCategoryId
                         });
                         if (item.AnswerList != null)
                         {

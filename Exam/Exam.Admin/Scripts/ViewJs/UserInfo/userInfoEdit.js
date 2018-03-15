@@ -38,7 +38,7 @@
             if (data.Status == 200) {
                 swal("提示", "操作成功");
                 setTimeout(function () {
-                    window.location.href = '/UserInfo/List';
+                    window.location.href = '/UserInfo/List?RefreshFlag=1';
                 }, 1500);
             }
             if (data.Status == 202) {

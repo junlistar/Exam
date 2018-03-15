@@ -9,6 +9,11 @@ namespace Exam.Admin.Models
 {
     public class ProblemVM
     {
+        /// <summary>
+        /// 刷新标识
+        /// </summary>
+        public int RefreshFlag { get; set; }
+
         public int V { get; set; }
 
         /// <summary>

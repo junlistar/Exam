@@ -10,6 +10,11 @@ namespace Exam.Admin.Models
     public class UserInfoVM : BaseImgInfoVM
     {
         /// <summary>
+        /// 刷新标识
+        /// </summary>
+        public int RefreshFlag { get; set; } 
+
+        /// <summary>
         /// 编号
         /// </summary>
         public int Id { get; set; }
