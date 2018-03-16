@@ -202,6 +202,31 @@
                 return false;
             })
 
+            //根据分类获取章节
+            $("#QuerySubjectInfoId").change(function () {
+                var sid = $(this).val();
+                var $chapter = $("#QueryChapterId");
+
+                $.post('/Problem/GetChapterBySubjectId',
+                    { id: sid },
+                  function (data) {
+                      if (data.Status == 200) {
+                          $chapter.empty();
+                          var _html =' <option value="0">请选择问题章节</option>';
+                          var dlist = data.DtList;
+                          for (var i = 0; i < dlist.length; i++) { 
+                              var _temp = dlist[i];
+                              _html += '<option value="' + _temp.ChapterId + '">' + _temp.Title + '</option>'; 
+                          }
+                          $chapter.append(_html);
+                      }
+                      if (data.Status == 202) {
+                          swal("提示", "操作失败");
+                      } 
+                  });
+            })
+
+            //拉取题库隐藏动作
             $(".btn-grabproblem").click(function () {
                 $(".div-grabProblem").toggle();
             })

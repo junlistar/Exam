@@ -88,8 +88,15 @@ namespace Exam.Admin.Controllers
             vm.Paging = paging;
             vm.Belongs = _BelongService.GetAll();
             vm.ProblemCategorys = _ProblemCategoryService.GetAll();
-            vm.Chapters = _ChapterService.GetAll();
             vm.SubjectInfos = _SubjectInfoService.GetAll();
+            if (vm.QueryChapterId!=0)
+            {
+                vm.Chapters = _ChapterService.GetAll().Where(p => p.SubjectInfoId == vm.QueryChapterId).ToList();
+            }
+            else
+            {
+                vm.Chapters = new List<Chapter>();
+            }
             return View(vm);
         }
 
@@ -175,6 +182,28 @@ namespace Exam.Admin.Controllers
             catch (Exception)
             {
                 return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetChapterBySubjectId(int id = 0)
+        {
+            try
+            {
+                var list = _ChapterService.GetAll().Where(p => p.SubjectInfoId == id);
+
+                var result = from p in list
+                             select new
+                             {
+                                 ChapterId = p.ChapterId,
+                                 Title = p.Title
+                             };
+
+                return Json(new { Status = 200, DtList = result.ToList() }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { Status =202, }, JsonRequestBehavior.AllowGet);
             }
         }
         /// <summary>
