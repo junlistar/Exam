@@ -65,6 +65,8 @@ namespace Exam.Domain.Model
         public virtual int UserInfoId { get; set; }
 
 
+        public virtual UserInfo UserInfo { get; set; }
+
         /// <summary>
         /// 问题记录表id
         /// </summary>
@@ -85,6 +87,8 @@ namespace Exam.Domain.Model
     public class UserPractiseReportModel : IAggregateRoot
     {
         public int UserInfoId { get; set; }
+        public string Phone { get; set; }
+        public string NickName { get; set; }
         public int totalCount { get; set; }
         public int rightCount { get; set; }
         public int wrongCount { get; set; } 

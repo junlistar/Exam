@@ -8,24 +8,25 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     @*<div class="row" style="padding:10px 10px;">
-                        <form action="/ProblemRecord/List" method="get">
-                            <div class="col-sm-4">
-                                根据用户查询：
-                                <input type="text" name="QueryUserInfoId" class="form-control inline" style="width:70%;" placeholder="请输入查询用户ID" value="@(Model.QueryUserInfoId == 0 ? "":Model.QueryUserInfoId.ToString() )">
-                            </div> 
-                            <button type="submit" class="btn btn-info">搜索</button>
-                        </form>
-                    </div>*@
+                            <form action="/ProblemRecord/List" method="get">
+                                <div class="col-sm-4">
+                                    根据用户查询：
+                                    <input type="text" name="QueryUserInfoId" class="form-control inline" style="width:70%;" placeholder="请输入查询用户ID" value="@(Model.QueryUserInfoId == 0 ? "":Model.QueryUserInfoId.ToString() )">
+                                </div>
+                                <button type="submit" class="btn btn-info">搜索</button>
+                            </form>
+                        </div>*@
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">序号</th>
-                                    <th class="text-center">题目ID</th> 
+                                    <th class="text-center">题目ID</th>
                                     <th class="text-center" style="width:400px;">题目标题</th>
                                     <th class="text-center">题目类型</th>
+                                    <th class="text-center">回答用户信息（ID,手机号）</th>
                                     <th class="text-center">正确答案</th>
-                                    <th class="text-center">用户回答</th> 
+                                    <th class="text-center">用户回答</th>
                                     <th class="text-center">是否回答正确</th>
                                     <th class="text-center" style="width:200px;">题目分析</th>
                                     <th class="text-center">答题时间</th>
@@ -39,9 +40,28 @@
                                     {
                                         <tr>
                                             <td class="text-center">@item.ProblemRecordId</td>
-                                            <td class="text-center">@item.ProblemId</td> 
+                                            <td class="text-center">@item.ProblemId</td>
                                             <td class="text-center">@item.Title</td>
-                                            <td class="text-center">@item.ProblemCategory.Title</td>
+                                            <td class="text-center">
+                                                @if (item.ProblemCategory != null)
+                                                {
+                                                    @(item.ProblemCategory.Title)
+                                                }
+                                                else
+                                                {
+                                                    @("分类已删除")
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @if (item.UserInfo != null)
+                                                {
+                                                    @(item.UserInfo.UserInfoId + "," + item.UserInfo.Phone)
+                                                }
+                                                else
+                                                {
+                                                    @("用户已删除")
+                                                }
+                                            </td>
                                             <td class="text-center">@item.CorrectAnswer</td>
                                             <td class="text-center">@item.ErrorAnswer</td>
                                             <td class="text-center">
@@ -58,9 +78,9 @@
                                                     @("N/A");
                                                 }
                                             </td>
-                                            <td class="text-center">@item.Analysis</td> 
+                                            <td class="text-center">@item.Analysis</td>
                                             <td class="text-center">@item.CTime</td>
-                                            <td>    
+                                            <td>
                                                 <button onclick="iframe('答案列表','/Problem/AnswerList/@item.ProblemId')" class="btn btn-success">查看答案</button>
                                                 @*<button onclick="del('/ProblemRecord/Delete','/ProblemRecord/List','@item.UserInfoAnswerRecordId')" class="btn btn-danger"><i class="fa fa-times padding-right-4"></i>&nbsp;删除</button>*@
                                             </td>

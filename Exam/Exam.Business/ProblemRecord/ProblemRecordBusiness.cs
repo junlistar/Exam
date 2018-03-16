@@ -122,17 +122,20 @@ namespace Exam.Business
 
 
             //t-sql
-            string t_sql = @" select UserInfoId,COUNT(1) as totalCount,
+            string t_sql = @" select tmp_a.UserInfoId,b.nikeName as NickName,b.phone as Phone,COUNT(1) as totalCount,
   (select COUNT(1) from ProblemRecord a where YesOrNo = 1 and a.userinfoid = tmp_a.userinfoid) as rightCount,
   (select COUNT(1) from ProblemRecord a where YesOrNo = 2 and a.userinfoid = tmp_a.userinfoid) as wrongCount,
-     MAX(CTime) as CTime
-  FROM ProblemRecord tmp_a {0}
-  group by userinfoid";
+     MAX(tmp_a.CTime) as CTime
+  FROM ProblemRecord tmp_a
+  LEFT JOIN UserInfo b ON tmp_a.UserInfoId = b.UserInfoid
+ {0}
+  group by tmp_a.userinfoid,b.nikeName,b.phone
+  order by CTime desc";
             string whereStr = " where 1=1 ";
 
             if (userInfoId != 0)
             {
-                whereStr += "and  UserInfoId=" + userInfoId;
+                whereStr += "and  tmp_a.UserInfoId=" + userInfoId;
             }
             t_sql = string.Format(t_sql, whereStr);
 

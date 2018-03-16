@@ -31,6 +31,7 @@ namespace Exam.Data.Mapping
             this.Property(m=>m.YesOrNo);
             this.Property(m=>m.UserInfoId);
             HasRequired(m => m.ProblemCategory);
+            HasRequired(m => m.UserInfo);
             HasMany(m => m.AnswerRecordList).WithRequired(n => n.ProblemRecord);
         }
     }

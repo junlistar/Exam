@@ -21,6 +21,8 @@
                             <thead>
                                 <tr> 
                                     <th class="text-center">用户ID</th>
+                                    <th class="text-center">手机号码</th>
+                                    <th class="text-center">昵称</th>
                                     <th class="text-center">答题总数</th>
                                     <th class="text-center">正确数(百分比)</th>
                                     <th class="text-center">错误数(百分比)</th>
@@ -35,6 +37,8 @@
                                     {
                                         <tr> 
                                             <td class="text-center">@item.UserInfoId</td>
+                                            <td class="text-center">@item.Phone</td>
+                                            <td class="text-center">@item.NickName</td>
                                             <td class="text-center">@item.totalCount</td>
                                             <td class="text-center">
                                                 @Html.Raw(item.rightCount + " (" + ("<span style='color:green;'>" + (Convert.ToDouble(item.rightCount) / Convert.ToDouble(item.totalCount)).ToString("p") + "</span>") + ")")
