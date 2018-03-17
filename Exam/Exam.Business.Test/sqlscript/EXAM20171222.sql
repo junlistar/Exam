@@ -370,3 +370,25 @@ create table ExamAnswer
 	ExamProblemId int,						--问题表编号
 	isCorrect int,						--是否正确答案 0错误1正确
 )
+--视频表
+create table Video
+(
+	VideoId int identity(1000,1),		--编号
+	Title nvarchar(50),		--标题
+	VideoClassId int,		--分类编号
+	BelongId int,			--所属
+	imageInfoId int,					--图片编号
+	Url nvarchar(500),			--地址
+	Ctime datetime default(getdate()),	--创建时间
+	Sort int default(99),				--排序
+	Utime datetime default(getdate()),	--修改时间
+)
+--视频分类表
+create table VideoClass
+(
+	VideoClassId int identity(1000,1),		--编号
+	Title nvarchar(50) not null,		--分类标题
+	Ctime datetime default(getdate()),	--创建时间
+	Sort int default(99),				--排序
+	Utime datetime default(getdate()),	--修改时间
+)
