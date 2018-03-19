@@ -71,7 +71,7 @@ namespace Exam.Business
         /// 添加管理后台菜单列表
         /// </summary> 
         /// <returns></returns>
-        public List<Video> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<Video> GetManagerList(string name,int videoClassId, int pageNum, int pageSize, out int totalCount)
         {
             var where = PredicateBuilder.True<Video>();
              
@@ -80,7 +80,11 @@ namespace Exam.Business
             {
                 where = where.And(m => m.Title.Contains(name));
             }
-            
+
+            if (videoClassId != 0)
+            {
+                where = where.And(m => m.VideoClassId== videoClassId);
+            }
 
             totalCount = this._repoVideo.Table.Where(where).Count();
             return this._repoVideo.Table.Where(where).OrderBy(p => p.VideoId).Skip((pageNum-1) * pageSize).Take(pageSize).ToList();

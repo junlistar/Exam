@@ -70,7 +70,8 @@ namespace Exam.Api.Controllers
                 CTime = DateTime.Now,
                 Reads = 0,
                 QuestionId = addReplyDto.QuestionId,
-                UserInfoId = addReplyDto.UserInfoId
+                UserInfoId = addReplyDto.UserInfoId,
+                IsEnable=1
             });
             return Json(new { Success = true, Msg = "OK", Data = "" });
         }

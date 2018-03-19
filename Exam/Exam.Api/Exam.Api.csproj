@@ -260,6 +260,7 @@
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserExamController.cs" />
     <Compile Include="Controllers\VersionTableApiController.cs" />
+    <Compile Include="Controllers\VideoApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,7 @@
     <Compile Include="Models\SelNotificationDto.cs" />
     <Compile Include="Models\SelProblemCollectDto.cs" />
     <Compile Include="Models\SelUserInfoAnswerRecordDto.cs" />
+    <Compile Include="Models\SelVideoDto.cs" />
     <Compile Include="Models\SlQuestionVM.cs" />
     <Compile Include="Models\SubjectInfoVM.cs" />
     <Compile Include="Models\UpdateUserInfoVM.cs" />

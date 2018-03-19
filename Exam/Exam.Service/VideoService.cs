@@ -16,7 +16,7 @@ namespace Exam.Service
         /// </summary>
         private IVideoBusiness _VideoBiz;
 
-        public VideoService(VideoBusiness VideoBiz)
+        public VideoService(IVideoBusiness VideoBiz)
         {
             _VideoBiz = VideoBiz;
         }
@@ -73,9 +73,9 @@ namespace Exam.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<Video> GetManagerList(string name, int pageNum, int pageSize, out int totalCount)
+        public List<Video> GetManagerList(string name, int videoClassId, int pageNum, int pageSize, out int totalCount)
         {
-            return this._VideoBiz.GetManagerList(name,pageNum, pageSize, out totalCount);
+            return this._VideoBiz.GetManagerList(name, videoClassId,pageNum, pageSize, out totalCount);
         }
         /// <summary>
         /// 获取所有
