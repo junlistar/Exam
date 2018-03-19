@@ -188,6 +188,8 @@
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\BelongController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Controllers\VideoClassController.cs" />
     <Compile Include="Controllers\UserExamClassController.cs" />
     <Compile Include="Controllers\ProblemRecordController.cs" />
     <Compile Include="Controllers\ProblemCollectController.cs" />
@@ -219,6 +221,8 @@
     <Compile Include="Models\ChapterVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BelongVM.cs" />
+    <Compile Include="Models\VideoVM.cs" />
+    <Compile Include="Models\VideoClassVM.cs" />
     <Compile Include="Models\UserExamClassVM.cs" />
     <Compile Include="Models\ProblemRecordVM.cs" />
     <Compile Include="Models\ProblemCollectVM.cs" />
@@ -605,6 +609,8 @@
     <Content Include="Scripts\ViewJs\AdManage\adManageEdit.js" />
     <Content Include="Scripts\ViewJs\Login\login.js" />
     <Content Include="Scripts\ViewJs\Lecturer\lecturerEdit.js" />
+    <Content Include="Scripts\ViewJs\Video\videoEdit.js" />
+    <Content Include="Scripts\ViewJs\VideoClass\videoClassEdit.js" />
     <Content Include="Scripts\ViewJs\Problem\problemEdit.js" />
     <Content Include="Scripts\ViewJs\Belong\belongEdit.js" />
     <Content Include="Scripts\ViewJs\ProblemCategory\problemCategoryEdit.js" />
@@ -709,6 +715,10 @@
     <Content Include="Views\UserPractiseReport\ProblemList.cshtml" />
     <Content Include="Views\ProblemPractiseReport\List.cshtml" />
     <Content Include="Views\ProblemPractiseReport\ProblemList.cshtml" />
+    <Content Include="Views\VideoClass\List.cshtml" />
+    <Content Include="Views\VideoClass\Edit.cshtml" />
+    <Content Include="Views\Video\Edit.cshtml" />
+    <Content Include="Views\Video\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
