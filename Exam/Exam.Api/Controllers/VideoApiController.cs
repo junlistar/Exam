@@ -18,6 +18,21 @@ namespace Exam.Api.Controllers
     {
         private readonly IVideoService _videoService = EngineContext.Current.Resolve<IVideoService>();
 
+        private readonly IVideoClassService _videoClassService = EngineContext.Current.Resolve<IVideoClassService>();
+
+
+        /// <summary>
+        /// 获取视频分类
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetVideoClassList()
+        {
+            var list = _videoClassService.GetAll();
+            return Json(new { Success = true, Msg = "OK", Data = list });
+        }
+
+
         /// <summary>
         /// 根据分类获取视频
         /// </summary>

@@ -861,6 +861,12 @@
             视频
             </summary>
         </member>
+        <member name="M:Exam.Api.Controllers.VideoApiController.GetVideoClassList">
+            <summary>
+            获取视频分类
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Exam.Api.Controllers.VideoApiController.GeVideoList(Exam.Api.Models.SelVideoDto)">
             <summary>
             根据分类获取视频
