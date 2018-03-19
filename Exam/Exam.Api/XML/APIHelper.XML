@@ -856,6 +856,18 @@
             <param name="TypeId"></param>
             <returns></returns>
         </member>
+        <member name="T:Exam.Api.Controllers.VideoApiController">
+            <summary>
+            视频
+            </summary>
+        </member>
+        <member name="M:Exam.Api.Controllers.VideoApiController.GeVideoList(Exam.Api.Models.SelVideoDto)">
+            <summary>
+            根据分类获取视频
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
         <member name="P:Exam.Api.Models.AddNotificationDto.UserInfoId">
             <summary>
             用户id
