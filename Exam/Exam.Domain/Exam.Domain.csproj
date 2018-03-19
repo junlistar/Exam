@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\VideoClass.cs" />
+    <Compile Include="Model\Video.cs" />
     <Compile Include="Model\ExamAnswer.cs" />
     <Compile Include="Model\ExamProblem.cs" />
     <Compile Include="Model\ExamClass.cs" />

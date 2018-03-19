@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 namespace Exam.Domain.Model
 {
     /// <summary>
-    /// 广告表
+    /// 视频表
     /// </summary>
-    public class Advertisement: IAggregateRoot
+    public class Video : IAggregateRoot
     {
         /// <summary>
         /// 编号
         /// </summary>
-        public virtual int AdvertisementId { get; set; }
-
-        /// <summary>
-        /// 用户id
-        /// </summary>
-        public virtual int UserInfoId { get; set; }
+        public virtual int VideoId { get; set; }
 
         /// <summary>
         /// 标题
@@ -28,15 +23,32 @@ namespace Exam.Domain.Model
         public virtual string Title { get; set; }
 
         /// <summary>
-        /// 广告类型	
+        /// 分类编号	
         /// </summary>
-        public virtual int TypeId { get; set; }
+        public virtual int VideoClassId { get; set; }
+
+        /// <summary>
+        /// 所属	
+        /// </summary>
+        public virtual int BelongId { get; set; }
 
         /// <summary>
         /// 广告图片	
         /// </summary>
 
         public virtual int ImageInfoId { get; set; }
+
+        /// <summary>
+        /// url
+        /// </summary>
+
+        public virtual string Url { get; set; }
+
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public virtual int Sort { get; set; }
 
         /// <summary>
         /// 创建时间

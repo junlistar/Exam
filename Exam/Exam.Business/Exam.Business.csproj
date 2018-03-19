@@ -114,6 +114,10 @@
     <Compile Include="SubjectInfo\SubjectInfoBusiness.cs" />
     <Compile Include="VersionTable\IVersionTableBusiness.cs" />
     <Compile Include="VersionTable\VersionTableBusiness.cs" />
+    <Compile Include="VideoClass\VideoClassBusiness.cs" />
+    <Compile Include="VideoClass\IVideoClassBusiness.cs" />
+    <Compile Include="Video\VideoBusiness.cs" />
+    <Compile Include="Video\IVideoBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj">
