@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Exam.Admin.Models
 {
-    public class VideoVM
+    public class VideoVM:BaseImgInfoVM
     {
         public int V { get; set; }
 
@@ -24,6 +24,7 @@ namespace Exam.Admin.Models
         /// </summary>
         public List<Video> Videos { get; set; }
         public List<Belong> Belongs { get; set; }
+        public List<VideoClass> VideoClasses { get; set; }
 
         /// <summary>
         /// 回答列表
@@ -35,6 +36,7 @@ namespace Exam.Admin.Models
         public Paging<Video> Paging { get; set; }
 
         //查询条件
-        public string QueryName { get; set; } 
+        public string QueryName { get; set; }
+        public int QueryClassId { get; set; }
     }
 }

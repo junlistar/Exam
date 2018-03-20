@@ -49,6 +49,10 @@ namespace Exam.Domain.Model
         /// 排序
         /// </summary>
         public virtual int Sort { get; set; }
+        /// <summary>
+        /// 置顶
+        /// </summary>
+        public virtual int IsTop { get; set; }
 
         /// <summary>
         /// 创建时间

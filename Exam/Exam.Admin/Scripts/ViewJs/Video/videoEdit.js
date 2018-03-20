@@ -3,24 +3,30 @@
         var id = $('#id'),
             imgInfoId = $('#imgInfoId'),
             oldImgInfoId = $('#oldImgInfoId'),
-            advertisementTypeId = $('#advertisementTypeId'),
-            isTop = $('#divIsTop'),
-            isHot = $('#divIsHot'),
+            videoClassId = $('#videoClassId'),
+            belongId = $('#belongId'),
             title = $('#title'),
-            author = $('#author'), 
-            contents = UE.getEditor('contents').getContent(),
+            url = $('#url'),
             sortNo = $('#sortNo');
         //校验
         if (id.val() <= 0 && (imgInfoId.val() == '' || imgInfoId.val() == null)) {
             swal("提示", "请上传资讯图片");
             return false;
         }
-        if (advertisementTypeId.val() <= 0) {
-            swal("提示", "请选择资讯类型");
+        if (belongId.val() <= 0) {
+            swal("提示", "请选择层级");
+            return false;
+        }
+        if (videoClassId.val() <= 0) {
+            swal("提示", "请选择新闻类型");
             return false;
         }
         if (title.val() == null || title.val() == '') {
             title.focus();
+            return false;
+        }
+        if (url.val() == null || url.val() == '') {
+            url.focus();
             return false;
         }
         //重新上传图片时删除旧的图片
@@ -28,23 +34,21 @@
             $.post("/Uploader/DeleteFile", { Id: oldImgInfoId.val() }, function (data) { });
         }
         var dataArr = {
-            NewsInfoId: id.val(),
+            VideoId: id.val(),
             ImageInfoId: imgInfoId.val(),
-            NewsCategoryId: advertisementTypeId.val(),
+            VideoClassId: videoClassId.val(),
+            BelongId: belongId.val(),
             Title: title.val(),
-            Author: author.val(), 
-            Content: contents,
+            Url: url.val(),
             Sort: sortNo.val(),
-            isTop: isTop.val(),
-            isHot: isHot.val()
         };
         window.parent.showModal();
         //提交
-        $.post('/NewsInfo/Edit', dataArr, function (data) {
+        $.post('/Video/Edit', dataArr, function (data) {
             if (data.Status == 200) {
                 swal("提示", "操作成功");
                 setTimeout(function () {
-                    window.location.href = '/NewsInfo/List';
+                    window.location.href = '/Video/List';
                 }, 1500);
             }
             if (data.Status == 202) {

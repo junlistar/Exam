@@ -19,7 +19,31 @@ namespace Exam.Admin.Controllers
         {
             _baseImgInfoService = baseImgInfoService;
         }
-
+        /// <summary>
+        /// 视频文件上传,返回视频地址
+        /// </summary>
+        /// <param name="folder">文件夹名称</param>
+        /// <param name="title">视频标题</param>
+        /// <returns></returns> 
+        [HttpPost]
+        public JsonResult VideoFile(string folder = "VideoUploader", string title = "title")
+        {
+            lock (imgLock)
+            {
+                var fileBase = Request.Files[0];
+                string path = string.Format("/Uploaders/{0}", folder);
+                string newFileName = fileBase.FileName.Substring(fileBase.FileName.LastIndexOf(".") + 1);
+                string fileName = Path.GetFileName(DateTime.Now.ToString("yyyyMMddhhmmssffff") + "." + newFileName);
+                string fileServerPath = Server.MapPath(path);
+                if (!Directory.Exists(fileServerPath))
+                    Directory.CreateDirectory(fileServerPath);
+                var filePath = Path.Combine(fileServerPath, fileName);
+                //保存视频
+                fileBase.SaveAs(filePath);
+                var returnUrl = WebConfigHelper.GetAppSettingsInfo("ImgPath") + string.Format("{0}/{1}", path, fileName);
+                return Json(returnUrl, JsonRequestBehavior.AllowGet);
+            }
+        }
         /// <summary>
         /// 图片上传
         /// </summary>

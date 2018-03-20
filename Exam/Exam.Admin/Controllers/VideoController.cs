@@ -17,17 +17,20 @@ namespace Exam.Admin.Controllers
     public class VideoController : Controller
     {
         //方式1
-        private readonly IVideoService _qeustionService;  
-        private readonly IReplyService _replyService;
+        private readonly IVideoService _videoService;  
+        private readonly IImageInfoService _imageService;
+        private readonly IBelongService _belongService;
+        private readonly IVideoClassService _videoClassService;
 
         //方式2 
 
-        public VideoController(IVideoService qeustionService, IReplyService replyService, 
-            ISysGroupService sysGroupService,
-            IImageInfoService imageInfoService)
+        public VideoController(IVideoService videoService, IReplyService replyService, 
+            IImageInfoService imageInfoService, IBelongService belongService, IVideoClassService videoClassService)
         {
-            _qeustionService = qeustionService;
-            _replyService = replyService; 
+            _videoService = videoService;
+            _imageService = imageInfoService;
+            _belongService = belongService;
+            _videoClassService = videoClassService;
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace Exam.Admin.Controllers
             int totalCount,
                 pageIndex = pn,
                 pageSize = PagingConfig.PAGE_SIZE;
-            var list = _qeustionService.GetManagerList(_VideoVM.QueryName, pageIndex, pageSize, out totalCount);
+            var list = _videoService.GetManagerList(_VideoVM.QueryName, _VideoVM.QueryClassId, pageIndex, pageSize, out totalCount);
             var paging = new Paging<Video>()
             {
                 Items = list,
@@ -62,13 +65,13 @@ namespace Exam.Admin.Controllers
         {
             try
             {
-                var entity = _qeustionService.GetById(id);
+                var entity = _videoService.GetById(id);
 
                 if (entity == null)
                 {
                     return Json(new { Status = Successed.Empty }, JsonRequestBehavior.AllowGet);
-                } 
-                _qeustionService.Update(entity);
+                }
+                _videoService.Update(entity);
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
@@ -87,14 +90,14 @@ namespace Exam.Admin.Controllers
         {
             try
             {
-                var entity = _qeustionService.GetById(id);
+                var entity = _videoService.GetById(id);
 
                 if (entity == null)
                 {
                     return Json(new { Status = Successed.Empty }, JsonRequestBehavior.AllowGet);
                 }
 
-                _qeustionService.Delete(entity);
+                _videoService.Delete(entity);
 
                 return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
             }
@@ -103,6 +106,67 @@ namespace Exam.Admin.Controllers
                 return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
             }
         }
-         
+        /// <summary>
+        /// 编辑
+        /// </summary>
+        /// <param name="_VideoVM"></param>
+        /// <returns></returns>
+        public ActionResult Edit(VideoVM vm)
+        {
+            vm.Video = _videoService.GetById(vm.Id) ?? new Video();
+            vm.ImgInfo = _imageService.GetById(vm.Video.ImageInfoId) ?? new ImageInfo();
+            vm.Belongs = _belongService.GetAll();
+            vm.VideoClasses = _videoClassService.GetAll();
+            return View(vm);
+        }
+        /// <summary>
+        /// 添加、修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult Edit(Video model)
+        {
+            try
+            {
+                var entity = new Video();
+                if (model.VideoId > 0)
+                {
+                    entity = _videoService.GetById(model.VideoId);
+                    //修改  
+                    entity.UTime = DateTime.Now;
+                    entity.ImageInfoId = model.ImageInfoId;
+                    entity.VideoClassId = model.VideoClassId;
+                    entity.Title = model.Title;
+                    entity.BelongId = model.BelongId;
+                    entity.Url = model.Url;
+                    entity.Sort = model.Sort;
+                    _videoService.Update(entity);
+                }
+                else
+                {
+                    if (_videoService.IsExistName(model.Title))
+                        return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
+                    //添加 
+                    entity.Title = model.Title;
+                    entity.ImageInfoId = model.ImageInfoId;
+                    entity.VideoClassId = model.VideoClassId;
+                    entity.Title = model.Title;
+                    entity.BelongId = model.BelongId;
+                    entity.Url = model.Url;
+                    entity.Sort = model.Sort;
+                    entity.CTime = DateTime.Now;
+                    entity.UTime = DateTime.Now;
+
+                    _videoService.Insert(entity);
+                }
+                return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
