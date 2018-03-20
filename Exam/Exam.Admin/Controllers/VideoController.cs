@@ -142,6 +142,7 @@ namespace Exam.Admin.Controllers
                     entity.BelongId = model.BelongId;
                     entity.Url = model.Url;
                     entity.Sort = model.Sort;
+                    entity.IsTop = model.IsTop;
                     _videoService.Update(entity);
                 }
                 else
@@ -156,6 +157,7 @@ namespace Exam.Admin.Controllers
                     entity.BelongId = model.BelongId;
                     entity.Url = model.Url;
                     entity.Sort = model.Sort;
+                    entity.IsTop = model.IsTop;
                     entity.CTime = DateTime.Now;
                     entity.UTime = DateTime.Now;
 

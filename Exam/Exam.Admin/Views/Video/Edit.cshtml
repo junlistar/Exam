@@ -81,6 +81,16 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">是否置顶</label>
+                            <div class="col-sm-4">
+                                <select class="form-control inline" style="width:150px;" name="isTop" id="isTop"> 
+                                    <option @(Model.Video.IsTop == 1 ? "selected" : "") value="1">是</option>
+                                    <option @(Model.Video.IsTop == 0 ? "selected" : "") value="0">否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">排序号</label>
                             <div class="col-sm-2">
                                 <input type="number" name="sortNo" id="sortNo" class="form-control" placeholder="请输入排序号" value="@Model.Video.Sort">
@@ -104,7 +114,7 @@
     <script src="@("/Scripts/plugins/fileinput/zh.js"+Versions.Ver)"></script>
     <script src="@("/Scripts/ViewJs/Video/VideoEdit.js"+Versions.Ver)"></script>
 
-    <script type="text/javascript"> 
+    <script type="text/javascript">
 
         var img = [];
         if ('@Model.ImgInfo.Url' != '') {
@@ -139,7 +149,7 @@
         $('#filename2').fileinput({
             language: 'zh',
             allowedFileTypes: ['video'],
-           // allowedFileExtensions: ['mp4'],
+            // allowedFileExtensions: ['mp4'],
             uploadUrl: '/Uploader/VideoFile?folder=Video&title=视频',
             showUpload: false,  //是否显示上传按钮
             showRemove: true,   //显示移除按钮

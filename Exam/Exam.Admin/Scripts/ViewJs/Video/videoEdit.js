@@ -7,6 +7,7 @@
             belongId = $('#belongId'),
             title = $('#title'),
             url = $('#url'),
+            isTop = $('#isTop'),
             sortNo = $('#sortNo');
         //校验
         if (id.val() <= 0 && (imgInfoId.val() == '' || imgInfoId.val() == null)) {
@@ -28,7 +29,7 @@
         if (url.val() == null || url.val() == '') {
             url.focus();
             return false;
-        }
+        } 
         //重新上传图片时删除旧的图片
         if (imgInfoId.val() != null && imgInfoId.val() != '' && oldImgInfoId.val() != null && oldImgInfoId.val() != '' && imgInfoId.val() != oldImgInfoId.val()) {
             $.post("/Uploader/DeleteFile", { Id: oldImgInfoId.val() }, function (data) { });
@@ -40,6 +41,7 @@
             BelongId: belongId.val(),
             Title: title.val(),
             Url: url.val(),
+            IsTop: isTop.val(),
             Sort: sortNo.val(),
         };
         window.parent.showModal();

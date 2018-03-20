@@ -25,7 +25,8 @@
                                     <th class="text-center">视频分类</th>
                                     <th class="text-center">所属层级</th>
                                     <th class="text-center">图片ID</th>
-                                    <th class="text-center">视频地址</th> 
+                                    <th class="text-center">视频地址</th>
+                                    <th class="text-center">是否置顶</th> 
                                     <th class="text-center">排序号</th>
                                     <th class="text-center">创建时间</th>
                                     <th class="text-center">修改时间</th>
@@ -39,11 +40,12 @@
                                     {
                                         <tr>
                                             <td class="text-center">@item.VideoId</td>
-                                            <td class="text-center" width="300px">@item.Title</td> 
-                                            <td class="text-center">@item.VideoClassId</td>
-                                            <td class="text-center">@item.BelongId</td>
+                                            <td class="text-center">@item.Title</td> 
+                                            <td class="text-center">@item.VideoClass.Title</td>
+                                            <td class="text-center">@item.Belong.Title</td>
                                             <td class="text-center">@item.ImageInfoId</td>
                                             <td class="text-center">@item.Url</td>
+                                            <td class="text-center">@(item.IsTop == 1 ? "是":"否")</td>
                                             <td class="text-center">@item.Sort</td>
                                             <td class="text-center">@item.CTime</td>
                                             <td class="text-center">@item.UTime</td> 

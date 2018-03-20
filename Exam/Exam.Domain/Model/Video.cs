@@ -67,5 +67,7 @@ namespace Exam.Domain.Model
 
 
         public virtual ImageInfo ImageInfo { get; set; }
+        public virtual Belong Belong { get; set; }
+        public virtual VideoClass VideoClass { get; set; }
     }
 }
