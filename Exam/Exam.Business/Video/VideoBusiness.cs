@@ -98,6 +98,35 @@ namespace Exam.Business
         {
             return this._repoVideo.Table.ToList();
         }
+
+
+        /// <summary>
+        /// 根据分类id和top获取视频列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<Video> GetVideoList(string name, int videoClassId,int isTop, int pageNum, int pageSize, out int totalCount)
+        {
+            var where = PredicateBuilder.True<Video>();
+
+            // name过滤
+            if (!string.IsNullOrEmpty(name))
+            {
+                where = where.And(m => m.Title.Contains(name));
+            }
+
+            if (videoClassId != 0)
+            {
+                where = where.And(m => m.VideoClassId == videoClassId);
+            }
+
+            if (isTop != 0)
+            {
+                where = where.And(m => m.IsTop == isTop);
+            }
+
+            totalCount = this._repoVideo.Table.Where(where).Count();
+            return this._repoVideo.Table.Where(where).OrderBy(p => p.VideoId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }
 

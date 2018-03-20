@@ -43,7 +43,7 @@ namespace Exam.Api.Controllers
         {
             ResultJson<Video> list = new ResultJson<Video>();
             int count = 0;
-            list.Data = _videoService.GetManagerList("", dto.VideoClassId, dto.PageIndex, dto.PageSize, out count);
+            list.Data = _videoService.GetVideoList("", dto.VideoClassId, dto.IsTop, dto.PageIndex, dto.PageSize, out count);
             list.RCount = count;
             list.PCount = count % dto.PageSize == 0 ? (count / dto.PageSize) : (count / dto.PageSize + 1);//(count + pageDto.PageIndex - 1) / pageDto.PageSize;
 
