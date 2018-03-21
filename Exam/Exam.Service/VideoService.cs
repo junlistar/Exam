@@ -85,5 +85,13 @@ namespace Exam.Service
         {
             return this._VideoBiz.GetAll();
         }
+
+        /// <summary>
+        /// 根据分类id和top获取视频列表
+        /// </summary> 
+        /// <returns></returns>
+        public List<Video> GetVideoList(string name, int videoClassId, int isTop, int pageNum, int pageSize, out int totalCount) {
+            return this._VideoBiz.GetVideoList(name, videoClassId, isTop,pageNum, pageSize, out totalCount);
+        }
     }
 }

@@ -8,5 +8,7 @@ namespace Exam.Api.Models
     public class SelVideoDto:PageDto
     {
         public int VideoClassId { get; set; }
+
+        public int IsTop { get; set; }
     }
 }

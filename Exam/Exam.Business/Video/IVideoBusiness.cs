@@ -57,5 +57,11 @@ namespace Exam.Business
         /// <param name="model"></param>
         /// <returns></returns>
         List<Video> GetAll();
+
+        /// <summary>
+        /// 根据分类id和top获取视频列表
+        /// </summary> 
+        /// <returns></returns>
+        List<Video> GetVideoList(string name, int videoClassId, int isTop, int pageNum, int pageSize, out int totalCount);
     }
 }
