@@ -95,7 +95,7 @@ namespace Exam.Api.Controllers
                         Phone = loginVM.Phone,
                         UTime = DateTime.Now,
                         NikeName = loginVM.Phone,
-                        GradeId=1000,
+                        GradeId=1001,
                         Password= "e10adc3949ba59abbe56e057f20f883e",
                         SysGroupId=1002
 
