@@ -72,7 +72,8 @@ namespace Exam.Business
         /// </summary>
         /// <param name="belongId">分类id</param>
         /// <param name="chapterId">章节id</param>
+        /// <param name="SubjectInfoId">科目id</param>
         /// <returns></returns>
-        List<Problem> GetProblemList(int belongId, int chapterId);
+        List<Problem> GetProblemList(int belongId, int chapterId,int SubjectInfoId);
     }
 }

@@ -137,8 +137,9 @@ namespace Exam.Business
         /// </summary>
         /// <param name="belongId">分类id</param>
         /// <param name="chapterId">章节id</param>
+        /// <param name="SubjectInfoId">科目id</param>
         /// <returns></returns>
-        public List<Problem> GetProblemList(int belongId, int chapterId)
+        public List<Problem> GetProblemList(int belongId, int chapterId,int SubjectInfoId)
         {
             var where = PredicateBuilder.True<Problem>();
 
@@ -149,6 +150,11 @@ namespace Exam.Business
             if (chapterId != 0)
             {
                 where = where.And(m => m.ChapterId == chapterId);
+            }
+
+            if (SubjectInfoId != 0)
+            {
+                where = where.And(m => m.SubjectInfoId == SubjectInfoId);
             }
             return this._repoProblem.Table.Where(where).OrderBy(p => p.ProblemId).ToList();
         }

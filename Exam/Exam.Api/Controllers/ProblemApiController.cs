@@ -106,7 +106,7 @@ namespace Exam.Api.Controllers
                 int count = 0;
                 var problemCollectList = problemCollectService.GetProblemCollectList(SelctProblemVM.UserInfoId, 1, 10000, out count);
                 //ProblemVM
-                var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId);
+                var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId,SelctProblemVM.SubjectInfoId);
 
                 List<ProblemVM> problemVMlist = new List<ProblemVM>();
                 foreach (var result in problemList)
@@ -184,7 +184,7 @@ namespace Exam.Api.Controllers
                 UserInfoId = addUserInfoAnswerRecordDto.UserInfoId,
                 Title = title
             });
-            var problemlist = problemService.GetProblemList(addUserInfoAnswerRecordDto.BelongId, addUserInfoAnswerRecordDto.ChapterId);
+            var problemlist = problemService.GetProblemList(addUserInfoAnswerRecordDto.BelongId, addUserInfoAnswerRecordDto.ChapterId, addUserInfoAnswerRecordDto.SubjectInfoId);
 
             foreach (var item in addUserInfoAnswerRecordDto.AddProblemRecordDto)
             {

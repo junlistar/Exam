@@ -919,6 +919,11 @@
             用户id
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.AddUserInfoAnswerRecordDto.SubjectInfoId">
+            <summary>
+            科目id
+            </summary>
+        </member>
         <member name="P:Exam.Api.Models.AddProblemRecordDto.YesOrNo">
             <summary>
             1正确2错误
@@ -1202,6 +1207,11 @@
         <member name="P:Exam.Api.Models.SelctProblemVM.UserInfoId">
             <summary>
             用户id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.SelctProblemVM.SubjectInfoId">
+            <summary>
+            科目id
             </summary>
         </member>
         <member name="P:Exam.Api.Models.SelNotificationDto.UserInfoId">

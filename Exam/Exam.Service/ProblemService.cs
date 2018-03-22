@@ -101,9 +101,10 @@ namespace Exam.Service
         /// </summary>
         /// <param name="belongId">分类id</param>
         /// <param name="chapterId">章节id</param>
+        /// <param name="SubjectInfoId">科目id</param>
         /// <returns></returns>
-        public List<Problem> GetProblemList(int belongId, int chapterId) {
-            return this._ProblemBiz.GetProblemList(belongId,chapterId);
+        public List<Problem> GetProblemList(int belongId, int chapterId,int SubjectInfoId) {
+            return this._ProblemBiz.GetProblemList(belongId,chapterId, SubjectInfoId);
         }
     }
 }

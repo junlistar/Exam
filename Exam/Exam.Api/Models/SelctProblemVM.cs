@@ -25,5 +25,11 @@ namespace Exam.Api.Models
         /// </summary>
 
         public int UserInfoId { get; set; }
+
+        /// <summary>
+        /// 科目id
+        /// </summary>
+
+        public int SubjectInfoId { get; set; }
     }
 }
