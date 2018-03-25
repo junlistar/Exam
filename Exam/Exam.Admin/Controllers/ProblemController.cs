@@ -354,9 +354,9 @@ namespace Exam.Admin.Controllers
                         {
                             pitem.ProblemCategoryId = 1002;//等于6 判断
                         }
-                        else if (item.c_qustiontype == 11 || item.c_qustiontype == 12 || item.c_qustiontype == 13)
+                        else// if (item.c_qustiontype == 11 || item.c_qustiontype == 12 || item.c_qustiontype == 13 || item.c_qustiontype == 15)
                         {
-                            pitem.ProblemCategoryId = 1003;//等于11，12，13 计算回答
+                            pitem.ProblemCategoryId = 1003;//等于11，12，13,15 计算回答
                         }
                         pitem.Score = decimal.Parse(item.c_score);
                         pitem.Sort = 1;
@@ -426,213 +426,213 @@ namespace Exam.Admin.Controllers
             }
         }
 
-        /// <summary>
-        /// 会计实务(初)
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult ScExam1()
-        {
-            //1001初级 1002中级
-            var ProblemList = _ProblemService.GetProblemList(1001, 0).Where(c => c.SubjectInfoId == 1001).ToList();
+        ///// <summary>
+        ///// 会计实务(初)
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonResult ScExam1()
+        //{
+        //    //1001初级 1002中级
+        //    var ProblemList = _ProblemService.GetProblemList(1001, 0).Where(c => c.SubjectInfoId == 1001).ToList();
 
-            if (ProblemList != null)
-            {
-                var examClassModel = _examClassService.Insert(new ExamClass
-                {
-                    CreateTime = DateTime.Now,
-                    BelongId = 1001,
-                    EndTime = DateTime.Now,
-                    IsShow = 1,
-                    Score = 1,
-                    Sort = 100,
-                    StartTime = DateTime.Now,
-                    Title = "会计实务(初)"
-                });
+        //    if (ProblemList != null)
+        //    {
+        //        var examClassModel = _examClassService.Insert(new ExamClass
+        //        {
+        //            CreateTime = DateTime.Now,
+        //            BelongId = 1001,
+        //            EndTime = DateTime.Now,
+        //            IsShow = 1,
+        //            Score = 1,
+        //            Sort = 100,
+        //            StartTime = DateTime.Now,
+        //            Title = "会计实务(初)"
+        //        });
 
-                //单选
-                var dProblemList = from a in ProblemList
-                                   where a.ProblemCategoryId == 1000
-                                   select a;
+        //        //单选
+        //        var dProblemList = from a in ProblemList
+        //                           where a.ProblemCategoryId == 1000
+        //                           select a;
 
-                //多选
-                var dProblemList2 = from a in ProblemList
-                                    where a.ProblemCategoryId == 1001
-                                    select a;
+        //        //多选
+        //        var dProblemList2 = from a in ProblemList
+        //                            where a.ProblemCategoryId == 1001
+        //                            select a;
 
-                //判断
-                var dProblemList3 = from a in ProblemList
-                                    where a.ProblemCategoryId == 1002
-                                    select a;
-                //回答
-                var dProblemList4 = from a in ProblemList
-                                    where a.ProblemCategoryId == 1003
-                                    select a;
-                if (dProblemList.Count() >= 24 && dProblemList2.Count() >= 12 && dProblemList3.Count() >= 10)
-                {
-                    var ResltProblemList = dProblemList.OrderBy(c => Guid.NewGuid()).Take(24);
-                    foreach (var item in ResltProblemList)
-                    {
+        //        //判断
+        //        var dProblemList3 = from a in ProblemList
+        //                            where a.ProblemCategoryId == 1002
+        //                            select a;
+        //        //回答
+        //        var dProblemList4 = from a in ProblemList
+        //                            where a.ProblemCategoryId == 1003
+        //                            select a;
+        //        if (dProblemList.Count() >= 24 && dProblemList2.Count() >= 12 && dProblemList3.Count() >= 10)
+        //        {
+        //            var ResltProblemList = dProblemList.OrderBy(c => Guid.NewGuid()).Take(24);
+        //            foreach (var item in ResltProblemList)
+        //            {
 
-                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
-                        {
-                            Title = item.Title,
-                            CTime = DateTime.Now,
-                            Analysis = item.Analysis,
-                            ExamClassId = examClassModel.ExamClassId,
-                            Score = 1,
-                            UTime = DateTime.Now,
-                            Sort = 1,
-                            ProblemCategoryId = item.ProblemCategoryId
-                        });
-                        if (item.AnswerList != null)
-                        {
-                            foreach (var citem in item.AnswerList)
-                            {
-                                _examAnswerService.Insert(new ExamAnswer
-                                {
-                                    ExamProblemId = examProblemmodel.ExamProblemId,
-                                    IsCorrect = citem.IsCorrect,
-                                    Title = citem.Title
-                                });
-                            }
-                        }
-                    }
-                    var ResltProblemList2 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(12);
-                    foreach (var item in ResltProblemList2)
-                    {
-                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
-                        {
-                            Title = item.Title,
-                            CTime = DateTime.Now,
-                            Analysis = item.Analysis,
-                            ExamClassId = examClassModel.ExamClassId,
-                            Score = Convert.ToDecimal(1.5),
-                            UTime = DateTime.Now,
-                            Sort = 1
-                        });
-                        if (item.AnswerList != null)
-                        {
-                            foreach (var citem in item.AnswerList)
-                            {
-                                _examAnswerService.Insert(new ExamAnswer
-                                {
-                                    ExamProblemId = examProblemmodel.ExamProblemId,
-                                    IsCorrect = citem.IsCorrect,
-                                    Title = citem.Title
-                                });
-                            }
-                        }
-                    }
-                    var ResltProblemList3 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(10);
-                    foreach (var item in ResltProblemList3)
-                    {
-                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
-                        {
-                            Title = item.Title,
-                            CTime = DateTime.Now,
-                            Analysis = item.Analysis,
-                            ExamClassId = examClassModel.ExamClassId,
-                            Score = Convert.ToDecimal(1.5),
-                            UTime = DateTime.Now,
-                            Sort = 1
-                        });
-                        if (item.AnswerList != null)
-                        {
-                            foreach (var citem in item.AnswerList)
-                            {
-                                _examAnswerService.Insert(new ExamAnswer
-                                {
-                                    ExamProblemId = examProblemmodel.ExamProblemId,
-                                    IsCorrect = citem.IsCorrect,
-                                    Title = citem.Title
-                                });
-                            }
-                        }
-                    }
-                    var ResltProblemList4 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(15);
-                    foreach (var item in ResltProblemList4)
-                    {
-                        var examProblemmodel = _examProblemService.Insert(new ExamProblem
-                        {
-                            Title = item.Title,
-                            CTime = DateTime.Now,
-                            Analysis = item.Analysis,
-                            ExamClassId = examClassModel.ExamClassId,
-                            Score = Convert.ToDecimal(1.5),
-                            UTime = DateTime.Now,
-                            Sort = 1
-                        });
-                        if (item.AnswerList != null)
-                        {
-                            foreach (var citem in item.AnswerList)
-                            {
-                                _examAnswerService.Insert(new ExamAnswer
-                                {
-                                    ExamProblemId = examProblemmodel.ExamProblemId,
-                                    IsCorrect = citem.IsCorrect,
-                                    Title = citem.Title
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-            return Json(new
-            {
-                Status = Successed.Ok
-            }, JsonRequestBehavior.AllowGet);
-        }
+        //                var examProblemmodel = _examProblemService.Insert(new ExamProblem
+        //                {
+        //                    Title = item.Title,
+        //                    CTime = DateTime.Now,
+        //                    Analysis = item.Analysis,
+        //                    ExamClassId = examClassModel.ExamClassId,
+        //                    Score = 1,
+        //                    UTime = DateTime.Now,
+        //                    Sort = 1,
+        //                    ProblemCategoryId = item.ProblemCategoryId
+        //                });
+        //                if (item.AnswerList != null)
+        //                {
+        //                    foreach (var citem in item.AnswerList)
+        //                    {
+        //                        _examAnswerService.Insert(new ExamAnswer
+        //                        {
+        //                            ExamProblemId = examProblemmodel.ExamProblemId,
+        //                            IsCorrect = citem.IsCorrect,
+        //                            Title = citem.Title
+        //                        });
+        //                    }
+        //                }
+        //            }
+        //            var ResltProblemList2 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(12);
+        //            foreach (var item in ResltProblemList2)
+        //            {
+        //                var examProblemmodel = _examProblemService.Insert(new ExamProblem
+        //                {
+        //                    Title = item.Title,
+        //                    CTime = DateTime.Now,
+        //                    Analysis = item.Analysis,
+        //                    ExamClassId = examClassModel.ExamClassId,
+        //                    Score = Convert.ToDecimal(1.5),
+        //                    UTime = DateTime.Now,
+        //                    Sort = 1
+        //                });
+        //                if (item.AnswerList != null)
+        //                {
+        //                    foreach (var citem in item.AnswerList)
+        //                    {
+        //                        _examAnswerService.Insert(new ExamAnswer
+        //                        {
+        //                            ExamProblemId = examProblemmodel.ExamProblemId,
+        //                            IsCorrect = citem.IsCorrect,
+        //                            Title = citem.Title
+        //                        });
+        //                    }
+        //                }
+        //            }
+        //            var ResltProblemList3 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(10);
+        //            foreach (var item in ResltProblemList3)
+        //            {
+        //                var examProblemmodel = _examProblemService.Insert(new ExamProblem
+        //                {
+        //                    Title = item.Title,
+        //                    CTime = DateTime.Now,
+        //                    Analysis = item.Analysis,
+        //                    ExamClassId = examClassModel.ExamClassId,
+        //                    Score = Convert.ToDecimal(1.5),
+        //                    UTime = DateTime.Now,
+        //                    Sort = 1
+        //                });
+        //                if (item.AnswerList != null)
+        //                {
+        //                    foreach (var citem in item.AnswerList)
+        //                    {
+        //                        _examAnswerService.Insert(new ExamAnswer
+        //                        {
+        //                            ExamProblemId = examProblemmodel.ExamProblemId,
+        //                            IsCorrect = citem.IsCorrect,
+        //                            Title = citem.Title
+        //                        });
+        //                    }
+        //                }
+        //            }
+        //            var ResltProblemList4 = dProblemList.OrderBy(c => Guid.NewGuid()).Take(15);
+        //            foreach (var item in ResltProblemList4)
+        //            {
+        //                var examProblemmodel = _examProblemService.Insert(new ExamProblem
+        //                {
+        //                    Title = item.Title,
+        //                    CTime = DateTime.Now,
+        //                    Analysis = item.Analysis,
+        //                    ExamClassId = examClassModel.ExamClassId,
+        //                    Score = Convert.ToDecimal(1.5),
+        //                    UTime = DateTime.Now,
+        //                    Sort = 1
+        //                });
+        //                if (item.AnswerList != null)
+        //                {
+        //                    foreach (var citem in item.AnswerList)
+        //                    {
+        //                        _examAnswerService.Insert(new ExamAnswer
+        //                        {
+        //                            ExamProblemId = examProblemmodel.ExamProblemId,
+        //                            IsCorrect = citem.IsCorrect,
+        //                            Title = citem.Title
+        //                        });
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return Json(new
+        //    {
+        //        Status = Successed.Ok
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
 
-        /// <summary>
-        ///  经济法基础(初)
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult ScExam2()
-        {
-            var ProblemList = _ProblemService.GetProblemList(1001, 0);
-            return Json(new
-            {
-                Status = Successed.Ok
-            }, JsonRequestBehavior.AllowGet);
-        }
+        ///// <summary>
+        /////  经济法基础(初)
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonResult ScExam2()
+        //{
+        //    var ProblemList = _ProblemService.GetProblemList(1001, 0);
+        //    return Json(new
+        //    {
+        //        Status = Successed.Ok
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
 
-        /// <summary>
-        /// 财务管理(中)
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult ScExam3()
-        {
-            var ProblemList = _ProblemService.GetProblemList(1002, 0);
-            return Json(new
-            {
-                Status = Successed.Ok
-            }, JsonRequestBehavior.AllowGet);
-        }
+        ///// <summary>
+        ///// 财务管理(中)
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonResult ScExam3()
+        //{
+        //    var ProblemList = _ProblemService.GetProblemList(1002, 0);
+        //    return Json(new
+        //    {
+        //        Status = Successed.Ok
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
 
-        /// <summary>
-        /// 会计实务(中)
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult ScExam4()
-        {
-            var ProblemList = _ProblemService.GetProblemList(1002, 0);
-            return Json(new
-            {
-                Status = Successed.Ok
-            }, JsonRequestBehavior.AllowGet);
-        }
+        ///// <summary>
+        ///// 会计实务(中)
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonResult ScExam4()
+        //{
+        //    var ProblemList = _ProblemService.GetProblemList(1002, 0);
+        //    return Json(new
+        //    {
+        //        Status = Successed.Ok
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
 
-        /// <summary>
-        /// 经济法基础(中)
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult ScExam5()
-        {
-            var ProblemList = _ProblemService.GetProblemList(1002, 0);
-            return Json(new
-            {
-                Status = Successed.Ok
-            }, JsonRequestBehavior.AllowGet);
-        }
+        ///// <summary>
+        ///// 经济法基础(中)
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonResult ScExam5()
+        //{
+        //    var ProblemList = _ProblemService.GetProblemList(1002, 0);
+        //    return Json(new
+        //    {
+        //        Status = Successed.Ok
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
     }
 }
