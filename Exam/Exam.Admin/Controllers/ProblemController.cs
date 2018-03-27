@@ -70,7 +70,7 @@ namespace Exam.Admin.Controllers
             else
             {
                 Session["QueryData"] = vm;
-            } 
+            }
 
 
             int totalCount,
@@ -89,7 +89,7 @@ namespace Exam.Admin.Controllers
             vm.Belongs = _BelongService.GetAll();
             vm.ProblemCategorys = _ProblemCategoryService.GetAll();
             vm.SubjectInfos = _SubjectInfoService.GetAll();
-            if (vm.QueryChapterId!=0)
+            if (vm.QueryChapterId != 0)
             {
                 vm.Chapters = _ChapterService.GetAll().Where(p => p.SubjectInfoId == vm.QueryChapterId).ToList();
             }
@@ -185,6 +185,39 @@ namespace Exam.Admin.Controllers
             }
         }
 
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult MutiDelete(string ids)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(ids))
+                {
+                    var idArray = ids.Split(',');
+                    foreach (var id in idArray)
+                    {
+                        var entity = _ProblemService.GetById(int.Parse(id));
+ 
+                        _ProblemService.Delete(entity); 
+                    }
+
+                    return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Status = Successed.Empty }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                return Json(new { Status = Successed.Error }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         public JsonResult GetChapterBySubjectId(int id = 0)
         {
@@ -203,7 +236,7 @@ namespace Exam.Admin.Controllers
             }
             catch (Exception)
             {
-                return Json(new { Status =202, }, JsonRequestBehavior.AllowGet);
+                return Json(new { Status = 202, }, JsonRequestBehavior.AllowGet);
             }
         }
         /// <summary>
