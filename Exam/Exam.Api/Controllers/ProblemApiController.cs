@@ -106,7 +106,7 @@ namespace Exam.Api.Controllers
                 int count = 0;
                 var problemCollectList = problemCollectService.GetProblemCollectList(SelctProblemVM.UserInfoId, 1, 10000, out count);
                 //ProblemVM
-                var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId,SelctProblemVM.SubjectInfoId);
+                var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId, SelctProblemVM.SubjectInfoId);
 
                 List<ProblemVM> problemVMlist = new List<ProblemVM>();
                 foreach (var result in problemList)
@@ -164,6 +164,92 @@ namespace Exam.Api.Controllers
             }
         }
         /// <summary>
+        /// 获取题目和用户答题记录
+        /// </summary>
+        /// <param name="SelctProblemVM">用户编号，章节编号必填</param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetProblemAndRecord([FromUri]SelctProblemVM SelctProblemVM)
+        {
+            if (SelctProblemVM != null)
+            {
+                int count = 0;
+                var problemCollectList = problemCollectService.GetProblemCollectList(SelctProblemVM.UserInfoId, 1, 10000, out count);
+                //ProblemVM
+                var problemList = problemService.GetProblemList(SelctProblemVM.belongId, SelctProblemVM.ChapterId, SelctProblemVM.SubjectInfoId);
+
+                List<ProblemVM> problemVMlist = new List<ProblemVM>();
+                foreach (var result in problemList)
+                {
+                    int IsCollect = 0;
+                    if (problemCollectList != null && problemCollectList.Count > 0)
+                    {
+                        var problemCollect = (from a in problemCollectList
+                                              where a.ProblemId == result.ProblemId
+                                              select a).FirstOrDefault();
+                        if (problemCollect != null)
+                        {
+                            IsCollect = 1;
+                        }
+                    }
+                    ProblemVM problem = new ProblemVM();
+                    problem.ProblemId = result.ProblemId;
+                    problem.Title = result.Title;
+                    problem.ProblemCategoryId = result.ProblemCategoryId;
+                    problem.ProblemCategory = result.ProblemCategory;
+                    problem.Analysis = result.Analysis;
+                    ChapterVM chapterVM = new ChapterVM();
+
+                    if (result.Chapter != null)
+                    {
+                        chapterVM.ChapterId = result.Chapter.ChapterId;
+                        chapterVM.Title = result.Chapter.Title;
+                        chapterVM.Sort = result.Chapter.Sort;
+                    }
+                    problem.Chapter = chapterVM;
+                    problem.IsCollect = IsCollect;
+                    List<AnswerVM> childList = new List<AnswerVM>();
+                    if (result.AnswerList != null)
+                    {
+                        foreach (var item in result.AnswerList)
+                        {
+
+                            childList.Add(new AnswerVM
+                            {
+                                AnswerId = item.AnswerId,
+                                ProblemId = item.ProblemId,
+                                IsCorrect = item.IsCorrect,
+                                Title = item.Title
+                            });
+                        }
+                    }
+                    problem.AnswerList = childList;
+                    problemVMlist.Add(problem);
+                }
+                //获取用户此分类的答题记录
+                var answerRecordModel = userInfoAnswerRecordService.GetUserLastRecord(SelctProblemVM.ChapterId, SelctProblemVM.UserInfoId);
+                LastAnswerRecordVM problemAndRecord = new LastAnswerRecordVM();
+                //获取答题记录详细
+                if (answerRecordModel != null)
+                {
+                    //通过编号获取详细
+                    var problemRecordList = problemRecordService.GetForUserInfoRecordId(answerRecordModel.UserInfoAnswerRecordId);
+                    problemAndRecord.problemRecord = problemRecordList;
+                }
+                problemAndRecord.userInfoAnswerRecord = answerRecordModel;
+                ProblemAndRecord answerRecord = new ProblemAndRecord();
+                answerRecord.problemsvm = problemVMlist;
+                answerRecord.answerRecord = problemAndRecord;
+                return Json(new { Success = true, Msg = "OK", Data = answerRecord });
+            }
+            else
+            {
+                return Json(new { Success = false, Msg = "参数不对", Data = "" });
+            }
+        }
+
+
+        /// <summary>
         /// 添加答题记录
         /// </summary>
         /// <param name="addUserInfoAnswerRecordDto"></param>
@@ -174,16 +260,21 @@ namespace Exam.Api.Controllers
             var belong = belongService.GetById(addUserInfoAnswerRecordDto.BelongId);
             var chapter = chapterService.GetById(addUserInfoAnswerRecordDto.ChapterId);
             string title = (belong != null ? belong.Title : "") + "-" + (chapter != null ? chapter.Title : "");
-            var userInfoAnswerRecord = userInfoAnswerRecordService.Insert(new Domain.Model.UserInfoAnswerRecord
+            var userInfoAnswerRecord = userInfoAnswerRecordService.GetById(addUserInfoAnswerRecordDto.UserInfoAnswerRecordId);
+            if (userInfoAnswerRecord == null)
             {
-                BelongId = addUserInfoAnswerRecordDto.BelongId,
-                ChapterId = addUserInfoAnswerRecordDto.ChapterId,
-                Score = 0,
-                CTime = DateTime.Now,
-                UTime = DateTime.Now,
-                UserInfoId = addUserInfoAnswerRecordDto.UserInfoId,
-                Title = title
-            });
+                userInfoAnswerRecord = new UserInfoAnswerRecord();
+                userInfoAnswerRecord = userInfoAnswerRecordService.Insert(new Domain.Model.UserInfoAnswerRecord
+                {
+                    BelongId = addUserInfoAnswerRecordDto.BelongId,
+                    ChapterId = addUserInfoAnswerRecordDto.ChapterId,
+                    Score = 0,
+                    CTime = DateTime.Now,
+                    UTime = DateTime.Now,
+                    UserInfoId = addUserInfoAnswerRecordDto.UserInfoId,
+                    Title = title
+                });
+            }
             var problemlist = problemService.GetProblemList(addUserInfoAnswerRecordDto.BelongId, addUserInfoAnswerRecordDto.ChapterId, addUserInfoAnswerRecordDto.SubjectInfoId);
 
             foreach (var item in addUserInfoAnswerRecordDto.AddProblemRecordDto)
@@ -202,7 +293,7 @@ namespace Exam.Api.Controllers
                     var answer = (from b in problem.AnswerList
                                   where b.IsCorrect == 1
                                   select b).ToList();
-                    
+
                     string CorrectAnswer = string.Empty;
                     foreach (var a in answer)
                     {
@@ -223,8 +314,8 @@ namespace Exam.Api.Controllers
                         ProblemId = item.ProblemId,
                         UserInfoAnswerRecordId = userInfoAnswerRecord.UserInfoAnswerRecordId,
                         Analysis = problem.Analysis,
-                        YesOrNo= item.YesOrNo,
-                        UserInfoId=addUserInfoAnswerRecordDto.UserInfoId
+                        YesOrNo = item.YesOrNo,
+                        UserInfoId = addUserInfoAnswerRecordDto.UserInfoId
                     });
 
                     foreach (var itemChild in problem.AnswerList)

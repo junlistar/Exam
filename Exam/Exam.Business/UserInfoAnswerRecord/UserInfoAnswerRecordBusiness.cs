@@ -75,9 +75,9 @@ namespace Exam.Business
             var where = PredicateBuilder.True<UserInfoAnswerRecord>();
 
             // userinfoId
-            if (userinfoId!=0)
+            if (userinfoId != 0)
             {
-                where = where.And(m => m.UserInfoId== userinfoId);
+                where = where.And(m => m.UserInfoId == userinfoId);
             }
 
             totalCount = this._repoUserInfoAnswerRecord.Table.Where(where).Count();
@@ -106,5 +106,23 @@ namespace Exam.Business
             totalCount = this._repoUserInfoAnswerRecord.Table.Where(where).Count();
             return this._repoUserInfoAnswerRecord.Table.Where(where).OrderBy(p => p.UserInfoAnswerRecordId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
         }
+        /// <summary>
+        /// 通过章节编号，用户编号，获取用户最后一次对于该章节的答题记录
+        /// </summary>
+        /// <param name="belongId">科目编号</param>
+        /// <param name="chapterId">章节编号</param>
+        /// <param name="userInfoId">用户编号</param>
+        /// <returns></returns>
+        public UserInfoAnswerRecord GetUserLastRecord(int chapterId, int userInfoId)
+        {
+            var where = PredicateBuilder.True<UserInfoAnswerRecord>();
+
+            where = where.And(m => m.UserInfoId == userInfoId);
+            where = where.And(m => m.ChapterId == chapterId);
+            return this._repoUserInfoAnswerRecord.Table.Where(where).OrderByDescending(p => p.UTime).FirstOrDefault();
+            //return this._repoUserInfoAnswerRecord.Table.Where(where).OrderByDescending(p => p.UTime).First();
+
+        }
+
     }
 }
