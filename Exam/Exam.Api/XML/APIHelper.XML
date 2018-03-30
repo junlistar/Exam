@@ -675,6 +675,13 @@
             <param name="SelctProblemVM"></param>
             <returns></returns>
         </member>
+        <member name="M:Exam.Api.Controllers.ProblemApiController.GetProblemAndRecord(Exam.Api.Models.SelctProblemVM)">
+            <summary>
+            获取题目和用户答题记录
+            </summary>
+            <param name="SelctProblemVM">用户编号，章节编号必填</param>
+            <returns></returns>
+        </member>
         <member name="M:Exam.Api.Controllers.ProblemApiController.AddUserInfoAnswerRecord(Exam.Api.Models.AddUserInfoAnswerRecordDto)">
             <summary>
             添加答题记录
@@ -924,6 +931,11 @@
             科目id
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.AddUserInfoAnswerRecordDto.UserInfoAnswerRecordId">
+            <summary>
+            用户最后一次答题记录
+            </summary>
+        </member>
         <member name="P:Exam.Api.Models.AddProblemRecordDto.YesOrNo">
             <summary>
             1正确2错误
@@ -1142,6 +1154,26 @@
         <member name="T:Exam.Api.Models.ProblemVM">
             <summary>
             题目
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.ProblemAndRecord">
+            <summary>
+            章节题目和答题记录
+            </summary>
+        </member>
+        <member name="T:Exam.Api.Models.LastAnswerRecordVM">
+            <summary>
+            答题记录
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.LastAnswerRecordVM.userInfoAnswerRecord">
+            <summary>
+            答题记录
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.LastAnswerRecordVM.problemRecord">
+            <summary>
+            答题记录
             </summary>
         </member>
         <member name="T:Exam.Api.Models.QuestionVM">

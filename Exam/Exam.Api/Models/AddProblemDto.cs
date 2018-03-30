@@ -36,6 +36,10 @@ namespace Exam.Api.Models
         /// 科目id
         /// </summary>
         public int SubjectInfoId { get; set; }
+        /// <summary>
+        /// 用户最后一次答题记录
+        /// </summary>
+        public int UserInfoAnswerRecordId { get; set; }
     }
 
     public class AddProblemRecordDto

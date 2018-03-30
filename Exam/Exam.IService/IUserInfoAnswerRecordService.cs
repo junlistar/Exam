@@ -52,5 +52,13 @@ namespace Exam.IService
         /// </summary>
         /// <returns></returns>
         List<UserInfoAnswerRecord> GetListForUserInfoId(int userInfoId, int pageNum, int pageSize, out int totalCount);
+
+        /// <summary>
+        /// 通过章节编号，用户编号，获取用户最后一次对于该章节的答题记录
+        /// </summary>
+        /// <param name="chapterId">章节编号</param>
+        /// <param name="userInfoId">用户编号</param>
+        /// <returns></returns>
+        UserInfoAnswerRecord GetUserLastRecord(int chapterId, int userInfoId);
     }
 }

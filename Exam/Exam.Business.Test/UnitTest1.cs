@@ -18,8 +18,11 @@ namespace Exam.Business.Test
         private readonly IQuestionBusiness _questionInfo = EngineContext.Current.Resolve<IQuestionBusiness>();
 
         private readonly IGrabTopicService _grabTopic = EngineContext.Current.Resolve<IGrabTopicService>();
+
+        private readonly IUserInfoAnswerRecordService _userInfoAnswer = EngineContext.Current.Resolve<IUserInfoAnswerRecordService>();
         [TestMethod]
-        public void TestGrab() {
+        public void TestGrab()
+        {
             var bl = _grabTopic.StartGrab("注会");
             _grabTopic.StartGrab("初级");
             _grabTopic.StartGrab("中级");
@@ -30,6 +33,12 @@ namespace Exam.Business.Test
                 string msg = "抓取程序已启动，请稍后查看内容库！";
             }
         }
+        [TestMethod]
+        public void TestUserRecord()
+        {
+            var a = _userInfoAnswer.GetUserLastRecord(1109, 1052);
+        }
+
 
         [TestMethod]
         public void AddUserTest()
@@ -38,14 +47,14 @@ namespace Exam.Business.Test
 
 
             UserInfo userInfo = new UserInfo();
-            userInfo.NikeName = "张大胆" +rd.Next(99999);
+            userInfo.NikeName = "张大胆" + rd.Next(99999);
             userInfo.Gender = rd.Next(100) > 50 ? 1 : 0;
-            userInfo.IsEnable= 1;
+            userInfo.IsEnable = 1;
             userInfo.CTime = DateTime.Now;
 
-           var addResult = _userInfo.Insert(userInfo);
+            var addResult = _userInfo.Insert(userInfo);
 
-             
+
         }
         [TestMethod]
         public void GetQuestion()
@@ -70,10 +79,10 @@ namespace Exam.Business.Test
         public void GetProblem()
         {
             int id = 1000;
-             
- 
+
+
             try
-            { 
+            {
                 //var loginResult = Exam.Core.Utils.HttpHelp.HttpGet("http://zk.0373kj.com/Account/UserLogin?Account=18707928905&WeiXinOpenId=");
                 //var questionResult = Exam.Core.Utils.HttpHelp.HttpGet("http://zk.0373kj.com/Topic/GetQuestionList?sctid=282&pagesize=10&page=1");
 
@@ -81,9 +90,9 @@ namespace Exam.Business.Test
                 var url2 = "http://zk.0373kj.com/Topic/GetQuestionList?sctid=282&pagesize=10&page=1";
 
                 var webClient = new WebClient { Encoding = Encoding.UTF8 };
-                  
-                var  result1 = UnitTest1.PostAndGetHTML(url1,new Hashtable());
-                var  result2 = UnitTest1.ReGetHtml(url2);
+
+                var result1 = UnitTest1.PostAndGetHTML(url1, new Hashtable());
+                var result2 = UnitTest1.ReGetHtml(url2);
 
             }
             catch (Exception ex)

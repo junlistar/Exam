@@ -58,7 +58,7 @@ namespace Exam.Service
             this._userInfoAnswerRecordService.Delete(model);
         }
 
-        
+
         /// <summary>
         /// 添加管理后台菜单列表
         /// </summary>
@@ -84,6 +84,17 @@ namespace Exam.Service
         public List<UserInfoAnswerRecord> GetListForUserInfoId(int userInfoId, int pageNum, int pageSize, out int totalCount)
         {
             return this._userInfoAnswerRecordService.GetListForUserInfoId(userInfoId, pageNum, pageSize, out totalCount);
+        }
+
+        /// <summary>
+        /// 通过章节编号，用户编号，获取用户最后一次对于该章节的答题记录
+        /// </summary>
+        /// <param name="chapterId">章节编号</param>
+        /// <param name="userInfoId">用户编号</param>
+        /// <returns></returns>
+        public UserInfoAnswerRecord GetUserLastRecord(int chapterId, int userInfoId)
+        {
+            return this._userInfoAnswerRecordService.GetUserLastRecord( chapterId, userInfoId);
         }
     }
 }
