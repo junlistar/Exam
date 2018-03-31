@@ -362,7 +362,7 @@ namespace Exam.Admin.Controllers
                         }
                         pitem.SubjectInfoId = subjectlist.Where(p => p.Title == item.SubjectInfoTitle).FirstOrDefault().SubjectInfoId;
 
-                        if (!chapterlist.Any(p => p.Title == item.c_sctname))
+                        if (!chapterlist.Any(p => p.Title == item.c_sctname && p.SubjectInfoId == pitem.SubjectInfoId))
                         {
                             chapterlist.Add(_ChapterService.Insert(new Chapter
                             {
@@ -373,7 +373,7 @@ namespace Exam.Admin.Controllers
                                 SubjectInfoId = pitem.SubjectInfoId
                             }));
                         }
-                        pitem.ChapterId = chapterlist.Where(p => p.Title == item.c_sctname).FirstOrDefault().ChapterId;
+                        pitem.ChapterId = chapterlist.Where(p => p.Title == item.c_sctname&& p.SubjectInfoId == pitem.SubjectInfoId).FirstOrDefault().ChapterId;
 
                         if (item.c_qustiontype == 4)
                         {
