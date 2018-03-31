@@ -228,19 +228,37 @@ namespace Exam.Api.Controllers
                 }
                 //获取用户此分类的答题记录
                 var answerRecordModel = userInfoAnswerRecordService.GetUserLastRecord(SelctProblemVM.ChapterId, SelctProblemVM.UserInfoId);
-                LastAnswerRecordVM problemAndRecord = new LastAnswerRecordVM();
+                LastAnswerRecordVM lar = new LastAnswerRecordVM();
                 //获取答题记录详细
                 if (answerRecordModel != null)
                 {
+                    var uifa = new UserInfoAnswerVM();
+                    uifa.ChapterId = answerRecordModel.ChapterId;
+                    uifa.UserInfoAnswerRecordId = answerRecordModel.UserInfoAnswerRecordId;
+                    uifa.UserInfoId = answerRecordModel.UserInfoId;
+                    uifa.CTime = answerRecordModel.CTime;
+                    uifa.UTime = answerRecordModel.UTime;
                     //通过编号获取详细
                     var problemRecordList = problemRecordService.GetForUserInfoRecordId(answerRecordModel.UserInfoAnswerRecordId);
-                    problemAndRecord.problemRecord = problemRecordList;
+                    var prList = new List<ProblemRecordVM>();
+                    foreach (ProblemRecord item in problemRecordList)
+                    {
+                        prList.Add(new ProblemRecordVM()
+                        {
+                            ProblemId = item.ProblemId,
+                            ProblemRecordId = item.ProblemRecordId,
+                            CorrectAnswer = item.CorrectAnswer,
+                            ErrorAnswer = item.ErrorAnswer,
+                            YesOrNo = item.YesOrNo,
+                        });
+                    }
+                    lar.problemsRecord = prList;
+                    lar.userInfoAnswerRecord = uifa;
                 }
-                problemAndRecord.userInfoAnswerRecord = answerRecordModel;
-                ProblemAndRecord answerRecord = new ProblemAndRecord();
-                answerRecord.problemsvm = problemVMlist;
-                answerRecord.answerRecord = problemAndRecord;
-                return Json(new { Success = true, Msg = "OK", Data = answerRecord });
+                ProblemAndRecord par = new ProblemAndRecord();
+                par.problemsvm = problemVMlist;
+                par.lastAnswervm = lar;
+                return Json(new { Success = true, Msg = "OK", Data = par });
             }
             else
             {
@@ -359,51 +377,51 @@ namespace Exam.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetProblemRecord(int UserInfoAnswerRecordId = 0, int UserInfoId = 0)
         {
-            var problemRecordList = problemRecordService.GetForUserInfoRecordId(UserInfoAnswerRecordId);
+            //var problemRecordList = problemRecordService.GetForUserInfoRecordId(UserInfoAnswerRecordId);
 
-            int count = 0;
-            var problemCollectList = problemCollectService.GetProblemCollectList(UserInfoId, 1, 10000, out count);
+            //int count = 0;
+            //var problemCollectList = problemCollectService.GetProblemCollectList(UserInfoId, 1, 10000, out count);
 
-            List<ProblemRecordVM> problemRecordVMlist = new List<ProblemRecordVM>();
-            foreach (var result in problemRecordList)
-            {
-                int IsCollect = 0;
-                if (problemCollectList != null && problemCollectList.Count > 0)
-                {
-                    var problemCollect = (from a in problemCollectList
-                                          where a.ProblemId == result.ProblemId
-                                          select a).FirstOrDefault();
-                    if (problemCollect != null)
-                    {
-                        IsCollect = 1;
-                    }
-                }
-                ProblemRecordVM problem = new ProblemRecordVM();
-                problem.ProblemRecordId = result.ProblemRecordId;
-                problem.Title = result.Title;
-                problem.ProblemCategoryId = result.ProblemCategoryId;
-                problem.ProblemCategory = result.ProblemCategory;
-                problem.Analysis = result.Analysis;
-                problem.IsCollect = IsCollect;
+            //List<ProblemRecordVM> problemRecordVMlist = new List<ProblemRecordVM>();
+            //foreach (var result in problemRecordList)
+            //{
+            //    int IsCollect = 0;
+            //    if (problemCollectList != null && problemCollectList.Count > 0)
+            //    {
+            //        var problemCollect = (from a in problemCollectList
+            //                              where a.ProblemId == result.ProblemId
+            //                              select a).FirstOrDefault();
+            //        if (problemCollect != null)
+            //        {
+            //            IsCollect = 1;
+            //        }
+            //    }
+            //    ProblemRecordVM problem = new ProblemRecordVM();
+            //    problem.ProblemRecordId = result.ProblemRecordId;
+            //    problem.Title = result.Title;
+            //    problem.ProblemCategoryId = result.ProblemCategoryId;
+            //    problem.ProblemCategory = result.ProblemCategory;
+            //    problem.Analysis = result.Analysis;
+            //    problem.IsCollect = IsCollect;
 
-                List<AnswerRecordVM> childList = new List<AnswerRecordVM>();
-                foreach (var item in result.AnswerRecordList)
-                {
+            //    List<AnswerRecordVM> childList = new List<AnswerRecordVM>();
+            //    foreach (var item in result.AnswerRecordList)
+            //    {
 
-                    childList.Add(new AnswerRecordVM
-                    {
-                        ProblemRecordId = item.ProblemRecordId,
-                        IsCorrect = item.IsCorrect,
-                        Title = item.Title,
-                        AnswerRecordId = item.AnswerRecordId
+            //        childList.Add(new AnswerRecordVM
+            //        {
+            //            ProblemRecordId = item.ProblemRecordId,
+            //            IsCorrect = item.IsCorrect,
+            //            Title = item.Title,
+            //            AnswerRecordId = item.AnswerRecordId
 
-                    });
-                }
-                problem.AnswerRecordList = childList;
-                problemRecordVMlist.Add(problem);
-            }
+            //        });
+            //    }
+            //    problem.AnswerRecordList = childList;
+            //    problemRecordVMlist.Add(problem);
+            //}
 
-            return Json(new { Success = true, Msg = "OK", Data = problemRecordVMlist });
+            return Json(new { Success = true, Msg = "OK", Data = "" });
         }
 
         /// <summary>

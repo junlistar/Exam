@@ -11,19 +11,14 @@ namespace Exam.Api.Models
         public int ProblemRecordId { get; set; }
 
         public int ProblemId { get; set; }
-        public string Title { get; set; }
-        public int ProblemCategoryId { get; set; }
-
-        public string Analysis { get; set; }
-
-        public int IsCollect { get; set; }
-        public ProblemCategory ProblemCategory { get; set; }
-        public List<AnswerRecordVM> AnswerRecordList { get; set; }
+        public string CorrectAnswer { get; set; }
+        public string ErrorAnswer { get; set; }
+        public int YesOrNo { get; set; }
     }
 
     public class AnswerRecordVM
     {
-        public int AnswerRecordId{get;set;}
+        public int AnswerRecordId { get; set; }
         public string Title { get; set; }
         public int ProblemRecordId { get; set; }
         public int IsCorrect { get; set; }

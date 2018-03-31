@@ -1171,9 +1171,34 @@
             答题记录
             </summary>
         </member>
-        <member name="P:Exam.Api.Models.LastAnswerRecordVM.problemRecord">
+        <member name="P:Exam.Api.Models.LastAnswerRecordVM.problemsRecord">
             <summary>
             答题记录
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserInfoAnswerVM.UserInfoAnswerRecordId">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserInfoAnswerVM.UserInfoId">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserInfoAnswerVM.ChapterId">
+            <summary>
+            章节分类
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserInfoAnswerVM.CTime">
+            <summary>
+            -创建时间
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.UserInfoAnswerVM.UTime">
+            <summary>
+            修改时间
             </summary>
         </member>
         <member name="T:Exam.Api.Models.QuestionVM">

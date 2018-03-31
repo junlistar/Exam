@@ -29,7 +29,7 @@ namespace Exam.Api.Models
     public class ProblemAndRecord
     {
         public List<ProblemVM> problemsvm { get; set; }
-        public LastAnswerRecordVM answerRecord { get; set; }
+        public LastAnswerRecordVM lastAnswervm { get; set; }
     }
     /// <summary>
     /// 答题记录
@@ -39,11 +39,38 @@ namespace Exam.Api.Models
         /// <summary>
         /// 答题记录
         /// </summary>
-        public UserInfoAnswerRecord userInfoAnswerRecord { get; set; }
+        public UserInfoAnswerVM userInfoAnswerRecord { get; set; }
         /// <summary>
         /// 答题记录
         /// </summary>
-        public List<ProblemRecord> problemRecord { get; set; }
+        public List<ProblemRecordVM> problemsRecord { get; set; }
 
     }
+    public class UserInfoAnswerVM
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public int UserInfoAnswerRecordId { get; set; }
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        public int UserInfoId { get; set; }
+        /// <summary>
+        /// 章节分类
+        /// </summary>
+        public int ChapterId { get; set; }
+        /// <summary>
+        /// -创建时间
+        /// </summary>
+        public DateTime CTime { get; set; }
+        /// <summary>
+        /// 修改时间
+        /// </summary>
+        public DateTime UTime { get; set; }
+    }
+
+
+
+
 }
