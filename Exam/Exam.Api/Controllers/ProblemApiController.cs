@@ -76,7 +76,8 @@ namespace Exam.Api.Controllers
                     List<ChapterVM> childChapter = new List<ChapterVM>();
                     if (item.ChapterList != null)
                     {
-                        foreach (var childItem in item.ChapterList)
+                        List<Chapter> stuList = (from s in item.ChapterList orderby s.ChapterId select s).ToList<Chapter>();
+                        foreach (var childItem in stuList)
                         {
                             childChapter.Add(new ChapterVM
                             {
