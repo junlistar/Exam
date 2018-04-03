@@ -147,8 +147,8 @@ namespace Exam.Admin.Controllers
                 }
                 else
                 {
-                    if (_videoService.IsExistName(model.Title))
-                        return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
+                    //if (_videoService.IsExistName(model.Title))
+                    //    return Json(new { Status = Successed.Repeat }, JsonRequestBehavior.AllowGet);
                     //添加 
                     entity.Title = model.Title;
                     entity.ImageInfoId = model.ImageInfoId;
