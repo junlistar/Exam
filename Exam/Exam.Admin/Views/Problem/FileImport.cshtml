@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "上传导入";
+}
+@model Exam.Admin.Models.ProblemVM
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row" style="padding:10px 10px;">
+                        <form action="/Problem/List" method="get">
+                            <div class="col-sm-12">
+                                <label style="color:green">选择要上传的题目数据文件，并点击“开始处理”按钮：</label>
+                                <input type="file" class="form-control inline" name="fileproblem" id="fileproblem">
+                                <button type="button" class="btn btn-info btn-import" style="margin-left:10px;margin-top:10px;">开始处理</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive col-sm-12">
+                        <div class="div-message form-control" style="height:auto;">
+                            操作结果：
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="~/Scripts/ajaxfileupload.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-import").click(function () {
+                var file = $("#fileproblem");
+                if ($.trim(file.val()) == '') {
+                    alert("请选择文件");
+                    return false;
+                }
+                //提交
+                $.ajaxFileUpload({
+                    url: '/Problem/UploadProblem', //用于文件上传的服务器端请求地址
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'fileproblem', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        console.log(data)
+                        //if (data.Content!="") {
+                        //    var _arr = data.Content.split("#");
+                        //    var _html = "";
+                        //    for (var i = 0; i < _arr.length; i++) {
+                        //        _html += _arr[i] + "<br>";
+                        //    }
+                        //    $(".div-message").html(_html);
+                        //}
+                        if (data.Result==0) {
+                            $(".div-message").html("数据文件有误，请修改后重新上传：<br>" + data.Content);
+                        } else {
+                            $(".div-message").html(data.Content);
+                        }
+
+                        
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                });
+
+                return false;
+            })
+        });
+    </script>}

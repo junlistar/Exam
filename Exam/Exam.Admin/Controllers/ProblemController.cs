@@ -6,8 +6,10 @@ using Exam.Domain.Model;
 using Exam.IService;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Exam.Admin.Controllers
@@ -29,6 +31,7 @@ namespace Exam.Admin.Controllers
         private readonly IExamClassService _examClassService;
         private readonly IExamProblemService _examProblemService;
         private readonly IExamAnswerService _examAnswerService;
+        private readonly IImageInfoService _imageInfoService;
 
         public ProblemController(IProblemService ProblemService,
             IProblemCategoryService ProblemCategoryService,
@@ -39,7 +42,8 @@ namespace Exam.Admin.Controllers
             IGrabTopicService grabTopic,
             IExamClassService examClassService,
             IExamProblemService examProblemService,
-            IExamAnswerService examAnswerService)
+            IExamAnswerService examAnswerService,
+            IImageInfoService imageInfoService)
         {
             _ProblemService = ProblemService;
             _ProblemCategoryService = ProblemCategoryService;
@@ -52,6 +56,7 @@ namespace Exam.Admin.Controllers
             _examClassService = examClassService;
             _examProblemService = examProblemService;
             _examAnswerService = examAnswerService;
+            _imageInfoService = imageInfoService;
         }
 
         /// <summary>
@@ -201,8 +206,8 @@ namespace Exam.Admin.Controllers
                     foreach (var id in idArray)
                     {
                         var entity = _ProblemService.GetById(int.Parse(id));
- 
-                        _ProblemService.Delete(entity); 
+
+                        _ProblemService.Delete(entity);
                     }
 
                     return Json(new { Status = Successed.Ok }, JsonRequestBehavior.AllowGet);
@@ -252,6 +257,51 @@ namespace Exam.Admin.Controllers
             _ProblemVM.Title = entity.Title;
 
             return View(_ProblemVM);
+        }
+        /// <summary>
+        /// 上传导入
+        /// </summary> 
+        /// <returns></returns>
+        public ActionResult FileImport()
+        { 
+            return View();
+        }
+
+        private static readonly object imgLock = new object();
+        [HttpPost]
+        public ActionResult UploadProblem()
+        {
+            //lock (imgLock)
+            //{
+                var fileBase = Request.Files[0];
+                string path = string.Format("/Uploaders/{0}", "ProblemImport");
+                string newFileName = fileBase.FileName.Substring(fileBase.FileName.LastIndexOf(".") + 1);
+                string fileName = Path.GetFileName(DateTime.Now.ToString("yyyyMMddhhmmssffff") + "." + newFileName);
+                string fileServerPath = Server.MapPath(path);
+                if (!Directory.Exists(fileServerPath))
+                    Directory.CreateDirectory(fileServerPath);
+                var filePath = Path.Combine(fileServerPath, fileName);
+                //保存图片
+                fileBase.SaveAs(filePath);
+
+                var model = new ImageInfo()
+                {
+                    Url = string.Format("{0}/{1}", path, fileName),
+                    Title = "题目导入上传文件",
+                    Source = WebConfigHelper.GetAppSettingsInfo("ImgPath"),
+                    CTime = DateTime.Now,
+                };
+                var entity = _imageInfoService.Insert(model);
+
+                var response = _ProblemService.ImportProblem(filePath);
+
+                var msg = "{\"Result\":" + (response.Result ? "1" :"0") + ", \"Content\":\"" + response.Message +
+                   "\", \"ImportFailCount\":" + response.ImportFailCount +
+                   ", \"ImportSuccessCount\":" + response.ImportSuccessCount + "}";
+
+                return Content(msg);
+           // }
+
         }
 
         /// <summary>
@@ -373,7 +423,7 @@ namespace Exam.Admin.Controllers
                                 SubjectInfoId = pitem.SubjectInfoId
                             }));
                         }
-                        pitem.ChapterId = chapterlist.Where(p => p.Title == item.c_sctname&& p.SubjectInfoId == pitem.SubjectInfoId).FirstOrDefault().ChapterId;
+                        pitem.ChapterId = chapterlist.Where(p => p.Title == item.c_sctname && p.SubjectInfoId == pitem.SubjectInfoId).FirstOrDefault().ChapterId;
 
                         if (item.c_qustiontype == 4)
                         {

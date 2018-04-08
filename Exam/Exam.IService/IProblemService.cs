@@ -1,4 +1,5 @@
 ﻿using Exam.Domain.Model;
+using Exam.Domain.Model.Excel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,5 +69,12 @@ namespace Exam.IService
         /// <param name="SubjectInfoId">科目id</param>
         /// <returns></returns>
         List<Problem> GetProblemList(int belongId, int chapterId,int SubjectInfoId);
+
+        /// <summary>
+        /// 导入题目文件
+        /// </summary>
+        /// <param name="fileServerPath"></param>
+        /// <returns></returns>
+        ImportResponseModel ImportProblem(string fileServerPath);
     }
 }
