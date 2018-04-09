@@ -23,17 +23,24 @@ namespace Exam.Service
         private IBelongBusiness _BelongBiz;
         private ISubjectInfoBusiness _SubjectInfoBiz;
         private IChapterBusiness _ChapterBiz;
+        private IAnswerBusiness _AnswerBiz;
+        private ILogBusiness _LogBiz;
 
         public ProblemService(IProblemBusiness ProblemBiz,
             IProblemCategoryBusiness ProblemCatoryBiz,
             IBelongBusiness BelongBiz,
             ISubjectInfoBusiness SubjectInfoBiz,
-            IChapterBusiness ChapterBiz) {
+            IChapterBusiness ChapterBiz, 
+            IAnswerBusiness AnswerBiz,
+            ILogBusiness LogBiz)
+        {
             _ProblemBiz = ProblemBiz;
             _ProblemCatoryBiz = ProblemCatoryBiz;
             _BelongBiz = BelongBiz;
             _SubjectInfoBiz = SubjectInfoBiz;
             _ChapterBiz = ChapterBiz;
+            _AnswerBiz = AnswerBiz;
+            _LogBiz = LogBiz;
         }
 
         /// <summary>
@@ -79,9 +86,9 @@ namespace Exam.Service
         /// <param name="name"></param> 
         /// <param name="chapterid"></param> 
         /// <returns></returns>
-        public bool IsExistName(string name,int chapterid)
+        public bool IsExistName(string name, int chapterid)
         {
-            return this._ProblemBiz.IsExistName(name,chapterid);
+            return this._ProblemBiz.IsExistName(name, chapterid);
         }
 
         /// <summary>
@@ -119,8 +126,9 @@ namespace Exam.Service
         /// <param name="chapterId">章节id</param>
         /// <param name="SubjectInfoId">科目id</param>
         /// <returns></returns>
-        public List<Problem> GetProblemList(int belongId, int chapterId,int SubjectInfoId) {
-            return this._ProblemBiz.GetProblemList(belongId,chapterId, SubjectInfoId);
+        public List<Problem> GetProblemList(int belongId, int chapterId, int SubjectInfoId)
+        {
+            return this._ProblemBiz.GetProblemList(belongId, chapterId, SubjectInfoId);
         }
 
         /// <summary>
@@ -133,7 +141,7 @@ namespace Exam.Service
 
             ImportResponseModel response = new ImportResponseModel();
 
-            string excelFilePath = fileServerPath; 
+            string excelFilePath = fileServerPath;
 
             string textError = null;
             string textSuccessTitle = null;
@@ -149,14 +157,116 @@ namespace Exam.Service
                 response.Message = textError;
                 return response;
             }
-            else if (failedCount>0)
+            else if (failedCount > 0)
             {
                 response.Result = false;
                 response.Message = textSuccessDetail;
                 return response;
             }
+
+            //TODO: 将数据导入到数据库
+            //获取分类、层级、科目、章节列表
+            var catelist = _ProblemCatoryBiz.GetAll();
+            var belonglist = _BelongBiz.GetAll();
+            var subjectlist = _SubjectInfoBiz.GetAll();
+            var chapterlist = _ChapterBiz.GetAll();
+            
+            if (list != null && list.Count > 0)
+            {
+                successCount = 0; failedCount = list.Count;
+
+                foreach (var item in list)
+                {
+                    try
+                    {
+
+                        Problem pitem = new Problem();
+                        pitem.Title = item.Title;
+                        pitem.Analysis = item.Analysis;
+                        pitem.BelongId = belonglist.Where(p => p.Title == item.Belong.Trim()).FirstOrDefault().BelongId;
+                        pitem.SubjectInfoId = subjectlist.Where(p => p.Title == item.Subject.Trim() && p.BelongId == pitem.BelongId).FirstOrDefault().SubjectInfoId;
+                        pitem.ChapterId = chapterlist.Where(p => p.Title == item.Chapter.Trim() && p.SubjectInfoId == pitem.SubjectInfoId).FirstOrDefault().ChapterId;
+
+                        if (item.Category.Trim() == "单选")
+                        {
+                            pitem.ProblemCategoryId = 1000;//等于4 单选
+                        }
+                        else if (item.Category.Trim() == "多选")
+                        {
+                            pitem.ProblemCategoryId = 1001;//等于5 多选
+                        }
+                        else if (item.Category.Trim() == "判断")
+                        {
+                            pitem.ProblemCategoryId = 1002;//等于6 判断
+                        }
+                        else
+                        {
+                            pitem.ProblemCategoryId = 1003;//计算回答
+                        }
+                        //默认值
+                        pitem.Score = 1;
+                        pitem.Sort = 1;
+                        pitem.IsHot = 0;
+                        pitem.IsImportant = 0;
+                        pitem.CTime = DateTime.Now;
+                        pitem.UTime = DateTime.Now;
+
+                        //写入题目 
+                        var returnProblemModel = Insert(pitem);
+                        //单选，多选
+                        if (item.Category.Trim() == "单选" || item.Category.Trim() == "多选")
+                        {
+                            var _options = item.Answers;
+                            var _answer = item.Correct;
+
+                            if (!string.IsNullOrWhiteSpace(_answer))
+                            {
+                                var _correctlist = _answer.Split('|');
+                                var _optionlist = _options.Split('|');
+                                for (int i = 0; i < _optionlist.Length; i++)
+                                {
+                                    Answer _answermodel = new Answer();
+                                    _answermodel.ProblemId = returnProblemModel.ProblemId;
+                                    _answermodel.Title = _optionlist[i];
+                                    _answermodel.IsCorrect = _correctlist.Contains((i + 1).ToString()) ? 1 : 0;
+                                    //添加答案
+                                    _AnswerBiz.Insert(_answermodel);
+                                }
+                            }
+                        }
+                        //判断
+                        else if (item.Category.Trim() == "判断")
+                        {
+                            Answer _answermodel = new Answer();
+                            _answermodel.ProblemId = returnProblemModel.ProblemId;
+                            _answermodel.Title = item.Analysis;
+                            _answermodel.IsCorrect = item.Correct.Trim() == "正确" ? 1 : 0;
+                            //添加答案
+                            _AnswerBiz.Insert(_answermodel);
+                        }
+                        //回答
+                        else
+                        {
+                            //计算题，回答题。 没有答案选项。忽略
+                        }
+                        successCount++; failedCount--;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        _LogBiz.Insert(new Log()
+                        {
+                            CTime = DateTime.Now,
+                            TargetTitle = ex.Message
+                        });
+                    }
+                }
+            }
+
+            //返回值
             response.ImportSuccessCount = successCount;
             response.ImportFailCount = failedCount;
+            textSuccessTitle = "成功 " + successCount + " 个，失败 " + failedCount + " 个。";
             response.Message = textSuccessTitle;
             response.Result = true;
 
@@ -164,13 +274,13 @@ namespace Exam.Service
         }
 
         /// <summary>
-        /// 邀请参加的数据校验
+        /// 数据校验
         /// </summary>
         /// <param name="inputExcelFile">待校验的文件名</param>
         /// <param name="textError">用户提交文件出现错误是，返回的错误描述信息。如：“您上传的文件格式不正确，邀请文件应该有 5 列”</param>
         /// <param name="textSuccessTitle">返回如处理成功后的主题。如：“成功 5 个，失败 2 个。”</param>
         /// <param name="textSuccessDetail">返回如处理成功后的其中错误行的具体描述，每行以回车换行分开。如：“第 1 行，手机号不正确\n第 6 行，邮箱格式不正确。”</param>
-        /// <returns>返回一个 ActivityInvite 集合，表示所有通过校验的数据。若无任何数据通过校验，则集合的 .Count 为零 </returns>
+        /// <returns>返回一个 ProblemImport 集合，表示所有通过校验的数据。若无任何数据通过校验，则集合的 .Count 为零 </returns>
         /// <remarks>调用者应该先判断 textError 是否为空，若为非空，则表示有错，直接显示此错误即可。否则显示 textSuccessTitle，同时需判断详细描述 textSuccessDetail 是否有值，有值则显示之。 </remarks>
         List<ProblemImport> CheckExcelDataForInvition(string inputExcelFile, ref int successNum, ref int falseNum, ref string textError, ref string textSuccessTitle, ref string textSuccessDetail)
         {
@@ -257,13 +367,13 @@ namespace Exam.Service
 
                 //姓名
                 string title = tableExcel.Rows[0][0].ToString().Trim(invisibleChar);
-               string category= tableExcel.Rows[0][1].ToString().Trim(invisibleChar);
+                string category = tableExcel.Rows[0][1].ToString().Trim(invisibleChar);
                 string belong = tableExcel.Rows[0][2].ToString().Trim(invisibleChar);
                 string subject = tableExcel.Rows[0][3].ToString().Trim(invisibleChar);
-               string chapter = tableExcel.Rows[0][4].ToString().Trim(invisibleChar);
-               string answers = tableExcel.Rows[0][5].ToString().Trim(invisibleChar);
-               string correct = tableExcel.Rows[0][6].ToString().Trim(invisibleChar);
-               string analysis = tableExcel.Rows[0][7].ToString().Trim(invisibleChar);
+                string chapter = tableExcel.Rows[0][4].ToString().Trim(invisibleChar);
+                string answers = tableExcel.Rows[0][5].ToString().Trim(invisibleChar);
+                string correct = tableExcel.Rows[0][6].ToString().Trim(invisibleChar);
+                string analysis = tableExcel.Rows[0][7].ToString().Trim(invisibleChar);
 
                 if (title.IndexOf("标题") < 0)
                 { textError = "请确保文件表头（首行）第一列为“标题”"; }
@@ -280,7 +390,7 @@ namespace Exam.Service
                 else if (correct.IndexOf("正确答案") < 0)
                 { textError = "请确保文件表头（首行）第七列为“正确答案”"; }
                 else if (analysis.IndexOf("分析") < 0)
-                { textError = "请确保文件表头（首行）第八列为“分析”"; } 
+                { textError = "请确保文件表头（首行）第八列为“分析”"; }
 
             }
 
@@ -299,7 +409,7 @@ namespace Exam.Service
             string[] errorRows = new string[totalNum];
             for (int iRow = totalNum - 1; iRow > 0; iRow--)//记得第一行是表头，无需校验。
             {
-                ProblemImport oneRow = new ProblemImport(); 
+                ProblemImport oneRow = new ProblemImport();
 
                 errorRows[iRow] = "";
 
@@ -316,7 +426,7 @@ namespace Exam.Service
                 {
                     oneRow.Category = tableExcel.Rows[iRow][1].ToString().Trim(invisibleChar);
                     if (string.IsNullOrEmpty(oneRow.Category))
-                    { errorRows[iRow] = "第 " + (iRow + 1) + " 行，类型为空"; } 
+                    { errorRows[iRow] = "第 " + (iRow + 1) + " 行，类型为空"; }
                     else if (!catelist.Any(p => p.Title == oneRow.Category))
                     { errorRows[iRow] = "第 " + (iRow + 1) + " 行，类型不在所选范围之内，不存在该类型"; }
                 }
@@ -343,13 +453,13 @@ namespace Exam.Service
                     { errorRows[iRow] = "第 " + (iRow + 1) + " 行，科目为空"; }
                     else if (!subjectlist.Any(p => p.Title == oneRow.Subject))
                     { errorRows[iRow] = "第 " + (iRow + 1) + " 行，科目不在所选范围之内，不存在该科目"; }
-                    else if (!subjectlist.Any(p => p.Title == oneRow.Subject && p.BelongId== _belongInfo.BelongId))
+                    else if (!subjectlist.Any(p => p.Title == oneRow.Subject && p.BelongId == _belongInfo.BelongId))
                     { errorRows[iRow] = "第 " + (iRow + 1) + " 行，当前层级中不包含此科目"; }
                 }
 
                 //章节
                 if (string.IsNullOrEmpty(errorRows[iRow]))
-                {  
+                {
                     // 获取层级信息
                     var _belongInfo = belonglist.Where(p => p.Title == oneRow.Belong).FirstOrDefault();
                     //获取科目信息
@@ -369,7 +479,7 @@ namespace Exam.Service
                 {
                     oneRow.Answers = tableExcel.Rows[iRow][5].ToString().Trim(invisibleChar);
                     //如果题目不是简答题，要判断答案列表是否为空
-                    if (oneRow.Category.Trim()!="回答"&&string.IsNullOrEmpty(oneRow.Answers))
+                    if (oneRow.Category.Trim() != "回答" && string.IsNullOrEmpty(oneRow.Answers))
                     {
                         errorRows[iRow] = "第 " + (iRow + 1) + " 行，答案列表为空";
                     }
@@ -384,11 +494,11 @@ namespace Exam.Service
                     {
                         errorRows[iRow] = "第 " + (iRow + 1) + " 行，正确答案为空";
                     }
-                    else if (oneRow.Category.Trim() == "单选" && !int.TryParse(oneRow.Correct,out _tParse))
+                    else if (oneRow.Category.Trim() == "单选" && !int.TryParse(oneRow.Correct, out _tParse))
                     {
                         errorRows[iRow] = "第 " + (iRow + 1) + " 行，正确答案为非数字";
                     }
-                    else if (oneRow.Category.Trim() == "判断" &&!(oneRow.Correct.Trim()=="正确" || oneRow.Correct.Trim() == "错误"))
+                    else if (oneRow.Category.Trim() == "判断" && !(oneRow.Correct.Trim() == "正确" || oneRow.Correct.Trim() == "错误"))
                     {
                         errorRows[iRow] = "第 " + (iRow + 1) + " 行，判断题类型需要在正确答案这一栏填‘正确’或者‘错误’";
                     }
@@ -399,7 +509,7 @@ namespace Exam.Service
                 {
                     oneRow.Analysis = tableExcel.Rows[iRow][7].ToString().Trim(invisibleChar);
 
-                } 
+                }
 
                 //添加到返回集合中
                 if (string.IsNullOrEmpty(errorRows[iRow])) { returnInfo.Add(oneRow); }
@@ -415,7 +525,7 @@ namespace Exam.Service
                 {
                     falseNum++;
                     //errInfo.AppendLine(errorRows[iRow]);
-                    errInfo.Append(errorRows[iRow] +"<br>");
+                    errInfo.Append(errorRows[iRow] + "<br>");
                 }
             }
             if (falseNum > 0)
