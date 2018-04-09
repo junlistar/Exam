@@ -388,7 +388,7 @@ namespace Exam.Service
                     {
                         errorRows[iRow] = "第 " + (iRow + 1) + " 行，正确答案为非数字";
                     }
-                    else if (oneRow.Category.Trim() == "判断" &&(oneRow.Correct.Trim()=="正确" || oneRow.Correct.Trim() == "错误"))
+                    else if (oneRow.Category.Trim() == "判断" &&!(oneRow.Correct.Trim()=="正确" || oneRow.Correct.Trim() == "错误"))
                     {
                         errorRows[iRow] = "第 " + (iRow + 1) + " 行，判断题类型需要在正确答案这一栏填‘正确’或者‘错误’";
                     }
