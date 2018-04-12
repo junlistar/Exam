@@ -9,7 +9,7 @@ using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
 using System.Web;
 using System.Collections;
-using Excel = Microsoft.Office.Interop.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using NPOI.SS.Util;
@@ -97,28 +97,7 @@ namespace Exam.Core.Utils
 
             return returnTable;
         }
-
-
-        /// <summary>
-        /// 根据文件路径和工作薄索引读取excel
-        /// </summary>
-        /// <param name="filepath">文件路径</param>
-        /// <param name="sheetIndex">工作薄索引</param>
-        /// <returns></returns>
-        public static DataTable GetDataTable(string filepath, int sheetIndex = 0)
-        {
-            var dt = new DataTable("xls");
-            if (filepath.ToLower().Last() == 's')
-            {
-                dt = OpenExcel(filepath);
-            }
-            else
-            {
-                dt = x2007.ExcelToTableForXLSX(filepath, sheetIndex);
-            }
-            return dt;
-        }
-
+         
 
         public static void ExportExcel(List<SheetInfo> sheets, ExcelInfo excelinfo, ref string error)
         {
@@ -561,67 +540,7 @@ namespace Exam.Core.Utils
             return dt;
         }
         #endregion
-
-
-        public static DataTable OpenExcel(string path)
-        {
-            //设置程序运行语言
-            System.Globalization.CultureInfo CurrentCI = System.Threading.Thread.CurrentThread.CurrentCulture;
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            //创建Application
-            Excel.Application xlApp = new Excel.Application();
-            //设置是否显示警告窗体
-            xlApp.DisplayAlerts = false;
-            //设置是否显示Excel
-            xlApp.Visible = false;
-            //禁止刷新屏幕
-            xlApp.ScreenUpdating = false;
-            //根据路径path打开
-            Excel.Workbook xlsWorkBook = xlApp.Workbooks.Open(path, System.Type.Missing, System.Type.Missing, System.Type.Missing,
-            System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing,
-            System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
-            //获取Worksheet对象
-            Excel.Worksheet xlsWorkSheet = (Excel.Worksheet)xlsWorkBook.Worksheets["调研雷达数据表"];
-            //获取已用的范围数据
-            int rowsCount = xlsWorkSheet.UsedRange.Rows.Count;
-            int colsCount = xlsWorkSheet.UsedRange.Columns.Count;
-
-            //rowsCount：最大行    colsCount：最大列
-            Microsoft.Office.Interop.Excel.Range c1 = (Microsoft.Office.Interop.Excel.Range)xlsWorkSheet.Cells[1, 1];
-            Microsoft.Office.Interop.Excel.Range c2 = (Microsoft.Office.Interop.Excel.Range)xlsWorkSheet.Cells[rowsCount, colsCount];
-            Excel.Range rng = (Microsoft.Office.Interop.Excel.Range)xlsWorkSheet.get_Range(c1, c2);
-            object[,] exceldata = (object[,])rng.get_Value(Microsoft.Office.Interop.Excel.XlRangeValueDataType.xlRangeValueDefault);
-
-            //关闭excel
-            NAR(xlsWorkSheet);
-            NAR(rng);
-            xlsWorkBook.Close();
-            xlApp.Quit();
-            GC.Collect();
-            killPro();
-
-            //数据表列头
-            var columnNames = new List<string>();
-
-            if (rowsCount > 0 && colsCount > 0)
-            {
-                for (int i = 1; i < colsCount; i++)
-                {
-                    columnNames.Add(exceldata[1, i].ToString());
-                }
-
-                //讲数组转化为本系统中用的DataTable
-                var data = ConvertArrayToDataTable(columnNames, exceldata);
-
-                //删除第一列表头
-                data.Rows.RemoveAt(0);
-
-                return data;
-            }
-
-            return null;
-
-        }
+         
 
         /// <summary>  
         /// 反一个M行N列的二维数组转换为DataTable  
