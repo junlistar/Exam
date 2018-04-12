@@ -207,7 +207,7 @@ namespace Exam.Service
                         pitem.Score = 1;
                         pitem.Sort = 1;
                         pitem.IsHot = 0;
-                        pitem.IsImportant = 0;
+                        pitem.IsImportant = 1;
                         pitem.CTime = DateTime.Now;
                         pitem.UTime = DateTime.Now;
 
