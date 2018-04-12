@@ -392,7 +392,7 @@ namespace Exam.Service
                 { textError = "请确保文件表头（首行）第七列为“正确答案”"; }
                 else if (analysis.IndexOf("分析") < 0)
                 { textError = "请确保文件表头（首行）第八列为“分析”"; }
-                else if (isImportant.IndexOf("分析") < 0)
+                else if (isImportant.IndexOf("过关必刷") < 0)
                 { textError = "请确保文件表头（首行）第九列为“过关必刷”"; }
 
             }
