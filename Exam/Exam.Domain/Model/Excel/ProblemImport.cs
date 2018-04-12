@@ -16,6 +16,7 @@ namespace Exam.Domain.Model.Excel
         public string Answers { get; set; }
         public string Correct { get; set; }
         public string Analysis { get; set; }
+        public string IsImportant { get; set; }
 
     }
 
