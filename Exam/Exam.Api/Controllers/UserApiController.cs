@@ -37,6 +37,7 @@ namespace Exam.Api.Controllers
         [HttpGet]
         public IHttpActionResult Register(string phone = "", string code = "")
         {
+            
             string pcode = CacheHelper.GetCache(phone + "Code").ToString();
             if (!string.IsNullOrWhiteSpace(phone))
             {
