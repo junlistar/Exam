@@ -23,7 +23,7 @@ namespace Exam.Business.Test
         [TestMethod]
         public void TestGrab()
         {
-            var bl = _grabTopic.StartGrab("注会");
+            var bl = _grabTopic.StartGrab("从业");
             _grabTopic.StartGrab("初级");
             _grabTopic.StartGrab("中级");
             //_grabTopic.StartGrab("税务师");
