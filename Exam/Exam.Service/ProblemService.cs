@@ -30,7 +30,7 @@ namespace Exam.Service
             IProblemCategoryBusiness ProblemCatoryBiz,
             IBelongBusiness BelongBiz,
             ISubjectInfoBusiness SubjectInfoBiz,
-            IChapterBusiness ChapterBiz, 
+            IChapterBusiness ChapterBiz,
             IAnswerBusiness AnswerBiz,
             ILogBusiness LogBiz)
         {
@@ -170,7 +170,7 @@ namespace Exam.Service
             var belonglist = _BelongBiz.GetAll();
             var subjectlist = _SubjectInfoBiz.GetAll();
             var chapterlist = _ChapterBiz.GetAll();
-            
+
             if (list != null && list.Count > 0)
             {
                 successCount = 0; failedCount = list.Count;
@@ -207,7 +207,7 @@ namespace Exam.Service
                         pitem.Score = 1;
                         pitem.Sort = 1;
                         pitem.IsHot = 0;
-                        pitem.IsImportant = 1;
+                        pitem.IsImportant = item.IsImportant == "是" ? 1 : 0;
                         pitem.CTime = DateTime.Now;
                         pitem.UTime = DateTime.Now;
 
@@ -315,11 +315,11 @@ namespace Exam.Service
             }
             else if (totalNum < 2)
             {
-                textError = "未能读取到有效数据，邀请文件应该至少有 2 行数据，第一行为表头（标题、类型、层级、科目、章节、答案、正确答案、分析），其余的行为有效数据。";
+                textError = "未能读取到有效数据，邀请文件应该至少有 2 行数据，第一行为表头（标题、类型、层级、科目、章节、答案、正确答案、分析、过关必刷），其余的行为有效数据。";
             }
             else if (colCount < validColNum)
             {
-                textError = "您上传的文件格式不正确，邀请文件应该有 8 列，分别为：标题、类型、层级、科目、章节、答案、正确答案、分析.";
+                textError = "您上传的文件格式不正确，邀请文件应该有 8 列，分别为：标题、类型、层级、科目、章节、答案、正确答案、分析、过关必刷.";
             }
             else if (totalNum > maxRows)
             {
@@ -353,7 +353,7 @@ namespace Exam.Service
                 }
 
                 totalNum = totalNum - emptyRows;
-                if (totalNum < 2) { textError = "未能读取到有效数据，邀请文件应该至少有 2 行数据，第一行为表头（标题、类型、层级、科目、章节、答案、正确答案、分析），其余的行为有效数据。"; }
+                if (totalNum < 2) { textError = "未能读取到有效数据，邀请文件应该至少有 2 行数据，第一行为表头（标题、类型、层级、科目、章节、答案、正确答案、分析、过关必刷），其余的行为有效数据。"; }
             }
 
 
@@ -374,6 +374,7 @@ namespace Exam.Service
                 string answers = tableExcel.Rows[0][5].ToString().Trim(invisibleChar);
                 string correct = tableExcel.Rows[0][6].ToString().Trim(invisibleChar);
                 string analysis = tableExcel.Rows[0][7].ToString().Trim(invisibleChar);
+                string isImportant = tableExcel.Rows[0][8].ToString().Trim(invisibleChar);
 
                 if (title.IndexOf("标题") < 0)
                 { textError = "请确保文件表头（首行）第一列为“标题”"; }
@@ -391,6 +392,8 @@ namespace Exam.Service
                 { textError = "请确保文件表头（首行）第七列为“正确答案”"; }
                 else if (analysis.IndexOf("分析") < 0)
                 { textError = "请确保文件表头（首行）第八列为“分析”"; }
+                else if (isImportant.IndexOf("过关必刷") < 0)
+                { textError = "请确保文件表头（首行）第九列为“过关必刷”"; }
 
             }
 
@@ -508,7 +511,12 @@ namespace Exam.Service
                 if (string.IsNullOrEmpty(errorRows[iRow]))
                 {
                     oneRow.Analysis = tableExcel.Rows[iRow][7].ToString().Trim(invisibleChar);
+                }
 
+                //过关必刷
+                if (string.IsNullOrEmpty(errorRows[iRow]))
+                {
+                    oneRow.IsImportant = tableExcel.Rows[iRow][8].ToString().Trim(invisibleChar);
                 }
 
                 //添加到返回集合中
