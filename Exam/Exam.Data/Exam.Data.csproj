@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="IDbContext.cs" />
     <Compile Include="ExamDbContext.cs" />
+    <Compile Include="Mapping\SmsLog.cs" />
     <Compile Include="Mapping\VideoClass.cs" />
     <Compile Include="Mapping\VideoMap.cs" />
     <Compile Include="Mapping\ExamAnswerMap.cs" />

@@ -1,4 +1,5 @@
 ﻿using Exam.Core.Infrastructure;
+using log4net.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace Exam.Admin
     {
         protected void Application_Start()
         {
-            EngineContext.Initialize(false);
-
+            EngineContext.Initialize(false); 
+            XmlConfigurator.Configure(); 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

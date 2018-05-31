@@ -45,6 +45,7 @@
     <Compile Include="Model\Excel\ExcelInfo.cs" />
     <Compile Include="Model\Excel\ProblemImport.cs" />
     <Compile Include="Model\Excel\SheetInfo.cs" />
+    <Compile Include="Model\SmsLog.cs" />
     <Compile Include="Model\VideoClass.cs" />
     <Compile Include="Model\Video.cs" />
     <Compile Include="Model\ExamAnswer.cs" />

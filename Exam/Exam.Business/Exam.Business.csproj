@@ -60,6 +60,8 @@
     <Compile Include="ExamProblem\IExamProblemBusiness.cs" />
     <Compile Include="Grade\IGradeBusiness.cs" />
     <Compile Include="Grade\GradeBusiness.cs" />
+    <Compile Include="SmsLog\ISmsLogBusiness.cs" />
+    <Compile Include="SmsLog\SmsLogBusiness.cs" />
     <Compile Include="Log\ILogBusiness.cs" />
     <Compile Include="Log\LogBusiness.cs" />
     <Compile Include="Notification\INotificationBusiness.cs" />

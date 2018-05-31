@@ -8,14 +8,16 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Exam.Core.Infrastructure;
+using log4net.Config;
 
 namespace Exam.Api
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
-        {
+        { 
             EngineContext.Initialize(false);
+            XmlConfigurator.Configure();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

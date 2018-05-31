@@ -10,6 +10,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Exceptions;
 using Aliyun.Acs.Dysmsapi.Model.V20170525;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace Exam.Core.SMS
 {
 
@@ -65,13 +66,18 @@ namespace Exam.Core.SMS
                 }
                 SendSmsResponse sendSmsResponse = acsClient.GetAcsResponse(req);
                 System.Console.WriteLine(sendSmsResponse.Message);
+                 
             }
             catch (ServerException e)
             {
+                log4net.ILog log = log4net.LogManager.GetLogger("SendSMS");
+                log.Error("Error", e);
                 //System.Console.WriteLine("Hello World!");
             }
             catch (ClientException e)
             {
+                log4net.ILog log = log4net.LogManager.GetLogger("SendSMS");
+                log.Error("Error", e);
                 //System.Console.WriteLine("Hello World!");
             }
 

@@ -1505,5 +1505,19 @@
             --是否正确答案 0错误1正确
             </summary>
         </member>
+        <member name="M:APESM_GGJ.CommonClass.LogHelper.WriteLog(System.Type,System.Exception)">
+            <summary>  
+            输出日志到Log4Net  
+            </summary>  
+            <param name="t"></param>  
+            <param name="ex"></param>  
+        </member>
+        <member name="M:APESM_GGJ.CommonClass.LogHelper.WriteLog(System.Type,System.String)">
+            <summary>  
+            输出日志到Log4Net  
+            </summary>  
+            <param name="t"></param>  
+            <param name="msg"></param>  
+        </member>
     </members>
 </doc>
