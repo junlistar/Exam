@@ -23,15 +23,15 @@ namespace Exam.Business.Test
         [TestMethod]
         public void TestGrab()
         {
-            var bl = _grabTopic.StartGrab("从业");
-            _grabTopic.StartGrab("初级");
-            _grabTopic.StartGrab("中级");
+            //var bl = _grabTopic.StartGrab("从业");
+            //_grabTopic.StartGrab("初级");
+            _grabTopic.StartGrab("注会");
             //_grabTopic.StartGrab("税务师");
 
-            if (bl)
-            {
-                string msg = "抓取程序已启动，请稍后查看内容库！";
-            }
+            //if (bl)
+            //{
+            //    string msg = "抓取程序已启动，请稍后查看内容库！";
+            //}
         }
         [TestMethod]
         public void TestUserRecord()

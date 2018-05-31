@@ -263,7 +263,7 @@ namespace Exam.Admin.Controllers
         /// </summary> 
         /// <returns></returns>
         public ActionResult FileImport()
-        { 
+        {
             return View();
         }
 
@@ -273,34 +273,34 @@ namespace Exam.Admin.Controllers
         {
             //lock (imgLock)
             //{
-                var fileBase = Request.Files[0];
-                string path = string.Format("/Uploaders/{0}", "ProblemImport");
-                string newFileName = fileBase.FileName.Substring(fileBase.FileName.LastIndexOf(".") + 1);
-                string fileName = Path.GetFileName(DateTime.Now.ToString("yyyyMMddhhmmssffff") + "." + newFileName);
-                string fileServerPath = Server.MapPath(path);
-                if (!Directory.Exists(fileServerPath))
-                    Directory.CreateDirectory(fileServerPath);
-                var filePath = Path.Combine(fileServerPath, fileName);
-                //保存图片
-                fileBase.SaveAs(filePath);
+            var fileBase = Request.Files[0];
+            string path = string.Format("/Uploaders/{0}", "ProblemImport");
+            string newFileName = fileBase.FileName.Substring(fileBase.FileName.LastIndexOf(".") + 1);
+            string fileName = Path.GetFileName(DateTime.Now.ToString("yyyyMMddhhmmssffff") + "." + newFileName);
+            string fileServerPath = Server.MapPath(path);
+            if (!Directory.Exists(fileServerPath))
+                Directory.CreateDirectory(fileServerPath);
+            var filePath = Path.Combine(fileServerPath, fileName);
+            //保存图片
+            fileBase.SaveAs(filePath);
 
-                var model = new ImageInfo()
-                {
-                    Url = string.Format("{0}/{1}", path, fileName),
-                    Title = "题目导入上传文件",
-                    Source = WebConfigHelper.GetAppSettingsInfo("ImgPath"),
-                    CTime = DateTime.Now,
-                };
-                var entity = _imageInfoService.Insert(model);
+            var model = new ImageInfo()
+            {
+                Url = string.Format("{0}/{1}", path, fileName),
+                Title = "题目导入上传文件",
+                Source = WebConfigHelper.GetAppSettingsInfo("ImgPath"),
+                CTime = DateTime.Now,
+            };
+            var entity = _imageInfoService.Insert(model);
 
-                var response = _ProblemService.ImportProblem(filePath);
+            var response = _ProblemService.ImportProblem(filePath);
 
-                var msg = "{\"Result\":" + (response.Result ? "1" :"0") + ", \"Content\":\"" + response.Message +
-                   "\", \"ImportFailCount\":" + response.ImportFailCount +
-                   ", \"ImportSuccessCount\":" + response.ImportSuccessCount + "}";
+            var msg = "{\"Result\":" + (response.Result ? "1" : "0") + ", \"Content\":\"" + response.Message +
+               "\", \"ImportFailCount\":" + response.ImportFailCount +
+               ", \"ImportSuccessCount\":" + response.ImportSuccessCount + "}";
 
-                return Content(msg);
-           // }
+            return Content(msg);
+            // }
 
         }
 
@@ -399,7 +399,7 @@ namespace Exam.Admin.Controllers
                         pitem.Analysis = item.c_tips;
                         pitem.BelongId = item.BelongId;
 
-                        if (!subjectlist.Any(p => p.Title == item.SubjectInfoTitle))
+                        if (!subjectlist.Any(p => p.Title == item.SubjectInfoTitle && p.BelongId == item.BelongId))
                         {
                             subjectlist.Add(_SubjectInfoService.Insert(new SubjectInfo
                             {
@@ -410,7 +410,7 @@ namespace Exam.Admin.Controllers
                                 BelongId = item.BelongId
                             }));
                         }
-                        pitem.SubjectInfoId = subjectlist.Where(p => p.Title == item.SubjectInfoTitle).FirstOrDefault().SubjectInfoId;
+                        pitem.SubjectInfoId = subjectlist.Where(p => p.Title == item.SubjectInfoTitle && p.BelongId == item.BelongId).FirstOrDefault().SubjectInfoId;
 
                         if (!chapterlist.Any(p => p.Title == item.c_sctname && p.SubjectInfoId == pitem.SubjectInfoId))
                         {

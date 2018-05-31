@@ -64,7 +64,7 @@ namespace Exam.Service
                 case "注会":
                     Task.Run(() =>
                     {
-                        CPA("http://zk.0373kj.com");
+                    CPA("http://zk.0373kj.com");
                     });
                     break;
                 case "初级":
@@ -86,10 +86,10 @@ namespace Exam.Service
                     });
                     break;
                 case "从业":
-                    //Task.Run(() =>
-                    //{
-                    CY("http://cy.0373kj.com");
-                    //});
+                    Task.Run(() =>
+                    {
+                        CY("http://cy.0373kj.com");
+                    });
                     break;
 
                 default:
@@ -193,7 +193,7 @@ namespace Exam.Service
                     foreach (SectionModel item in model.ds)
                     {
                         //这里得到章节里所有的题目
-                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null", "0"); ;
+                        string topicListStr = GetHtml(string.Format(url3, item.c_sctid), "").Replace("null", "0"); 
                         //这里执行插入数据库的操作
                         var model1 = JsonHelper.ParseFormJson<TopicListVM>(topicListStr);
 
