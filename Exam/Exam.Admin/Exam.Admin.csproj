@@ -261,6 +261,10 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\patterns\header-profile-skin-1.png" />
+    <Content Include="Content\patterns\header-profile-skin-3.png" />
+    <Content Include="Content\patterns\header-profile.png" />
+    <Content Include="Content\patterns\shattered.png" />
     <Content Include="Content\plugins\sweetalert\sweetalert.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -298,6 +302,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plugins\fileinput\fileinput.js" />
+    <Content Include="Scripts\plugins\fileinput\fileinput.min.js" />
+    <Content Include="Scripts\plugins\fileinput\zh.js" />
     <Content Include="Scripts\plugins\layer\extend\layer.ext.js" />
     <Content Include="Scripts\plugins\layer\laydate\laydate.js" />
     <Content Include="Scripts\plugins\layer\laydate\need\laydate.css" />
@@ -724,8 +731,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\patterns\" />
-    <Folder Include="Scripts\plugins\fileinput\" />
     <Folder Include="Scripts\ViewJs\Home\" />
   </ItemGroup>
   <ItemGroup>
