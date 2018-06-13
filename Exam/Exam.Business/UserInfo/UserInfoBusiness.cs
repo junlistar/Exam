@@ -107,7 +107,7 @@ namespace Exam.Business
         /// <returns></returns>
         public UserInfo Login(string phone)
         {
-            return this._repoUserInfo.Table.Where(p => p.Phone == phone).FirstOrDefault();
+            return this._repoUserInfo.Table.Where(p => p.Phone == phone&&p.IsEnable==1).FirstOrDefault();
         }
 
     }

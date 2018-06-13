@@ -54,11 +54,11 @@ namespace Exam.Api.Controllers
                             CTime = DateTime.Now,
                             Gender = 0,
                             ImageInfoId = 1000,
-                            IsEnable = 1,
+                            IsEnable = 0,
                             Phone = phone,
                             UTime = DateTime.Now
                         });
-                        return Json(new { Success = true, Msg = "验证码正确", Data = userInfo });
+                        throw new Exception("注册成功，请等待审核！");
                     }
                 }
                 else
@@ -92,7 +92,7 @@ namespace Exam.Api.Controllers
                         CTime = DateTime.Now,
                         Gender = 0,
                         ImageInfoId = 1000,
-                        IsEnable = 1,
+                        IsEnable = 0,
                         Phone = loginVM.Phone,
                         UTime = DateTime.Now,
                         NikeName = loginVM.Phone,
@@ -102,7 +102,7 @@ namespace Exam.Api.Controllers
 
                     });
                     CacheHelper.RemoveAllCache(loginVM.Phone + "Login");
-                    return Json(new { Success = true, Msg = "OK", Data = userInfoRegister });
+                    throw new Exception("您还没有通过审核！");
                 }
                 return Json(new { Success = true, Msg = "OK", Data = userInfo });
             }

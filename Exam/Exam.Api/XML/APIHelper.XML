@@ -1151,6 +1151,31 @@
             问题id
             </summary>
         </member>
+        <member name="P:Exam.Api.Models.ProblemRecordVM.ProblemRecordId">
+            <summary>
+            问题记录id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ProblemRecordVM.ProblemId">
+            <summary>
+            问题id
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ProblemRecordVM.CorrectAnswer">
+            <summary>
+            正确答案
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ProblemRecordVM.ErrorAnswer">
+            <summary>
+            用户选择的答案
+            </summary>
+        </member>
+        <member name="P:Exam.Api.Models.ProblemRecordVM.YesOrNo">
+            <summary>
+            是否正确1对 2错
+            </summary>
+        </member>
         <member name="T:Exam.Api.Models.ProblemVM">
             <summary>
             题目
