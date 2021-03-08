@@ -16,10 +16,10 @@ namespace Exam.Core.SMS
 
     public class ALiYunSMS
     {
-        private const string _endpoint = "http://1725389126977477.mns.cn-hangzhou.aliyuncs.com/"; // eg. http://1234567890123456.mns.cn-shenzhen.aliyuncs.com
-        private const string _accessKeyId = "LTAIAw8Qxhw9d0fV";
-        private const string _secretAccessKey = "ZvrWJnEHws9DA7UWRXd2lN6HUEgm3O";
-        private const string _topicName = "sms.topic-cn-hangzhou";
+        private const string _endpoint = ""; // eg. http://1234567890123456.mns.cn-shenzhen.aliyuncs.com
+        private const string _accessKeyId = "";
+        private const string _secretAccessKey = "";
+        private const string _topicName = "";
 
 
         /// 管理控制台中配置的短信签名（状态必须是验证通过）
@@ -36,8 +36,8 @@ namespace Exam.Core.SMS
 
             String product = "Dysmsapi";//短信API产品名称（短信产品名固定，无需修改）
             String domain = "dysmsapi.aliyuncs.com";//短信API产品域名（接口地址固定，无需修改）
-            String accessKeyId = "LTAIAw8Qxhw9d0fV";//你的accessKeyId，参考本文档步骤2
-            String accessKeySecret = "ZvrWJnEHws9DA7UWRXd2lN6HUEgm3O";//你的accessKeySecret，参考本文档步骤2
+            String accessKeyId = "";//你的accessKeyId，参考本文档步骤2
+            String accessKeySecret = "";//你的accessKeySecret，参考本文档步骤2
             IClientProfile profile = DefaultProfile.GetProfile("cn-hangzhou", accessKeyId, accessKeySecret);
             //IAcsClient client = new DefaultAcsClient(profile);
             // SingleSendSmsRequest request = new SingleSendSmsRequest();
